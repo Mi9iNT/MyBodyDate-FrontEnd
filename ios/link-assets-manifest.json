@@ -1,0 +1,29 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Comfortaa-Bold.ttf",
+      "sha1": "a0e3a9625e20d6ccebc7a0e1cb173c8aa9b7e3f9"
+    },
+    {
+      "path": "assets/fonts/Comfortaa-Light.ttf",
+      "sha1": "f8c457e2838266366b6ab79da7704edb59c03ee5"
+    },
+    {
+      "path": "assets/fonts/Comfortaa-Regular.ttf",
+      "sha1": "7f668f8d767995af75f83ce3caafbfacd3704b40"
+    },
+    {
+      "path": "assets/fonts/donate.html",
+      "sha1": "f07d920f36875b772190ca1716670436e80bea83"
+    },
+    {
+      "path": "assets/fonts/FONTLOG.txt",
+      "sha1": "d982059a7215e30d074973927fb90f0c5bc78e83"
+    },
+    {
+      "path": "assets/fonts/OFL.txt",
+      "sha1": "91bc2f38b83837cb6dd93e7898cd3ae08b17e387"
+    }
+  ]
+}
