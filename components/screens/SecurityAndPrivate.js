@@ -118,7 +118,7 @@ export const SecurityAndPrivate = ({navigation}) => {
         </TouchableOpacity>
         <TouchableOpacity
           accessibilityLabel="Paramètre de confidentialités"
-          onPress={() => navigation.navigate('Parametre de confidentialites')}>
+          onPress={() => navigation.navigate('Parametres de confidentialites')}>
           <View
             style={{
               height: 20,
@@ -154,14 +154,28 @@ export const SecurityAndPrivate = ({navigation}) => {
       <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
         <Image
           style={{
-            top: 140,
+            top: 170,
             width: 331,
             height: 56,
             flexShrink: 0,
             alignSelf: 'center',
           }}
-          source={require('../../assets/boutons/bouton-retour-parametres.png.png')}
+          source={require('../../assets/boutons/Bouton-Blanc-Border.png')}
         />
+        <Text
+          style={{
+            top: 130,
+            left: 10,
+            color: '#0019A7',
+            textAlign: 'center',
+            alignSelf: 'center',
+            fontFamily: 'Comfortaa',
+            fontSize: 18,
+            fontStyle: 'normal',
+            fontWeight: 700,
+          }}>
+          Retour paramètres
+        </Text>
       </TouchableOpacity>
     </ImageBackground>
   );

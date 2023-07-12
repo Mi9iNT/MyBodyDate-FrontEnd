@@ -1,20 +1,21 @@
 /* eslint-disable react-native/no-inline-styles */
-
+/* eslint-disable no-unused-vars */
 import React, {useState, useEffect} from 'react';
+import {StatusBar} from 'react-native';
 import {
-  StatusBar,
-  Switch,
-  ImageBackground,
+  View,
   Text,
   Image,
+  ImageBackground,
   TouchableOpacity,
-  View,
+  SafeAreaView,
+  TextInput,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import {MenuSlide} from '../composants/MenuSlide';
 import Styles from '../../assets/style/Styles';
-import PropTypes from 'prop-types';
 
-export const ModeInvisible = ({navigation}) => {
+export const ChangeLocalisation = ({navigation}) => {
   // Masquer la barre de statut au montage de l'écran
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -23,10 +24,7 @@ export const ModeInvisible = ({navigation}) => {
       StatusBar.setHidden(false);
     };
   }, []);
-
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
+  const [text, onChangeText] = useState('Entrez votre ville');
   return (
     <ImageBackground
       style={Styles.bgGradient}
@@ -41,7 +39,7 @@ export const ModeInvisible = ({navigation}) => {
           fontSize: 24,
           fontWeight: 700,
         }}>
-        Mode invisible
+        Changer ma localisation
       </Text>
       <View
         style={{
@@ -54,7 +52,7 @@ export const ModeInvisible = ({navigation}) => {
       />
       <Text
         style={{
-          color: '#929EDE',
+          color: '#0019A7',
           top: 100,
           width: 320,
           alignSelf: 'center',
@@ -64,41 +62,45 @@ export const ModeInvisible = ({navigation}) => {
           fontStyle: 'normal',
           fontWeight: 700,
         }}>
-        Seule les membres que vous aurez liké peuvent voir votre profil.
+        Utilisez le mode voyage pour changez votre emplacement et découvrir de
+        nouvelles personnes.
       </Text>
       <View
         style={{
-          flexShrink: 0,
+          height: 360,
+          width: 351,
           alignSelf: 'center',
           top: 150,
+          marginBottom: 40,
+        }}
+      />
+      <SafeAreaView
+        style={{
+          top: -220,
+          alignSelf: 'center',
         }}>
-        <Text
+        <TextInput
           style={{
-            color: '#0019A7',
+            width: 276,
+            height: 51,
+            borderRadius: 24,
+            borderWidth: 1,
             textAlign: 'center',
-            fontFamily: 'Gilroy',
-            fontSize: 16,
+            borderColor: '#0019A7',
+            color: '#0019A7',
+            fontFamily: 'Comfortaa',
+            fontSize: 15,
             fontStyle: 'normal',
-            fontWeight: 700,
-          }}>
-          Mettre mon compte en invisible
-        </Text>
-        <Switch
-          trackColor={{false: '#BEC8FF', true: '#17ff58'}}
-          thumbColor={isEnabled ? '#BEC8FF' : '#f4f3f4'}
-          ios_backgroundColor="#f4f3f4"
-          onValueChange={toggleSwitch}
-          value={isEnabled}
-          style={{
-            top: 40,
-            alignSelf: 'center',
           }}
+          keyboardType="default"
+          onChangeText={onChangeText}
+          value={text}
         />
-      </View>
-      <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+      </SafeAreaView>
+      <TouchableOpacity onPress={() => navigation.navigate('Mode voyage')}>
         <Image
           style={{
-            top: 520,
+            top: 120,
             width: 331,
             height: 56,
             flexShrink: 0,
@@ -108,7 +110,7 @@ export const ModeInvisible = ({navigation}) => {
         />
         <Text
           style={{
-            top: 480,
+            top: 80,
             left: 10,
             color: '#0019A7',
             textAlign: 'center',
@@ -118,14 +120,14 @@ export const ModeInvisible = ({navigation}) => {
             fontStyle: 'normal',
             fontWeight: 700,
           }}>
-          Retour paramètres
+          Retour mode voyage
         </Text>
       </TouchableOpacity>
     </ImageBackground>
   );
 };
 
-ModeInvisible.propTypes = {
+ChangeLocalisation.propTypes = {
   route: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
 };

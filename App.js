@@ -84,6 +84,9 @@ import {Emplacement} from './components/screens/Emplacement';
 import {ModeInvisible} from './components/screens/ModeInvisible';
 import {ModeVoyage} from './components/screens/ModeVoyage';
 import {MettreEnPause} from './components/screens/MettreEnPause';
+import {ModeDeConnexion} from './components/screens/ModeDeConnexion';
+import {ChangeLocalisation} from './components/screens/ChangeLocalisation';
+import {ParametresConfident} from './components/screens/ParamtresConfident';
 
 const Stack = createNativeStackNavigator();
 
@@ -509,6 +512,21 @@ function App() {
         <Stack.Screen
           name="Mettre en pause"
           component={MettreEnPause}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Mode de connexion"
+          component={ModeDeConnexion}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Changer localisation"
+          component={ChangeLocalisation}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Parametres de confidentialites"
+          component={ParametresConfident}
           options={{headerShown: false}}
         />
         <Stack.Screen
