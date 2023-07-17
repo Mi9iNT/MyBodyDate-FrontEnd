@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
+import {MenuBottom} from '../../composants/MenuBottom';
 import Styles from '../../../assets/style/Styles';
 
 export const ProfilMe = ({route, navigation}) => {
@@ -121,11 +122,7 @@ export const ProfilMe = ({route, navigation}) => {
             />
           </View>
         </View>
-
-        <Image
-          source={require('../../../assets/images/menu.png')}
-          style={{width: '100%', height: 80, position: 'absolute', bottom: 0}}
-        />
+        <MenuBottom />
       </ImageBackground>
     </View>
   );
