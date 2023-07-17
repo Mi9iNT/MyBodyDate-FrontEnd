@@ -23,25 +23,35 @@ export const MenuSlide = () => {
           flexDirection: 'row',
           alignItems: 'center',
         }}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          accessibilityLabel="Accueil"
+          onPress={() => navigation.navigate('ProfilMe')}>
           <Image
             source={require('../../assets/images/retour_flèche_bleu.png')}
             style={{width: 10, height: 20}}
           />
         </TouchableOpacity>
-        <Image
-          source={require('../../assets/images/home_1.png')}
-          style={{width: 20, height: 20, marginHorizontal: 15}}
-        />
-        <Text
-          style={{
-            fontFamily: 'Comfortaa',
-            fontWeight: '700',
-            fontSize: 18,
-            color: '#0019A7',
-          }}>
-          Accueil
-        </Text>
+        <TouchableOpacity
+          accessibilityLabel="Accueil"
+          onPress={() => navigation.navigate('ProfilMe')}>
+          <Image
+            source={require('../../assets/images/home_1.png')}
+            style={{width: 20, height: 20, marginHorizontal: 15}}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          accessibilityLabel="Accueil"
+          onPress={() => navigation.navigate('ProfilMe')}>
+          <Text
+            style={{
+              fontFamily: 'Comfortaa',
+              fontWeight: '700',
+              fontSize: 18,
+              color: '#0019A7',
+            }}>
+            Accueil
+          </Text>
+        </TouchableOpacity>
       </View>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <TouchableOpacity>
@@ -84,16 +94,20 @@ export const MenuSlide = () => {
                 width: 196,
                 height: 24,
               }}>
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontFamily: 'gilroy',
-                  fontWeight: '700',
-                  color: '#0019A7',
-                  textAlign: 'right',
-                }}>
-                Paramètres
-              </Text>
+              <TouchableOpacity
+                accessibilityLabel="Paramètres"
+                onPress={() => navigation.navigate('Settings')}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontFamily: 'gilroy',
+                    fontWeight: '700',
+                    color: '#0019A7',
+                    textAlign: 'right',
+                  }}>
+                  Paramètres
+                </Text>
+              </TouchableOpacity>
             </View>
             <View
               style={{

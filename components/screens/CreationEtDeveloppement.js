@@ -57,7 +57,6 @@ export const Creation = ({ route, navigation }) => {
             <View style={[Styles.ViewVideo, { top: 0, height: 100, height: 100 }]}>    
                 <Lottie source={require('../../assets/animations/Animation-credits.json')} autoPlay loop />
             </View>
-                
             <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => {requestLocationPermission, setModalVisible(!modalVisible); }}>
                 <View style={[Styles.centeredView5, {top:200}]}>
                     <ScrollView style={[{width:400,alignSelf:'center',top:20}]}>
