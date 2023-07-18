@@ -61,8 +61,7 @@ export const ProfilMe = ({route, navigation}) => {
             <Text style={{color: '#0019A7', fontSize: 17}}>ID.20230510.88</Text>
           </View>
 
-          <View
-            style={{flex: 1, flexDirection: 'column', alignItems: 'center'}}>
+          <View style={{flex: 1, flexDirection: 'column'}}>
             <Image
               source={require('../../../assets/images/quality3.png')}
               style={{width: 30, height: 30, marginTop: 20}}
@@ -101,7 +100,7 @@ export const ProfilMe = ({route, navigation}) => {
               }>
               <Image
                 source={require('../../../assets/images/boutonContinuer2.png')}
-                style={{width: 100, height: 30, marginTop: 25}}
+                style={{width: 96, height: 25, marginTop: 25}}
               />
             </TouchableOpacity>
           </View>
@@ -121,6 +120,38 @@ export const ProfilMe = ({route, navigation}) => {
               style={{width: 30, height: 30, marginTop: 35}}
             />
           </View>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            paddingHorizontal: 20,
+            marginTop: 30,
+          }}>
+          <Text style={{color: '#0019A7', fontSize: 18}}>Ecouter :</Text>
+          <TouchableOpacity>
+            <Image
+              source={require('../../../assets/images/voix_ondes_profil.png')}
+              style={{width: 100, height: 30}}
+            />
+          </TouchableOpacity>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            paddingHorizontal: 20,
+            marginTop: 30,
+          }}>
+          <Text style={{color: '#0019A7', fontSize: 18}}>
+            My Body Date Premium
+          </Text>
+          <TouchableOpacity>
+            <Image
+              source={require('../../../assets/images/Rectangle-40.png')}
+              style={{width: 280, height: 124}}
+            />
+          </TouchableOpacity>
         </View>
         <MenuBottom />
       </ImageBackground>

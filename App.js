@@ -1,41 +1,8 @@
-// import * as React from 'react';
-// import { StatusBar } from 'react-native';
-// import { NavigationContainer } from '@react-navigation/native';
-// import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-// import AboutMeScreen from './components/screens/AboutMeScreen';
-
-// const Stack = createNativeStackNavigator();
-
-// function App() {
-//   return (
-//     <NavigationContainer>
-//       <StatusBar translucent backgroundColor="transparent" />
-//       <Stack.Navigator
-//         initialRouteName="AboutMe"
-//       >
-//         <Stack.Screen
-//           name="AboutMe"
-//           component={AboutMeScreen}
-//           options={{
-//             headerShown: false,
-//           }}
-//         />
-//       </Stack.Navigator>
-//     </NavigationContainer>
-//   );
-// }
-
-// export default App;
-
 import * as React from 'react';
 
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
-// import { AboutMeScreen } from './components/screens/AboutMeScreen';
-
 import {HomeStack} from './components/screens/HomeStack';
 import {Bienvenue} from './components/screens/Bienvenue';
 import {Creation} from './components/screens/CreationEtDeveloppement';
@@ -76,6 +43,8 @@ import {RecuperationCode} from './components/screens/RecuperationCode';
 import {ConfirmationNumero} from './components/screens/register/ConfirmationNumero';
 import {Profil} from './components/screens/profil/Profil';
 import {ProfilMe} from './components/screens/profil/ProfilMe';
+import {ProfilMeRP} from './components/screens/profil/ProfilMeRP';
+import {ProfilMeCA} from './components/screens/profil/ProfilMeCA';
 import {Settings} from './components/screens/settings/Settings';
 import {Notifications} from './components/screens/settings/Notifications';
 import {SecurityAndPrivate} from './components/screens/settings/SecurityAndPrivate';
@@ -94,11 +63,6 @@ function App() {
   return (
     <NavigationContainer>
       <StatusBar translucent backgroundColor="transparent" />
-      {/* <Stack.Navigator initialRouteName="Home"> */}
-      {/* ...autres écrans */}
-      {/* <Stack.Screen name="AboutMeScreen" component={AboutMeScreen} options={{ headerShown: false }} /> */}
-
-      {/* </Stack.Navigator> */}
 
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
@@ -465,13 +429,23 @@ function App() {
           options={{headerShown: false}}
         />
         <Stack.Screen
+          name="Profil"
+          component={Profil}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
           name="ProfilMe"
           component={ProfilMe}
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="Profil"
-          component={Profil}
+          name="ProfilMeRP"
+          component={ProfilMeRP}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="ProfilMeCA"
+          component={ProfilMeCA}
           options={{headerShown: false}}
         />
         <Stack.Screen

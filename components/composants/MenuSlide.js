@@ -1,3 +1,6 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
 import {View, Text, Image, TouchableOpacity, Modal} from 'react-native';
 import Styles from '../../assets/style/Styles';
@@ -132,6 +135,8 @@ export const MenuSlide = () => {
             </View>
 
             {/* Professionnel */}
+            <TouchableOpacity
+            onPress={() => navigation.navigate('ProfilMeRP')}>
             <View
               style={{
                 position: 'absolute',
@@ -185,8 +190,11 @@ export const MenuSlide = () => {
                 Trouvez des contacts qui vous font évoluer.
               </Text>
             </View>
+            </TouchableOpacity>
 
             {/* Cercle d'ami */}
+            <TouchableOpacity
+            onPress={() => navigation.navigate('ProfilMeCA')}>
             <View
               style={{
                 position: 'absolute',
@@ -240,8 +248,10 @@ export const MenuSlide = () => {
                 Agrandissez votre cercle social.
               </Text>
             </View>
-
+            </TouchableOpacity>
             {/* Rencontre amoureuse */}
+            <TouchableOpacity
+            onPress={() => navigation.navigate('ProfilMe')}>
             <View
               style={{
                 position: 'absolute',
@@ -295,6 +305,7 @@ export const MenuSlide = () => {
                 Un coup de coeur n attend pas.
               </Text>
             </View>
+            </TouchableOpacity>
           </View>
         </Modal>
         <TouchableOpacity onPress={() => setModalVisible(true)}>
