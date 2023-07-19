@@ -42,7 +42,7 @@ import {SignInPhone} from './components/screens/register/SinscrirePhone';
 import {RecuperationCode} from './components/screens/RecuperationCode';
 import {ConfirmationNumero} from './components/screens/register/ConfirmationNumero';
 import {Profil} from './components/screens/profil/Profil';
-import {ProfilMe} from './components/screens/profil/ProfilMe';
+import {ProfilMeRA} from './components/screens/profil/ProfilMe';
 import {ProfilMeRP} from './components/screens/profil/ProfilMeRP';
 import {ProfilMeCA} from './components/screens/profil/ProfilMeCA';
 import {Settings} from './components/screens/settings/Settings';
@@ -434,8 +434,8 @@ function App() {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="ProfilMe"
-          component={ProfilMe}
+          name="ProfilMeRA"
+          component={ProfilMeRA}
           options={{headerShown: false}}
         />
         <Stack.Screen

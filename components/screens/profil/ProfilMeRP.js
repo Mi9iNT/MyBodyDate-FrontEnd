@@ -47,58 +47,16 @@ export const ProfilMeRP = ({route, navigation}) => {
           justifyContent: 'space-between',
           alignItems: 'center',
           paddingHorizontal: 20,
-          paddingVertical: 20,
         }}>
         <MenuSlide />
-        {/* <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <TouchableOpacity>
-            <Image
-              source={require('../../assets/images/flèche.png')}
-              style={{width: 10, height: 20}}
-            />
-          </TouchableOpacity>
-          <Image
-            source={require('../../assets/images/home-1.png')}
-            style={{width: 20, height: 20, marginHorizontal: 15}}
-          />
-          <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '700',
-              fontSize: 18,
-              color: 'white',
-            }}>
-            Accueil
-          </Text>
-        </View>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <TouchableOpacity>
-            <Image
-              source={require('../../assets/images/Cercle-Pro.png')}
-              style={{width: 30, height: 30, marginHorizontal: 15}}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image
-              source={require('../../assets/images/parametres_2.png')}
-              style={{width: 30, height: 30, marginHorizontal: 15}}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image
-              source={require('../../assets/images/menu_mobile.png')}
-              style={{width: 30, height: 30, marginLeft: 5}}
-            />
-          </TouchableOpacity>
-        </View> */}
       </View>
       <ScrollView style={{backgroundColor: 'black'}}>
         <View style={{justifyContent: 'center'}}>
           <Image
             source={require('../../../assets/images/CaptureDecran2023-03-21.png')}
             style={{
-              width: '60%',
-              height: 250,
+              width: 346,
+              height: 313,
               borderRadius: 30,
               borderWidth: 1,
               borderColor: '#E5E5E5',
@@ -110,15 +68,15 @@ export const ProfilMeRP = ({route, navigation}) => {
               flexDirection: 'row',
               justifyContent: 'space-between',
               paddingHorizontal: 20,
-              marginTop: 5,
+              marginTop: 25,
             }}>
-            <Text style={{color: 'white', flex: 1, fontSize: 18}}>
+            <Text
+              style={{width: 257, height: 35, color: 'white', fontSize: 15}}>
               ID.20230510.88
             </Text>
-            <View style={{flex: 0.2}} />
             <Image
               source={require('../../../assets/images/bouton_continuer.png')}
-              style={{width: 100, height: 30, borderRadius: 30}}
+              style={{width: 96, height: 30, borderRadius: 30}}
             />
           </View>
           <View
@@ -126,7 +84,6 @@ export const ProfilMeRP = ({route, navigation}) => {
               flexDirection: 'row',
               justifyContent: 'flex-start',
               paddingHorizontal: 20,
-              marginTop: 20,
             }}>
             <Text style={{color: 'white', fontSize: 18}}>Ecouter :</Text>
             <TouchableOpacity
@@ -168,7 +125,8 @@ export const ProfilMeRP = ({route, navigation}) => {
               paddingHorizontal: 20,
               marginTop: 20,
             }}>
-            <Text style={{color: 'white', fontSize: 18}}>
+            <Text
+              style={{width: 336, height: 52, color: 'white', fontSize: 15}}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras arcu
               neque, tempus sed interdum ut.
             </Text>
@@ -176,30 +134,31 @@ export const ProfilMeRP = ({route, navigation}) => {
           <View
             style={{
               flexDirection: 'row',
-              justifyContent: 'space-between',
+              justifyContent: 'flex-start',
               marginTop: 20,
               marginHorizontal: 20,
             }}>
             <Image
               source={require('../../../assets/images/validation-du-ticket1.png')}
-              style={{width: 70, height: 30}}
+              style={{width: 35, height: 35}}
             />
             <Text
               style={{
                 textDecorationLine: 'underline',
                 color: 'white',
+                marginTop: 7,
                 marginLeft: 10,
-                fontSize: 18,
+                fontSize: 15,
               }}>
               Je prends mon pass
             </Text>
             <Image
               source={require('../../../assets/images/Group36.png')}
-              style={{width: 40, height: 30, marginLeft: 10}}
+              style={{width: 40, height: 30, marginLeft: 60}}
             />
             <Image
               source={require('../../../assets/images/heart1.png')}
-              style={{width: 30, height: 30, marginLeft: 10}}
+              style={{width: 30, height: 30, marginLeft: 30}}
             />
           </View>
           <View
@@ -210,7 +169,7 @@ export const ProfilMeRP = ({route, navigation}) => {
               marginHorizontal: 20,
             }}
           />
-          <Text style={{color: 'white', fontSize: 24, marginHorizontal: 20}}>
+          <Text style={{color: 'white', fontSize: 20, marginHorizontal: 20}}>
             A propos de moi
           </Text>
           <View style={{marginTop: 5}}>
@@ -283,24 +242,24 @@ export const ProfilMeRP = ({route, navigation}) => {
         </View>
         <View
           style={{
+            width: 390,
+            height: 690,
             marginTop: 50,
-            marginLeft: 2,
             backgroundColor: 'white',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
-            paddingBottom: 20,
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
           }}>
           <View
             style={{flexDirection: 'row', marginTop: 45, alignItems: 'center'}}>
             <Image
               source={require('../../../assets/images/statut.png')}
-              style={{width: 30, height: 30, marginRight: 20}}
+              style={{width: 32, height: 36, marginRight: 20, marginLeft: 20}}
             />
             <Text
               style={{
                 fontFamily: 'Comfortaa',
                 fontWeight: '500',
-                fontSize: 18,
+                fontSize: 15,
                 lineHeight: 18,
                 color: 'black',
               }}>
@@ -311,9 +270,10 @@ export const ProfilMeRP = ({route, navigation}) => {
             style={{
               fontFamily: 'Comfortaa',
               fontWeight: '500',
-              fontSize: 18,
+              fontSize: 14,
               lineHeight: 18,
               color: 'black',
+              marginLeft: 20,
             }}>
             Lorem ipsum
           </Text>
@@ -321,13 +281,13 @@ export const ProfilMeRP = ({route, navigation}) => {
             style={{flexDirection: 'row', marginTop: 45, alignItems: 'center'}}>
             <Image
               source={require('../../../assets/images/recherche_emploi.png')}
-              style={{width: 30, height: 30, marginRight: 10}}
+              style={{width: 32, height: 36, marginRight: 20, marginLeft: 20}}
             />
             <Text
               style={{
                 fontFamily: 'Comfortaa',
                 fontWeight: '500',
-                fontSize: 18,
+                fontSize: 15,
                 lineHeight: 18,
                 color: 'black',
               }}>
@@ -338,9 +298,10 @@ export const ProfilMeRP = ({route, navigation}) => {
             style={{
               fontFamily: 'Comfortaa',
               fontWeight: '500',
-              fontSize: 18,
+              fontSize: 14,
               lineHeight: 18,
               color: 'black',
+              marginLeft: 20,
             }}>
             Lorem ipsum
           </Text>
@@ -348,13 +309,13 @@ export const ProfilMeRP = ({route, navigation}) => {
             style={{flexDirection: 'row', marginTop: 45, alignItems: 'center'}}>
             <Image
               source={require('../../../assets/images/publier__offre.png')}
-              style={{width: 30, height: 30, marginRight: 10}}
+              style={{width: 32, height: 36, marginRight: 20, marginLeft: 20}}
             />
             <Text
               style={{
                 fontFamily: 'Comfortaa',
                 fontWeight: '500',
-                fontSize: 18,
+                fontSize: 15,
                 lineHeight: 18,
                 color: 'black',
               }}>
@@ -365,9 +326,10 @@ export const ProfilMeRP = ({route, navigation}) => {
             style={{
               fontFamily: 'Comfortaa',
               fontWeight: '500',
-              fontSize: 18,
+              fontSize: 14,
               lineHeight: 18,
               color: 'black',
+              marginLeft: 20,
             }}>
             Lorem ipsum
           </Text>
@@ -375,13 +337,13 @@ export const ProfilMeRP = ({route, navigation}) => {
             style={{flexDirection: 'row', marginTop: 45, alignItems: 'center'}}>
             <Image
               source={require('../../../assets/images/langue_pro.png')}
-              style={{width: 30, height: 30, marginRight: 10}}
+              style={{width: 32, height: 36, marginRight: 20, marginLeft: 20}}
             />
             <Text
               style={{
                 fontFamily: 'Comfortaa',
                 fontWeight: '500',
-                fontSize: 18,
+                fontSize: 15,
                 lineHeight: 18,
                 color: 'black',
               }}>
@@ -392,9 +354,10 @@ export const ProfilMeRP = ({route, navigation}) => {
             style={{
               fontFamily: 'Comfortaa',
               fontWeight: '500',
-              fontSize: 18,
+              fontSize: 14,
               lineHeight: 18,
               color: 'black',
+              marginLeft: 20,
             }}>
             Lorem ipsum
           </Text>
@@ -402,13 +365,13 @@ export const ProfilMeRP = ({route, navigation}) => {
             style={{flexDirection: 'row', marginTop: 45, alignItems: 'center'}}>
             <Image
               source={require('../../../assets/images/distinctions.png')}
-              style={{width: 30, height: 30, marginRight: 10}}
+              style={{width: 32, height: 36, marginRight: 20, marginLeft: 20}}
             />
             <Text
               style={{
                 fontFamily: 'Comfortaa',
                 fontWeight: '500',
-                fontSize: 18,
+                fontSize: 15,
                 lineHeight: 18,
                 color: 'black',
               }}>
@@ -419,9 +382,10 @@ export const ProfilMeRP = ({route, navigation}) => {
             style={{
               fontFamily: 'Comfortaa',
               fontWeight: '500',
-              fontSize: 18,
+              fontSize: 14,
               lineHeight: 18,
               color: 'black',
+              marginLeft: 20,
             }}>
             Lorem ipsum
           </Text>
@@ -429,13 +393,13 @@ export const ProfilMeRP = ({route, navigation}) => {
             style={{flexDirection: 'row', marginTop: 45, alignItems: 'center'}}>
             <Image
               source={require('../../../assets/images/distinctions.png')}
-              style={{width: 30, height: 30, marginRight: 10}}
+              style={{width: 32, height: 36, marginRight: 20, marginLeft: 20}}
             />
             <Text
               style={{
                 fontFamily: 'Comfortaa',
                 fontWeight: '500',
-                fontSize: 18,
+                fontSize: 15,
                 lineHeight: 18,
                 color: 'black',
               }}>
@@ -446,10 +410,10 @@ export const ProfilMeRP = ({route, navigation}) => {
             style={{
               fontFamily: 'Comfortaa',
               fontWeight: '500',
-              fontSize: 18,
+              fontSize: 14,
               lineHeight: 18,
               color: 'black',
-              marginBottom: 20,
+              marginLeft: 20,
             }}>
             Lorem ipsum
           </Text>
