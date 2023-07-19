@@ -28,7 +28,7 @@ export const MenuSlide = () => {
         }}>
         <TouchableOpacity
           accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate('ProfilMe')}>
+          onPress={() => navigation.navigate('ProfilMeRA')}>
           <Image
             source={require('../../assets/images/retour_flèche_bleu.png')}
             style={{width: 10, height: 20}}
@@ -36,7 +36,7 @@ export const MenuSlide = () => {
         </TouchableOpacity>
         <TouchableOpacity
           accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate('ProfilMe')}>
+          onPress={() => navigation.navigate('ProfilMeRA')}>
           <Image
             source={require('../../assets/images/home_1.png')}
             style={{width: 20, height: 20, marginHorizontal: 15}}
@@ -44,7 +44,7 @@ export const MenuSlide = () => {
         </TouchableOpacity>
         <TouchableOpacity
           accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate('ProfilMe')}>
+          onPress={() => navigation.navigate('ProfilMeRA')}>
           <Text
             style={{
               fontFamily: 'Comfortaa',
@@ -251,7 +251,7 @@ export const MenuSlide = () => {
             </TouchableOpacity>
             {/* Rencontre amoureuse */}
             <TouchableOpacity
-            onPress={() => navigation.navigate('ProfilMe')}>
+            onPress={() => navigation.navigate('ProfilMeRA')}>
             <View
               style={{
                 position: 'absolute',
