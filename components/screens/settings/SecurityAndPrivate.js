@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useEffect} from 'react';
@@ -11,8 +12,8 @@ import {
   Modal,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {MenuSlide} from '../../composants/MenuSlide';
 import Styles from '../../../assets/style/Styles';
+import MenuSlideSettings from '../../composants/MenuSlideSettings';
 
 export const SecurityAndPrivate = ({navigation}) => {
   // Masquer la barre de statut au montage de l'écran
@@ -27,7 +28,7 @@ export const SecurityAndPrivate = ({navigation}) => {
     <ImageBackground
       style={Styles.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlide />
+      <MenuSlideSettings />
       <Text
         style={{
           top: 30,

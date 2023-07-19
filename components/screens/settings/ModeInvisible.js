@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 
 import React, {useState, useEffect} from 'react';
@@ -10,9 +11,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {MenuSlide} from '../../composants/MenuSlide';
 import Styles from '../../../assets/style/Styles';
 import PropTypes from 'prop-types';
+import MenuSlideSettings from '../../composants/MenuSlideSettings';
 
 export const ModeInvisible = ({navigation}) => {
   // Masquer la barre de statut au montage de l'écran
@@ -31,7 +32,7 @@ export const ModeInvisible = ({navigation}) => {
     <ImageBackground
       style={Styles.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlide />
+      <MenuSlideSettings />
       <Text
         style={{
           top: 30,

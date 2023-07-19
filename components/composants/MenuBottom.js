@@ -18,7 +18,7 @@ export const MenuBottom = () => {
     <View
       style={{
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 20,
         paddingVertical: 20,
@@ -27,7 +27,7 @@ export const MenuBottom = () => {
         position: 'absolute',
         bottom: 0,
         backgroundColor: '#0019A7',
-        borderRadius: 40,
+        borderRadius: 30,
       }}>
       <TouchableOpacity onPress={() => handleTabPress('Découvrir')}>
         <Image
@@ -59,7 +59,7 @@ export const MenuBottom = () => {
         )}
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => handleTabPress('Task')}>
+      <TouchableOpacity onPress={() => handleTabPress('Talk')}>
         <Image
           source={require('../../assets/boutons/chat.png')}
           style={{width: 30, height: 30, alignSelf:'center'}}
@@ -72,9 +72,9 @@ export const MenuBottom = () => {
             color: '#fff',
             textAlign:'center',
           }}>
-          Task
+          Talk
         </Text>
-        {activeTab === 'Task' && (
+        {activeTab === 'Talk' && (
           <View
             style={{
               position: 'absolute',
