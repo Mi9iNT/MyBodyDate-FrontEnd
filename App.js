@@ -478,6 +478,7 @@ function App() {
           component={ProfilMeCA}
           options={{headerShown: false}}
         />
+        {/* SETTINGS SCREENS */}
         <Stack.Screen
           name="ProfilMeRA"
           component={ProfilMeRA}
