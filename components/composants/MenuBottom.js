@@ -3,16 +3,19 @@
 import React, {useState} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import Styles from '../../assets/style/Styles';
-import {useNavigation, TabRouter} from '@react-navigation/native';
 
-export const MenuBottom = () => {
-  const navigation = useNavigation();
-  const [activeTab, setActiveTab] = useState('Découvrir'); // Onglet actif par défaut
+export const MenuBottom = ({ navigation, route }) => {
+
+  const [activeTab, setActiveTab] = useState( activeTab ?? 'ProfilMe'); // Onglet actif par défaut
 
   const handleTabPress = tabName => {
     setActiveTab(tabName);
-    navigation.navigate(tabName);
+    navigation.navigate(tabName, { activeTab: tabName });
   };
+
+  if (!navigation) {
+    return null;
+  }
 
   return (
     <View
@@ -29,7 +32,7 @@ export const MenuBottom = () => {
         backgroundColor: '#0019A7',
         borderRadius: 30,
       }}>
-      <TouchableOpacity onPress={() => handleTabPress('Découvrir')}>
+      <TouchableOpacity onPress={() => handleTabPress('ProfilMe')}>
         <Image
           source={require('../../assets/boutons/explorateur.png')}
           style={{width: 30, height: 30, alignSelf:'center'}}
@@ -44,7 +47,7 @@ export const MenuBottom = () => {
           }}>
           Découvrir
         </Text>
-        {activeTab === 'Découvrir' && (
+        {activeTab === 'ProfilMe' && (
           <View
             style={{
               position: 'absolute',
@@ -59,7 +62,7 @@ export const MenuBottom = () => {
         )}
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => handleTabPress('Talk')}>
+      <TouchableOpacity onPress={() => { handleTabPress('Talk'); }}>
         <Image
           source={require('../../assets/boutons/chat.png')}
           style={{width: 30, height: 30, alignSelf:'center'}}

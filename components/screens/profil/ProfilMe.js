@@ -35,13 +35,14 @@ export const ProfilMe = ({route, navigation}) => {
   const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
+  const imagePath = route.params?.imagePath ?? '';
 
   return (
     <View style={{flex: 1, backgroundColor: '#ffffff'}}>
       <ImageBackground
         style={Styles.bgGradient}
         source={require('../../../assets/images/MicrosoftTeams-image.png')}>
-        <MenuSlide />
+        <MenuSlide imagePath={imagePath} />
         <View style={{flexDirection: 'row', marginBottom: 20}}>
           <View
             style={{
@@ -153,7 +154,7 @@ export const ProfilMe = ({route, navigation}) => {
             />
           </TouchableOpacity>
         </View>
-        <MenuBottom />
+        <MenuBottom navigation={navigation}/>
       </ImageBackground>
     </View>
   );

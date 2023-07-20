@@ -12,7 +12,6 @@ import {
   Switch,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {MenuSlide} from '../../composants/MenuSlide';
 import Styles from '../../../assets/style/Styles';
 import MenuSlideSettings from '../../composants/MenuSlideSettings';
 
