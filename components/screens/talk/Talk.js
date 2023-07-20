@@ -29,20 +29,39 @@ export const Talk = ({ navigation, route }) => {
   console.log(imagePath);
   return (
     <View
-      style={{backgroundColor:'#fff', height:'100%', width:'auto',}}>
+      style={{backgroundColor:'#fff', height:'100%', width:'auto'}}>
       <MenuSlide imagePath={imagePath} />
-      <View>
-         <Image
-        source={require('../../../assets/images/bg-parametres.png')}
-        style={{
-          width: '100%',
-          height: '100%',
-          position: 'absolute',
-          top: '30%',
-          left: 0,}}
-        resizeMode="contain"
-      />
+      <View style={{flexDirection:'row', justifyContent: 'space-around', top:30}}>
+        <View style={{ flexDirection: 'row', width:200, height:50}}>
+          <Image source={require('../../../assets/images/Ellipse44.png')} style={{ position:'absolute', top: -30, width: 50, resizeMode: 'contain' }} />
+          <TouchableOpacity style={{backgroundColor:'#fff', position:'absolute', top: 0, left: 40, justifyContent:'center', alignItems:'center', width: 50, height: 50, borderColor:'#0019A7', borderWidth: 2, borderRadius: 50}}>
+            <Image source={require('../../../assets/images/add-6.png')} style={{ top: 0, width: 50, resizeMode: 'contain' }} />
+          </TouchableOpacity>
+        </View>
+        <View style={{ flexDirection: 'row', justifyContent:'space-between', width: 150, height: 50 }}>
+          <TouchableOpacity style={{justifyContent:'center'}}>
+            <Image source={require('../../../assets/images/add-6.png')}/>
+          </TouchableOpacity>
+          <TouchableOpacity style={{justifyContent:'center'}}>
+            <Image source={require('../../../assets/images/add-6.png')}/>
+          </TouchableOpacity>
+          <TouchableOpacity style={{justifyContent:'center'}}>
+            <Image source={require('../../../assets/images/appel-video-1.png')}/>
+          </TouchableOpacity>
+        </View>
       </View>
+         <ImageBackground source={require('../../../assets/images/bg-parametres.png')}
+          style={{top: '10%', resizeMode: 'contain'}}>
+        <View style={{
+          width: '100%',
+          height:'100%',
+          alignItems: 'center',
+        }}>
+          <Image style={{top:'32%'}} source={require('../../../assets/images/ico-conversation.png')} />
+          <Text style={{ top:'35%', width: 200, color: '#929EDE', textAlign: 'center', fontFamily: 'Comfortaa', fontSize: 20, fontStyle: 'normal', fontWeight: 700 }}>Vous n'avez pas encore de conversation</Text>
+        </View>
+        </ImageBackground>
+
       <MenuBottom navigation={navigation} activeTab={activeTab} />
     </View>
   );

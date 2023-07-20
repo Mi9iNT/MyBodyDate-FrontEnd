@@ -48,6 +48,7 @@ import {Profil} from './components/screens/profil/Profil';
 import {ProfilMe} from './components/screens/profil/ProfilMe';
 import {ProfilMeRP} from './components/screens/profil/ProfilMeRP';
 import {ProfilMeCA} from './components/screens/profil/ProfilMeCA';
+import {ProfilMeRA} from './components/screens/profil/ProfilMeRA'
 import {Settings} from './components/screens/settings/Settings';
 import {Notifications} from './components/screens/settings/Notifications';
 import {SecurityAndPrivate} from './components/screens/settings/SecurityAndPrivate';
@@ -475,6 +476,12 @@ function App() {
         <Stack.Screen
           name="ProfilMeCA"
           component={ProfilMeCA}
+          options={{headerShown: false}}
+        />
+        {/* SETTINGS SCREENS */}
+        <Stack.Screen
+          name="ProfilMeRA"
+          component={ProfilMeRA}
           options={{headerShown: false}}
         />
         {/* SETTINGS SCREENS */}

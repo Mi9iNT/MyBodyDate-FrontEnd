@@ -5,24 +5,12 @@ import React, { useState, useMemo } from 'react';
 import { View, Text, Image, TouchableOpacity, Modal } from 'react-native';
 import Styles from '../../assets/style/Styles';
 import { useNavigation } from '@react-navigation/native';
+import { Pastille } from './Pastille';
 
- const Pastille = ({ imagePath }) => {
-  const icon = useMemo(() => {
-    return imagePath === 'ProfilMe'
-      ? require('../../assets/images/Rencontre_amoureuse.png')
-      : require('../../assets/images/cercle_ami.png');
-  }, [imagePath]);
-
-  return (
-    <TouchableOpacity>
-      <Image source={icon} style={{ width: 30, height: 30, marginHorizontal: 15 }} />
-    </TouchableOpacity>
-  );
-};
 export const MenuSlide = () => {
   const navigation = useNavigation();
 
-  const [imagePath, setImagePath] = useState('ProfilMe');
+  const [imagePath, setImagePath] = useState(imagePath);
 
   // Constantes concernant la Modal du Menu Slide
   const [modalVisible, setModalVisible] = useState(false);
@@ -205,7 +193,7 @@ export const MenuSlide = () => {
             {/* Cercle d'ami */}
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('ProfilMe', {imagePath:'ProfilMeCA'});
+                navigation.navigate('ProfilMeCA', {currentImage:'ProfilMeCA'});
                 setImagePath('ProfilMeCA');
               }}>
               <View
@@ -266,8 +254,8 @@ export const MenuSlide = () => {
             {/* Rencontre amoureuse */}
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('ProfilMe', {imagePath:'ProfilMe'});
-                setImagePath('ProfilMe');
+                navigation.navigate('ProfilMeRA', {currentImage:'ProfilMeRA'});
+                setImagePath('ProfilMeRA');
               }}>
               <View
                 style={{
