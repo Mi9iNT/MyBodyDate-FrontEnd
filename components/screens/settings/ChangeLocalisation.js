@@ -1,5 +1,6 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable no-unused-vars */
+
 import React, {useState, useEffect} from 'react';
 import {StatusBar} from 'react-native';
 import {
@@ -12,7 +13,7 @@ import {
   TextInput,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {MenuSlide} from '../../composants/MenuSlide';
+import {MenuSlideSettings} from '../../composants/MenuSlideSettings';
 import Styles from '../../../assets/style/Styles';
 
 export const ChangeLocalisation = ({navigation}) => {
@@ -29,7 +30,7 @@ export const ChangeLocalisation = ({navigation}) => {
     <ImageBackground
       style={Styles.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlide />
+      <MenuSlideSettings />
       <Text
         style={{
           top: 30,

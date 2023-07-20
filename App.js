@@ -1,8 +1,11 @@
+/* eslint-disable prettier/prettier */
 import * as React from 'react';
 
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import {HomeStack} from './components/screens/HomeStack';
 import {Bienvenue} from './components/screens/Bienvenue';
 import {Creation} from './components/screens/CreationEtDeveloppement';
@@ -42,9 +45,10 @@ import {SignInPhone} from './components/screens/register/SinscrirePhone';
 import {RecuperationCode} from './components/screens/RecuperationCode';
 import {ConfirmationNumero} from './components/screens/register/ConfirmationNumero';
 import {Profil} from './components/screens/profil/Profil';
-import {ProfilMeRA} from './components/screens/profil/ProfilMe';
+import {ProfilMe} from './components/screens/profil/ProfilMe';
 import {ProfilMeRP} from './components/screens/profil/ProfilMeRP';
 import {ProfilMeCA} from './components/screens/profil/ProfilMeCA';
+import {ProfilMeRA} from './components/screens/profil/ProfilMeRA'
 import {Settings} from './components/screens/settings/Settings';
 import {Notifications} from './components/screens/settings/Notifications';
 import {SecurityAndPrivate} from './components/screens/settings/SecurityAndPrivate';
@@ -57,54 +61,85 @@ import {ModeDeConnexion} from './components/screens/settings/ModeDeConnexion';
 import {ChangeLocalisation} from './components/screens/settings/ChangeLocalisation';
 import {ParametresConfident} from './components/screens/settings/ParamtresConfident';
 
+import { MenuBottom } from './components/composants/MenuBottom';
+
+import {Talk} from './components/screens/talk/Talk';
+import {Messages} from './components/screens/messages/Messages';
+import {Map} from './components/screens/map/Map';
+import {Moi} from './components/screens/profil/Profil';
+
 const Stack = createNativeStackNavigator();
+const MainStack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+
+// Composant pour les écrans des onglets
+function HomeTabs() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarStyle: [
+          {
+            display: 'flex',
+          },
+          null,
+        ],
+      }}
+      tabBar={(props) => <MenuBottom {...props} />}
+    >
+      <Tab.Screen name="ProfilMe" component={ProfilMe} options={{headerShown: false}} />
+      <Tab.Screen name="Talk" component={Talk} options={{headerShown: false}} />
+      <Tab.Screen name="Messages" component={Messages} options={{headerShown: false}} />
+      <Tab.Screen name="Map" component={Map} options={{headerShown: false}} />
+      <Tab.Screen name="Moi" component={Profil} options={{headerShown: false}} />
+      {/* Ajoutez d'autres onglets ici si nécessaire */}
+    </Tab.Navigator>
+  );
+}
 
 function App() {
   return (
     <NavigationContainer>
       <StatusBar translucent backgroundColor="transparent" />
 
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
+      <MainStack.Navigator initialRouteName="Home">
+        <MainStack.Screen
           name="Home"
           component={HomeStack}
-          options={{
-            title: '',
-            headerTransparent: true,
-            headerStyle: {backgroundColor: 'transparent'},
-          }}
+          options={{headerShown: false}}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Home Next"
           component={HomeStackNext}
           options={{headerShown: false}}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Bienvenue"
           component={Bienvenue}
           options={{headerShown: false}}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Création et Développement"
           component={Creation}
           options={{headerShown: false}}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Love Coach"
           component={LoveCoach}
           options={{headerShown: false}}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Liens d'inscription"
           component={LinksSignIn}
           options={{headerShown: false}}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Liens de connexion"
           component={LinksLogIn}
           options={{headerShown: false}}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="S'inscrire par mail"
           component={SignInMail}
           options={{
@@ -115,7 +150,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="S'inscrire par numero"
           component={SignInPhone}
           options={{
@@ -126,7 +161,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Confirmation numero"
           component={ConfirmationNumero}
           options={{
@@ -137,7 +172,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Recuperation email"
           component={RecuperationCompte}
           options={{
@@ -148,7 +183,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Confirmation email"
           component={ConfirmationEmail}
           options={{
@@ -159,7 +194,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Ville"
           component={Ville}
           options={{
@@ -170,7 +205,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Accès Position"
           component={AccesPosition}
           options={{
@@ -181,7 +216,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Genre"
           component={Genre}
           options={{
@@ -192,7 +227,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Date de naissance"
           component={DateDeNaissance}
           options={{
@@ -203,7 +238,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Taille"
           component={Taille}
           options={{
@@ -214,7 +249,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Langue parler"
           component={LangueParler}
           options={{
@@ -225,7 +260,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Situation"
           component={Situation}
           options={{
@@ -236,7 +271,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Orientation"
           component={Orientation}
           options={{
@@ -247,7 +282,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Recherche1"
           component={Recherche1}
           options={{
@@ -258,7 +293,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Recherche2"
           component={Recherche2}
           options={{
@@ -269,7 +304,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Objectifs"
           component={Objectifs}
           options={{
@@ -280,7 +315,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Affinite"
           component={Affinite}
           options={{
@@ -291,7 +326,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Rythme1"
           component={RythmeDeVie1}
           options={{
@@ -302,7 +337,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Rythme2"
           component={RythmeDeVie2}
           options={{
@@ -313,7 +348,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Prenom"
           component={Prenom}
           options={{
@@ -324,7 +359,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Confirmation prenom"
           component={ConfirmationPrenom}
           options={{
@@ -335,7 +370,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Prenium"
           component={Prenium}
           options={{
@@ -346,7 +381,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Compte"
           component={Compte}
           options={{
@@ -357,7 +392,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Recuperation code"
           component={RecuperationCode}
           options={{
@@ -368,7 +403,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Confirmation compte"
           component={ConfirmationCompte}
           options={{
@@ -379,7 +414,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="AjoutPhoto"
           component={AjoutPhoto}
           options={{
@@ -390,7 +425,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Ajouter photo"
           component={AjoutPhoto}
           options={{
@@ -401,7 +436,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Empreinte vocal"
           component={EmpreinteVocal}
           options={{
@@ -412,7 +447,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Charte d'engagement"
           component={CharteEngagement}
           options={{
@@ -423,7 +458,7 @@ function App() {
             headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
           }}
         />
-        <Stack.Screen
+        <MainStack.Screen
           name="Felicitations"
           component={Felicitations}
           options={{headerShown: false}}
@@ -431,11 +466,6 @@ function App() {
         <Stack.Screen
           name="Profil"
           component={Profil}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="ProfilMeRA"
-          component={ProfilMeRA}
           options={{headerShown: false}}
         />
         <Stack.Screen
@@ -448,6 +478,12 @@ function App() {
           component={ProfilMeCA}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+          name="ProfilMeRA"
+          component={ProfilMeRA}
+          options={{headerShown: false}}
+        />
+        {/* SETTINGS SCREENS */}
         <Stack.Screen
           name="Settings"
           component={Settings}
@@ -503,12 +539,36 @@ function App() {
           component={ParametresConfident}
           options={{headerShown: false}}
         />
+        {/* TALKS SCREENS */}
+        <Stack.Screen
+          name="Talk"
+          component={Talk}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="Test"
           component={ScreenTest}
           options={{headerShown: false}}
         />
-      </Stack.Navigator>
+
+        <Stack.Screen
+          name="ProfilMe"
+          component={HomeTabs}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="Messages"
+          component={HomeTabs}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="Moi"
+          component={HomeTabs}
+          options={{headerShown: false}}
+        />
+      </MainStack.Navigator>
     </NavigationContainer>
   );
 }

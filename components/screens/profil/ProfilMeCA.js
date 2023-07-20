@@ -8,7 +8,10 @@ import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
 import Styles from '../../../assets/style/Styles';
 
-export const ProfilMeCA = ({route, navigation}) => {
+export const ProfilMeCA = ({ route, navigation }) => {
+  const currentImage = route.params?.currentImage ?? '';
+  console.log('currentImage=',currentImage);
+
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
