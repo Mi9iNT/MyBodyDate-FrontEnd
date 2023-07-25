@@ -64,7 +64,7 @@ export const ProfilMe = ({route, navigation}) => {
 
           <View style={{flex: 1, flexDirection: 'column'}}>
             <Image
-              source={require('../../../assets/images/quality3.png')}
+              source={require('../../../assets/images/ico-certified-rose.png')}
               style={{width: 30, height: 30, marginTop: 20}}
             />
             <Text style={{color: '#0019A7', fontSize: 17, marginTop: 5}}>

@@ -76,7 +76,7 @@ export const MenuSlideSettings = () => {
               }}>
               <TouchableOpacity
                 accessibilityLabel="Paramètres"
-                onPress={() => navigation.navigate('Settings')}>
+                onPress={() => { setModalVisible(false); navigation.navigate('Settings');}}>
                 <Text
                   style={{
                     fontSize: 20,
@@ -99,7 +99,7 @@ export const MenuSlideSettings = () => {
               }}>
               <TouchableOpacity
                 accessibilityLabel="Paramètres"
-                onPress={() => navigation.navigate('Settings')}>
+                onPress={() => { setModalVisible(false); navigation.navigate('Settings'); }}>
                 <Image
                   source={require('../../assets/images/parametres.png')}
                   style={{
@@ -113,7 +113,7 @@ export const MenuSlideSettings = () => {
 
             {/* Professionnel */}
             <TouchableOpacity
-              onPress={() => navigation.navigate('ProfilMeRP')}>
+              onPress={() => { setModalVisible(false); navigation.navigate('ProfilMeRP'); }}>
               <View
                 style={{
                   position: 'absolute',
@@ -172,8 +172,9 @@ export const MenuSlideSettings = () => {
             {/* Cercle d'ami */}
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('ProfilMeCA', {currentImage:'ProfilMeCA'});
+                setModalVisible(false);
                 setImagePath('ProfilMeCA');
+                navigation.navigate('ProfilMeCA', {currentImage:'ProfilMeCA'});
               }}>
               <View
                 style={{
@@ -233,8 +234,9 @@ export const MenuSlideSettings = () => {
             {/* Rencontre amoureuse */}
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('ProfilMeRA', {currentImage:'ProfilMeRA'});
                 setImagePath('ProfilMeRA');
+                setModalVisible(false);
+                navigation.navigate('ProfilMeRA', {currentImage:'ProfilMeRA'});
               }}>
               <View
                 style={{

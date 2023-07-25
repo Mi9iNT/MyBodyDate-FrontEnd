@@ -63,10 +63,16 @@ import {ParametresConfident} from './components/screens/settings/ParamtresConfid
 
 import { MenuBottom } from './components/composants/MenuBottom';
 
-import {Talk} from './components/screens/talk/Talk';
 import {Messages} from './components/screens/messages/Messages';
 import {Map} from './components/screens/map/Map';
 import {Moi} from './components/screens/profil/Profil';
+
+import {Talk} from './components/screens/talk/Talk';
+import {TalkChat} from './components/screens/talk/TalkChat';
+import { TalkPhone } from './components/screens/talk/TalkPhone';
+import { TalkPhoneAccept } from './components/screens/talk/TalkPhoneAccept';
+import {TalkVideo} from './components/screens/talk/TalkVideo';
+import { TalkVideoAccept } from './components/screens/talk/TalkVideoAccept';
 
 const Stack = createNativeStackNavigator();
 const MainStack = createNativeStackNavigator();
@@ -543,12 +549,37 @@ function App() {
         {/* TALKS SCREENS */}
         <Stack.Screen
           name="Talk"
-          component={Talk}
+          component={HomeTabs}
           options={{headerShown: false}}
         />
+
         <Stack.Screen
-          name="Test"
-          component={ScreenTest}
+          name="TalkChat"
+          component={TalkChat}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="TalkPhone"
+          component={TalkPhone}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="TalkPhoneAccept"
+          component={TalkPhoneAccept}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="TalkVideo"
+          component={TalkVideo}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="TalkVideoAccept"
+          component={TalkVideoAccept}
           options={{headerShown: false}}
         />
 
@@ -563,10 +594,15 @@ function App() {
           component={HomeTabs}
           options={{headerShown: false}}
         />
-
         <Stack.Screen
           name="Moi"
           component={HomeTabs}
+          options={{headerShown: false}}
+        />
+        
+        <Stack.Screen
+          name="Test"
+          component={ScreenTest}
           options={{headerShown: false}}
         />
       </MainStack.Navigator>
