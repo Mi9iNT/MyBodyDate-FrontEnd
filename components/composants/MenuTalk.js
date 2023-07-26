@@ -20,6 +20,7 @@ export const MenuTalk = ({ navigation, route, user, prenium }) => {
   const [friendPhone, onChangeFriendPhone] = useState('');
   const [friendChoice, setFriendChoice] = useState(friendChoice);
   const [conversationAtrois, setConversationAtrois] = useState(false);
+  console.log(user);
 
   return (
     <View>
