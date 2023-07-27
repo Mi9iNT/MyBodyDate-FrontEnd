@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, ScrollView, Image, TouchableOpacity, Text} from 'react-native';
 import Styles from '../../assets/style/Styles';
 
-const OdlMessage = ({navigation, route}) => {
+const MessageReceived = ({navigation, route}) => {
   const [messages, setMessages] = useState(true);
   // Corrected the initialization of the 'user' state
   const [user, setUser] = useState(null);
@@ -72,7 +72,8 @@ const OdlMessage = ({navigation, route}) => {
                   Conversation
                 </Text>
             <View
-              style={{
+                style={{
+                top:20,
                 paddingVertical: 10,
                 paddingHorizontal: 20
                 }}>
@@ -124,7 +125,7 @@ const OdlMessage = ({navigation, route}) => {
                   flexDirection: 'row',
                   alignSelf: 'center',
                   justifyContent: 'space-between',
-                  width: '80%',
+                  width: '90%',
                 }}>
                 <Text
                   style={{
@@ -187,4 +188,4 @@ const OdlMessage = ({navigation, route}) => {
   );
 };
 
-export default OdlMessage;
+export default MessageReceived;
