@@ -39,7 +39,9 @@ export const MenuSlideSettings = () => {
         </TouchableOpacity>
       </View>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-         <Pastille imagePath={imagePath} />
+        <View style={{ left:-10, width:31, justifyContent:'center', alignItems: 'center'}}>
+          <Pastille imagePath={imagePath} />
+        </View>
         <TouchableOpacity>
           <Image
             source={require('../../assets/images/notification_icons.png')}

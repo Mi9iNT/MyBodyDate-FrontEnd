@@ -59,7 +59,7 @@ export const Profil = ({route, navigation}) => {
       <ImageBackground
         style={[Styles.bgGradient]}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText, {top: 100, left: 0}]}>
+        <View style={[Styles.ViewText, { top: 100, left: 0 }]}>
           <Text style={[Styles.textTitleWhite2, {left: 30}]}>
             Prénom : {userPrenom}
           </Text>

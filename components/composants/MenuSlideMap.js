@@ -2,12 +2,12 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, { useState, useMemo } from 'react';
-import { View, Text, Image, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Modal, ImageBackground } from 'react-native';
 import Styles from '../../assets/style/Styles';
 import { useNavigation } from '@react-navigation/native';
 import { Pastille } from './Pastille';
 
-export const MenuSlide = () => {
+export const MenuSlideMap = () => {
   const navigation = useNavigation();
 
   const [imagePath, setImagePath] = useState(imagePath);
@@ -16,7 +16,8 @@ export const MenuSlide = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
-    <View
+    <ImageBackground source={require('../../assets/images/bg-menuslide-map.png')} style={{resizeMode:'contain'}}>
+      <View
       style={{
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -30,39 +31,33 @@ export const MenuSlide = () => {
           alignItems: 'center',
         }}>
         <TouchableOpacity
-          accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate('ProfilMe')}>
+          accessibilityLabel="Retour"
+          onPress={() => navigation.goBack()}>
           <Image
             source={require('../../assets/images/retour_flèche_bleu.png')}
             style={{ width: 10, height: 20 }}
           />
         </TouchableOpacity>
         <TouchableOpacity
-          accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate('ProfilMe')}>
-          <Image
-            source={require('../../assets/images/home_1.png')}
-            style={{ width: 20, height: 20, marginHorizontal: 15 }}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate('ProfilMe')}>
+          accessibilityLabel="Retour"
+          onPress={() => navigation.goBack()}>
           <Text
             style={{
+              left: 20,
               fontFamily: 'Comfortaa',
               fontWeight: '700',
               fontSize: 18,
               color: '#0019A7',
             }}>
-            Accueil
+            Retour
           </Text>
         </TouchableOpacity>
       </View>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <View style={{ left:-10, width:31, justifyContent:'center', alignItems: 'center'}}>
-          <Pastille imagePath={imagePath} />
+        <View style={{borderWidth: 2,borderColor:'#0019A7', borderRadius:100, left:-10, width:31, justifyContent:'center', alignItems: 'center'}}>
+            <Pastille imagePath={imagePath} />
         </View>
+         
         <TouchableOpacity>
           <Image
             source={require('../../assets/images/notification_icons.png')}
@@ -322,8 +317,9 @@ export const MenuSlide = () => {
           />
         </TouchableOpacity>
       </View>
-    </View>
+      </View>
+    </ImageBackground>
   );
 };
 
-export default MenuSlide;
+export default MenuSlideMap;

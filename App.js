@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 import * as React from 'react';
 
+import {enableLatestRenderer} from 'react-native-maps';
+
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -78,6 +80,7 @@ const Stack = createNativeStackNavigator();
 const MainStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+enableLatestRenderer();
 
 // Composant pour les écrans des onglets
 function HomeTabs() {
