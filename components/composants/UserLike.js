@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Styles from '../../assets/style/Styles';
 
 const UserLike = ({ navigation, route }) => {
-  const [userLike, setUserLike] = useState(false);
+  const [userLike, setUserLike] = useState(true);
   const [premium, setPremium] = useState(false);
 
   return (
@@ -16,11 +16,11 @@ const UserLike = ({ navigation, route }) => {
           </View>
           <View style={{ flexDirection: 'row', alignSelf: 'center', justifyContent: 'space-between', top: 10, width: '100%', height: 90 }}>
             <View style={{ flexDirection: 'row', width: 142, alignItems: 'center', borderRadius: 50 }}>
-              <View style={{ width: 92, height: 92, borderWidth: 3, borderColor: '#9424FA', borderRadius: 100 }}>
-                <ImageBackground source={require('../../assets/images/vide-ellipse.png')} style={{ resizeMode: 'contain', width: 90, height: 90, alignItems: 'center', justifyContent: 'center' }} blurRadius={premium ? 0 : 3} />
+              <View style={{ width: 92, height: 92, borderWidth: 3, borderColor: '#9424FA', borderRadius: 100, alignItems: 'center', justifyContent: 'center' }}>
+                <ImageBackground source={require('../../assets/images/vide-ellipse.png')} style={{ resizeMode: 'contain', width: 90, height: 90 }} />
               </View>
-              <View style={{ width: 92, height: 92, borderWidth: 3, borderColor: '#9424FA', borderRadius: 100, right: 40 }}>
-                <ImageBackground source={require('../../assets/images/vide-ellipse.png')} style={{ resizeMode: 'contain', width: 90, height: 90 }} blurRadius={premium ? 0 : 3} />
+              <View style={{ width: 92, height: 92, borderWidth: 3, borderColor: '#9424FA', borderRadius: 100, right: 40, justifyContent:'center',alignItems:'center' }}>
+                <ImageBackground source={require('../../assets/images/vide-ellipse.png')} style={{ resizeMode: 'contain', width: 90, height: 90 }} />
               </View>
             </View>
             <View style={{ flexDirection: 'column', width: 180 }}>
@@ -35,14 +35,14 @@ const UserLike = ({ navigation, route }) => {
             <Text style={{ color: '#0019A7', fontFamily: 'Comfortaa', fontSize: 24, fontWeight: 700, marginRight: 10 }}>Vos likes</Text>
             <Text style={{ color: 'rgba(0, 25, 167, 0.50)', fontFamily: 'Comfortaa', fontSize: 24, fontWeight: 700 }}>21</Text>
           </View>
-            <View style={{ flexDirection: 'row', alignSelf: 'center', justifyContent: 'space-between', top: 10, width: '100%', height: 92, backgroundColor:'red'  }}>
+            <View style={{ flexDirection: 'row', alignSelf: 'center', justifyContent: 'space-between', top: 10, width: '180', height: 90,  }}>
               <>
-                <View style={{ flexDirection: 'row', width: 142, alignItems: 'center', borderRadius: 50 }}>
-                  <View style={{ width: 92, height: 92, alignItems: 'center', justifyContent: 'center', borderWidth: 3, borderColor: '#9424FA', borderRadius: 100, justifyContent: 'center', alignItems: 'center' }}>
-                    <ImageBackground source={require('../../assets/images/lisa-ellipse.png')} style={{ resizeMode: 'contain', width: 90, height: 90 }} blurRadius={premium ? 0 : 3} />
+                <View style={{ flexDirection: 'row', width: 160, alignItems: 'center' }}>
+                  <View style={{ width: 92, height: 92, alignItems: 'center', justifyContent: 'center', borderWidth: 3, borderColor: '#9424FA', borderRadius: 100 }}>
+                    <ImageBackground source={require('../../assets/images/lisa-ellipse.png')} style={{ resizeMode: 'contain', width: 90, height: 90}} blurRadius={premium ? 0 : 2} />
                   </View>
                   <View style={{ width: 92, height: 92, borderWidth: 3, borderColor: '#9424FA', borderRadius: 100, alignItems: 'center', justifyContent: 'center', right: 40 }}>
-                    <ImageBackground source={require('../../assets/images/beverly-ellipse.png')} style={{ resizeMode: 'contain', width: 90, height: 90 }} blurRadius={premium ? 0 : 3} />
+                    <ImageBackground source={require('../../assets/images/beverly-ellipse.png')} style={{ resizeMode: 'contain', width: 90, height: 90 }} blurRadius={premium ? 0 : 2} />
                   </View>
                 </View>
                 <View style={{ flexDirection: 'column', width: 180}}>
