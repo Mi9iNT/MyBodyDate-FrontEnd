@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StatusBar } from 'react-native';
 import { View, Image, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
@@ -29,6 +29,8 @@ export const Map = ({ navigation, route }) => {
     longitude: 2.3809600920672116,
   };
 
+  const mapViewRef = useRef(null);
+
   const styles = StyleSheet.create({
     container: {
       ...StyleSheet.absoluteFillObject,
@@ -44,7 +46,26 @@ export const Map = ({ navigation, route }) => {
       alignItems: 'center',
       justifyContent: 'center',
     },
+    recenterButton: {
+      position: 'absolute',
+      bottom: 160,
+      right: 20,
+      padding: 10,
+      borderRadius: 30,
+  },
   });
+
+  // Fonction pour centrer la carte sur la position de l'utilisateur
+  const centerMapOnUser = () => {
+    if (mapViewRef.current) {
+      mapViewRef.current.animateToRegion({
+        latitude: userLocation.latitude,
+        longitude: userLocation.longitude,
+        latitudeDelta: 0.015,
+        longitudeDelta: 0.0121,
+      }, 1000);
+    }
+  };
 
   const [markerOpened, setMarkerOpened] = useState(false);
 
@@ -60,8 +81,17 @@ export const Map = ({ navigation, route }) => {
         </TouchableOpacity>
          {markerOpened ? <SliderMap /> : null}
     </View>
-  );
+    );
   };
+
+  const RecenterButton = ({ onPress }) => (
+    <TouchableOpacity
+      style={styles.recenterButton}
+      onPress={onPress}
+    >
+      <Image source={require('../../../assets/boutons/center-map-position.png')} />
+    </TouchableOpacity>
+  );
 
   return (
     <View style={{ backgroundColor: '#fff', height: '100%', width: '100%' }}>
@@ -119,6 +149,7 @@ export const Map = ({ navigation, route }) => {
               <CustomMarker />
             </Marker>
           </MapView>
+          <RecenterButton onPress={centerMapOnUser} />
         </View>
       </View>
       <MenuBottom navigation={navigation} activeTab={activeTab} />
