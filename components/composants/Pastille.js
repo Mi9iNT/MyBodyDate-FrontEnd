@@ -15,7 +15,7 @@ export const Pastille = ({ imagePath }) => {
   console.log(imagePath);
   return (
    <TouchableOpacity>
-      <Image source={icon} style={{ width: 30, height: 30, marginHorizontal: 15 }} />
+      <Image source={icon} style={{ width: 30, height: 30 }} />
     </TouchableOpacity>
   );
 };

@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 import * as React from 'react';
 
+import {enableLatestRenderer} from 'react-native-maps';
+
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -45,10 +47,10 @@ import {SignInPhone} from './components/screens/register/SinscrirePhone';
 import {RecuperationCode} from './components/screens/RecuperationCode';
 import {ConfirmationNumero} from './components/screens/register/ConfirmationNumero';
 import {Profil} from './components/screens/profil/Profil';
-import {ProfilMe} from './components/screens/profil/ProfilMe';
+import {ProfilMeRA} from './components/screens/profil/ProfilMeRA';
 import {ProfilMeRP} from './components/screens/profil/ProfilMeRP';
 import {ProfilMeCA} from './components/screens/profil/ProfilMeCA';
-import {ProfilMeRA} from './components/screens/profil/ProfilMeRA'
+import {Discover} from './components/screens/discover/Discover';
 import {Settings} from './components/screens/settings/Settings';
 import {Notifications} from './components/screens/settings/Notifications';
 import {SecurityAndPrivate} from './components/screens/settings/SecurityAndPrivate';
@@ -63,15 +65,22 @@ import {ParametresConfident} from './components/screens/settings/ParamtresConfid
 
 import { MenuBottom } from './components/composants/MenuBottom';
 
-import {Talk} from './components/screens/talk/Talk';
 import {Messages} from './components/screens/messages/Messages';
 import {Map} from './components/screens/map/Map';
 import {Moi} from './components/screens/profil/Profil';
+
+import {Talk} from './components/screens/talk/Talk';
+import {TalkChat} from './components/screens/talk/TalkChat';
+import { TalkPhone } from './components/screens/talk/TalkPhone';
+import { TalkPhoneAccept } from './components/screens/talk/TalkPhoneAccept';
+import {TalkVideo} from './components/screens/talk/TalkVideo';
+import { TalkVideoAccept } from './components/screens/talk/TalkVideoAccept';
 
 const Stack = createNativeStackNavigator();
 const MainStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+enableLatestRenderer();
 
 // Composant pour les écrans des onglets
 function HomeTabs() {
@@ -86,13 +95,24 @@ function HomeTabs() {
           null,
         ],
       }}
-      tabBar={(props) => <MenuBottom {...props} />}
-    >
-      <Tab.Screen name="ProfilMe" component={ProfilMe} options={{headerShown: false}} />
+      tabBar={props => <MenuBottom {...props} />}>
+      <Tab.Screen
+        name="ProfilMeRA"
+        component={Discover}
+        options={{headerShown: false}}
+      />
       <Tab.Screen name="Talk" component={Talk} options={{headerShown: false}} />
-      <Tab.Screen name="Messages" component={Messages} options={{headerShown: false}} />
+      <Tab.Screen
+        name="Messages"
+        component={Messages}
+        options={{headerShown: false}}
+      />
       <Tab.Screen name="Map" component={Map} options={{headerShown: false}} />
-      <Tab.Screen name="Moi" component={Profil} options={{headerShown: false}} />
+      <Tab.Screen
+        name="Moi"
+        component={ProfilMeRA}
+        options={{headerShown: false}}
+      />
       {/* Ajoutez d'autres onglets ici si nécessaire */}
     </Tab.Navigator>
   );
@@ -543,12 +563,37 @@ function App() {
         {/* TALKS SCREENS */}
         <Stack.Screen
           name="Talk"
-          component={Talk}
+          component={HomeTabs}
           options={{headerShown: false}}
         />
+
         <Stack.Screen
-          name="Test"
-          component={ScreenTest}
+          name="TalkChat"
+          component={TalkChat}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="TalkPhone"
+          component={TalkPhone}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="TalkPhoneAccept"
+          component={TalkPhoneAccept}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="TalkVideo"
+          component={TalkVideo}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="TalkVideoAccept"
+          component={TalkVideoAccept}
           options={{headerShown: false}}
         />
 
@@ -563,10 +608,15 @@ function App() {
           component={HomeTabs}
           options={{headerShown: false}}
         />
-
         <Stack.Screen
           name="Moi"
           component={HomeTabs}
+          options={{headerShown: false}}
+        />
+        
+        <Stack.Screen
+          name="Test"
+          component={ScreenTest}
           options={{headerShown: false}}
         />
       </MainStack.Navigator>
