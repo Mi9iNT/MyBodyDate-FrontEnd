@@ -3,15 +3,19 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
-import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
 import Styles from '../../../assets/style/Styles';
 
-export const ProfilMeCA = ({ route, navigation }) => {
-  const currentImage = route.params?.currentImage ?? '';
-  console.log('currentImage=',currentImage);
-
+export const ProfilMeCA = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -32,6 +36,7 @@ export const ProfilMeCA = ({ route, navigation }) => {
   const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
+  const imagePath = route.params?.imagePath ?? '';
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -44,19 +49,11 @@ export const ProfilMeCA = ({ route, navigation }) => {
 
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          paddingHorizontal: 20,
-        }}>
-        <MenuSlide />
-      </View>
+      <MenuSlide imagePath={imagePath} />
       <ScrollView style={{backgroundColor: 'white'}}>
         <View style={{justifyContent: 'center'}}>
-          <Image
-            source={require('../../../assets/images/CaptureDecran2023-03-21.png')}
+          <ImageBackground
+            source={require('../../../assets/images/Capture-d-ecran-R-2.png')}
             style={{
               width: 346,
               height: 313,
@@ -64,8 +61,78 @@ export const ProfilMeCA = ({ route, navigation }) => {
               borderWidth: 1,
               borderColor: '#0019A7',
               alignSelf: 'center',
-            }}
-          />
+            }}>
+            <View
+              style={{
+                position: 'absolute',
+                top: 10,
+                right: 40,
+              }}>
+              <View
+                style={{
+                  justifyContent: 'space-around',
+                  flexDirection: 'row',
+                  left: 10,
+                }}>
+                <Image
+                  source={require('../../../assets/images/image-177.png')}
+                  style={{
+                    top: 5,
+                    width: 30,
+                    height: 30,
+                  }}
+                />
+              </View>
+            </View>
+            <View
+              style={{
+                position: 'absolute',
+                top: 240,
+                left: 10,
+              }}>
+              <View
+                style={{
+                  justifyContent: 'space-around',
+                  flexDirection: 'row',
+                  left: 10,
+                }}>
+                <Text
+                  style={{
+                    fontSize: 24,
+                    fontFamily: 'Comfortaa',
+                    fontWeight: '700',
+                    color: '#fff',
+                    letterSpacing: 1,
+                  }}>
+                  Raluca{'     '}
+                </Text>
+                <Image
+                  source={require('../../../assets/images/quality-2-2.png')}
+                  style={{
+                    top: 5,
+                    width: 30,
+                    height: 30,
+                  }}
+                />
+              </View>
+              <View
+                style={{
+                  top: 10,
+                  left: 10,
+                }}>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontFamily: 'Comfortaa',
+                    fontWeight: '700',
+                    color: '#fff',
+                    letterSpacing: 1,
+                  }}>
+                  43, Paris
+                </Text>
+              </View>
+            </View>
+          </ImageBackground>
           <View
             style={{
               flexDirection: 'row',
@@ -172,7 +239,7 @@ export const ProfilMeCA = ({ route, navigation }) => {
               marginHorizontal: 20,
             }}
           />
-          <Text style={{color: '#0019A7', fontSize: 20, marginHorizontal: 20}}>
+          <Text style={{color: '#9424FA', fontSize: 20, marginHorizontal: 20}}>
             A propos de moi
           </Text>
           <View style={{marginTop: 5}}>
@@ -447,5 +514,3 @@ ProfilMeCA.propTypes = {
   route: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
 };
-
-

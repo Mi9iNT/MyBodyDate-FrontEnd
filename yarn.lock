@@ -6703,6 +6703,11 @@ react-native-keyboard-aware-scrollview@^2.1.0:
   resolved "https://registry.npmjs.org/react-native-keyboard-aware-scrollview/-/react-native-keyboard-aware-scrollview-2.1.0.tgz"
   integrity sha512-XfWozWFPhdecfxN+wuqERX3mCGDrAim5siC6TWg3Qw7wK/zlwIwe1UIsHDNOQCzf9oIh0SkZXvoOFsMrnyIVmQ==
 
+react-native-linear-gradient@^2.8.1:
+  version "2.8.1"
+  resolved "https://registry.npmjs.org/react-native-linear-gradient/-/react-native-linear-gradient-2.8.1.tgz"
+  integrity sha512-934R4Bnjo7mYT38W9ypS1Dq/YW6TgyGdkHg+w72HNxN0ZDKG1GqAnZ6XlicMUYJDh7ViiJAKN8eOF3Ho0N4J0Q==
+
 react-native-link@^4.1.0:
   version "4.1.0"
   resolved "https://registry.npmjs.org/react-native-link/-/react-native-link-4.1.0.tgz"

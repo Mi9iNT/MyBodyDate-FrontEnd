@@ -47,10 +47,10 @@ import {SignInPhone} from './components/screens/register/SinscrirePhone';
 import {RecuperationCode} from './components/screens/RecuperationCode';
 import {ConfirmationNumero} from './components/screens/register/ConfirmationNumero';
 import {Profil} from './components/screens/profil/Profil';
-import {ProfilMe} from './components/screens/profil/ProfilMe';
+import {ProfilMeRA} from './components/screens/profil/ProfilMeRA';
 import {ProfilMeRP} from './components/screens/profil/ProfilMeRP';
 import {ProfilMeCA} from './components/screens/profil/ProfilMeCA';
-import {ProfilMeRA} from './components/screens/profil/ProfilMeRA'
+import {Discover} from './components/screens/discover/Discover';
 import {Settings} from './components/screens/settings/Settings';
 import {Notifications} from './components/screens/settings/Notifications';
 import {SecurityAndPrivate} from './components/screens/settings/SecurityAndPrivate';
@@ -95,13 +95,24 @@ function HomeTabs() {
           null,
         ],
       }}
-      tabBar={(props) => <MenuBottom {...props} />}
-    >
-      <Tab.Screen name="ProfilMe" component={ProfilMe} options={{headerShown: false}} />
+      tabBar={props => <MenuBottom {...props} />}>
+      <Tab.Screen
+        name="ProfilMeRA"
+        component={Discover}
+        options={{headerShown: false}}
+      />
       <Tab.Screen name="Talk" component={Talk} options={{headerShown: false}} />
-      <Tab.Screen name="Messages" component={Messages} options={{headerShown: false}} />
+      <Tab.Screen
+        name="Messages"
+        component={Messages}
+        options={{headerShown: false}}
+      />
       <Tab.Screen name="Map" component={Map} options={{headerShown: false}} />
-      <Tab.Screen name="Moi" component={Profil} options={{headerShown: false}} />
+      <Tab.Screen
+        name="Moi"
+        component={ProfilMeRA}
+        options={{headerShown: false}}
+      />
       {/* Ajoutez d'autres onglets ici si nécessaire */}
     </Tab.Navigator>
   );

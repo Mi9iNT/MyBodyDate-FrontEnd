@@ -36,13 +36,15 @@ export const ProfilMeRA = ({route, navigation}) => {
   const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
+  const imagePath = route.params?.imagePath ?? '';
+
 
   return (
     <View style={{flex: 1, backgroundColor: '#ffffff'}}>
       <ImageBackground
         style={Styles.bgGradient}
         source={require('../../../assets/images/MicrosoftTeams-image.png')}>
-        <MenuSlide />
+        <MenuSlide imagePath={imagePath}/>
         <View style={{flexDirection: 'row', marginBottom: 20}}>
           <View
             style={{
@@ -64,7 +66,7 @@ export const ProfilMeRA = ({route, navigation}) => {
 
           <View style={{flex: 1, flexDirection: 'column'}}>
             <Image
-              source={require('../../../assets/images/ico-certified-rose.png')}
+              source={require('../../../assets/images/quality3.png')}
               style={{width: 30, height: 30, marginTop: 20}}
             />
             <Text style={{color: '#0019A7', fontSize: 24, marginTop: 5}}>

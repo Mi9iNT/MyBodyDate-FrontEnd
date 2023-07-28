@@ -3,7 +3,14 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
-import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
 import Styles from '../../../assets/style/Styles';
@@ -29,6 +36,7 @@ export const ProfilMeRP = ({route, navigation}) => {
   const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
+  const imagePath = route.params?.imagePath ?? '';
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -41,19 +49,11 @@ export const ProfilMeRP = ({route, navigation}) => {
 
   return (
     <View style={{flex: 1, backgroundColor: 'black'}}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          paddingHorizontal: 20,
-        }}>
-        <MenuSlide />
-      </View>
+      <MenuSlide imagePath={imagePath} />
       <ScrollView style={{backgroundColor: 'black'}}>
         <View style={{justifyContent: 'center'}}>
-          <Image
-            source={require('../../../assets/images/CaptureDecran2023-03-21.png')}
+          <ImageBackground
+            source={require('../../../assets/images/Capture-d-ecran-Raluca.png')}
             style={{
               width: 346,
               height: 313,
@@ -61,8 +61,79 @@ export const ProfilMeRP = ({route, navigation}) => {
               borderWidth: 1,
               borderColor: '#E5E5E5',
               alignSelf: 'center',
-            }}
-          />
+              top: 10,
+            }}>
+            <View
+              style={{
+                position: 'absolute',
+                top: 10,
+                right: 40,
+              }}>
+              <View
+                style={{
+                  justifyContent: 'space-around',
+                  flexDirection: 'row',
+                  left: 10,
+                }}>
+                <Image
+                  source={require('../../../assets/images/image-177.png')}
+                  style={{
+                    top: 5,
+                    width: 30,
+                    height: 30,
+                  }}
+                />
+              </View>
+            </View>
+            <View
+              style={{
+                position: 'absolute',
+                top: 240,
+                left: 10,
+              }}>
+              <View
+                style={{
+                  justifyContent: 'space-around',
+                  flexDirection: 'row',
+                  left: 10,
+                }}>
+                <Text
+                  style={{
+                    fontSize: 24,
+                    fontFamily: 'Comfortaa',
+                    fontWeight: '700',
+                    color: '#fff',
+                    letterSpacing: 1,
+                  }}>
+                  Raluca{'     '}
+                </Text>
+                <Image
+                  source={require('../../../assets/images/quality-2-2.png')}
+                  style={{
+                    top: 5,
+                    width: 30,
+                    height: 30,
+                  }}
+                />
+              </View>
+              <View
+                style={{
+                  top: 10,
+                  left: 10,
+                }}>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontFamily: 'Comfortaa',
+                    fontWeight: '700',
+                    color: '#fff',
+                    letterSpacing: 1,
+                  }}>
+                  43, Paris
+                </Text>
+              </View>
+            </View>
+          </ImageBackground>
           <View
             style={{
               flexDirection: 'row',
@@ -71,12 +142,18 @@ export const ProfilMeRP = ({route, navigation}) => {
               marginTop: 25,
             }}>
             <Text
-              style={{width: 257, height: 35, color: 'white', fontSize: 15}}>
+              style={{
+                width: 257,
+                height: 35,
+                color: 'white',
+                fontSize: 15,
+                left: 10,
+              }}>
               ID.20230510.88
             </Text>
             <Image
               source={require('../../../assets/images/bouton_continuer.png')}
-              style={{width: 96, height: 30, borderRadius: 30}}
+              style={{width: 96, height: 30, borderRadius: 30, right: 10}}
             />
           </View>
           <View
@@ -85,7 +162,9 @@ export const ProfilMeRP = ({route, navigation}) => {
               justifyContent: 'flex-start',
               paddingHorizontal: 20,
             }}>
-            <Text style={{color: 'white', fontSize: 18}}>Ecouter :</Text>
+            <Text style={{color: 'white', fontSize: 18, left: 10}}>
+              Ecouter :
+            </Text>
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate('Felicitations', {
@@ -114,7 +193,7 @@ export const ProfilMeRP = ({route, navigation}) => {
               }>
               <Image
                 source={require('../../../assets/images/voix_ondes_profil.png')}
-                style={{width: 100, height: 30}}
+                style={{width: 100, height: 30, left: 10}}
               />
             </TouchableOpacity>
           </View>
