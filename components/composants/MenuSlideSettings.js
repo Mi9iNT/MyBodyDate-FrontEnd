@@ -67,6 +67,7 @@ export const MenuSlideSettings = () => {
               borderWidth: 1,
               borderColor: '#0019A7',
             }}>
+            <TouchableOpacity onPress={() => setModalVisible(false)} style={{backgroundColor:'transparent', height:'100%', width:'30%', position:'absolute', left: -95}}  />
             {/* Paramètres */}
             <View
               style={{
