@@ -7,7 +7,7 @@ import Styles from '../../assets/style/Styles';
 import { useNavigation } from '@react-navigation/native';
 import { Pastille } from './Pastille';
 
-export const MenuSlideSettings = () => {
+export const MenuSlideSettings = ({settingsNavigation}) => {
   const navigation = useNavigation();
 
   const [imagePath, setImagePath] = useState(imagePath);
@@ -30,8 +30,8 @@ export const MenuSlideSettings = () => {
           alignItems: 'center',
         }}>
         <TouchableOpacity
-          accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate('Settings')}>
+          accessibilityLabel="Retour"
+           onPress={() => {settingsNavigation();}}>
           <Image
             source={require('../../assets/images/retour_flèche_bleu.png')}
             style={{ width: 10, height: 20 }}
