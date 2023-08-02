@@ -241,4 +241,3 @@ BloquerContacts.propTypes = {
 };
 
 export default BloquerContacts;
->>>>>>> 6cbd0baea225e717f280f84399a0e362f969ccbb
