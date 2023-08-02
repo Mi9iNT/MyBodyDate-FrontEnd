@@ -1,10 +1,3 @@
-const commonTextStyles = {
-  color: '#0019A7',
-  fontFamily: 'Comfortaa',
-  fontStyle: 'normal',
-  fontWeight: '700',
-};
-
 const settingsStyles = {
   container: {
     flex: 1,
@@ -17,9 +10,11 @@ const settingsStyles = {
   },
   title: {
     top: 30,
-    ...commonTextStyles,
+    color: '#0019A7',
+    fontFamily: 'Gilroy',
     textAlign: 'center',
     fontSize: 24,
+    fontWeight: '700',
   },
   separator: {
     backgroundColor: '#0019A7',
@@ -47,9 +42,12 @@ const settingsStyles = {
     marginBottom: 40,
   },
   notificationText: {
-    ...commonTextStyles,
+    color: '#0019A7',
+    fontFamily: 'Comfortaa',
     width: 340,
     fontSize: 16,
+    fontStyle: 'normal',
+    fontWeight: '700',
   },
   arrowIcon: {
     width: 7,
@@ -65,15 +63,20 @@ const settingsStyles = {
     marginBottom: 40,
   },
   locationText: {
-    ...commonTextStyles,
+    color: '#0019A7',
+    fontFamily: 'Comfortaa',
     width: 200,
     fontSize: 16,
+    fontStyle: 'normal',
+    fontWeight: '700',
   },
   locationValue: {
     color: '#383A39',
     width: 140,
-    ...commonTextStyles,
+    fontFamily: 'Comfortaa',
     fontSize: 14,
+    fontStyle: 'normal',
+    fontWeight: '700',
   },
   modeItem: {
     height: 20,
@@ -84,13 +87,18 @@ const settingsStyles = {
     marginBottom: 40,
   },
   modeText: {
-    ...commonTextStyles,
+    color: '#0019A7',
+    fontFamily: 'Comfortaa',
     fontSize: 16,
+    fontStyle: 'normal',
+    fontWeight: '700',
   },
   modeDescription: {
     color: '#383A39',
-    ...commonTextStyles,
+    fontFamily: 'Comfortaa',
     fontSize: 14,
+    fontStyle: 'normal',
+    fontWeight: '700',
   },
   modeContainer: {
     height: 40,
@@ -115,8 +123,10 @@ const settingsStyles = {
   },
   deleteAccountText: {
     color: '#383A39',
-    ...commonTextStyles,
+    fontFamily: 'Comfortaa',
     fontSize: 16,
+    fontStyle: 'normal',
+    fontWeight: '700',
     textAlign: 'center',
   },
   logoImage: {
@@ -128,8 +138,10 @@ const settingsStyles = {
   },
   versionText: {
     color: '#383A39',
-    ...commonTextStyles,
+    fontFamily: 'Comfortaa',
     fontSize: 16,
+    fontStyle: 'normal',
+    fontWeight: '700',
     textAlign: 'center',
   },
 };

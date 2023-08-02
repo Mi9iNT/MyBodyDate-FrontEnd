@@ -62,7 +62,6 @@ import {MettreEnPause} from './components/screens/settings/MettreEnPause';
 import {ModeDeConnexion} from './components/screens/settings/ModeDeConnexion';
 import {ChangeLocalisation} from './components/screens/settings/ChangeLocalisation';
 import {ParametresConfident} from './components/screens/settings/ParamtresConfident';
-import {BloquerContacts} from './components/screens/settings/BloquerContacts';
 
 import { MenuBottom } from './components/composants/MenuBottom';
 
@@ -557,13 +556,8 @@ function App() {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="Parametre de confidentialites"
+          name="Parametres de confidentialites"
           component={ParametresConfident}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Bloquer contacts"
-          component={BloquerContacts}
           options={{headerShown: false}}
         />
         {/* TALKS SCREENS */}

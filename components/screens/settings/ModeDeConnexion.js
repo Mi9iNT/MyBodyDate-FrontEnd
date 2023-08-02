@@ -10,10 +10,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import StyleModeConnexion from '../../../assets/style/styleScreens/styleSettings/StyleModeConnexion';
+import Styles from '../../../assets/style/Styles';
 import PropTypes from 'prop-types';
 import MenuSlideSettings from '../../composants/MenuSlideSettings';
-import ModeConnexionStyles from '../../../assets/style/styleScreens/styleSettings/StyleModeConnexion';
 
 export const ModeDeConnexion = ({navigation}) => {
   // Masquer la barre de statut au montage de l'écran
@@ -25,45 +24,101 @@ export const ModeDeConnexion = ({navigation}) => {
     };
   }, []);
   const [buttonPressedNumero, setButtonPressedNumero] = useState(false);
-  const [buttonPressedGoogle, setButtonPressedGoogle] = useState(true);
+  const [buttonPressedGoogle, setButtonPressedGoogle] = useState(false);
   const [buttonPressedFacebook, setButtonPressedFacebook] = useState(false);
   const [buttonPressedApple, setButtonPressedApple] = useState(false);
-  const [buttonPressedBack, setButtonPressedBack] = useState(false);
 
   return (
     <ImageBackground
-      style={StyleModeConnexion.bgGradient}
+      style={Styles.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings settingsNavigation={() => navigation.navigate('Securite et privee')} />
+      <MenuSlideSettings />
       <Text
-        style={StyleModeConnexion.title}>
+        style={{
+          top: 30,
+          color: '#0019A7',
+          fontFamily: 'Gilroy',
+          textAlign: 'center',
+          fontSize: 24,
+          fontWeight: 700,
+        }}>
         Mode de connexion
       </Text>
       <View
-        style={StyleModeConnexion.separator}
+        style={{
+          backgroundColor: '#0019A7',
+          width: 351,
+          height: 1,
+          alignSelf: 'center',
+          top: 60,
+        }}
       />
       <Text
-        style={StyleModeConnexion.description}>
+        style={{
+          color: '#929EDE',
+          top: 100,
+          width: 320,
+          alignSelf: 'center',
+          textAlign: 'center',
+          fontFamily: 'Comfortaa',
+          fontSize: 16,
+          fontStyle: 'normal',
+          fontWeight: 700,
+        }}>
         Gérez vos modes de connexions sécurisé ?
       </Text>
       <View
-        style={ModeConnexionStyles.ModeConnexionContainer}>
+        style={{
+          flexShrink: 0,
+          alignSelf: 'center',
+          top: 150,
+        }}>
         <Text
-          style={[StyleModeConnexion.secondTitle, {top: -20}]}>
+          style={{
+            color: '#0019A7',
+            textAlign: 'left',
+            top: -20,
+            left: 20,
+            fontFamily: 'Gilroy',
+            fontSize: 16,
+            fontStyle: 'normal',
+            fontWeight: 700,
+          }}>
           Email actuel
         </Text>
         <TouchableOpacity onPress={() => navigation.navigate('Email')}>
           <Image
-            style={StyleModeConnexion.ModeDeConnexionItem}
+            style={{
+              width: 327,
+              height: 51,
+              flexShrink: 0,
+              alignSelf: 'center',
+            }}
             source={require('../../../assets/boutons/bouton-enveloppe-tranparent.png')}
           />
           <Text
-            style={[StyleModeConnexion.ModeConnexionItemText, {top: -40, color: '#0019A7',}]}>
+            style={{
+              top: -40,
+              color: '#0019A7',
+              textAlign: 'center',
+              alignSelf: 'center',
+              fontFamily: 'Comfortaa',
+              fontSize: 18,
+              fontStyle: 'normal',
+              fontWeight: 700,
+            }}>
             abcd@gmail.com
           </Text>
         </TouchableOpacity>
         <Text
-          style={StyleModeConnexion.secondTitle}>
+          style={{
+            color: '#0019A7',
+            textAlign: 'left',
+            fontFamily: 'Comfortaa',
+            fontSize: 16,
+            fontStyle: 'normal',
+            fontWeight: 700,
+          }}>
           Autre mode de connexion
         </Text>
       </View>
@@ -78,7 +133,12 @@ export const ModeDeConnexion = ({navigation}) => {
             setButtonPressedApple(false);
           }}>
           <Image
-            style={StyleModeConnexion.ModeConnexionLog}
+            style={{
+              width: 331,
+              height: 56,
+              flexShrink: 0,
+              alignSelf: 'center',
+            }}
             source={
               buttonPressedNumero
                 ? require('../../../assets/boutons/bouton-telephone-bleu.png')
@@ -86,7 +146,17 @@ export const ModeDeConnexion = ({navigation}) => {
             }
           />
           <Text
-            style={[{color: buttonPressedNumero ? 'white' : '#000'}, StyleModeConnexion.ModeConnexionLogText]}>
+            style={{
+              top: -40,
+              left: 10,
+              color: buttonPressedNumero ? 'white' : '#0019A7',
+              textAlign: 'center',
+              alignSelf: 'center',
+              fontFamily: 'Comfortaa',
+              fontSize: 18,
+              fontStyle: 'normal',
+              fontWeight: 700,
+            }}>
             Se connecter avec son n°
           </Text>
         </TouchableOpacity>
@@ -99,7 +169,12 @@ export const ModeDeConnexion = ({navigation}) => {
             setButtonPressedApple(true);
           }}>
           <Image
-            style={StyleModeConnexion.ModeConnexionLog}
+            style={{
+              width: 331,
+              height: 56,
+              flexShrink: 0,
+              alignSelf: 'center',
+            }}
             source={
               buttonPressedApple
                 ? require('../../../assets/boutons/bouton-apple-bleu.png')
@@ -107,7 +182,16 @@ export const ModeDeConnexion = ({navigation}) => {
             }
           />
           <Text
-            style={[{color: buttonPressedApple ? 'white' : '#000'}, StyleModeConnexion.ModeConnexionLogText]}>
+            style={{
+              top: -40,
+              color: buttonPressedApple ? 'white' : '#0019A7',
+              textAlign: 'center',
+              alignSelf: 'center',
+              fontFamily: 'Comfortaa',
+              fontSize: 18,
+              fontStyle: 'normal',
+              fontWeight: 700,
+            }}>
             Connexion avec Apple
           </Text>
         </TouchableOpacity>
@@ -120,7 +204,12 @@ export const ModeDeConnexion = ({navigation}) => {
             setButtonPressedApple(false);
           }}>
           <Image
-            style={StyleModeConnexion.ModeConnexionLog}
+            style={{
+              width: 331,
+              height: 56,
+              flexShrink: 0,
+              alignSelf: 'center',
+            }}
             source={
               buttonPressedFacebook
                 ? require('../../../assets/boutons/bouton-facebook-bleu.png')
@@ -128,7 +217,17 @@ export const ModeDeConnexion = ({navigation}) => {
             }
           />
           <Text
-            style={[{ color: buttonPressedFacebook ? 'white' : '#000'}, StyleModeConnexion.ModeConnexionLogText]}>
+            style={{
+              top: -40,
+              left: 10,
+              color: buttonPressedFacebook ? 'white' : '#0019A7',
+              textAlign: 'center',
+              alignSelf: 'center',
+              fontFamily: 'Comfortaa',
+              fontSize: 18,
+              fontStyle: 'normal',
+              fontWeight: 700,
+            }}>
             Connexion avec Facebook
           </Text>
         </TouchableOpacity>
@@ -141,7 +240,12 @@ export const ModeDeConnexion = ({navigation}) => {
             setButtonPressedNumero(false);
           }}>
           <Image
-            style={StyleModeConnexion.ModeConnexionLog}
+            style={{
+              width: 331,
+              height: 56,
+              flexShrink: 0,
+              alignSelf: 'center',
+            }}
             source={
               buttonPressedGoogle
                 ? require('../../../assets/boutons/bouton-google-bleu.png')
@@ -149,24 +253,46 @@ export const ModeDeConnexion = ({navigation}) => {
             }
           />
           <Text
-            style={[{color: buttonPressedGoogle ? 'white' : '#000'}, StyleModeConnexion.ModeConnexionLogText]}>
+            style={{
+              top: -40,
+              left: 10,
+              color: buttonPressedGoogle ? 'white' : '#0019A7',
+              textAlign: 'center',
+              alignSelf: 'center',
+              fontFamily: 'Comfortaa',
+              fontSize: 18,
+              fontStyle: 'normal',
+              fontWeight: 700,
+            }}>
             Connexion avec Google
           </Text>
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Securite et privee')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
         <Image
-          style={StyleModeConnexion.backButton}
-          source={
-            buttonPressedBack
-              ? require('../../../assets/boutons/Bouton-Bleu.png') 
-              : require('../../../assets/boutons/Bouton-Blanc-Border.png')
-          }
+          style={{
+            top: 170,
+            width: 331,
+            height: 56,
+            flexShrink: 0,
+            alignSelf: 'center',
+          }}
+          source={require('../../../assets/boutons/Bouton-Blanc-Border.png')}
         />
         <Text
-          style={[{color: buttonPressedBack ? 'white' : '#0019A7'}, StyleModeConnexion.backButtonText]}>
-          Retour sécurité & vie privée
+          style={{
+            top: 130,
+            left: 10,
+            color: buttonPressedGoogle ? 'white' : '#0019A7',
+            textAlign: 'center',
+            alignSelf: 'center',
+            fontFamily: 'Comfortaa',
+            fontSize: 18,
+            fontStyle: 'normal',
+            fontWeight: 700,
+          }}>
+          Retour paramètres
         </Text>
       </TouchableOpacity>
     </ImageBackground>
