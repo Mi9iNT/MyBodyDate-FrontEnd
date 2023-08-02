@@ -154,7 +154,15 @@ export const BloquerContacts = ({ navigation }) => {
                         {filteredContacts.length > 0 ? (
                           filteredContacts.map((contactData, index) => (
                             <View style={{flexDirection:'column'}}>
-                              <TouchableOpacity key={index} onPress={() => { setBlockedContacts((prevBlockedContacts) => [...prevBlockedContacts, contactData]); setViewSelected(false); }} style={StyleBloquerContacts.userLink}>
+                              <TouchableOpacity key={contactData} onPress={() => {
+                                // Vérifier si le contact est déjà bloqué avant de l'ajouter
+                                const isBlocked = blockedContacts.find((blockedContact) => blockedContact.name === contactData.name);
+
+                                if (!isBlocked) {
+                                  setBlockedContacts((prevBlockedContacts) => [...prevBlockedContacts, contactData]);
+                                  setViewSelected(false);
+                                }
+                              }} style={StyleBloquerContacts.userLink}>
                               <Image style={[StyleBloquerContacts.imgUserLink,{borderColor: contactData.relation === 'Professionnel' ? '#000' : contactData.relation === 'Cercle d\'ami' ? '#9424FA' : contactData.relation === 'Relation amoureuse' ? '#FF84D7' : '#0019A7', }]} source={contactData.avatar} />
                               <Text style={StyleBloquerContacts.textNameUserLink}>{contactData.name}</Text>
                               <Text style={[{color: contactData.relation === 'Professionnel' ? '#000' : contactData.relation === 'Cercle d\'ami' ? '#9424FA' : contactData.relation === 'Relation amoureuse' ? '#FF84D7' : '#0019A7'}, StyleBloquerContacts.textRelationUserLink]}>{contactData.relation}</Text>
