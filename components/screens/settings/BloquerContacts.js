@@ -233,7 +233,7 @@ export const BloquerContacts = ({ navigation }) => {
             </View>
           )}
         </>
-        <TouchableOpacity style={{ top: 80}}>
+        <TouchableOpacity style={{ top: contact?80:150}}>
           <Image
             style={StyleBloquerContacts.importContactButtonImg}
             source={require('../../../assets/boutons/Bouton-Bleu.png')}
