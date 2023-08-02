@@ -12,7 +12,7 @@ import {
   Modal,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import Styles from '../../../assets/style/Styles';
+import StyleSecurityAndPrivate from '../../../assets/style/styleScreens/styleSettings/StyleSecutityAndPrivate';
 import MenuSlideSettings from '../../composants/MenuSlideSettings';
 
 export const SecurityAndPrivate = ({navigation}) => {
@@ -26,127 +26,68 @@ export const SecurityAndPrivate = ({navigation}) => {
   }, []);
   return (
     <ImageBackground
-      style={Styles.bgGradient}
+      style={StyleSecurityAndPrivate.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings />
+      <MenuSlideSettings settingsNavigation={() => navigation.navigate('Settings')} />
+
       <Text
-        style={{
-          top: 30,
-          color: '#0019A7',
-          fontFamily: 'Gilroy',
-          textAlign: 'center',
-          fontSize: 24,
-          fontWeight: 700,
-        }}>
+        style={StyleSecurityAndPrivate.title}>
         Sécurité & vie privée
       </Text>
       <View
-        style={{
-          backgroundColor: '#0019A7',
-          width: 351,
-          height: 1,
-          alignSelf: 'center',
-          top: 60,
-        }}
+        style={StyleSecurityAndPrivate.separator}
       />
       <Text
-        style={{
-          color: '#929EDE',
-          top: 100,
-          width: 320,
-          alignSelf: 'center',
-          textAlign: 'center',
-          fontFamily: 'Comfortaa',
-          fontSize: 16,
-          fontStyle: 'normal',
-          fontWeight: 700,
-        }}>
+        style={StyleSecurityAndPrivate.description}>
         Gérez vos modes de connexions sécurisé ?
       </Text>
       <View
-        style={{
-          height: 360,
-          width: 351,
-          alignSelf: 'center',
-          top: 150,
-          marginBottom: 40,
-        }}>
+        style={StyleSecurityAndPrivate.securityAndPrivateContainer}>
         <TouchableOpacity
           accessibilityLabel="Mode de connexion"
           onPress={() => navigation.navigate('Mode de connexion')}>
           <View
-            style={{
-              height: 20,
-              width: 351,
-              alignSelf: 'center',
-              top: 10,
-              flexDirection: 'row',
-              marginBottom: 40,
-            }}>
+            style={StyleSecurityAndPrivate.securityAndPrivateItem}>
             <Text
-              style={{
-                color: '#0019A7',
-                fontFamily: 'Comfortaa',
-                width: 240,
-                fontSize: 16,
-                fontStyle: 'normal',
-                fontWeight: 700,
-                alignItems: 'center',
-              }}>
+              style={StyleSecurityAndPrivate.securityAndPrivateText}>
               Mode de connexion
             </Text>
             <Text
-              style={{
-                color: '#0019A7',
-                width: 100,
-                fontFamily: 'Comfortaa',
-                fontSize: 12,
-                fontStyle: 'normal',
-                fontWeight: 700,
-                alignItems: 'center',
-              }}>
+              style={StyleSecurityAndPrivate.securityAndPrivateType}>
               e-mail, Google
             </Text>
             <Image
-              style={{
-                width: 7,
-                height: 15,
-                flexShrink: 0,
-              }}
+              style={StyleSecurityAndPrivate.arrowIcon}
               source={require('../../../assets/images/fleche-blue.png')}
             />
           </View>
         </TouchableOpacity>
         <TouchableOpacity
           accessibilityLabel="Paramètre de confidentialités"
-          onPress={() => navigation.navigate('Parametres de confidentialites')}>
+          onPress={() => navigation.navigate('Parametre de confidentialites')}>
           <View
-            style={{
-              height: 20,
-              width: 351,
-              alignSelf: 'center',
-              top: 10,
-              flexDirection: 'row',
-              marginBottom: 40,
-            }}>
+            style={StyleSecurityAndPrivate.securityAndPrivateItem}>
             <Text
-              style={{
-                color: '#0019A7',
-                fontFamily: 'Comfortaa',
-                width: 340,
-                fontSize: 16,
-                fontStyle: 'normal',
-                fontWeight: 700,
-                alignItems: 'center',
-              }}>
+              style={StyleSecurityAndPrivate.securityAndPrivateText}>
               Paramètre de confidentialités
             </Text>
             <Image
-              style={{
-                width: 7,
-                height: 15,
-                flexShrink: 0,
-              }}
+              style={StyleSecurityAndPrivate.arrowIcon}
+              source={require('../../../assets/images/fleche-blue.png')}
+            />
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          accessibilityLabel="Bloquer les contacts"
+          onPress={() => navigation.navigate('Bloquer contacts')}>
+          <View
+            style={StyleSecurityAndPrivate.securityAndPrivateItem}>
+            <Text
+              style={StyleSecurityAndPrivate.securityAndPrivateText}>
+              Bloquer les contacts
+            </Text>
+            <Image
+              style={StyleSecurityAndPrivate.arrowIcon}
               source={require('../../../assets/images/fleche-blue.png')}
             />
           </View>
@@ -154,27 +95,11 @@ export const SecurityAndPrivate = ({navigation}) => {
       </View>
       <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
         <Image
-          style={{
-            top: 170,
-            width: 331,
-            height: 56,
-            flexShrink: 0,
-            alignSelf: 'center',
-          }}
+          style={StyleSecurityAndPrivate.backButton}
           source={require('../../../assets/boutons/Bouton-Blanc-Border.png')}
         />
         <Text
-          style={{
-            top: 130,
-            left: 10,
-            color: '#0019A7',
-            textAlign: 'center',
-            alignSelf: 'center',
-            fontFamily: 'Comfortaa',
-            fontSize: 18,
-            fontStyle: 'normal',
-            fontWeight: 700,
-          }}>
+          style={StyleSecurityAndPrivate.backButtonText}>
           Retour paramètres
         </Text>
       </TouchableOpacity>
