@@ -2,10 +2,10 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import styles from '../../assets/style/styleComposants/StyleMenuBottom';
+import styles from '../../assets/style/StyleComposants/StyleMenuBottom';
 
 export const MenuBottom = ({ navigation, route }) => {
-  const [activeTab, setActiveTab] = useState(activeTab ?? 'ProfilMeRA'); 
+  const [activeTab, setActiveTab] = useState(activeTab ?? 'ProfilMeRA');
 
   const handleTabPress = tabName => {
     setActiveTab(tabName);
