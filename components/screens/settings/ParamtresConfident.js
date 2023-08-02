@@ -12,7 +12,7 @@ import {
   Switch,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import Styles from '../../../assets/style/Styles';
+import StyleParmetreConfident from '../../../assets/style/styleScreens/styleSettings/StyleParemetresConfident';
 import MenuSlideSettings from '../../composants/MenuSlideSettings';
 
 export const ParametresConfident = ({navigation}) => {
@@ -35,61 +35,25 @@ export const ParametresConfident = ({navigation}) => {
     setIsEnabledHistorique(previousState => !previousState);
   return (
     <ImageBackground
-      style={Styles.bgGradient}
+      style={StyleParmetreConfident.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings />
+      <MenuSlideSettings settingsNavigation={() => navigation.navigate('Securite et privee')} />
       <Text
-        style={{
-          top: 30,
-          color: '#0019A7',
-          fontFamily: 'Gilroy',
-          textAlign: 'center',
-          fontSize: 24,
-          fontWeight: 700,
-        }}>
-        Changer ma localisation
+        style={StyleParmetreConfident.title}>
+        Paramètres de confidentialités
       </Text>
       <View
-        style={{
-          backgroundColor: '#0019A7',
-          width: 351,
-          height: 1,
-          alignSelf: 'center',
-          top: 60,
-        }}
+        style={StyleParmetreConfident.separator}
       />
       <View
-        style={{
-          flexShrink: 0,
-          alignSelf: 'center',
-          top: 150,
-          marginBottom: 40,
-        }}>
+        style={StyleParmetreConfident.parametresConfidentContainer}>
         <Text
-          style={{
-            color: '#0019A7',
-            width: 320,
-            textAlign: 'left',
-            fontFamily: 'Gilroy',
-            fontSize: 16,
-            fontStyle: 'normal',
-            fontWeight: 700,
-            marginBottom: 20,
-          }}>
+          style={StyleParmetreConfident.titleItem}>
           Localisation
         </Text>
         <View style={{flexDirection: 'row'}}>
           <Text
-            style={{
-              color: '#929EDE',
-              width: 260,
-              alignSelf: 'start',
-              textAlign: 'left',
-              fontFamily: 'Gilroy',
-              fontSize: 16,
-              fontStyle: 'normal',
-              fontWeight: 700,
-            }}>
+            style={StyleParmetreConfident.textItem}>
             Vous pouvez choisir de partager votre localisation ou non.
           </Text>
           <Switch
@@ -107,37 +71,14 @@ export const ParametresConfident = ({navigation}) => {
         </View>
       </View>
       <View
-        style={{
-          flexShrink: 0,
-          alignSelf: 'center',
-          top: 150,
-          marginBottom: 40,
-        }}>
+        style={StyleParmetreConfident.viewItem}>
         <Text
-          style={{
-            color: '#0019A7',
-            width: 320,
-            textAlign: 'left',
-            fontFamily: 'Gilroy',
-            fontSize: 16,
-            fontStyle: 'normal',
-            fontWeight: 700,
-            marginBottom: 20,
-          }}>
+          style={StyleParmetreConfident.titleItem}>
           Informations personnelles
         </Text>
         <View style={{flexDirection: 'row'}}>
           <Text
-            style={{
-              color: '#929EDE',
-              width: 260,
-              alignSelf: 'start',
-              textAlign: 'left',
-              fontFamily: 'Gilroy',
-              fontSize: 16,
-              fontStyle: 'normal',
-              fontWeight: 700,
-            }}>
+            style={StyleParmetreConfident.textItem}>
             Masquer certaines informations sensibles.
           </Text>
           <Switch
@@ -155,36 +96,14 @@ export const ParametresConfident = ({navigation}) => {
         </View>
       </View>
       <View
-        style={{
-          flexShrink: 0,
-          alignSelf: 'center',
-          top: 150,
-        }}>
+        style={StyleParmetreConfident.viewItem}>
         <Text
-          style={{
-            color: '#0019A7',
-            width: 320,
-            textAlign: 'left',
-            fontFamily: 'Gilroy',
-            fontSize: 16,
-            fontStyle: 'normal',
-            fontWeight: 700,
-            marginBottom: 20,
-          }}>
+          style={StyleParmetreConfident.titleItem}>
           Historique des discussions
         </Text>
         <View style={{flexDirection: 'row'}}>
           <Text
-            style={{
-              color: '#929EDE',
-              width: 260,
-              alignSelf: 'start',
-              textAlign: 'left',
-              fontFamily: 'Gilroy',
-              fontSize: 16,
-              fontStyle: 'normal',
-              fontWeight: 700,
-            }}>
+            style={StyleParmetreConfident.textItem}>
             Supprimer ou d'archiver les conversations précédentes pour garder
             votre messagerie organisée et protéger votre vie privée.
           </Text>
@@ -202,29 +121,13 @@ export const ParametresConfident = ({navigation}) => {
           />
         </View>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate('Mode voyage')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Securite et privee')}>
         <Image
-          style={{
-            top: 260,
-            width: 331,
-            height: 56,
-            flexShrink: 0,
-            alignSelf: 'center',
-          }}
+          style={StyleParmetreConfident.backButton}
           source={require('../../../assets/boutons/Bouton-Blanc-Border.png')}
         />
         <Text
-          style={{
-            top: 220,
-            left: 10,
-            color: '#0019A7',
-            textAlign: 'center',
-            alignSelf: 'center',
-            fontFamily: 'Comfortaa',
-            fontSize: 18,
-            fontStyle: 'normal',
-            fontWeight: 700,
-          }}>
+          style={StyleParmetreConfident.backButtonText}>
           Retour sécurité & vie privée
         </Text>
       </TouchableOpacity>

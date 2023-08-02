@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import * as React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -11,6 +11,8 @@ import Styles from '../../assets/style/Styles';
 
 //Home Screen
 export const HomeStackNext = ({navigation}) => {
+  const [buttonPressed, setButtonPressed] = useState();
+
   return (
     <View style={Styles.container}>
       <ImageBackground
@@ -28,49 +30,59 @@ export const HomeStackNext = ({navigation}) => {
         </View>
         <View style={[Styles.ViewBtn, {top: -50}]}>
           <TouchableOpacity
-            style={[{top: 0}]}
+            style={[{top: 0, height: 60, width: '90%', alignSelf: 'center'}]}
             accessibilityLabel="S'inscrire"
-            onPress={() =>
-              navigation.navigate('ProfilMe', {routeName: "S'inscrire"})
-            }>
-            <Text style={[Styles.textBtn6, {zIndex: 1, top: 45}]}>
+            onPress={() => {
+              setButtonPressed("S'inscrire");
+              navigation.navigate('ProfilMe', {routeName: "S'inscrire"});
+            }}>
+            <Text style={[Styles.textBtn6, {zIndex: 1, top: 10}]}>
               S'inscrire
             </Text>
             <Image
               style={[
                 {
-                  top: 0,
-                  width: '90%',
+                  top: -34,
+                  width: '100%',
                   height: 60,
                   resizeMode: 'contain',
                   alignSelf: 'center',
                 },
               ]}
-              source={require('../../assets/boutons/Bouton-Bleu.png')}
+              source={
+                buttonPressed === "S'inscrire"
+                  ? require('../../assets/boutons/Bouton-Rouge.png')
+                  : require('../../assets/boutons/Bouton-Bleu.png')
+              }
             />
           </TouchableOpacity>
           <TouchableOpacity
-            style={[{top: -20}]}
+            style={[{top: 20, height: 60, width: '90%', alignSelf: 'center'}]}
             accessibilityLabel="Se connecter"
-            onPress={() =>
+            onPress={() => {
+              setButtonPressed('Se connecter');
               navigation.navigate('Liens de connexion', {
                 routeName: 'Se connecter',
-              })
-            }>
-            <Text style={[Styles.textBtn6, {zIndex: 2, top: 55}]}>
+              });
+            }}>
+            <Text style={[Styles.textBtn6, {zIndex: 2, top: 10}]}>
               Se connecter
             </Text>
             <Image
               style={[
                 {
-                  top: 10,
-                  width: '90%',
+                  top: -34,
+                  width: '100%',
                   height: 60,
                   resizeMode: 'contain',
                   alignSelf: 'center',
                 },
               ]}
-              source={require('../../assets/boutons/Bouton-Rouge.png')}
+              source={
+                buttonPressed === 'Se connecter'
+                  ? require('../../assets/boutons/Bouton-Rouge.png')
+                  : require('../../assets/boutons/Bouton-Bleu.png')
+              }
             />
           </TouchableOpacity>
         </View>
