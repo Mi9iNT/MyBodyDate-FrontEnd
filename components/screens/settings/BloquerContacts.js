@@ -219,9 +219,8 @@ export const BloquerContacts = ({ navigation }) => {
                             <Text style={{color: contactData.relation === 'Professionnel' ? '#000' : contactData.relation === 'Cercle d\'ami' ? '#9424FA' : contactData.relation === 'Relation amoureuse' ? '#FF84D7' : '#0019A7', textAlign: 'center', fontFamily: 'Comfortaa', fontSize: 16, fontStyle: 'normal',fontWeight: 500}}>{contactData.relation}</Text>
                             <Image style={{}} source={require('../../../assets/images/fleche-blue.png')} />
                           </TouchableOpacity>
-                          <View style={{ backgroundColor:'#0019A7', height:2, width:'80%', alignSelf:'center', marginBottom: 10}}></View>  
+                          <View style={StyleBloquerContacts.separatorUserLink}></View>  
                         </View>
-                       
                       ))}
                     </View>
 
