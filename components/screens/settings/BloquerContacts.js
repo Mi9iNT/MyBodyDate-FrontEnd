@@ -27,7 +27,9 @@ export const BloquerContacts = ({ navigation }) => {
     };
   }, []);
 
+  const [buttonPressed, setButtonPressed] = useState();
   const [viewSelected, setViewSelected] = useState(true);
+  const [showBlockedMessage, setShowBlockedMessage] = useState(false);
   const [contact, setContact] = useState('');
   const [blockedContacts, setBlockedContacts] = useState([]);
   const [filteredContacts, setFilteredContacts] = useState([]);
@@ -145,7 +147,12 @@ export const BloquerContacts = ({ navigation }) => {
         </SafeAreaView>
         <>
           {viewSelected ? (
-            <View style={[{height: contact ? 150 : 0}, StyleBloquerContacts.viewSelected]}>
+            <View style={[{ height: contact ? 150 : 0 }, StyleBloquerContacts.viewSelected]}>
+              {showBlockedMessage && (
+                  <View style={StyleBloquerContacts.blockedMessageContainer}>
+                    <Text style={StyleBloquerContacts.blockedMessage}>Le contact a déjà été bloqué.</Text>
+                  </View>
+                )}
               <ScrollView style={StyleBloquerContacts.scrollView} contentContainerStyle={{ paddingBottom: 10 }}>
                 <>
                   {contact ? (
@@ -157,10 +164,23 @@ export const BloquerContacts = ({ navigation }) => {
                               <TouchableOpacity key={contactData} onPress={() => {
                                 // Vérifier si le contact est déjà bloqué avant de l'ajouter
                                 const isBlocked = blockedContacts.find((blockedContact) => blockedContact.name === contactData.name);
-
                                 if (!isBlocked) {
                                   setBlockedContacts((prevBlockedContacts) => [...prevBlockedContacts, contactData]);
                                   setViewSelected(false);
+                                  setShowBlockedMessage(true);
+
+                                  // Délai de 2 secondes pour masquer le message après qu'il a été affiché
+                                  setTimeout(() => {
+                                    setShowBlockedMessage(false);
+                                  }, 2000);
+                                } else {
+                                  // Le contact est déjà bloqué, vous pouvez afficher un message pour l'indiquer
+                                  setShowBlockedMessage(true);
+
+                                  // Délai de 2 secondes pour masquer le message après qu'il a été affiché
+                                  setTimeout(() => {
+                                    setShowBlockedMessage(false);
+                                  }, 2000);
                                 }
                               }} style={StyleBloquerContacts.userLink}>
                               <Image style={[StyleBloquerContacts.imgUserLink,{borderColor: contactData.relation === 'Professionnel' ? '#000' : contactData.relation === 'Cercle d\'ami' ? '#9424FA' : contactData.relation === 'Relation amoureuse' ? '#FF84D7' : '#0019A7', }]} source={contactData.avatar} />
