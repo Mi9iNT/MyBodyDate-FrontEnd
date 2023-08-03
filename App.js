@@ -62,7 +62,8 @@ import {MettreEnPause} from './components/screens/settings/MettreEnPause';
 import {ModeDeConnexion} from './components/screens/settings/ModeDeConnexion';
 import {ChangeLocalisation} from './components/screens/settings/ChangeLocalisation';
 import {ParametresConfident} from './components/screens/settings/ParamtresConfident';
-import {BloquerContacts} from './components/screens/settings/BloquerContacts';
+import { BloquerContacts } from './components/screens/settings/BloquerContacts';
+import {SupprimerCompte} from './components/screens/settings/SupprimerCompte';
 
 import { MenuBottom } from './components/composants/MenuBottom';
 
@@ -564,6 +565,11 @@ function App() {
         <Stack.Screen
           name="Bloquer contacts"
           component={BloquerContacts}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Supprimer mon compte"
+          component={SupprimerCompte}
           options={{headerShown: false}}
         />
         {/* TALKS SCREENS */}
