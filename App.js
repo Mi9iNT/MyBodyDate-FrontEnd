@@ -61,7 +61,8 @@ import {ModeVoyage} from './components/screens/settings/ModeVoyage';
 import {MettreEnPause} from './components/screens/settings/MettreEnPause';
 import {ModeDeConnexion} from './components/screens/settings/ModeDeConnexion';
 import {ChangeLocalisation} from './components/screens/settings/ChangeLocalisation';
-import {ParametresConfident} from './components/screens/settings/ParamtresConfident';
+import { ParametresConfident } from './components/screens/settings/ParamtresConfident';
+import {AutorisationsNecessaires} from './components/screens/settings/AutorisationsNecessaires';
 import { BloquerContacts } from './components/screens/settings/BloquerContacts';
 import {SupprimerCompte} from './components/screens/settings/SupprimerCompte';
 import {CompteNonTrouve} from './components/screens/settings/CompteNonTrouve';
@@ -561,6 +562,11 @@ function App() {
         <Stack.Screen
           name="Parametre de confidentialites"
           component={ParametresConfident}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Autorisations necessaires"
+          component={AutorisationsNecessaires}
           options={{headerShown: false}}
         />
         <Stack.Screen

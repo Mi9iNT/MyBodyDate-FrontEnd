@@ -76,6 +76,10 @@ const StyleParemetresConfident = {
     height: 15,
     flexShrink: 0,
   },
+  containerBack: {
+    top: 100,
+    height: 56,
+  },
   backButton: {
     top: 100,
     width: 331,
