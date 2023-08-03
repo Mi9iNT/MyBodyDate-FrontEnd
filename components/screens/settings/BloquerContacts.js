@@ -28,11 +28,9 @@ export const BloquerContacts = ({ navigation }) => {
   }, []);
 
   const [viewSelected, setViewSelected] = useState(true);
-  const [showBlockedMessage, setShowBlockedMessage] = useState(false);
   const [contact, setContact] = useState('');
   const [blockedContacts, setBlockedContacts] = useState([]);
   const [filteredContacts, setFilteredContacts] = useState([]);
-  const [buttonPressed, setButtonPressed] = useState();
   const [contactsData, setContactsData] = useState([
     {
       name: 'Kolia',
@@ -101,7 +99,6 @@ export const BloquerContacts = ({ navigation }) => {
   };
 
   const inputRef = useRef(null);
-  
 
   return (
     <ImageBackground
@@ -116,7 +113,7 @@ export const BloquerContacts = ({ navigation }) => {
         style={StyleBloquerContacts.separator}
       />
       <View style={StyleBloquerContacts.bloquerContactContainer}>
-        <Image style={StyleBloquerContacts.icoInfo} source={require('../../../assets/boutons/ico-info.png')} />
+        <Image style={StyleBloquerContacts.icoInfo} source={require('../../../assets/images/ico-info.png')} />
         <Text style={StyleBloquerContacts.description}>Ajoutez les critères essentiels pour vous et affinez vos recherches. Trouvez la personne qui vous correspond vraiment.</Text>
       </View>
       <View style={StyleBloquerContacts.navViewButton}>
@@ -148,12 +145,7 @@ export const BloquerContacts = ({ navigation }) => {
         </SafeAreaView>
         <>
           {viewSelected ? (
-            <View style={[{ height: contact ? 150 : 0 }, StyleBloquerContacts.viewSelected]}>
-              {showBlockedMessage && (
-                <View style={StyleBloquerContacts.blockedMessageContainer}>
-                  <Text style={StyleBloquerContacts.blockedMessage}>Ce contact a déjà été bloqué.</Text>
-                </View>
-              )}
+            <View style={[{height: contact ? 150 : 0}, StyleBloquerContacts.viewSelected]}>
               <ScrollView style={StyleBloquerContacts.scrollView} contentContainerStyle={{ paddingBottom: 10 }}>
                 <>
                   {contact ? (
@@ -165,23 +157,10 @@ export const BloquerContacts = ({ navigation }) => {
                               <TouchableOpacity key={contactData} onPress={() => {
                                 // Vérifier si le contact est déjà bloqué avant de l'ajouter
                                 const isBlocked = blockedContacts.find((blockedContact) => blockedContact.name === contactData.name);
+
                                 if (!isBlocked) {
                                   setBlockedContacts((prevBlockedContacts) => [...prevBlockedContacts, contactData]);
                                   setViewSelected(false);
-                                  setShowBlockedMessage(true);
-
-                                  // Délai de 2 secondes pour masquer le message après qu'il a été affiché
-                                  setTimeout(() => {
-                                    setShowBlockedMessage(false);
-                                  }, 2000);
-                                } else {
-                                  // Le contact est déjà bloqué, vous pouvez afficher un message pour l'indiquer
-                                  setShowBlockedMessage(true);
-
-                                  // Délai de 2 secondes pour masquer le message après qu'il a été affiché
-                                  setTimeout(() => {
-                                    setShowBlockedMessage(false);
-                                  }, 5000);
                                 }
                               }} style={StyleBloquerContacts.userLink}>
                               <Image style={[StyleBloquerContacts.imgUserLink,{borderColor: contactData.relation === 'Professionnel' ? '#000' : contactData.relation === 'Cercle d\'ami' ? '#9424FA' : contactData.relation === 'Relation amoureuse' ? '#FF84D7' : '#0019A7', }]} source={contactData.avatar} />
@@ -216,11 +195,11 @@ export const BloquerContacts = ({ navigation }) => {
                         <View style={{flexDirection: 'column'}}>
                           <TouchableOpacity key={index} onPress={() => { removeBlockedContact(index); setViewSelected(true); }} style={{ flexDirection: 'row', width: '90%', justifyContent: 'space-between', alignSelf: 'center', alignItems: 'center', borderRadius:50, marginBottom: 10, padding: 5,backgroundColor:'#FFFFFFA3' }}>
                             <Image style={{ width: 50, height: 50, borderRadius: 100, borderWidth: 2,borderColor: contactData.relation === 'Professionnel' ? '#000' : contactData.relation === 'Cercle d\'ami' ? '#9424FA' : contactData.relation === 'Relation amoureuse' ? '#FF84D7' : '#0019A7', }} source={contactData.avatar} />
-                            <Text style={StyleBloquerContacts.textNameUserLink}>{contactData.name}</Text>
-                            <Text style={[{color: contactData.relation === 'Professionnel' ? '#000' : contactData.relation === 'Cercle d\'ami' ? '#9424FA' : contactData.relation === 'Relation amoureuse' ? '#FF84D7' : '#0019A7'}, StyleBloquerContacts.textRelationUserLink]}>{contactData.relation}</Text>
+                            <Text style={{ color: '#0019A7', textAlign: 'center', fontFamily: 'Gilroy', fontSize: 16, fontStyle: 'normal', fontWeight: 700 }}>{contactData.name}</Text>
+                            <Text style={{color: contactData.relation === 'Professionnel' ? '#000' : contactData.relation === 'Cercle d\'ami' ? '#9424FA' : contactData.relation === 'Relation amoureuse' ? '#FF84D7' : '#0019A7', textAlign: 'center', fontFamily: 'Comfortaa', fontSize: 16, fontStyle: 'normal',fontWeight: 500}}>{contactData.relation}</Text>
                             <Image style={{}} source={require('../../../assets/images/fleche-blue.png')} />
                           </TouchableOpacity>
-                          <View style={StyleBloquerContacts.separatorUserLink}></View>  
+                          <View style={{ backgroundColor:'#0019A7', height:2, width:'80%', alignSelf:'center', marginBottom: 10}}></View>  
                         </View>
                        
                       ))}
