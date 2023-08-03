@@ -12,8 +12,9 @@ import {
   Switch,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import StyleParmetreConfident from '../../../assets/style/styleScreens/styleSettings/StyleParemetresConfident';
+import StyleAutorisationsNecessaires from '../../../assets/style/styleScreens/styleSettings/StyleParemetresConfident';
 import MenuSlideSettings from '../../composants/MenuSlideSettings';
+import StyleParemetresConfident from '../../../assets/style/styleScreens/styleSettings/StyleParemetresConfident';
 
 export const ParametresConfident = ({navigation}) => {
   // Masquer la barre de statut au montage de l'écran
@@ -35,25 +36,27 @@ export const ParametresConfident = ({navigation}) => {
     setIsEnabledHistorique(previousState => !previousState);
   return (
     <ImageBackground
-      style={StyleParmetreConfident.bgGradient}
+      style={StyleAutorisationsNecessaires.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
       <MenuSlideSettings settingsNavigation={() => navigation.navigate('Securite et privee')} />
       <Text
-        style={StyleParmetreConfident.title}>
+        style={StyleAutorisationsNecessaires.title}>
         Paramètres de confidentialités
       </Text>
       <View
-        style={StyleParmetreConfident.separator}
+        style={StyleAutorisationsNecessaires.separator}
       />
       <View
-        style={StyleParmetreConfident.parametresConfidentContainer}>
-        <Text
-          style={StyleParmetreConfident.titleItem}>
+        style={StyleAutorisationsNecessaires.parametresConfidentContainer}>
+        <View
+          style={StyleAutorisationsNecessaires.viewItem}>
+          <Text
+          style={StyleAutorisationsNecessaires.titleItem}>
           Localisation
         </Text>
         <View style={{flexDirection: 'row'}}>
           <Text
-            style={StyleParmetreConfident.textItem}>
+            style={StyleAutorisationsNecessaires.textItem}>
             Vous pouvez choisir de partager votre localisation ou non.
           </Text>
           <Switch
@@ -69,16 +72,17 @@ export const ParametresConfident = ({navigation}) => {
             }}
           />
         </View>
-      </View>
-      <View
-        style={StyleParmetreConfident.viewItem}>
+        </View>
+        
+        <View
+        style={StyleAutorisationsNecessaires.viewItem}>
         <Text
-          style={StyleParmetreConfident.titleItem}>
+          style={StyleAutorisationsNecessaires.titleItem}>
           Informations personnelles
         </Text>
         <View style={{flexDirection: 'row'}}>
           <Text
-            style={StyleParmetreConfident.textItem}>
+            style={StyleAutorisationsNecessaires.textItem}>
             Masquer certaines informations sensibles.
           </Text>
           <Switch
@@ -94,16 +98,17 @@ export const ParametresConfident = ({navigation}) => {
             }}
           />
         </View>
-      </View>
-      <View
-        style={StyleParmetreConfident.viewItem}>
+        </View>
+        
+        <View
+        style={StyleAutorisationsNecessaires.viewItem}>
         <Text
-          style={StyleParmetreConfident.titleItem}>
+          style={StyleAutorisationsNecessaires.titleItem}>
           Historique des discussions
         </Text>
         <View style={{flexDirection: 'row'}}>
           <Text
-            style={StyleParmetreConfident.textItem}>
+            style={StyleAutorisationsNecessaires.textItem}>
             Supprimer ou d'archiver les conversations précédentes pour garder
             votre messagerie organisée et protéger votre vie privée.
           </Text>
@@ -120,14 +125,35 @@ export const ParametresConfident = ({navigation}) => {
             }}
           />
         </View>
+        
+       
+        </View>
+         <TouchableOpacity
+          style={{top:20}}
+          accessibilityLabel="Autorisations nécessaires"
+          onPress={() => navigation.navigate('Autorisations necessaires')}>
+          <View
+            style={StyleAutorisationsNecessaires.viewItem2}>
+            <Text
+              style={StyleAutorisationsNecessaires.textItem2}>
+              Autorisations nécessaires
+            </Text>
+            <Image
+              style={StyleAutorisationsNecessaires.imgItem}
+              source={require('../../../assets/images/fleche-blue.png')}
+            />
+          </View>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate('Securite et privee')}>
+      
+      
+      <TouchableOpacity style={StyleParemetresConfident.containerBack} onPress={() => navigation.navigate('Securite et privee')}>
         <Image
-          style={StyleParmetreConfident.backButton}
+          style={StyleAutorisationsNecessaires.backButton}
           source={require('../../../assets/boutons/Bouton-Blanc-Border.png')}
         />
         <Text
-          style={StyleParmetreConfident.backButtonText}>
+          style={StyleAutorisationsNecessaires.backButtonText}>
           Retour sécurité & vie privée
         </Text>
       </TouchableOpacity>

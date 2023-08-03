@@ -146,7 +146,7 @@ export const Settings = ({navigation}) => {
             width: '100%',
             height: 200,
           }}>
-          <TouchableOpacity onPress={() => navigation.navigate('Deconnexion')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Home Next')}>
             <Image
               style={{
                 width: 331,
@@ -158,7 +158,8 @@ export const Settings = ({navigation}) => {
             />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.navigate('Deconnexion')}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Supprimer mon compte')}>
             <Text
               style={{
                 ...commonTextStyles,

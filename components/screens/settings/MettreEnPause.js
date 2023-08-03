@@ -11,7 +11,7 @@ import {
   PanResponder,
   Animated,
 } from 'react-native';
-import Styles from '../../../assets/style/Styles';
+import StyleMettreEnPause from '../../../assets/style/styleScreens/styleSettings/StyleMettreEnPause';
 import PropTypes from 'prop-types';
 import MenuSlideSettings from '../../composants/MenuSlideSettings';
 
@@ -82,59 +82,19 @@ export const MettreEnPause = ({navigation}) => {
 
   return (
     <ImageBackground
-      style={Styles.bgGradient}
+      style={StyleMettreEnPause.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
       <MenuSlideSettings />
-      <Text
-        style={{
-          top: 10,
-          color: '#0019A7',
-          fontFamily: 'Comfortaa',
-          textAlign: 'center',
-          fontSize: 24,
-          fontWeight: 700,
-        }}>
+      <Text style={StyleMettreEnPause.title}>
         Mettre mon compte {'\n'}en pause
       </Text>
-      <View
-        style={{
-          backgroundColor: '#0019A7',
-          width: 351,
-          height: 1,
-          alignSelf: 'center',
-          top: 40,
-        }}
-      />
-      <Text
-        style={{
-          color: '#929EDE',
-          top: 60,
-          width: 320,
-          alignSelf: 'center',
-          textAlign: 'center',
-          fontFamily: 'Comfortaa',
-          fontSize: 16,
-          fontStyle: 'normal',
-          fontWeight: 700,
-        }}>
+      <View style={StyleMettreEnPause.separator} />
+      <Text style={StyleMettreEnPause.description}>
         Vous pouvez suspendre votre compte quand vous le souhaitez. Votre compte
         sera mis en pause et vous pourrez le réactiver quand vous le voudrez.
       </Text>
-      <View
-        style={{
-          flexShrink: 0,
-          alignSelf: 'center',
-          top: 100,
-        }}>
-        <Text
-          style={{
-            color: '#0019A7',
-            textAlign: 'center',
-            fontFamily: 'Gilroy',
-            fontSize: 16,
-            fontStyle: 'normal',
-            fontWeight: 700,
-          }}>
+      <View style={StyleMettreEnPause.mettreEnPauseContainer}>
+        <Text style={StyleMettreEnPause.confirmText}>
           Confirmer Mettre mon compte en pause
         </Text>
         <Switch
@@ -143,44 +103,17 @@ export const MettreEnPause = ({navigation}) => {
           ios_backgroundColor="#f4f3f4"
           onValueChange={toggleSwitch}
           value={isEnabled}
-          style={{
-            top: 30,
-            alignSelf: 'center',
-          }}
+          style={StyleMettreEnPause.switchButton}
         />
       </View>
       <View
-        style={{
-          top: 170,
-          flexDirection: 'row',
-          alignSelf: 'center',
-          width: '80%',
-          height: 20,
-          borderRadius: 10,
-          backgroundColor: '#E0E0E0',
-          overflow: 'hidden',
-        }}
+        style={StyleMettreEnPause.progressBarContainer}
         {...panResponder.panHandlers}>
         <View
-          style={[
-            {height: '100%', backgroundColor: '#0019A7'},
-            {width: `${progress}%`},
-          ]}
+          style={[StyleMettreEnPause.progressBarBg, {width: `${progress}%`}]}
         />
         <View
-          style={[
-            {
-              position: 'absolute',
-              width: 20,
-              height: 20,
-              borderTopRightRadius: 10,
-              borderBottomRightRadius: 10,
-              backgroundColor: '#0019A7',
-              justifyContent: 'center',
-              alignItems: 'center',
-            },
-            {left: `${progress}%`},
-          ]}
+          style={[StyleMettreEnPause.progressBarBtn, {left: `${progress}%`}]}
           onLayout={event =>
             setButtonPosition({
               x: event.nativeEvent.layout.x,
@@ -189,58 +122,51 @@ export const MettreEnPause = ({navigation}) => {
           }
         />
       </View>
-      <View style={{top: 170, height: 26, width: '70%', alignSelf: 'center'}}>
+      <View style={StyleMettreEnPause.progressBarContainerText}>
         <Animated.View
           style={[
             {position: 'relative', width: 80},
             {left: animatedTextPosition},
           ]}>
           <Text
-            style={{
-              color:
-                calculateDays(progress) < 1
-                  ? '#929EDE'
-                  : calculateDays(progress) > 29
-                  ? '#929EDE'
-                  : '#0019A7',
-              fontFamily: 'Gilroy',
-              fontSize: 16,
-              fontStyle: 'normal',
-              fontWeight: 700,
-            }}>
+            style={[
+              {
+                color:
+                  calculateDays(progress) < 1
+                    ? '#929EDE'
+                    : calculateDays(progress) > 29
+                    ? '#929EDE'
+                    : '#0019A7',
+              },
+              StyleMettreEnPause.progressBarText,
+            ]}>
             {calculateDays(progress)}{' '}
             {calculateDays(progress) < 2 ? 'jour' : 'jours'}
           </Text>
         </Animated.View>
       </View>
 
-      <View
-        style={{
-          top: 170,
-          width: '100%',
-          height: '30%',
-          flexDirection: 'column',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-          paddingHorizontal:20,
-        }}>
+      <View style={StyleMettreEnPause.viewContainerInfo}>
         <Image
-          style={{width: 25, height: 25}}
+          style={StyleMettreEnPause.icoInfo}
           source={require('../../../assets/boutons/ico-info-rose-text-bleu.png')}
         />
-        <Text style={{color: '#0019A7',textAlign: 'center',fontFamily: 'Comfortaa',fontSize: 15,fontStyle: 'normal',fontWeight: 700, }}>
+        <Text style={StyleMettreEnPause.textInfo}>
           Si vous avez un de nos abonnements ou formules de 6 à 12 mois, vous
           pouvez le/la suspendre de 1 à 30 jours en tout, en une ou plusieurs
           fois.
         </Text>
         <TouchableOpacity>
-          <Text style={{color: '#0019A7',textAlign: 'center',fontFamily: 'Comfortaa',fontSize: 15,fontStyle: 'normal',fontWeight: 700,textDecorationLine: 'underline', }}>
+          <Text style={StyleMettreEnPause.linkInfo}>
             C'est comme vous voulez, cela décale simplement votre période de fin
             de contrat.
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={{color: '#0019A7',textAlign: 'center',fontFamily: 'Comfortaa',fontSize: 15,fontStyle: 'normal',fontWeight: 700,textDecorationLine: 'underline', }}>Laissez-nous votre avis ou Racontez-nous votre histoire.</Text>
+          <Text
+            style={StyleMettreEnPause.linkInfo}>
+            Laissez-nous votre avis ou Racontez-nous votre histoire.
+          </Text>
         </TouchableOpacity>
       </View>
 
@@ -248,14 +174,10 @@ export const MettreEnPause = ({navigation}) => {
         onPress={() => navigation.navigate('Settings')}
         style={{top: 180}}>
         <Image
-          style={{
-            width: 331,
-            height: 56,
-            flexShrink: 0,
-            alignSelf: 'center',
-          }}
-          source={require('../../../assets/boutons/bouton-retour-parametres.png.png')}
+          style={StyleMettreEnPause.backButton}
+          source={require('../../../assets/boutons/Bouton-Blanc-Border.png')}
         />
+        <Text style={StyleMettreEnPause.backButtonText}>Retour paramètres</Text>
       </TouchableOpacity>
     </ImageBackground>
   );
