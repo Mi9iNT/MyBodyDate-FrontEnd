@@ -64,6 +64,7 @@ import {ChangeLocalisation} from './components/screens/settings/ChangeLocalisati
 import {ParametresConfident} from './components/screens/settings/ParamtresConfident';
 import { BloquerContacts } from './components/screens/settings/BloquerContacts';
 import {SupprimerCompte} from './components/screens/settings/SupprimerCompte';
+import {CompteNonTrouve} from './components/screens/settings/CompteNonTrouve';
 
 import { MenuBottom } from './components/composants/MenuBottom';
 
@@ -570,6 +571,11 @@ function App() {
         <Stack.Screen
           name="Supprimer mon compte"
           component={SupprimerCompte}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Compte non trouve"
+          component={CompteNonTrouve}
           options={{headerShown: false}}
         />
         {/* TALKS SCREENS */}

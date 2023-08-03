@@ -51,7 +51,7 @@ export const SupprimerCompte = ({navigation}) => {
         value={text}
       />
       <TouchableOpacity
-        onPress={() => navigation.navigate('Settings')}
+        onPress={() => navigation.navigate('Compte non trouve')}
         style={{top:0}}>
         <Image
           style={StyleSupprimerCompte.confirmButton}
