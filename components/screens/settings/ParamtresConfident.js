@@ -47,7 +47,9 @@ export const ParametresConfident = ({navigation}) => {
       />
       <View
         style={StyleParmetreConfident.parametresConfidentContainer}>
-        <Text
+        <View
+          style={StyleParmetreConfident.viewItem}>
+          <Text
           style={StyleParmetreConfident.titleItem}>
           Localisation
         </Text>
@@ -69,8 +71,9 @@ export const ParametresConfident = ({navigation}) => {
             }}
           />
         </View>
-      </View>
-      <View
+        </View>
+        
+        <View
         style={StyleParmetreConfident.viewItem}>
         <Text
           style={StyleParmetreConfident.titleItem}>
@@ -94,8 +97,9 @@ export const ParametresConfident = ({navigation}) => {
             }}
           />
         </View>
-      </View>
-      <View
+        </View>
+        
+        <View
         style={StyleParmetreConfident.viewItem}>
         <Text
           style={StyleParmetreConfident.titleItem}>
@@ -120,7 +124,28 @@ export const ParametresConfident = ({navigation}) => {
             }}
           />
         </View>
+        
+       
+        </View>
+         <TouchableOpacity
+          style={{top:20}}
+          accessibilityLabel="Autorisations nécessaires"
+          onPress={() => navigation.navigate('Autorisations necessaires')}>
+          <View
+            style={StyleParmetreConfident.viewItem2}>
+            <Text
+              style={StyleParmetreConfident.textItem2}>
+              Autorisations nécessaires
+            </Text>
+            <Image
+              style={StyleParmetreConfident.imgItem}
+              source={require('../../../assets/images/fleche-blue.png')}
+            />
+          </View>
+        </TouchableOpacity>
       </View>
+      
+      
       <TouchableOpacity onPress={() => navigation.navigate('Securite et privee')}>
         <Image
           style={StyleParmetreConfident.backButton}
