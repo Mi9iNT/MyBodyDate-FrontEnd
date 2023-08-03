@@ -193,7 +193,7 @@ export const MenuTalk = ({ navigation, route, user, prenium }) => {
                   <Text style={{ color: '#0019A7', fontFamily: 'Gilroy', fontSize: 20, fontStyle: 'normal', fontWeight: 700, marginLeft:20 }}>
                     Lisa
                   </Text>
-                  <Image source={require('../../assets/images/ico-certified-rose.png')} style={{width: 20, resizeMode: 'contain', marginLeft:20 }} />
+                  <Image source={require('../../assets/boutons/ico-certified-rose.png')} style={{width: 20, resizeMode: 'contain', marginLeft:20 }} />
                 </View>
                 <View style={{flexDirection:'row', justifyContent:'space-between'}}>
                   <Text style={{ color: '#000', fontFamily: 'Comfortaa', fontSize: 16, fontWeight: 700, marginLeft: 20 }}>Professionnel</Text>
@@ -212,7 +212,7 @@ export const MenuTalk = ({ navigation, route, user, prenium }) => {
                   <Text style={{ color: '#0019A7', fontFamily: 'Gilroy', fontSize: 20, fontStyle: 'normal', fontWeight: 700, marginLeft:20 }}>
                     Beverly
                   </Text>
-                  <Image source={require('../../assets/images/ico-certified-rose.png')} style={{width: 20, resizeMode: 'contain', marginLeft:20 }} />
+                  <Image source={require('../../assets/boutons/ico-certified-rose.png')} style={{width: 20, resizeMode: 'contain', marginLeft:20 }} />
                 </View>
                 <View style={{flexDirection:'row', justifyContent:'space-between'}}>
                   <Text style={{ color: '#9424FA', fontFamily: 'Comfortaa', fontSize: 16, fontWeight: 700, marginLeft: 20 }}>Cercle d'ami</Text>
@@ -248,7 +248,7 @@ export const MenuTalk = ({ navigation, route, user, prenium }) => {
                   <Text style={{ color: '#0019A7', fontFamily: 'Gilroy', fontSize: 20, fontStyle: 'normal', fontWeight: 700, marginLeft:20 }}>
                     Céline
                   </Text>
-                  <Image source={require('../../assets/images/ico-certified-rose.png')} style={{width: 20, resizeMode: 'contain', marginLeft:20 }} />
+                  <Image source={require('../../assets/boutons/ico-certified-rose.png')} style={{width: 20, resizeMode: 'contain', marginLeft:20 }} />
                 </View>
                 <View style={{flexDirection:'row', justifyContent:'space-between'}}>
                   <Text style={{ color: '#9424FA', fontFamily: 'Comfortaa', fontSize: 16, fontWeight: 700, marginLeft: 20 }}>Cercle d'ami</Text>
@@ -267,7 +267,7 @@ export const MenuTalk = ({ navigation, route, user, prenium }) => {
                   <Text style={{ color: '#0019A7', fontFamily: 'Gilroy', fontSize: 20, fontStyle: 'normal', fontWeight: 700, marginLeft:20 }}>
                     Kolia
                   </Text>
-                  <Image source={require('../../assets/images/ico-certified-rose.png')} style={{width: 20, resizeMode: 'contain', marginLeft:20 }} />
+                  <Image source={require('../../assets/boutons/ico-certified-rose.png')} style={{width: 20, resizeMode: 'contain', marginLeft:20 }} />
                 </View>
                 <View style={{flexDirection:'row', justifyContent:'space-between'}}>
                   <Text style={{ color: '#FF84D7', fontFamily: 'Comfortaa', fontSize: 16, fontWeight: 700, marginLeft: 20 }}>Relation amoureuse</Text>
@@ -350,7 +350,7 @@ export const MenuTalk = ({ navigation, route, user, prenium }) => {
                   <Text style={{ color: '#0019A7', fontFamily: 'Gilroy', fontSize: 20, fontStyle: 'normal', fontWeight: 700, marginLeft:20 }}>
                     Lisa
                   </Text>
-                  <Image source={require('../../assets/images/ico-certified-rose.png')} style={{width: 20, resizeMode: 'contain', marginLeft:20 }} />
+                  <Image source={require('../../assets/boutons/ico-certified-rose.png')} style={{width: 20, resizeMode: 'contain', marginLeft:20 }} />
                 </View>
                 <View style={{flexDirection:'row', justifyContent:'space-between'}}>
                   <Text style={{ color: '#000', fontFamily: 'Comfortaa', fontSize: 16, fontWeight: 700, marginLeft: 20 }}>Professionnel</Text>
@@ -369,7 +369,7 @@ export const MenuTalk = ({ navigation, route, user, prenium }) => {
                   <Text style={{ color: '#0019A7', fontFamily: 'Gilroy', fontSize: 20, fontStyle: 'normal', fontWeight: 700, marginLeft:20 }}>
                     Beverly
                   </Text>
-                  <Image source={require('../../assets/images/ico-certified-rose.png')} style={{width: 20, resizeMode: 'contain', marginLeft:20 }} />
+                  <Image source={require('../../assets/boutons/ico-certified-rose.png')} style={{width: 20, resizeMode: 'contain', marginLeft:20 }} />
                 </View>
                 <View style={{flexDirection:'row', justifyContent:'space-between'}}>
                   <Text style={{ color: '#9424FA', fontFamily: 'Comfortaa', fontSize: 16, fontWeight: 700, marginLeft: 20 }}>Cercle d'ami</Text>
@@ -405,7 +405,7 @@ export const MenuTalk = ({ navigation, route, user, prenium }) => {
                   <Text style={{ color: '#0019A7', fontFamily: 'Gilroy', fontSize: 20, fontStyle: 'normal', fontWeight: 700, marginLeft:20 }}>
                     Céline
                   </Text>
-                  <Image source={require('../../assets/images/ico-certified-rose.png')} style={{width: 20, resizeMode: 'contain', marginLeft:20 }} />
+                  <Image source={require('../../assets/boutons/ico-certified-rose.png')} style={{width: 20, resizeMode: 'contain', marginLeft:20 }} />
                 </View>
                 <View style={{flexDirection:'row', justifyContent:'space-between'}}>
                   <Text style={{ color: '#9424FA', fontFamily: 'Comfortaa', fontSize: 16, fontWeight: 700, marginLeft: 20 }}>Cercle d'ami</Text>
@@ -424,7 +424,7 @@ export const MenuTalk = ({ navigation, route, user, prenium }) => {
                   <Text style={{ color: '#0019A7', fontFamily: 'Gilroy', fontSize: 20, fontStyle: 'normal', fontWeight: 700, marginLeft:20 }}>
                     Kolia
                   </Text>
-                  <Image source={require('../../assets/images/ico-certified-rose.png')} style={{width: 20, resizeMode: 'contain', marginLeft:20 }} />
+                  <Image source={require('../../assets/boutons/ico-certified-rose.png')} style={{width: 20, resizeMode: 'contain', marginLeft:20 }} />
                 </View>
                 <View style={{flexDirection:'row', justifyContent:'space-between'}}>
                   <Text style={{ color: '#FF84D7', fontFamily: 'Comfortaa', fontSize: 16, fontWeight: 700, marginLeft: 20 }}>Relation amoureuse</Text>

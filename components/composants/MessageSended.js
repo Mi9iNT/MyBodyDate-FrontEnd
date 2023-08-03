@@ -24,7 +24,7 @@ const MessageSended = ({navigation, route}) => {
           }}>
           <Image
             style={{top: '25%'}}
-            source={require('../../assets/images/ico-conversation.png')}
+            source={require('../../assets/boutons/ico-conversation.png')}
           />
           <Text
             style={{
@@ -88,7 +88,7 @@ const MessageSended = ({navigation, route}) => {
                       <View style={{ flexDirection: 'column',  width:150,  top:20 }}>
                         <View style={{flexDirection:'row'}}>
                           <Text style={{ color: '#0019A7', fontFamily: 'Gilroy', fontSize: 20, fontWeight: 700, marginRight:30 }}>Alex</Text>
-                          <Image source={require('../../assets/images/ico-certified-rose.png')}/>
+                          <Image source={require('../../assets/boutons/ico-certified-rose.png')}/>
                         </View>
                         <View style={{flexDirection:'row', justifyContent:'space-around', top:20}}>
                           <Text style={{ color: '#929EDE', fontFamily: 'Comfortaa', fontSize: 16, fontWeight: 700 }}>Hier - Et toi ?</Text>
@@ -131,7 +131,7 @@ const MessageSended = ({navigation, route}) => {
                       <View style={{ flexDirection: 'column',  width:150,  top:20 }}>
                         <View style={{flexDirection:'row'}}>
                           <Text style={{ color: '#0019A7', fontFamily: 'Gilroy', fontSize: 20, fontWeight: 700, marginRight:30 }}>Beverly</Text>
-                          <Image source={require('../../assets/images/ico-certified-rose.png')}/>
+                          <Image source={require('../../assets/boutons/ico-certified-rose.png')}/>
                         </View>
                         <View style={{flexDirection:'row', justifyContent:'space-around', top:20}}>
                           <Text style={{ color: '#929EDE', fontFamily: 'Comfortaa', fontSize: 16, fontWeight: 700 }}>Hier  -  Et toi ?</Text>
@@ -148,7 +148,7 @@ const MessageSended = ({navigation, route}) => {
                       <View style={{ flexDirection: 'column',  width:150,  top:20 }}>
                         <View style={{flexDirection:'row'}}>
                           <Text style={{ color: '#0019A7', fontFamily: 'Gilroy', fontSize: 20, fontWeight: 700, marginRight:30 }}>Gaëlle</Text>
-                          <Image source={require('../../assets/images/ico-certified-rose.png')}/>
+                          <Image source={require('../../assets/boutons/ico-certified-rose.png')}/>
                         </View>
                         <View style={{flexDirection:'row', justifyContent:'space-around', top:20}}>
                           <Text style={{ color: '#929EDE', fontFamily: 'Comfortaa', fontSize: 16, fontWeight: 700 }}>Hier  -  Pas loin...</Text>

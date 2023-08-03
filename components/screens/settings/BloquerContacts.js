@@ -101,6 +101,7 @@ export const BloquerContacts = ({ navigation }) => {
   };
 
   const inputRef = useRef(null);
+  
 
   return (
     <ImageBackground
@@ -115,7 +116,7 @@ export const BloquerContacts = ({ navigation }) => {
         style={StyleBloquerContacts.separator}
       />
       <View style={StyleBloquerContacts.bloquerContactContainer}>
-        <Image style={StyleBloquerContacts.icoInfo} source={require('../../../assets/images/ico-info.png')} />
+        <Image style={StyleBloquerContacts.icoInfo} source={require('../../../assets/boutons/ico-info.png')} />
         <Text style={StyleBloquerContacts.description}>Ajoutez les critères essentiels pour vous et affinez vos recherches. Trouvez la personne qui vous correspond vraiment.</Text>
       </View>
       <View style={StyleBloquerContacts.navViewButton}>

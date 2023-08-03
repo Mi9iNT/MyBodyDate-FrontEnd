@@ -55,7 +55,10 @@
 	<array>
 		<string>Comfortaa-Bold.ttf</string>
 		<string>Comfortaa-Light.ttf</string>
-		<string>Comfortaa-Regular.ttf</string>
+		<string>Comfortaa.ttf</string>
+		<string>Gilroy-Medium.ttf</string>
+		<string>Gilroy-SemiBold.ttf</string>
+		<string>Gilroy.ttf</string>
 	</array>
 </dict>
 </plist>

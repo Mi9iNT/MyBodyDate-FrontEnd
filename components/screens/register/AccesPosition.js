@@ -229,7 +229,7 @@ export const AccesPosition = ({route, navigation}) => {
                     resizeMode: 'contain',
                   },
                 ]}
-                source={require('../../../assets/images/ico-position.png')}
+                source={require('../../../assets/boutons/ico-position.png')}
               />
               <Text
                 style={[

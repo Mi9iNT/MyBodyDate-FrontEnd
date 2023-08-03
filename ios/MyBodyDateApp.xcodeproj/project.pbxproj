@@ -16,10 +16,13 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		F2BCC5F81BF848EE9A036168 /* Comfortaa-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D840944E4F9A45C49D76EC13 /* Comfortaa-Bold.ttf */; };
 		9BB776D4725F4FDF86B02702 /* Comfortaa-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F82861B963743BA926756E5 /* Comfortaa-Light.ttf */; };
-		E4067E1E6FAA4A47A0B1EFF7 /* Comfortaa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E65C0D96251D46FF8392D349 /* Comfortaa-Regular.ttf */; };
 		853B3277D05D4FBA8722834F /* donate.html in Resources */ = {isa = PBXBuildFile; fileRef = 62E99F819D17448E9D9FD185 /* donate.html */; };
 		D00BA7D8132D43E2AC2B1AE8 /* FONTLOG.txt in Resources */ = {isa = PBXBuildFile; fileRef = 75DBF2F553CF401AAC2C8AA1 /* FONTLOG.txt */; };
 		AC8C0A5FD12644EE84A9FB0D /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 34EF4101ADA3462F943D5D8F /* OFL.txt */; };
+		04606BCD7F8D4A35B190776C /* Comfortaa.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43FDC07EDDA142D786B606FE /* Comfortaa.ttf */; };
+		1D82F15F26E04FB88BD77652 /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ED6F37E5F12473AA86FFD89 /* Gilroy-Medium.ttf */; };
+		FF4C0982D27B4F2BB920DDBD /* Gilroy-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 502BEC7A8F804788953BDE91 /* Gilroy-SemiBold.ttf */; };
+		78629E247A364C8183600F12 /* Gilroy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E6C98225B334278A2F7D95B /* Gilroy.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,10 +55,13 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		D840944E4F9A45C49D76EC13 /* Comfortaa-Bold.ttf */ = {isa = PBXFileReference; name = "Comfortaa-Bold.ttf"; path = "../assets/fonts/Comfortaa-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		9F82861B963743BA926756E5 /* Comfortaa-Light.ttf */ = {isa = PBXFileReference; name = "Comfortaa-Light.ttf"; path = "../assets/fonts/Comfortaa-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E65C0D96251D46FF8392D349 /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; name = "Comfortaa-Regular.ttf"; path = "../assets/fonts/Comfortaa-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		62E99F819D17448E9D9FD185 /* donate.html */ = {isa = PBXFileReference; name = "donate.html"; path = "../assets/fonts/donate.html"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		75DBF2F553CF401AAC2C8AA1 /* FONTLOG.txt */ = {isa = PBXFileReference; name = "FONTLOG.txt"; path = "../assets/fonts/FONTLOG.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		34EF4101ADA3462F943D5D8F /* OFL.txt */ = {isa = PBXFileReference; name = "OFL.txt"; path = "../assets/fonts/OFL.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		43FDC07EDDA142D786B606FE /* Comfortaa.ttf */ = {isa = PBXFileReference; name = "Comfortaa.ttf"; path = "../assets/fonts/Comfortaa.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0ED6F37E5F12473AA86FFD89 /* Gilroy-Medium.ttf */ = {isa = PBXFileReference; name = "Gilroy-Medium.ttf"; path = "../assets/fonts/Gilroy-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		502BEC7A8F804788953BDE91 /* Gilroy-SemiBold.ttf */ = {isa = PBXFileReference; name = "Gilroy-SemiBold.ttf"; path = "../assets/fonts/Gilroy-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2E6C98225B334278A2F7D95B /* Gilroy.ttf */ = {isa = PBXFileReference; name = "Gilroy.ttf"; path = "../assets/fonts/Gilroy.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,10 +172,13 @@
 			children = (
 				D840944E4F9A45C49D76EC13 /* Comfortaa-Bold.ttf */,
 				9F82861B963743BA926756E5 /* Comfortaa-Light.ttf */,
-				E65C0D96251D46FF8392D349 /* Comfortaa-Regular.ttf */,
 				62E99F819D17448E9D9FD185 /* donate.html */,
 				75DBF2F553CF401AAC2C8AA1 /* FONTLOG.txt */,
 				34EF4101ADA3462F943D5D8F /* OFL.txt */,
+				43FDC07EDDA142D786B606FE /* Comfortaa.ttf */,
+				0ED6F37E5F12473AA86FFD89 /* Gilroy-Medium.ttf */,
+				502BEC7A8F804788953BDE91 /* Gilroy-SemiBold.ttf */,
+				2E6C98225B334278A2F7D95B /* Gilroy.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -273,10 +282,13 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				F2BCC5F81BF848EE9A036168 /* Comfortaa-Bold.ttf in Resources */,
 				9BB776D4725F4FDF86B02702 /* Comfortaa-Light.ttf in Resources */,
-				E4067E1E6FAA4A47A0B1EFF7 /* Comfortaa-Regular.ttf in Resources */,
 				853B3277D05D4FBA8722834F /* donate.html in Resources */,
 				D00BA7D8132D43E2AC2B1AE8 /* FONTLOG.txt in Resources */,
 				AC8C0A5FD12644EE84A9FB0D /* OFL.txt in Resources */,
+				04606BCD7F8D4A35B190776C /* Comfortaa.ttf in Resources */,
+				1D82F15F26E04FB88BD77652 /* Gilroy-Medium.ttf in Resources */,
+				FF4C0982D27B4F2BB920DDBD /* Gilroy-SemiBold.ttf in Resources */,
+				78629E247A364C8183600F12 /* Gilroy.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
