@@ -81,15 +81,14 @@ const StyleParemetresConfident = {
     height: 56,
   },
   backButton: {
-    top: 100,
+    top: 10,
     width: 331,
     height: 56,
     flexShrink: 0,
     alignSelf: 'center',
   },
   backButtonText: {
-    top: 60,
-    left: 10,
+    top: -30,
     color: '#0019A7',
     textAlign: 'center',
     alignSelf: 'center',

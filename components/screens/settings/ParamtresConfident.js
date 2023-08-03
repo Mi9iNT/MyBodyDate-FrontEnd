@@ -12,7 +12,7 @@ import {
   Switch,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import StyleAutorisationsNecessaires from '../../../assets/style/styleScreens/styleSettings/StyleAutorisationsNecessaires';
+import StyleAutorisationsNecessaires from '../../../assets/style/styleScreens/styleSettings/StyleParemetresConfident';
 import MenuSlideSettings from '../../composants/MenuSlideSettings';
 import StyleParemetresConfident from '../../../assets/style/styleScreens/styleSettings/StyleParemetresConfident';
 
