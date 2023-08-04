@@ -71,15 +71,17 @@ export const MenuSlideSettings = () => {
             {/* Paramètres */}
             <View
               style={{
-                position: 'absolute',
                 top: 51,
-                left: 23,
+                left: 80,
                 width: 196,
                 height: 24,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems:'center',
               }}>
               <TouchableOpacity
                 accessibilityLabel="Paramètres"
-                onPress={() => { setModalVisible(false); navigation.navigate('Settings');}}>
+                onPress={() => navigation.navigate('Settings')}>
                 <Text
                   style={{
                     fontSize: 20,
@@ -91,18 +93,14 @@ export const MenuSlideSettings = () => {
                   Paramètres
                 </Text>
               </TouchableOpacity>
-            </View>
-            <View
+
+              <TouchableOpacity
               style={{
-                position: 'absolute',
-                top: 40,
-                left: 238,
                 width: 35,
                 height: 35,
-              }}>
-              <TouchableOpacity
+              }}
                 accessibilityLabel="Paramètres"
-                onPress={() => { setModalVisible(false); navigation.navigate('Settings'); }}>
+                onPress={() => navigation.navigate('Settings')}>
                 <Image
                   source={require('../../assets/images/parametres.png')}
                   style={{
