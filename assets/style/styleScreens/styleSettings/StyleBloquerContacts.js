@@ -157,7 +157,7 @@ const StyleBloquerContacts = {
   },
   separatorUserLink: {
     backgroundColor: '#0019A7',
-    height: 2, width: '80%',
+    height: 2, width: '60%',
     alignSelf: 'center',
     marginBottom: 10,
   },
@@ -174,14 +174,27 @@ const StyleBloquerContacts = {
     fontStyle: 'normal',
     fontWeight: 700,
   },
-  textItem: {
-    color: '#929EDE',
-    width: 260,
-    alignSelf: 'flex-start',
-    textAlign: 'left',
+  blockedMessage: {
+    color: '#d40000',
+    top: 0,
+    textAlign: 'center',
     fontFamily: 'Gilroy',
     fontSize: 16,
     fontStyle: 'normal',
+    fontWeight: 700, 
+  },
+  importContactButtonImg: {
+    resizeMode: 'contain',
+    width: 331,
+    height: 56,
+    alignSelf: 'center',
+  },
+  importContactButtonText: {
+    top: -40,
+    color: 'white',
+    textAlign: 'center',
+    fontFamily: 'Comfortaa',
+    fontSize: 18,
     fontWeight: 700,
   },
   backButtonContainer: {

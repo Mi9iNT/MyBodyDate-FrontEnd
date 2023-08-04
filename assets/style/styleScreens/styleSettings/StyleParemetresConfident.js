@@ -34,13 +34,13 @@ const StyleParemetresConfident = {
   parametresConfidentContainer: {
     flexShrink: 0,
     alignSelf: 'center',
-    top: 150,
+    top: 100,
     marginBottom: 40,
   },
   viewItem: {
     flexShrink: 0,
     alignSelf: 'center',
-    top: 150,
+    top: 20,
     marginBottom: 40,
   },
   textItem: {
@@ -53,17 +53,42 @@ const StyleParemetresConfident = {
     fontStyle: 'normal',
     fontWeight: 700,
   },
- 
+  viewItem2: {
+    height: 20,
+    width: '80%',
+    alignSelf: 'center',
+    top: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 40,
+  },
+  textItem2: {
+    color: '#0019A7',
+    fontFamily: 'Comfortaa',
+    fontStyle: 'normal',
+    fontWeight: '700',
+    width: 240,
+    fontSize: 16,
+    alignItems: 'center',
+  },
+  imgItem: {
+    width: 7,
+    height: 15,
+    flexShrink: 0,
+  },
+  containerBack: {
+    top: 100,
+    height: 56,
+  },
   backButton: {
-    top: 220,
+    top: 10,
     width: 331,
     height: 56,
     flexShrink: 0,
     alignSelf: 'center',
   },
   backButtonText: {
-    top: 180,
-    left: 10,
+    top: -30,
     color: '#0019A7',
     textAlign: 'center',
     alignSelf: 'center',

@@ -113,7 +113,7 @@ const SliderMap = () => {
           </Text>
           {item.certified && (
             <Image
-              source={require('../../assets/images/ico-certified-rose.png')}
+              source={require('../../assets/boutons/ico-certified-rose.png')}
               style={{width: 20, height: 20}}
             />
           )}

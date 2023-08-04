@@ -26,7 +26,7 @@ export const HomeStackNext = ({navigation}) => {
         </View>
         <View style={[Styles.ViewText2, {top: 200}]}>
           <Text style={[Styles.textBlue2]}>UN COUP DE COEUR N'ATTEND PAS</Text>
-          <Text style={[Styles.textBlue2]}>NE PERDEZ PLUS RIEN... </Text>
+          <Text style={[Styles.textBlue22]}>NE PERDEZ PLUS RIEN... </Text>
         </View>
         <View style={[Styles.ViewBtn, {top: -50}]}>
           <TouchableOpacity

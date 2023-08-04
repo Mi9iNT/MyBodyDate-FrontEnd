@@ -108,7 +108,7 @@ export const EmpreinteVocal = ({route, navigation}) => {
                 Découvrez votre type de voix{' '}
                 <Image
                   style={[{width: 30, height: 30, resizeMode: 'contain'}]}
-                  source={require('../../../assets/images/info.png')}
+                  source={require('../../../assets/boutons/info.png')}
                 />
               </Text>
             </TouchableOpacity>
@@ -260,7 +260,7 @@ export const EmpreinteVocal = ({route, navigation}) => {
                     alignSelf: 'center',
                   },
                 ]}
-                source={require('../../../assets/images/info.png')}
+                source={require('../../../assets/boutons/info.png')}
               />
               <Text style={[Styles.textBlue, {top: -130}]}>
                 <Text style={[Styles.textBlueBold]}>Soprano</Text> est la voix

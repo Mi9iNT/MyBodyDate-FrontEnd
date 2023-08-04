@@ -10,7 +10,7 @@
       "sha1": "f8c457e2838266366b6ab79da7704edb59c03ee5"
     },
     {
-      "path": "assets/fonts/Comfortaa-Regular.ttf",
+      "path": "assets/fonts/Comfortaa.ttf",
       "sha1": "7f668f8d767995af75f83ce3caafbfacd3704b40"
     },
     {
@@ -20,6 +20,18 @@
     {
       "path": "assets/fonts/FONTLOG.txt",
       "sha1": "d982059a7215e30d074973927fb90f0c5bc78e83"
+    },
+    {
+      "path": "assets/fonts/Gilroy-Medium.ttf",
+      "sha1": "d7f893124bd4fff78805e69df31385ae113368be"
+    },
+    {
+      "path": "assets/fonts/Gilroy-SemiBold.ttf",
+      "sha1": "8663a356eb9bc23b77696208f74376daf59687ea"
+    },
+    {
+      "path": "assets/fonts/Gilroy.ttf",
+      "sha1": "a737c19356e50cb9a50eb64ca7446c80dd3aa3e3"
     },
     {
       "path": "assets/fonts/OFL.txt",
