@@ -55,7 +55,7 @@ import {Settings} from './components/screens/settings/Settings';
 import {Notifications} from './components/screens/settings/Notifications';
 import {SecurityAndPrivate} from './components/screens/settings/SecurityAndPrivate';
 import {ContactAndFAQ} from './components/screens/settings/ContactAndFAQ';
-import {Emplacement} from './components/screens/register/Emplacement';
+import {Emplacement} from './components/screens/settings/Emplacement';
 import {ModeInvisible} from './components/screens/settings/ModeInvisible';
 import {ModeVoyage} from './components/screens/settings/ModeVoyage';
 import {MettreEnPause} from './components/screens/settings/MettreEnPause';

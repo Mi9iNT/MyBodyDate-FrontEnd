@@ -32,7 +32,7 @@ export const ModeInvisible = ({navigation}) => {
     <ImageBackground
       style={StyleModeInvisible.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings />
+      <MenuSlideSettings settingsNavigation={() => navigation.navigate('Settings')} />
       <Text
         style={StyleModeInvisible.title}>
         Mode invisible
