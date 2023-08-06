@@ -45,15 +45,13 @@ const StyleModeInvisible = {
     alignSelf: 'center',
   },
   backButton: {
-    top: 520,
     width: 331,
     height: 56,
     flexShrink: 0,
     alignSelf: 'center',
   },
   backButtonText: {
-    top: 480,
-    color: '#0019A7',
+    top: -40,
     textAlign: 'center',
     alignSelf: 'center',
     fontFamily: 'Comfortaa',

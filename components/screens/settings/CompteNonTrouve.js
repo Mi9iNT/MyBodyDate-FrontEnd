@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StatusBar,
   ImageBackground,
@@ -19,6 +19,7 @@ export const CompteNonTrouve = ({navigation}) => {
       StatusBar.setHidden(false);
     };
   }, []);
+  const [buttonPressed, setButtonPressed] = useState();
 
   return (
     <ImageBackground
@@ -44,13 +45,13 @@ export const CompteNonTrouve = ({navigation}) => {
       </View>
       <View style={{flex: 1}}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Home Next')}
+          onPress={() => { setButtonPressed(true); navigation.navigate('Home Next'); }}
           style={{top: 50}}>
           <Image
             style={StyleCompteNonTrouve.backButton}
-            source={require('../../../assets/boutons/Bouton-Blanc-Border.png')}
+            source={buttonPressed ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc-Border.png')}
           />
-          <Text style={StyleCompteNonTrouve.backButtonText}>Retour</Text>
+          <Text style={[StyleCompteNonTrouve.backButtonText, {color: buttonPressed ? '#fff': '#0019A7'}]}>Retour</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>

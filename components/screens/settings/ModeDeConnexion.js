@@ -24,16 +24,17 @@ export const ModeDeConnexion = ({navigation}) => {
       StatusBar.setHidden(false);
     };
   }, []);
-  const [buttonPressedNumero, setButtonPressedNumero] = useState(false);
+  const [buttonPressedNumero, setButtonPressedNumero] = useState();
   const [buttonPressedGoogle, setButtonPressedGoogle] = useState(true);
-  const [buttonPressedFacebook, setButtonPressedFacebook] = useState(false);
-  const [buttonPressedApple, setButtonPressedApple] = useState(false);
-  const [buttonPressedBack, setButtonPressedBack] = useState(false);
+  const [buttonPressedFacebook, setButtonPressedFacebook] = useState();
+  const [buttonPressedApple, setButtonPressedApple] = useState();
+  const [buttonPressedBack, setButtonPressedBack] = useState();
 
   return (
     <ImageBackground
       style={StyleModeConnexion.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
+      <View style={{flex: 8}}>
       <MenuSlideSettings settingsNavigation={() => navigation.navigate('Securite et privee')} />
       <Text
         style={StyleModeConnexion.title}>
@@ -153,14 +154,18 @@ export const ModeDeConnexion = ({navigation}) => {
             Connexion avec Google
           </Text>
         </TouchableOpacity>
+        </View>
       </View>
-
-      <TouchableOpacity onPress={() => navigation.navigate('Securite et privee')}>
+<View style={{flex: 1}}>
+        <TouchableOpacity style={{ marginTop: 15 }} onPress={() => {
+          setButtonPressedBack(true);
+          navigation.navigate('Securite et privee');
+        }}>
         <Image
           style={StyleModeConnexion.backButton}
           source={
             buttonPressedBack
-              ? require('../../../assets/boutons/Bouton-Bleu.png') 
+              ? require('../../../assets/boutons/Bouton-Rouge.png') 
               : require('../../../assets/boutons/Bouton-Blanc-Border.png')
           }
         />
@@ -168,7 +173,8 @@ export const ModeDeConnexion = ({navigation}) => {
           style={[{color: buttonPressedBack ? 'white' : '#0019A7'}, StyleModeConnexion.backButtonText]}>
           Retour sécurité & vie privée
         </Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
     </ImageBackground>
   );
 };

@@ -24,76 +24,94 @@ export const SupprimerCompte = ({navigation}) => {
 
   const [text, onChangeText] = useState();
 
-
+  const [buttonPressed, setButtonPressed] = useState();
 
   return (
     <ImageBackground
       style={StyleSupprimerCompte.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings />
-      <Text style={StyleSupprimerCompte.title}>
-        Supprimer mon compte
-      </Text>
-      <View style={StyleSupprimerCompte.separator} />
-      <Text style={StyleSupprimerCompte.description}>
-        Vous pouvez suspendre votre compte quand vous le souhaitez. Votre compte sera mis en pause et vous pourrez le réactiver quand vous le voudrez.
-      </Text>
-      <View style={StyleSupprimerCompte.mettreEnPauseContainer}>
-        <Text style={StyleSupprimerCompte.confirmText}>
-          Confirmer suppression de compte
-        </Text>
-    <SafeAreaView>
-      <TextInput
-        style={StyleSupprimerCompte.inputNumber}
-        placeholder='Entrez votre mot de passe' 
-        placeholderTextColor={'#0019A7'}    
-        onChangeText={onChangeText}
-        value={text}
+      <MenuSlideSettings
+        settingsNavigation={() => navigation.navigate('Settings')}
       />
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Compte non trouve')}
-        style={{top:0}}>
-        <Image
-          style={StyleSupprimerCompte.confirmButton}
-          source={require('../../../assets/boutons/bouton-rouge-deux.png')}
-        />
-       <Text style={StyleSupprimerCompte.confirmButtonText}>Je confirme</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
-      </View>
-      
-
-      <View style={StyleSupprimerCompte.viewContainerInfo}>
-        <Image
-          style={StyleSupprimerCompte.icoInfo}
-          source={require('../../../assets/boutons/ico-info-rose-text-bleu.png')}
-        />
-        <Text style={StyleSupprimerCompte.textInfo}>
-          Si vous voulez vraiment nous quitter, nous espérons que vous avez trouvé ce que vous cherchiez.
+      <View style={{flex: 6}}>
+        <Text style={StyleSupprimerCompte.title}>Supprimer mon compte</Text>
+        <View style={StyleSupprimerCompte.separator} />
+        <Text style={StyleSupprimerCompte.description}>
+          Vous pouvez suspendre votre compte quand vous le souhaitez. Votre
+          compte sera mis en pause et vous pourrez le réactiver quand vous le
+          voudrez.
         </Text>
-        <TouchableOpacity>
-          <Text style={StyleSupprimerCompte.linkInfo}>
-            C'est comme vous voulez, cela décale simplement votre période de fin
-            de contrat.
+        <View style={StyleSupprimerCompte.mettreEnPauseContainer}>
+          <Text style={StyleSupprimerCompte.confirmText}>
+            Confirmer suppression de compte
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
+          <SafeAreaView>
+            <TextInput
+              style={StyleSupprimerCompte.inputNumber}
+              placeholder="Entrez votre mot de passe"
+              placeholderTextColor={'#0019A7'}
+              onChangeText={onChangeText}
+              value={text}
+            />
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Compte non trouve')}
+              style={{top: 0}}>
+              <Image
+                style={StyleSupprimerCompte.confirmButton}
+                source={require('../../../assets/boutons/bouton-rouge-deux.png')}
+              />
+              <Text style={StyleSupprimerCompte.confirmButtonText}>
+                Je confirme
+              </Text>
+            </TouchableOpacity>
+          </SafeAreaView>
+        </View>
+
+        <View style={StyleSupprimerCompte.viewContainerInfo}>
+          <Image
+            style={StyleSupprimerCompte.icoInfo}
+            source={require('../../../assets/boutons/ico-info-rose-text-bleu.png')}
+          />
+          <Text style={StyleSupprimerCompte.textInfo}>
+            Si vous voulez vraiment nous quitter, nous espérons que vous avez
+            trouvé ce que vous cherchiez.
+          </Text>
+          <TouchableOpacity>
+            <Text style={StyleSupprimerCompte.linkInfo}>
+              C'est comme vous voulez, cela décale simplement votre période de
+              fin de contrat.
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={StyleSupprimerCompte.linkInfo}>
+              Laissez-nous votre avis ou Racontez-nous votre histoire.
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={{flex: 1}}>
+        <TouchableOpacity
+          onPress={() => {
+            setButtonPressed(true);
+            navigation.navigate('Settings');
+          }}>
+          <Image
+            style={StyleSupprimerCompte.backButton}
+            source={
+              buttonPressed
+                ? require('../../../assets/boutons/Bouton-Rouge.png')
+                : require('../../../assets/boutons/Bouton-Blanc-Border.png')
+            }
+          />
           <Text
-            style={StyleSupprimerCompte.linkInfo}>
-           Laissez-nous votre avis ou Racontez-nous votre histoire.
+            style={[
+              StyleSupprimerCompte.backButtonText,
+              {color: buttonPressed ? '#fff' : '#0019A7'},
+            ]}>
+            Retour paramètres
           </Text>
         </TouchableOpacity>
       </View>
-
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Settings')}
-        style={{top: 120}}>
-        <Image
-          style={StyleSupprimerCompte.backButton}
-          source={require('../../../assets/boutons/Bouton-Blanc-Border.png')}
-        />
-        <Text style={StyleSupprimerCompte.backButtonText}>Retour paramètres</Text>
-      </TouchableOpacity>
     </ImageBackground>
   );
 };

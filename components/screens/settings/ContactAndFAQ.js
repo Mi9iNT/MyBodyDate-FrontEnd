@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {
   View,
@@ -23,11 +23,13 @@ export const ContactAndFAQ = ({navigation}) => {
       StatusBar.setHidden(false);
     };
   }, []);
+  const [buttonPressed, setButtonPressed] = useState();
   return (
     <ImageBackground
       style={StyleContactAndFAQ.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
       <MenuSlideSettings />
+      <View style={{flex:5}}>
       <Text
         style={StyleContactAndFAQ.title}>
         Contact & FAQ
@@ -101,17 +103,19 @@ export const ContactAndFAQ = ({navigation}) => {
             />
           </View>
         </TouchableOpacity>
-      </View>
+        </View>
+        </View><View style={{flex:1}}>
       <TouchableOpacity style={StyleContactAndFAQ.backButtonContainer} onPress={() => navigation.navigate('Settings')}>
         <Image
           style={StyleContactAndFAQ.backButton}
-          source={require('../../../assets/boutons/Bouton-Blanc-Border.png')}
+          source={buttonPressed ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc-Border.png')}
         />
         <Text
-          style={StyleContactAndFAQ.backButtonText}>
+          style={[StyleContactAndFAQ.backButtonText, {color: buttonPressed ? '#fff' : '#0019A7'}]}>
           Retour paramètres
         </Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
+        </View>
     </ImageBackground>
   );
 };

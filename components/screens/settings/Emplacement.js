@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {
   View,
@@ -23,51 +23,59 @@ export const Emplacement = ({navigation}) => {
       StatusBar.setHidden(false);
     };
   }, []);
+  const [buttonPressed, setButtonPressed] = useState();
   return (
     <ImageBackground
       style={StyleEmplacement.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings settingsNavigation={() => navigation.navigate('Settings')} />
-      <Text
-        style={StyleEmplacement.title}>
-        Emplacement
-      </Text>
-      <View
-        style={StyleEmplacement.separator}
+      <MenuSlideSettings
+        settingsNavigation={() => navigation.navigate('Settings')}
       />
-      <Text
-        style={StyleEmplacement.description}>
-        Il possible de modifier cette fonctionnalité uniquement en mode voyage
-        ainsi que si vous disposez d’un papier attestant...
-      </Text>
-      <View
-        style={StyleEmplacement.itemEmplacement}>
+      <Text style={StyleEmplacement.title}>Emplacement</Text>
+      <View style={StyleEmplacement.separator} />
+      <View style={{flex: 5}}>
+        <Text style={StyleEmplacement.description}>
+          Il possible de modifier cette fonctionnalité uniquement en mode voyage
+          ainsi que si vous disposez d’un papier attestant...
+        </Text>
+        <View style={StyleEmplacement.itemEmplacement}>
+          <TouchableOpacity
+            accessibilityLabel="Emplacement"
+            onPress={() => navigation.navigate('Emplacement')}>
+            <View style={StyleEmplacement.boxItemEmplacement}>
+              <Text style={StyleEmplacement.textItemEmplacement}>
+                Emplacement
+              </Text>
+              <Text style={StyleEmplacement.secondTextItemEmplacement}>
+                Paris, FR
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={{flex: 1}}>
         <TouchableOpacity
-          accessibilityLabel="Emplacement"
-          onPress={() => navigation.navigate('Emplacement')}>
-          <View
-            style={StyleEmplacement.boxItemEmplacement}>
-            <Text
-              style={StyleEmplacement.textItemEmplacement}>
-              Emplacement
-            </Text>
-            <Text
-              style={StyleEmplacement.secondTextItemEmplacement}>
-              Paris, FR
-            </Text>
-          </View>
+          onPress={() => {
+            setButtonPressed(true);
+            navigation.navigate('Settings');
+          }}>
+          <Image
+            style={StyleEmplacement.backButton}
+            source={
+              buttonPressed
+                ? require('../../../assets/boutons/Bouton-Rouge.png')
+                : require('../../../assets/boutons/Bouton-Blanc-Border.png')
+            }
+          />
+          <Text
+            style={[
+              StyleEmplacement.backButtonText,
+              {color: buttonPressed ? '#fff' : '#0019A7'},
+            ]}>
+            Retour paramètres
+          </Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={{top:150}} onPress={() => navigation.navigate('Settings')}>
-        <Image
-          style={StyleEmplacement.backButton}
-          source={require('../../../assets/boutons/Bouton-Blanc-Border.png')}
-        />
-        <Text
-          style={StyleEmplacement.backButtonText}>
-          Retour paramètres
-        </Text>
-      </TouchableOpacity>
     </ImageBackground>
   );
 };

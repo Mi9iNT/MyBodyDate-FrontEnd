@@ -118,7 +118,6 @@ const StyleSupprimerCompte = {
   },
   confirmButtonText: {
     top: -40,
-    left: 10,
     color: '#FFF',
     textAlign: 'center',
     alignSelf: 'center',
@@ -156,8 +155,6 @@ const StyleSupprimerCompte = {
   },
   backButtonText: {
     top: -40,
-    left: 10,
-    color: '#0019A7',
     textAlign: 'center',
     alignSelf: 'center',
     fontFamily: 'Comfortaa',

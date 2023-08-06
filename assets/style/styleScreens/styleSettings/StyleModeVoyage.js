@@ -123,7 +123,7 @@ const StyleModeVoyage = {
   viewContainerInfo: {
     top: 200,
     width: '100%',
-    height: '30%',
+    height: '40%',
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -135,20 +135,13 @@ const StyleModeVoyage = {
   },
   textInfo: {
     color: '#0019A7',
+    width: '90%',
+    alignSelf: 'center',
     textAlign: 'center',
     fontFamily: 'Comfortaa',
     fontSize: 15,
     fontStyle: 'normal',
     fontWeight: 700,
-  },
-  linkInfo: {
-    color: '#0019A7',
-    textAlign: 'center',
-    fontFamily: 'Comfortaa',
-    fontSize: 15,
-    fontStyle: 'normal',
-    fontWeight: 700,
-    textDecorationLine: 'underline',
   },
   backButton: {
     width: 331,
@@ -158,8 +151,6 @@ const StyleModeVoyage = {
   },
   backButtonText: {
     top: -40,
-    left: 10,
-    color: '#0019A7',
     textAlign: 'center',
     alignSelf: 'center',
     fontFamily: 'Comfortaa',

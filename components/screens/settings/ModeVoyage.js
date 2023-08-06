@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import {StatusBar} from 'react-native';
 import {
   View,
@@ -24,11 +24,13 @@ export const ModeVoyage = ({navigation}) => {
       StatusBar.setHidden(false);
     };
   }, []);
+  const [buttonPressed, setButtonPressed] = useState();
   return (
     <ImageBackground
       style={StyleModeVoyage.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
       <MenuSlideSettings settingsNavigation={() => navigation.navigate('Settings')} />
+      <View style={{flex:7}}>
       <Text
         style={StyleModeVoyage.title}>
         Mode voyage
@@ -78,17 +80,20 @@ export const ModeVoyage = ({navigation}) => {
         <Text style={StyleModeVoyage.textInfo}>
           Si vous avez bloqué votre géolocalisation, votre recherche est définie exclusivement par la ville que vous aurez déclaré.
         </Text>
-      </View>
-      <TouchableOpacity style={{top:240}} onPress={() => navigation.navigate('Settings')}>
+        </View>
+        </View>
+        <View style={{flex:1}}>
+      <TouchableOpacity onPress={() => { setButtonPressed(true); navigation.navigate('Settings'); }}>
         <Image
           style={StyleModeVoyage.backButton}
           source={require('../../../assets/boutons/Bouton-Blanc-Border.png')}
         />
         <Text
-          style={StyleModeVoyage.backButtonText}>
+          style={[StyleModeVoyage.backButtonText, {color: buttonPressed ? '#fff' : '#0019A7'}]}>
           Retour paramètres
         </Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
+        </View>
     </ImageBackground>
   );
 };

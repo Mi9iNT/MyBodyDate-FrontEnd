@@ -28,11 +28,14 @@ export const ModeInvisible = ({navigation}) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
+  const [buttonPressed, setButtonPressed] = useState();
+
   return (
     <ImageBackground
       style={StyleModeInvisible.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
       <MenuSlideSettings settingsNavigation={() => navigation.navigate('Settings')} />
+      <View style={{flex:5}}>
       <Text
         style={StyleModeInvisible.title}>
         Mode invisible
@@ -62,17 +65,19 @@ export const ModeInvisible = ({navigation}) => {
           value={isEnabled}
           style={StyleModeInvisible.switchModeInvisible}
         />
-      </View>
+        </View>
+        </View><View style={{flex:1}}>
       <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
         <Image
           style={StyleModeInvisible.backButton}
-          source={require('../../../assets/boutons/Bouton-Blanc-Border.png')}
+          source={buttonPressed ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc-Border.png')}
         />
         <Text
-          style={StyleModeInvisible.backButtonText}>
+          style={[StyleModeInvisible.backButtonText, {color: buttonPressed ? '#fff' : '#0019A7'}]}>
           Retour paramètres
         </Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
+        </View>
     </ImageBackground>
   );
 };

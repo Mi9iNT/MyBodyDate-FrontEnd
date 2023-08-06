@@ -72,9 +72,7 @@ const StyleEmplacement = {
   },
   backButtonText: {
     top: -40,
-    color: '#0019A7',
     textAlign: 'center',
-    alignSelf: 'center',
     fontFamily: 'Comfortaa',
     fontSize: 18,
     fontStyle: 'normal',
