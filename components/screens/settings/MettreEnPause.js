@@ -23,6 +23,8 @@ export const MettreEnPause = ({navigation}) => {
     };
   }, []);
 
+  const [buttonPressed, setButtonPressed] = useState();
+
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
@@ -84,101 +86,116 @@ export const MettreEnPause = ({navigation}) => {
     <ImageBackground
       style={StyleMettreEnPause.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings />
-      <Text style={StyleMettreEnPause.title}>
-        Mettre mon compte {'\n'}en pause
-      </Text>
-      <View style={StyleMettreEnPause.separator} />
-      <Text style={StyleMettreEnPause.description}>
-        Vous pouvez suspendre votre compte quand vous le souhaitez. Votre compte
-        sera mis en pause et vous pourrez le réactiver quand vous le voudrez.
-      </Text>
-      <View style={StyleMettreEnPause.mettreEnPauseContainer}>
-        <Text style={StyleMettreEnPause.confirmText}>
-          Confirmer Mettre mon compte en pause
+      <MenuSlideSettings
+        settingsNavigation={() => navigation.navigate('Settings')}
+      />
+      <View style={{flex: 10}}>
+        <Text style={StyleMettreEnPause.title}>
+          Mettre mon compte {'\n'}en pause
         </Text>
-        <Switch
-          trackColor={{false: '#BEC8FF', true: '#17ff58'}}
-          thumbColor={isEnabled ? '#BEC8FF' : '#f4f3f4'}
-          ios_backgroundColor="#f4f3f4"
-          onValueChange={toggleSwitch}
-          value={isEnabled}
-          style={StyleMettreEnPause.switchButton}
-        />
-      </View>
-      <View
-        style={StyleMettreEnPause.progressBarContainer}
-        {...panResponder.panHandlers}>
-        <View
-          style={[StyleMettreEnPause.progressBarBg, {width: `${progress}%`}]}
-        />
-        <View
-          style={[StyleMettreEnPause.progressBarBtn, {left: `${progress}%`}]}
-          onLayout={event =>
-            setButtonPosition({
-              x: event.nativeEvent.layout.x,
-              width: event.nativeEvent.layout.width,
-            })
-          }
-        />
-      </View>
-      <View style={StyleMettreEnPause.progressBarContainerText}>
-        <Animated.View
-          style={[
-            {position: 'relative', width: 80},
-            {left: animatedTextPosition},
-          ]}>
-          <Text
-            style={[
-              {
-                color:
-                  calculateDays(progress) < 1
-                    ? '#929EDE'
-                    : calculateDays(progress) > 29
-                    ? '#929EDE'
-                    : '#0019A7',
-              },
-              StyleMettreEnPause.progressBarText,
-            ]}>
-            {calculateDays(progress)}{' '}
-            {calculateDays(progress) < 2 ? 'jour' : 'jours'}
+        <View style={StyleMettreEnPause.separator} />
+        <Text style={StyleMettreEnPause.description}>
+          Vous pouvez suspendre votre compte quand vous le souhaitez. Votre
+          compte sera mis en pause et vous pourrez le réactiver quand vous le
+          voudrez.
+        </Text>
+        <View style={StyleMettreEnPause.mettreEnPauseContainer}>
+          <Text style={StyleMettreEnPause.confirmText}>
+            Confirmer Mettre mon compte en pause
           </Text>
-        </Animated.View>
-      </View>
+          <Switch
+            trackColor={{false: '#BEC8FF', true: '#17ff58'}}
+            thumbColor={isEnabled ? '#BEC8FF' : '#f4f3f4'}
+            ios_backgroundColor="#f4f3f4"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
+            style={StyleMettreEnPause.switchButton}
+          />
+        </View>
+        <View
+          style={StyleMettreEnPause.progressBarContainer}
+          {...panResponder.panHandlers}>
+          <View
+            style={[StyleMettreEnPause.progressBarBg, {width: `${progress}%`}]}
+          />
+          <View
+            style={[StyleMettreEnPause.progressBarBtn, {left: `${progress}%`}]}
+            onLayout={event =>
+              setButtonPosition({
+                x: event.nativeEvent.layout.x,
+                width: event.nativeEvent.layout.width,
+              })
+            }
+          />
+        </View>
+        <View style={StyleMettreEnPause.progressBarContainerText}>
+          <Animated.View
+            style={[
+              {position: 'relative', width: 80},
+              {left: animatedTextPosition},
+            ]}>
+            <Text
+              style={[
+                {
+                  color:
+                    calculateDays(progress) < 1
+                      ? '#929EDE'
+                      : calculateDays(progress) > 29
+                      ? '#929EDE'
+                      : '#0019A7',
+                },
+                StyleMettreEnPause.progressBarText,
+              ]}>
+              {calculateDays(progress)}{' '}
+              {calculateDays(progress) < 2 ? 'jour' : 'jours'}
+            </Text>
+          </Animated.View>
+        </View>
 
-      <View style={StyleMettreEnPause.viewContainerInfo}>
-        <Image
-          style={StyleMettreEnPause.icoInfo}
-          source={require('../../../assets/boutons/ico-info-rose-text-bleu.png')}
-        />
-        <Text style={StyleMettreEnPause.textInfo}>
-          Si vous avez un de nos abonnements ou formules de 6 à 12 mois, vous
-          pouvez le/la suspendre de 1 à 30 jours en tout, en une ou plusieurs
-          fois.
-        </Text>
-        <TouchableOpacity>
-          <Text style={StyleMettreEnPause.linkInfo}>
+        <View style={StyleMettreEnPause.viewContainerInfo}>
+          <Image
+            style={StyleMettreEnPause.icoInfo}
+            source={require('../../../assets/boutons/ico-info-rose-text-bleu.png')}
+          />
+          <Text style={StyleMettreEnPause.textInfo}>
+            Si vous avez un de nos abonnements ou formules de 6 à 12 mois, vous
+            pouvez le/la suspendre de 1 à 30 jours en tout, en une ou plusieurs
+            fois.
+          </Text>
+          <Text style={StyleMettreEnPause.textInfo}>
             C'est comme vous voulez, cela décale simplement votre période de fin
             de contrat.
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={StyleMettreEnPause.linkInfo}>
+              Laissez-nous votre avis ou Racontez-nous votre histoire.
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={{flex: 1}}>
+        <TouchableOpacity
+          onPress={() => {
+            setButtonPressed(true);
+            navigation.navigate('Settings');
+          }}>
+          <Image
+            style={StyleMettreEnPause.backButton}
+            source={
+              buttonPressed
+                ? require('../../../assets/boutons/Bouton-Rouge.png')
+                : require('../../../assets/boutons/Bouton-Blanc-Border.png')
+            }
+          />
           <Text
-            style={StyleMettreEnPause.linkInfo}>
-            Laissez-nous votre avis ou Racontez-nous votre histoire.
+            style={[
+              StyleMettreEnPause.backButtonText,
+              {color: buttonPressed ? '#fff' : '#0019A7'},
+            ]}>
+            Retour paramètres
           </Text>
         </TouchableOpacity>
       </View>
-
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Settings')}
-        style={{top: 180}}>
-        <Image
-          style={StyleMettreEnPause.backButton}
-          source={require('../../../assets/boutons/Bouton-Blanc-Border.png')}
-        />
-        <Text style={StyleMettreEnPause.backButtonText}>Retour paramètres</Text>
-      </TouchableOpacity>
     </ImageBackground>
   );
 };

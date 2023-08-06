@@ -34,11 +34,13 @@ export const ParametresConfident = ({navigation}) => {
   const [isEnabledHistorique, setIsEnabledHistorique] = useState(false);
   const toggleSwitchHistorique = () =>
     setIsEnabledHistorique(previousState => !previousState);
+  const [buttonPressed, setButtonPressed] = useState();
   return (
     <ImageBackground
       style={StyleAutorisationsNecessaires.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
       <MenuSlideSettings settingsNavigation={() => navigation.navigate('Securite et privee')} />
+      <View style={{flex:6}}>
       <Text
         style={StyleAutorisationsNecessaires.title}>
         Paramètres de confidentialités
@@ -73,7 +75,7 @@ export const ParametresConfident = ({navigation}) => {
           />
         </View>
         </View>
-        
+
         <View
         style={StyleAutorisationsNecessaires.viewItem}>
         <Text
@@ -99,7 +101,7 @@ export const ParametresConfident = ({navigation}) => {
           />
         </View>
         </View>
-        
+
         <View
         style={StyleAutorisationsNecessaires.viewItem}>
         <Text
@@ -125,8 +127,8 @@ export const ParametresConfident = ({navigation}) => {
             }}
           />
         </View>
-        
-       
+
+
         </View>
          <TouchableOpacity
           style={{top:20}}
@@ -145,18 +147,22 @@ export const ParametresConfident = ({navigation}) => {
           </View>
         </TouchableOpacity>
       </View>
-      
-      
-      <TouchableOpacity style={StyleParemetresConfident.containerBack} onPress={() => navigation.navigate('Securite et privee')}>
+
+      </View><View style={{flex:1}}>
+        <TouchableOpacity style={StyleParemetresConfident.containerBack} onPress={() => {
+          setButtonPressed(true);
+          navigation.navigate('Securite et privee');
+        }}>
         <Image
-          style={StyleAutorisationsNecessaires.backButton}
-          source={require('../../../assets/boutons/Bouton-Blanc-Border.png')}
+          style={StyleParemetresConfident.backButton}
+          source={buttonPressed ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc-Border.png')}
         />
         <Text
-          style={StyleAutorisationsNecessaires.backButtonText}>
+          style={[StyleParemetresConfident.backButtonText, {color: buttonPressed ? '#fff' : '#0019A7'}]}>
           Retour sécurité & vie privée
         </Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
     </ImageBackground>
   );
 };

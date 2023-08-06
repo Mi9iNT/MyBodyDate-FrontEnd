@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {
   View,
@@ -24,12 +24,13 @@ export const SecurityAndPrivate = ({navigation}) => {
       StatusBar.setHidden(false);
     };
   }, []);
+  const [buttonPressed, setButtonPressed] = useState();
   return (
     <ImageBackground
       style={StyleSecurityAndPrivate.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
       <MenuSlideSettings settingsNavigation={() => navigation.navigate('Settings')} />
-
+      <View style={{flex:5}}>
       <Text
         style={StyleSecurityAndPrivate.title}>
         Sécurité & vie privée
@@ -93,16 +94,22 @@ export const SecurityAndPrivate = ({navigation}) => {
           </View>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
-        <Image
-          style={StyleSecurityAndPrivate.backButton}
-          source={require('../../../assets/boutons/Bouton-Blanc-Border.png')}
-        />
-        <Text
-          style={StyleSecurityAndPrivate.backButtonText}>
-          Retour paramètres
-        </Text>
-      </TouchableOpacity>
+      </View>
+      <View style={{flex:1}}>
+        <TouchableOpacity onPress={() => {
+          setButtonPressed('retour');
+          navigation.navigate('Settings');
+        }}>
+          <Image
+            style={StyleSecurityAndPrivate.backButton}
+            source={buttonPressed === 'retour' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc-Border.png')}
+          />
+          <Text
+            style={[StyleSecurityAndPrivate.backButtonText, {color : buttonPressed === 'retour' ? '#fff' : '#0019A7'}]}>
+            Retour paramètres
+          </Text>
+        </TouchableOpacity>
+      </View>
     </ImageBackground>
   );
 };

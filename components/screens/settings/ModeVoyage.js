@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import {StatusBar} from 'react-native';
 import {
   View,
@@ -12,7 +12,7 @@ import {
   Modal,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import Styles from '../../../assets/style/Styles';
+import StyleModeVoyage from '../../../assets/style/styleScreens/styleSettings/StyleModeVoyage';
 import MenuSlideSettings from '../../composants/MenuSlideSettings';
 
 export const ModeVoyage = ({navigation}) => {
@@ -24,86 +24,38 @@ export const ModeVoyage = ({navigation}) => {
       StatusBar.setHidden(false);
     };
   }, []);
+  const [buttonPressed, setButtonPressed] = useState();
   return (
     <ImageBackground
-      style={Styles.bgGradient}
+      style={StyleModeVoyage.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings />
+      <MenuSlideSettings settingsNavigation={() => navigation.navigate('Settings')} />
+      <View style={{flex:7}}>
       <Text
-        style={{
-          top: 30,
-          color: '#0019A7',
-          fontFamily: 'Gilroy',
-          textAlign: 'center',
-          fontSize: 24,
-          fontWeight: 700,
-        }}>
+        style={StyleModeVoyage.title}>
         Mode voyage
       </Text>
       <View
-        style={{
-          backgroundColor: '#0019A7',
-          width: 351,
-          height: 1,
-          alignSelf: 'center',
-          top: 60,
-        }}
+        style={StyleModeVoyage.separator}
       />
       <Text
-        style={{
-          color: '#929EDE',
-          top: 100,
-          width: 320,
-          alignSelf: 'center',
-          textAlign: 'center',
-          fontFamily: 'Comfortaa',
-          fontSize: 16,
-          fontStyle: 'normal',
-          fontWeight: 700,
-        }}>
+        style={StyleModeVoyage.description}>
         Utilisez le mode voyage pour changez votre emplacement et découvrir de
         nouvelles personnes.
       </Text>
       <View
-        style={{
-          height: 360,
-          width: 351,
-          alignSelf: 'center',
-          top: 150,
-          marginBottom: 40,
-        }}>
+        style={StyleModeVoyage.boxInfoModeVoyage}>
         <TouchableOpacity
           accessibilityLabel="Changer ma localisation"
           onPress={() => navigation.navigate('Changer localisation')}>
           <View
-            style={{
-              height: 20,
-              width: 351,
-              alignSelf: 'center',
-              top: 10,
-              flexDirection: 'row',
-              marginBottom: 40,
-            }}>
+            style={StyleModeVoyage.boxLinkModeVoyage}>
             <Text
-              style={{
-                color: '#0019A7',
-                fontFamily: 'Comfortaa',
-                width: 240,
-                fontSize: 16,
-                fontStyle: 'normal',
-                fontWeight: 700,
-              }}>
+              style={StyleModeVoyage.textLinkModeVoyage}>
               Changer ma localisation
             </Text>
             <Text
-              style={{
-                color: '#383A39',
-                width: 100,
-                fontFamily: 'Comfortaa',
-                fontSize: 14,
-                fontStyle: 'normal',
-                fontWeight: 700,
-              }}>
+              style={StyleModeVoyage.subTextModeVoyage}>
               Paris, FR
             </Text>
             <Image
@@ -117,32 +69,31 @@ export const ModeVoyage = ({navigation}) => {
           </View>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+      <View style={StyleModeVoyage.viewContainerInfo}>
         <Image
-          style={{
-            top: 170,
-            width: 331,
-            height: 56,
-            flexShrink: 0,
-            alignSelf: 'center',
-          }}
+          style={StyleModeVoyage.icoInfo}
+          source={require('../../../assets/boutons/ico-info-rose-text-bleu.png')}
+        />
+        <Text style={StyleModeVoyage.textInfo}>
+          Si vous avez accepté la géolocalisation, votre recherche est basée d’abord sur la position de votre téléphone. Donc si vous  changez, vous pouvez élargir votre recherche sans être sur place.
+        </Text>
+        <Text style={StyleModeVoyage.textInfo}>
+          Si vous avez bloqué votre géolocalisation, votre recherche est définie exclusivement par la ville que vous aurez déclaré.
+        </Text>
+        </View>
+        </View>
+        <View style={{flex:1}}>
+      <TouchableOpacity onPress={() => { setButtonPressed(true); navigation.navigate('Settings'); }}>
+        <Image
+          style={StyleModeVoyage.backButton}
           source={require('../../../assets/boutons/Bouton-Blanc-Border.png')}
         />
         <Text
-          style={{
-            top: 130,
-            left: 10,
-            color: '#0019A7',
-            textAlign: 'center',
-            alignSelf: 'center',
-            fontFamily: 'Comfortaa',
-            fontSize: 18,
-            fontStyle: 'normal',
-            fontWeight: 700,
-          }}>
+          style={[StyleModeVoyage.backButtonText, {color: buttonPressed ? '#fff' : '#0019A7'}]}>
           Retour paramètres
         </Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
+        </View>
     </ImageBackground>
   );
 };

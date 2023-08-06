@@ -16,7 +16,7 @@ const settingsStyles = {
     height: '100%',
   },
   title: {
-    top: 30,
+    top: 10,
     ...commonTextStyles,
     textAlign: 'center',
     fontSize: 24,
@@ -26,17 +26,17 @@ const settingsStyles = {
     width: 351,
     height: 1,
     alignSelf: 'center',
-    top: 60,
+    top: 40,
   },
   viewScroll: {
     top: 80,
     width: '100%',
-    height: '50%',
+    height: 420
   },
   scrollView: {
     height: 'auto',
     width: 351,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   notificationItem: {
     height: 20,
@@ -101,7 +101,8 @@ const settingsStyles = {
     marginBottom: 20,
   },
   viewBottom: {
-    top: 100,
+    flex: 4,
+    top: 0,
     flexDirection: 'column',
     justifyContent: 'space-around',
     width: '100%',
@@ -114,10 +115,16 @@ const settingsStyles = {
     alignSelf: 'center',
   },
   deleteAccountText: {
-    color: '#383A39',
     ...commonTextStyles,
+    color: '#383A39',
     fontSize: 16,
     textAlign: 'center',
+  },
+  textLogoutButton: {
+    top: -40,
+    ...commonTextStyles,
+    textAlign: 'center',
+    fontSize: 18,
   },
   logoImage: {
     width: 300,
@@ -127,8 +134,8 @@ const settingsStyles = {
     resizeMode: 'contain',
   },
   versionText: {
-    color: '#383A39',
     ...commonTextStyles,
+    color: '#383A39',
     fontSize: 16,
     textAlign: 'center',
   },

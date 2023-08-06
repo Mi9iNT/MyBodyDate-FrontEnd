@@ -255,7 +255,7 @@ export const BloquerContacts = ({ navigation }) => {
               }
         />
         <Text
-          style={[StyleBloquerContacts.backButtonText]}>
+          style={[StyleBloquerContacts.backButtonText, {color: buttonPressed === 'retour' ? '#fff' : '#0019A7'}]}>
           Retour
         </Text>
       </TouchableOpacity>

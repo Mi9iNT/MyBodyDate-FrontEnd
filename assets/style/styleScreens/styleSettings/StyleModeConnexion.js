@@ -76,14 +76,13 @@ const ModeConnexionStyles = {
     ...commonTextStyles,
   },
   backButton: {
-    top: 170,
     width: 331,
     height: 56,
     flexShrink: 0,
     alignSelf: 'center',
   },
   backButtonText: {
-    top: 130,
+    top:-40,
     textAlign: 'center',
     alignSelf: 'center',
     fontSize: 18,

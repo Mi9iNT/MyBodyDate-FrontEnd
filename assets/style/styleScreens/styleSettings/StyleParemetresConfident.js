@@ -77,19 +77,16 @@ const StyleParemetresConfident = {
     flexShrink: 0,
   },
   containerBack: {
-    top: 100,
     height: 56,
   },
   backButton: {
-    top: 10,
     width: 331,
     height: 56,
     flexShrink: 0,
     alignSelf: 'center',
   },
   backButtonText: {
-    top: -30,
-    color: '#0019A7',
+    top: -40,
     textAlign: 'center',
     alignSelf: 'center',
     fontFamily: 'Comfortaa',

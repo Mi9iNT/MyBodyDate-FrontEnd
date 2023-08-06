@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {
   View,
@@ -29,6 +29,8 @@ export const Settings = ({navigation}) => {
       StatusBar.setHidden(false);
     };
   }, []);
+
+  const [buttonPressed, setButtonPressed] = useState();
 
   const renderNotificationItem = (label, onPress) => (
     <TouchableOpacity accessibilityLabel={label} onPress={onPress} key={label}>
@@ -86,109 +88,70 @@ export const Settings = ({navigation}) => {
         style={settingsStyles.bgGradient}
         source={require('../../../assets/images/bg-parametres.png')}>
         <MenuSlide />
-        <Text
-          style={{
-            ...commonTextStyles,
-            color: '#0019A7',
-            fontSize: 24,
-            textAlign: 'center',
-            top: 30,
-          }}>
-          Paramètres
-        </Text>
-        <View
-          style={{
-            backgroundColor: '#0019A7',
-            width: 351,
-            height: 1,
-            alignSelf: 'center',
-            top: 60,
-          }}
-        />
-        <View style={{top: 80, width: '100%', height: '50%'}}>
-          <ScrollView
-            style={{height: 'auto', width: 351, alignSelf: 'center'}}
-            contentContainerStyle={{paddingBottom: 0}}>
-            {/* Style commun pour les éléments de notification */}
-            {renderNotificationItem('Notifications', () =>
-              navigation.navigate('Notifications'),
-            )}
-            {renderNotificationItem('Sécurité & vie privée', () =>
-              navigation.navigate('Securite et privee'),
-            )}
-            {renderNotificationItem('Contact & FAQ', () =>
-              navigation.navigate('Contact et FAQ'),
-            )}
-            {renderLocationItem('Emplacement', 'Paris, FR', () =>
-              navigation.navigate('Emplacement'),
-            )}
-            {renderModeItem(
-              'Mode invisible',
-              'Visitez des profils incognito',
-              () => navigation.navigate('Mode invisible'),
-            )}
-            {renderModeItem(
-              'Mode voyage',
-              'Pour voir plus de monde. Changez votre localisation.',
-              () => navigation.navigate('Mode voyage'),
-            )}
+        <View style={{flex: 11}}>
+          <Text style={settingsStyles.title}>Paramètres</Text>
+          <View style={settingsStyles.separator} />
+          <View style={settingsStyles.viewScroll}>
+            <ScrollView
+              style={settingsStyles.scrollView}
+              contentContainerStyle={{paddingBottom: 10}}>
+              {/* Style commun pour les éléments de notification */}
+              {renderNotificationItem('Notifications', () =>
+                navigation.navigate('Notifications'),
+              )}
+              {renderNotificationItem('Sécurité & vie privée', () =>
+                navigation.navigate('Securite et privee'),
+              )}
+              {renderNotificationItem('Contact & FAQ', () =>
+                navigation.navigate('Contact et FAQ'),
+              )}
+              {renderLocationItem('Emplacement', 'Paris, FR', () =>
+                navigation.navigate('Emplacement'),
+              )}
+              {renderModeItem(
+                'Mode invisible',
+                'Visitez des profils incognito',
+                () => navigation.navigate('Mode invisible'),
+              )}
+              {renderModeItem(
+                'Mode voyage',
+                'Pour voir plus de monde. Changez votre localisation.',
+                () => navigation.navigate('Mode voyage'),
+              )}
 
-            {renderNotificationItem('Mettre mon compte en pause', () =>
-              navigation.navigate('Mettre en pause'),
-            )}
-          </ScrollView>
+              {renderNotificationItem('Mettre mon compte en pause', () =>
+                navigation.navigate('Mettre en pause'),
+              )}
+            </ScrollView>
+          </View>
         </View>
-        <View
-          style={{
-            top: 100,
-            flexDirection: 'column',
-            justifyContent: 'space-around',
-            width: '100%',
-            height: 200,
+        <View style={settingsStyles.viewBottom}>
+          <TouchableOpacity onPress={() => {
+            setButtonPressed('deconnexion');
+            navigation.navigate('Home Next');
           }}>
-          <TouchableOpacity onPress={() => navigation.navigate('Home Next')}>
             <Image
-              style={{
-                width: 331,
-                height: 56,
-                flexShrink: 0,
-                alignSelf: 'center',
-              }}
-              source={require('../../../assets/boutons/bouton-deconnexion-blanc.png')}
+              style={[settingsStyles.logoutButton, {color: buttonPressed === 'deconnexion' ? '#fff' : '#0019A7'}]}
+              source={buttonPressed === 'deconnexion' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc-Border.png')}
             />
+            <Text style={settingsStyles.textLogoutButton}>Déconnexion</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             onPress={() => navigation.navigate('Supprimer mon compte')}>
             <Text
-              style={{
-                ...commonTextStyles,
-                color: '#383A39',
-                fontSize: 16,
-                textAlign: 'center',
-              }}>
+              style={settingsStyles.deleteAccountText}>
               Supprimer mon compte
             </Text>
           </TouchableOpacity>
 
           <Image
-            style={{
-              width: 300,
-              height: 56,
-              flexShrink: 0,
-              alignSelf: 'center',
-              resizeMode: 'contain',
-            }}
+            style={settingsStyles.logoImage}
             source={require('../../../assets/images/logo-sombre.png')}
           />
 
           <Text
-            style={{
-              ...commonTextStyles,
-              color: '#383A39',
-              fontSize: 16,
-              textAlign: 'center',
-            }}>
+            style={settingsStyles.versionText}>
             Version 1.0
           </Text>
         </View>

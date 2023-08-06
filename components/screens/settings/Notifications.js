@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {
   View,
@@ -25,11 +25,14 @@ export const Notifications = ({navigation}) => {
       StatusBar.setHidden(false);
     };
   }, []);
+  const [buttonPressed, setButtonPressed] = useState();
+
   return (
     <ImageBackground
       style={NotificationsStyles.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
       <MenuSlideSettings settingsNavigation={() => navigation.navigate('Settings')} />
+      <View style={{flex:10}}>
       <Text
         style={NotificationsStyles.title}>
         Notifications
@@ -158,16 +161,21 @@ export const Notifications = ({navigation}) => {
           </View>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+      </View><View style={{flex: 2}}>
+        <TouchableOpacity onPress={() => {
+          setButtonPressed('retour');
+          navigation.navigate('Settings');
+        }}>
         <Image
           style={NotificationsStyles.backButton}
-          source={require('../../../assets/boutons/Bouton-Blanc-Border.png')}
+          source={buttonPressed === 'retour' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc-Border.png')}
         />
         <Text
           style={NotificationsStyles.backButtonText}>
           Retour paramètres
         </Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
     </ImageBackground>
   );
 };
