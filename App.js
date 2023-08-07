@@ -35,6 +35,7 @@ import {RythmeDeVie2} from './components/screens/register/RythmeDeVie2';
 import {Prenom} from './components/screens/register/Prenom';
 import {ConfirmationPrenom} from './components/screens/register/ConfirmationPrenom';
 import {Prenium} from './components/screens/register/Prenium';
+import {ProfilMultiples} from './components/screens/register/ProfilMultiples';
 import {Compte} from './components/screens/register/Compte';
 import {ConfirmationCompte} from './components/screens/register/ConfirmationCompte';
 import {AjoutPhoto} from './components/screens/register/AjoutPhoto';
@@ -390,6 +391,17 @@ function App() {
         <MainStack.Screen
           name="Confirmation prenom"
           component={ConfirmationPrenom}
+          options={{
+            headerShown: true,
+            title: 'Retour',
+            headerTransparent: true,
+            headerTintColor: '#FFF',
+            headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
+          }}
+        />
+        <MainStack.Screen
+          name="Profil multiples"
+          component={ProfilMultiples}
           options={{
             headerShown: true,
             title: 'Retour',

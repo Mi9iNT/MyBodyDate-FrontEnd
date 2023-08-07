@@ -34,7 +34,7 @@ export const ConfirmationPrenom = ({route, navigation}) => {
     rythmeDeVie1,
     rythmeDeVie2,
     userPrenom,
-  } = route.params;
+  } = route.params ?? '';
 
   const [prenom, setPrenom] = useState(userPrenom);
   const [modalVisible, setModalVisible] = useState(false);
@@ -116,7 +116,7 @@ export const ConfirmationPrenom = ({route, navigation}) => {
               <TouchableOpacity
                 accessibilityLabel="Accepter"
                 onPress={() => {
-                  navigation.navigate('Prenium', {
+                  navigation.navigate('Profil multiples', {
                     userConsent,
                     routeName,
                     loveCoach,
