@@ -676,7 +676,6 @@ const styles = StyleSheet.create({
     top: '10%',
   },
   ViewInputDate: {
-    flex: 2,
     alignSelf: 'center',
   },
   ViewInputPrenom: {
