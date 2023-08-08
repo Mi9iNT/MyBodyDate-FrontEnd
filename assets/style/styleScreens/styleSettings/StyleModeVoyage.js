@@ -1,15 +1,15 @@
 /* eslint-disable prettier/prettier */
 
-const StyleSupprimerCompte = {
+const StyleModeVoyage = {
   bgGradient: {
     resizeMode: 'contain',
     width: '100%',
     height: '100%',
   },
   title: {
-    top: 10,
+    top: 30,
     color: '#0019A7',
-    fontFamily: 'Comfortaa',
+    fontFamily: 'Gilroy',
     textAlign: 'center',
     fontSize: 24,
     fontWeight: 700,
@@ -19,16 +19,46 @@ const StyleSupprimerCompte = {
     width: 351,
     height: 1,
     alignSelf: 'center',
-    top: 40,
+    top: 60,
   },
   description: {
     color: '#929EDE',
-    top: 60,
+    top: 100,
     width: 320,
     alignSelf: 'center',
     textAlign: 'center',
     fontFamily: 'Comfortaa',
     fontSize: 16,
+    fontStyle: 'normal',
+    fontWeight: 700,
+  },
+  boxInfoModeVoyage: {
+    height: 'auto',
+    width: 351,
+    alignSelf: 'center',
+    top: 150,
+  },
+  boxLinkModeVoyage: {
+    height: 20,
+    width: 351,
+    alignSelf: 'center',
+    top: 10,
+    flexDirection: 'row',
+    marginBottom: 40,
+  },
+  textLinkModeVoyage: {
+    color: '#0019A7',
+    fontFamily: 'Comfortaa',
+    width: 240,
+    fontSize: 16,
+    fontStyle: 'normal',
+    fontWeight: 700,
+  },
+  subTextModeVoyage: {
+    color: '#383A39',
+    width: 100,
+    fontFamily: 'Comfortaa',
+    fontSize: 14,
     fontStyle: 'normal',
     fontWeight: 700,
   },
@@ -91,40 +121,13 @@ const StyleSupprimerCompte = {
     marginBottom: 40,
   },
   viewContainerInfo: {
-    top: 100,
+    top: 200,
     width: '100%',
-    height: '30%',
+    height: '40%',
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
     paddingHorizontal: 20,
-  },
-  inputNumber: {
-    height: 51,
-    width: 276,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 50,
-    textAlign: 'center',
-    color:'#0019A7',
-  },
-  confirmButton: {
-    width: 276,
-    height: 51,
-    flexShrink: 0,
-    alignSelf: 'center',
-    resizeMode: 'contain',
-  },
-  confirmButtonText: {
-    top: -40,
-    color: '#FFF',
-    textAlign: 'center',
-    alignSelf: 'center',
-    fontFamily: 'Comfortaa',
-    fontSize: 18,
-    fontStyle: 'normal',
-    fontWeight: 700,
   },
   icoInfo: {
     width: 25,
@@ -132,20 +135,13 @@ const StyleSupprimerCompte = {
   },
   textInfo: {
     color: '#0019A7',
+    width: '90%',
+    alignSelf: 'center',
     textAlign: 'center',
     fontFamily: 'Comfortaa',
     fontSize: 15,
     fontStyle: 'normal',
     fontWeight: 700,
-  },
-  linkInfo: {
-    color: '#0019A7',
-    textAlign: 'center',
-    fontFamily: 'Comfortaa',
-    fontSize: 15,
-    fontStyle: 'normal',
-    fontWeight: 700,
-    textDecorationLine: 'underline',
   },
   backButton: {
     width: 331,
@@ -164,4 +160,4 @@ const StyleSupprimerCompte = {
   },
 };
 
-export default StyleSupprimerCompte;
+export default StyleModeVoyage;

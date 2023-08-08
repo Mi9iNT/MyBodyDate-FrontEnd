@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 const commonTextStyles = {
-  fontFamily: 'Comfortaa',
+  fontFamily: 'Gilroy',
   fontStyle: 'normal',
   fontWeight: '700',
 };
@@ -51,11 +51,11 @@ const NotificationsStyles = {
     top: 10,
     flexDirection: 'row',
     marginBottom: 40,
-    },
-    notificationTextCol: {
-        flexDirection: 'column',
-        justifyContent: 'space-between'
-    },
+  },
+  notificationTextCol: {
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
   notificationText: {
     color: '#0019A7',
     ...commonTextStyles,
@@ -76,15 +76,14 @@ const NotificationsStyles = {
     flexShrink: 0,
   },
   backButton: {
-    top: 170,
+    top: 0,
     width: 331,
     height: 56,
     flexShrink: 0,
     alignSelf: 'center',
   },
   backButtonText: {
-    top: 130,
-    left: 10,
+    top: -40,
     color: '#0019A7',
     textAlign: 'center',
     alignSelf: 'center',

@@ -50,7 +50,7 @@ const StyleMettreEnPause = {
     alignSelf: 'center',
   },
   progressBarContainer: {
-    top: 170,
+    top: 160,
     flexDirection: 'row',
     alignSelf: 'center',
     width: '80%',
@@ -93,7 +93,7 @@ const StyleMettreEnPause = {
   viewContainerInfo: {
     top: 170,
     width: '100%',
-    height: '30%',
+    height: '40%',
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -128,8 +128,6 @@ const StyleMettreEnPause = {
   },
   backButtonText: {
     top: -40,
-    left: 10,
-    color: '#0019A7',
     textAlign: 'center',
     alignSelf: 'center',
     fontFamily: 'Comfortaa',

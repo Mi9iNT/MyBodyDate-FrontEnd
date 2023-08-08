@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 
-const StyleContactAndFAQ = {
+const StyleCentreSecurite = {
   bgGradient: {
     resizeMode: 'contain',
     width: '100%',
@@ -32,34 +32,6 @@ const StyleContactAndFAQ = {
     alignSelf: 'center',
     top: 60,
   },
-  contactAndFaqContainer: {
-    height: 360,
-    width: 351,
-    alignSelf: 'center',
-    top: 150,
-  },
-  viewItem: {
-    height: 20,
-    width: 351,
-    alignSelf: 'center',
-    top: 10,
-    flexDirection: 'row',
-    marginBottom: 40,
-  },
-  textItem: {
-    color: '#0019A7',
-    fontFamily: 'Comfortaa',
-    width: 340,
-    fontSize: 16,
-    fontStyle: 'normal',
-    fontWeight: 700,
-    alignItems: 'center',
-  },
-  imgItem: {
-    width: 7,
-    height: 15,
-    flexShrink: 0,
-  },
   backButtonContainer: {
     top: 0,
   },
@@ -80,4 +52,4 @@ const StyleContactAndFAQ = {
   },
 };
 
-export default StyleContactAndFAQ;
+export default StyleCentreSecurite;

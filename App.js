@@ -35,6 +35,7 @@ import {RythmeDeVie2} from './components/screens/register/RythmeDeVie2';
 import {Prenom} from './components/screens/register/Prenom';
 import {ConfirmationPrenom} from './components/screens/register/ConfirmationPrenom';
 import {Prenium} from './components/screens/register/Prenium';
+import {ProfilMultiples} from './components/screens/register/ProfilMultiples';
 import {Compte} from './components/screens/register/Compte';
 import {ConfirmationCompte} from './components/screens/register/ConfirmationCompte';
 import {AjoutPhoto} from './components/screens/register/AjoutPhoto';
@@ -55,12 +56,16 @@ import {Settings} from './components/screens/settings/Settings';
 import {Notifications} from './components/screens/settings/Notifications';
 import {SecurityAndPrivate} from './components/screens/settings/SecurityAndPrivate';
 import {ContactAndFAQ} from './components/screens/settings/ContactAndFAQ';
-import {Emplacement} from './components/screens/register/Emplacement';
+import {Aide} from './components/screens/settings/Aide';
+import {CentreSecurite} from './components/screens/settings/CentreSecurite';
+import {NousContactez} from './components/screens/settings/NousContactez';
+import {FAQ} from './components/screens/settings/FAQ';
+import {Emplacement} from './components/screens/settings/Emplacement';
 import {ModeInvisible} from './components/screens/settings/ModeInvisible';
 import {ModeVoyage} from './components/screens/settings/ModeVoyage';
 import {MettreEnPause} from './components/screens/settings/MettreEnPause';
 import {ModeDeConnexion} from './components/screens/settings/ModeDeConnexion';
-import {ChangeLocalisation} from './components/screens/settings/ChangeLocalisation';
+import {ChangerLocalisation} from './components/screens/settings/ChangerLocalisation';
 import { ParametresConfident } from './components/screens/settings/ParamtresConfident';
 import {AutorisationsNecessaires} from './components/screens/settings/AutorisationsNecessaires';
 import { BloquerContacts } from './components/screens/settings/BloquerContacts';
@@ -395,6 +400,17 @@ function App() {
           }}
         />
         <MainStack.Screen
+          name="Profil multiples"
+          component={ProfilMultiples}
+          options={{
+            headerShown: true,
+            title: 'Retour',
+            headerTransparent: true,
+            headerTintColor: '#FFF',
+            headerTintStyle: {borderBottomColor: '#FFF', borderBottomWidth: 2},
+          }}
+        />
+        <MainStack.Screen
           name="Prenium"
           component={Prenium}
           options={{
@@ -530,6 +546,26 @@ function App() {
           options={{headerShown: false}}
         />
         <Stack.Screen
+          name="Aide"
+          component={Aide}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Centre de securite"
+          component={CentreSecurite}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Nous contactez"
+          component={NousContactez}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="FAQ"
+          component={FAQ}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
           name="Emplacement"
           component={Emplacement}
           options={{headerShown: false}}
@@ -556,7 +592,7 @@ function App() {
         />
         <Stack.Screen
           name="Changer localisation"
-          component={ChangeLocalisation}
+          component={ChangerLocalisation}
           options={{headerShown: false}}
         />
         <Stack.Screen

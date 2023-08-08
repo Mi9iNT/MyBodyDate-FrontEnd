@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Styles from '../../../assets/style/Styles';
+import StyleModeInvisible from '../../../assets/style/styleScreens/styleSettings/StyleModeInvisible';
 import PropTypes from 'prop-types';
 import MenuSlideSettings from '../../composants/MenuSlideSettings';
 
@@ -28,43 +28,23 @@ export const ModeInvisible = ({navigation}) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
+  const [buttonPressed, setButtonPressed] = useState();
+
   return (
     <ImageBackground
-      style={Styles.bgGradient}
+      style={StyleModeInvisible.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings />
+      <MenuSlideSettings settingsNavigation={() => navigation.navigate('Settings')} />
+      <View style={{flex:5}}>
       <Text
-        style={{
-          top: 30,
-          color: '#0019A7',
-          fontFamily: 'Gilroy',
-          textAlign: 'center',
-          fontSize: 24,
-          fontWeight: 700,
-        }}>
+        style={StyleModeInvisible.title}>
         Mode invisible
       </Text>
       <View
-        style={{
-          backgroundColor: '#0019A7',
-          width: 351,
-          height: 1,
-          alignSelf: 'center',
-          top: 60,
-        }}
+        style={StyleModeInvisible.separator}
       />
       <Text
-        style={{
-          color: '#929EDE',
-          top: 100,
-          width: 320,
-          alignSelf: 'center',
-          textAlign: 'center',
-          fontFamily: 'Comfortaa',
-          fontSize: 16,
-          fontStyle: 'normal',
-          fontWeight: 700,
-        }}>
+        style={StyleModeInvisible.description}>
         Seule les membres que vous aurez liké peuvent voir votre profil.
       </Text>
       <View
@@ -74,14 +54,7 @@ export const ModeInvisible = ({navigation}) => {
           top: 150,
         }}>
         <Text
-          style={{
-            color: '#0019A7',
-            textAlign: 'center',
-            fontFamily: 'Gilroy',
-            fontSize: 16,
-            fontStyle: 'normal',
-            fontWeight: 700,
-          }}>
+          style={StyleModeInvisible.textBold}>
           Mettre mon compte en invisible
         </Text>
         <Switch
@@ -90,38 +63,21 @@ export const ModeInvisible = ({navigation}) => {
           ios_backgroundColor="#f4f3f4"
           onValueChange={toggleSwitch}
           value={isEnabled}
-          style={{
-            top: 40,
-            alignSelf: 'center',
-          }}
+          style={StyleModeInvisible.switchModeInvisible}
         />
-      </View>
+        </View>
+        </View><View style={{flex:1}}>
       <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
         <Image
-          style={{
-            top: 520,
-            width: 331,
-            height: 56,
-            flexShrink: 0,
-            alignSelf: 'center',
-          }}
-          source={require('../../../assets/boutons/Bouton-Blanc-Border.png')}
+          style={StyleModeInvisible.backButton}
+          source={buttonPressed ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc-Border.png')}
         />
         <Text
-          style={{
-            top: 480,
-            left: 10,
-            color: '#0019A7',
-            textAlign: 'center',
-            alignSelf: 'center',
-            fontFamily: 'Comfortaa',
-            fontSize: 18,
-            fontStyle: 'normal',
-            fontWeight: 700,
-          }}>
+          style={[StyleModeInvisible.backButtonText, {color: buttonPressed ? '#fff' : '#0019A7'}]}>
           Retour paramètres
         </Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
+        </View>
     </ImageBackground>
   );
 };

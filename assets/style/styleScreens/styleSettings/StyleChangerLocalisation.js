@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 
-const StyleContactAndFAQ = {
+const StyleChangerLocalisation = {
   bgGradient: {
     resizeMode: 'contain',
     width: '100%',
@@ -14,6 +14,13 @@ const StyleContactAndFAQ = {
     fontSize: 24,
     fontWeight: 700,
   },
+  separator: {
+    backgroundColor: '#0019A7',
+    width: 351,
+    height: 1,
+    alignSelf: 'center',
+    top: 60,
+  },
   description: {
     color: '#929EDE',
     top: 100,
@@ -25,43 +32,21 @@ const StyleContactAndFAQ = {
     fontStyle: 'normal',
     fontWeight: 700,
   },
-  separator: {
-    backgroundColor: '#0019A7',
-    width: 351,
-    height: 1,
-    alignSelf: 'center',
-    top: 60,
-  },
-  contactAndFaqContainer: {
-    height: 360,
-    width: 351,
-    alignSelf: 'center',
+  boxInputCity: {
     top: 150,
-  },
-  viewItem: {
-    height: 20,
-    width: 351,
     alignSelf: 'center',
-    top: 10,
-    flexDirection: 'row',
-    marginBottom: 40,
   },
-  textItem: {
+  inputCity: {
+    width: 276,
+    height: 51,
+    borderRadius: 24,
+    borderWidth: 1,
+    textAlign: 'center',
+    borderColor: '#0019A7',
     color: '#0019A7',
     fontFamily: 'Comfortaa',
-    width: 340,
-    fontSize: 16,
+    fontSize: 15,
     fontStyle: 'normal',
-    fontWeight: 700,
-    alignItems: 'center',
-  },
-  imgItem: {
-    width: 7,
-    height: 15,
-    flexShrink: 0,
-  },
-  backButtonContainer: {
-    top: 0,
   },
   backButton: {
     width: 331,
@@ -80,4 +65,4 @@ const StyleContactAndFAQ = {
   },
 };
 
-export default StyleContactAndFAQ;
+export default StyleChangerLocalisation;

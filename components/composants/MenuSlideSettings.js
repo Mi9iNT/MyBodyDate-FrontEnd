@@ -7,7 +7,7 @@ import Styles from '../../assets/style/Styles';
 import { useNavigation } from '@react-navigation/native';
 import { Pastille } from './Pastille';
 
-export const MenuSlideSettings = () => {
+export const MenuSlideSettings = ({settingsNavigation}) => {
   const navigation = useNavigation();
 
   const [imagePath, setImagePath] = useState(imagePath);
@@ -31,7 +31,7 @@ export const MenuSlideSettings = () => {
         }}>
         <TouchableOpacity
           accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate('Settings')}>
+          onPress={settingsNavigation}>
           <Image
             source={require('../../assets/images/retour_flèche_bleu.png')}
             style={{ width: 10, height: 20 }}
@@ -71,15 +71,17 @@ export const MenuSlideSettings = () => {
             {/* Paramètres */}
             <View
               style={{
-                position: 'absolute',
                 top: 51,
-                left: 23,
+                left: 80,
                 width: 196,
                 height: 24,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems:'center',
               }}>
               <TouchableOpacity
                 accessibilityLabel="Paramètres"
-                onPress={() => { setModalVisible(false); navigation.navigate('Settings');}}>
+                onPress={() => navigation.navigate('Settings')}>
                 <Text
                   style={{
                     fontSize: 20,
@@ -91,18 +93,14 @@ export const MenuSlideSettings = () => {
                   Paramètres
                 </Text>
               </TouchableOpacity>
-            </View>
-            <View
+
+              <TouchableOpacity
               style={{
-                position: 'absolute',
-                top: 40,
-                left: 238,
                 width: 35,
                 height: 35,
-              }}>
-              <TouchableOpacity
+              }}
                 accessibilityLabel="Paramètres"
-                onPress={() => { setModalVisible(false); navigation.navigate('Settings'); }}>
+                onPress={() => navigation.navigate('Settings')}>
                 <Image
                   source={require('../../assets/images/parametres.png')}
                   style={{
