@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import Styles from '../../assets/style/Styles';
 
-const MessageReceived = ({navigation, route}) => {
+const OldMessage = ({navigation, route}) => {
   const [messages, setMessages] = useState(true);
   // Corrected the initialization of the 'user' state
   const [user, setUser] = useState(null);
@@ -70,7 +70,7 @@ const MessageReceived = ({navigation, route}) => {
             Messages reçus
           </Text>
           <ScrollView
-            style={{top: 20, height: '35%',}}
+            style={{top: 40, height: '60%'}}
             contentContainerStyle={{paddingBottom: 40}}>
             <Text
               style={{
@@ -327,7 +327,7 @@ const MessageReceived = ({navigation, route}) => {
                         </View>
                       </View>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{justifyContent: 'center'}}>
+                      <TouchableOpacity style={{ justifyContent: 'center' }} onPress={() => { setShowModalOptions(true);  setUserName('Beverly')}}>
                       <Image
                         source={require('../../assets/boutons/more-2.png')}
                       />
@@ -625,4 +625,4 @@ const MessageReceived = ({navigation, route}) => {
   );
 };
 
-export default MessageReceived;
+export default OldMessage;

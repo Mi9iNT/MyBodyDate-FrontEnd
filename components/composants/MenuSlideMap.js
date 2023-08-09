@@ -5,7 +5,6 @@ import React, { useState, useMemo } from 'react';
 import { View, Text, Image, TouchableOpacity, Modal, ImageBackground } from 'react-native';
 import Styles from '../../assets/style/Styles';
 import { useNavigation } from '@react-navigation/native';
-import { Pastille } from './Pastille';
 
 export const MenuSlideMap = () => {
   const navigation = useNavigation();
@@ -14,6 +13,9 @@ export const MenuSlideMap = () => {
 
   // Constantes concernant la Modal du Menu Slide
   const [modalVisible, setModalVisible] = useState(false);
+
+  const [icoPushChange, setIcoPushChange] = useState(icoPushChange);
+
 
   return (
     <ImageBackground source={require('../../assets/images/bg-menuslide-map.png')} style={{resizeMode:'contain'}}>
@@ -54,13 +56,17 @@ export const MenuSlideMap = () => {
         </TouchableOpacity>
       </View>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <View style={{borderWidth: 2,borderColor:'#0019A7', borderRadius:100, left:-10, width:31, justifyContent:'center', alignItems: 'center'}}>
-            <Pastille imagePath={imagePath} />
+        <View style={{ left:-10, width:31, justifyContent:'center', alignItems: 'center'}}>
+          <TouchableOpacity>
+            <Image source={imagePath === true ? require('../../assets/images/cercle_ami.png') : require('../../assets/images/Rencontre_amoureuse.png')} style={{ width: 30, height: 30 }} />
+          </TouchableOpacity>
         </View>
-         
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {
+          navigation.navigate('Notifications');
+          setIcoPushChange(true);
+            }}>
           <Image
-            source={require('../../assets/images/notification_icons.png')}
+            source={icoPushChange ? require('../../assets/images/notification_icons-vert.png') : require('../../assets/images/notification_icons.png')}
             style={{ width: 30, height: 30, marginHorizontal: 15 }}
           />
         </TouchableOpacity>
@@ -83,6 +89,7 @@ export const MenuSlideMap = () => {
               borderWidth: 1,
               borderColor: '#0019A7',
             }}>
+            <TouchableOpacity onPress={() => setModalVisible(false)} style={{backgroundColor:'transparent', height:'100%', width:'30%', position:'absolute', left: -95}}  />
             {/* Paramètres */}
             <View
               style={{

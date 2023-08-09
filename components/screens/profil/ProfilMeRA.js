@@ -44,7 +44,7 @@ export const ProfilMeRA = ({route, navigation}) => {
       <ImageBackground
         style={Styles.bgGradient}
         source={require('../../../assets/images/MicrosoftTeams-image.png')}>
-        <MenuSlide imagePath={imagePath}/>
+        <MenuSlide imagePath={false} />
         <View style={{flexDirection: 'row', marginBottom: 20}}>
           <View
             style={{

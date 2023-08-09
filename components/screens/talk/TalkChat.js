@@ -178,7 +178,7 @@ export const TalkChat = ({navigation, route}) => {
           }}>
           <TextInput
             style={{
-              width: 250,
+              width: 240,
               height: 42,
               borderRadius: 40,
               borderColor: '#000',
@@ -200,9 +200,12 @@ export const TalkChat = ({navigation, route}) => {
               flexDirection: 'row',
               alignItems: 'center',
               left: 10,
-              width: 80,
-              justifyContent: 'space-around',
+              width: 100,
+              justifyContent: 'space-between',
             }}>
+            <TouchableOpacity onPress={handleSendMessage}>
+              <Image source={require('../../../assets/boutons/ico-giphy.png')} />
+            </TouchableOpacity>
             <TouchableOpacity onPress={handleSendMessage}>
               <Image source={require('../../../assets/boutons/ico-mic.png')} />
             </TouchableOpacity>
