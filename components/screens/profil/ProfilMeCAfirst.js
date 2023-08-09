@@ -28,7 +28,8 @@
      const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
      const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
      const userPrenom = route.params?.userPrenom ?? '';
-     const userVoice = route.params?.userVoice ?? '';
+    const userVoice = route.params?.userVoice ?? '';
+    const imagePath = route.params?.imagePath ?? '';
 
    const [modalVisible, setModalVisible] = useState(false);
    const [addProVisible, setAddProVisible] = useState([false, false, false, false, false, false]);
@@ -56,7 +57,7 @@
            paddingHorizontal: 20,
            paddingVertical: 10,
          }}>
-         <MenuSlide />
+         <MenuSlide imagePath={true} />
        </View>
        <View style={{marginTop: 70, marginLeft: 20}}>
          <Text

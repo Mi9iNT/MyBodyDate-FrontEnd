@@ -51,9 +51,10 @@ import {Profil} from './components/screens/profil/Profil';
 import {ProfilMeRA} from './components/screens/profil/ProfilMeRA';
 import {ProfilMeRP} from './components/screens/profil/ProfilMeRP';
 import {ProfilMeCA} from './components/screens/profil/ProfilMeCA';
-import {Discover} from './components/screens/discover/Discover';
+import { Discover } from './components/screens/discover/Discover';
+import { Notifications } from './components/screens/Notifications';
 import {Settings} from './components/screens/settings/Settings';
-import {Notifications} from './components/screens/settings/Notifications';
+import {NotificationsSettings} from './components/screens/settings/NotificationsSettings';
 import {SecurityAndPrivate} from './components/screens/settings/SecurityAndPrivate';
 import {ContactAndFAQ} from './components/screens/settings/ContactAndFAQ';
 import {Aide} from './components/screens/settings/Aide';
@@ -518,6 +519,11 @@ function App() {
           component={ProfilMeCA}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+          name="Notifications"
+          component={Notifications}
+          options={{headerShown: false}}
+        />
         {/* SETTINGS SCREENS */}
         <Stack.Screen
           name="ProfilMeRA"
@@ -531,8 +537,8 @@ function App() {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="Notifications"
-          component={Notifications}
+          name="Notifications settings"
+          component={NotificationsSettings}
           options={{headerShown: false}}
         />
         <Stack.Screen
@@ -662,9 +668,13 @@ function App() {
           component={HomeTabs}
           options={{headerShown: false}}
         />
-
         <Stack.Screen
           name="Messages"
+          component={HomeTabs}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Map"
           component={HomeTabs}
           options={{headerShown: false}}
         />

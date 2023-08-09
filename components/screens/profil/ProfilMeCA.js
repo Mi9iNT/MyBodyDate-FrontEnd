@@ -36,7 +36,7 @@ export const ProfilMeCA = ({route, navigation}) => {
   const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
-  const imagePath = route.params?.imagePath ?? '';
+  const imagePastille = route.imagePastille ?? '';
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -49,7 +49,7 @@ export const ProfilMeCA = ({route, navigation}) => {
 
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
-      <MenuSlide imagePath={imagePath} />
+      <MenuSlide imagePath={true}/>
       <ScrollView style={{backgroundColor: 'white'}}>
         <View style={{justifyContent: 'center'}}>
           <ImageBackground
