@@ -2,7 +2,7 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
-import {View, Text, Image, TouchableOpacity, Modal} from 'react-native';
+import {View, Text, Image, ImageBackground, TouchableOpacity, Modal} from 'react-native';
 import Styles from '../../assets/style/Styles';
 import {useNavigation} from '@react-navigation/native';
 
@@ -293,7 +293,7 @@ export const More = () => {
         <Image
           source={require('../../assets/images/Ellipse_signalement.png')}
           style={{width: 50, height: 50, top: -40, left: 310}}
-        />
+          />
       </TouchableOpacity>
     </View>
   );
