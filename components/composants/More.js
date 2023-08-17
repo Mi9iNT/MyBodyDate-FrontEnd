@@ -2,9 +2,15 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
-import {View, Text, Image, ImageBackground, TouchableOpacity, Modal} from 'react-native';
-import Styles from '../../assets/style/Styles';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  Modal,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {MyComponentMore} from '../composants/MyComponentMore';
 
 export const More = () => {
   const navigation = useNavigation();
@@ -45,14 +51,11 @@ export const More = () => {
               alignItems: 'center',
             }}>
             {/* Blocquer */}
-            <View
+            {/* <View
               style={{
-                position: 'absolute',
                 justifyContent: 'space-around',
                 top: 61,
-                right: 210,
-                width: 236,
-                height: 65,
+                right: 160,
               }}>
               <TouchableOpacity>
                 <Text
@@ -61,44 +64,83 @@ export const More = () => {
                     fontFamily: 'gilroy',
                     fontWeight: '700',
                     color: '#0019A7',
-                    textAlign: 'right',
+                    left: 165,
                   }}>
                   Bloquer
                 </Text>
-                <View
+                <Image
+                  source={require('../../assets/images/fleche-haut-V.png')}
                   style={{
                     width: 20,
                     height: 30,
-                  }}>
-                  <Image
-                    source={require('../../assets/images/fleche-haut-V.png')}
+                    resizeMode: 'contain',
+                    bottom: 25,
+                    left: 375,
+                  }}
+                />
+                <View
+                  style={{
+                    bottom: 20,
+                    width: 238,
+                    height: 2,
+                    backgroundColor: '#0019A7',
+                    left: 165,
+                  }}
+                />
+              </TouchableOpacity>
+              <View>
+                <TouchableOpacity>
+                  <Text
                     style={{
-                      width: '100%',
-                      height: '100%',
-                      resizeMode: 'contain',
-                      top: -25,
-                      left: 375,
-                    }}
-                  />
-                  <View
+                      fontSize: 20,
+                      fontFamily: 'gilroy',
+                      fontWeight: '700',
+                      color: '#0019A7',
+                      left: 185,
+                    }}>
+                    Bloquer Kolia ?
+                  </Text>
+                </TouchableOpacity>
+                <View
+                  style={{
+                    width: 238,
+                    height: 2,
+                    backgroundColor: '#000',
+                    top: 20,
+                    left: 165,
+                  }}
+                />
+                <TouchableOpacity>
+                  <Text
                     style={{
-                      top: -20,
-                      width: 238,
-                      height: 2,
-                      backgroundColor: '#0019A7',
-                      left: 165,
-                    }}
-                  />
-                </View>
-              </TouchableOpacity>
-            </View>
+                      fontSize: 20,
+                      fontFamily: 'gilroy',
+                      fontWeight: '700',
+                      color: '#0019A7',
+                      left: 185,
+                      top: 30,
+                    }}>
+                    Liste des perssonnes{'\n'}bloqués
+                  </Text>
+                </TouchableOpacity>
+                <View
+                  style={{
+                    width: 238,
+                    height: 2.5,
+                    backgroundColor: '#0019A7',
+                    top: 50,
+                    left: 165,
+                  }}
+                />
+              </View>
+            </View> */}
+            {/* Signaler */}
+            <MyComponentMore />
             <View
               style={{
-                position: 'absolute',
-                top: 120,
-                right: 130,
-                width: 236,
-                height: 65,
+                justifyContent: 'space-around',
+                right: 155,
+                top: 130,
               }}>
               <TouchableOpacity>
                 <Text
@@ -107,105 +149,39 @@ export const More = () => {
                     fontFamily: 'gilroy',
                     fontWeight: '700',
                     color: '#0019A7',
-                    textAlign: 'right',
-                  }}>
-                  Bloquer Kolia ?
-                </Text>
-              </TouchableOpacity>
-              <View
-                style={{
-                  width: 238,
-                  height: 2,
-                  backgroundColor: '#0019A7',
-                  top: 20,
-                  left: 85,
-                }}
-              />
-            </View>
-            <View
-              style={{
-                position: 'absolute',
-                top: 190,
-                right: 30,
-                width: 236,
-                height: 65,
-              }}>
-              <TouchableOpacity>
-                <Text
-                  style={{
-                    fontSize: 20,
-                    fontFamily: 'gilroy',
-                    fontWeight: '700',
-                    color: '#0019A7',
-                  }}>
-                  Liste des perssonnes{'\n'}bloqués
-                </Text>
-              </TouchableOpacity>
-              <View
-                style={{
-                  width: 238,
-                  height: 2.5,
-                  backgroundColor: '#0019A7',
-                  top: 20,
-                  right: 15,
-                }}
-              />
-            </View>
-            <View
-              style={{
-                position: 'absolute',
-                top: 275,
-                right: 210,
-                width: 236,
-                height: 65,
-              }}>
-              <TouchableOpacity>
-                <Text
-                  style={{
-                    fontSize: 20,
-                    fontFamily: 'gilroy',
-                    fontWeight: '700',
-                    color: '#0019A7',
-                    textAlign: 'right',
+                    left: 160,
                   }}>
                   Signaler
                 </Text>
               </TouchableOpacity>
-              <View
-                style={{
-                  position: 'absolute',
-                  left: 375,
-                  width: 20,
-                  height: 30,
-                }}>
-                <TouchableOpacity>
-                  <Image
-                    source={require('../../assets/images/fleche-bas.png')}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      resizeMode: 'contain',
-                    }}
-                  />
-                </TouchableOpacity>
-              </View>
+              <TouchableOpacity>
+                <Image
+                  source={require('../../assets/images/fleche-bas.png')}
+                  style={{
+                    width: 20,
+                    height: 30,
+                    resizeMode: 'contain',
+                    bottom: 25,
+                    left: 370,
+                  }}
+                />
+              </TouchableOpacity>
               <View
                 style={{
                   width: 238,
                   height: 2.5,
                   backgroundColor: '#0019A7',
-                  top: 10,
+                  bottom: 20,
                   left: 160,
                 }}
               />
             </View>
+            {/* Copier */}
             <View
               style={{
-                position: 'absolute',
-                top: 320,
-                right: 111,
-                width: 236,
-                height: 65,
+                justifyContent: 'space-around',
+                right: 155,
+                top: 130,
               }}>
               <TouchableOpacity>
                 <Text
@@ -214,7 +190,7 @@ export const More = () => {
                     fontFamily: 'gilroy',
                     fontWeight: '700',
                     color: '#0019A7',
-                    textAlign: 'right',
+                    left: 160,
                   }}>
                   Copier l'ID du profil
                 </Text>
@@ -224,18 +200,16 @@ export const More = () => {
                   width: 238,
                   height: 2.5,
                   backgroundColor: '#0019A7',
+                  left: 160,
                   top: 10,
-                  left: 60,
                 }}
               />
             </View>
+            {/* Partager */}
             <View
               style={{
-                position: 'absolute',
-                top: 370,
-                right: 125,
-                width: 236,
-                height: 65,
+                right: 180,
+                top: 160,
               }}>
               <TouchableOpacity>
                 <Text
@@ -244,44 +218,36 @@ export const More = () => {
                     fontFamily: 'gilroy',
                     fontWeight: '700',
                     color: '#0019A7',
-                    textAlign: 'right',
+                    left: 160,
                   }}>
-                  Partager à un ami
+                  Partager à un.e ami.e
                 </Text>
               </TouchableOpacity>
             </View>
           </View>
           {/* Bouton "Annuler" */}
           <TouchableOpacity onPress={toggleModal}>
-            <View
-              style={{
-                position: 'absolute',
-                top: 600,
-                left: 73,
-                width: 196,
-                height: 24,
-              }}>
+            <View>
               <Text
                 style={{
                   fontSize: 20,
                   fontFamily: 'gilroy',
                   fontWeight: '700',
                   color: '#0019A7',
+                  top: 350,
+                  left: 75,
                 }}>
                 Annuler
               </Text>
-            </View>
-            <View
-              style={{
-                position: 'absolute',
-                top: 600,
-                left: 46,
-                width: 18,
-                height: 30,
-              }}>
               <Image
                 source={require('../../assets/images/croix.png')}
-                style={{width: '100%', height: '100%', resizeMode: 'contain'}}
+                style={{
+                  width: 25,
+                  height: 30,
+                  resizeMode: 'contain',
+                  top: 322,
+                  left: 50,
+                }}
               />
             </View>
           </TouchableOpacity>
@@ -293,7 +259,7 @@ export const More = () => {
         <Image
           source={require('../../assets/images/Ellipse_signalement.png')}
           style={{width: 50, height: 50, top: -40, left: 310}}
-          />
+        />
       </TouchableOpacity>
     </View>
   );
