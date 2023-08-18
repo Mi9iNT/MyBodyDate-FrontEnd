@@ -7,15 +7,16 @@ import Styles from '../../assets/style/Styles';
 import { useNavigation } from '@react-navigation/native';
 
 export const Pastille = ({ imagePath }) => {
+  
   const icon = useMemo(() => {
-    return imagePath === 'ProfilMeRA'
+    return imagePath === false
       ? require('../../assets/images/Rencontre_amoureuse.png')
       : require('../../assets/images/cercle_ami.png');
   }, [imagePath]);
   console.log(imagePath);
   return (
    <TouchableOpacity>
-      <Image source={icon} style={{ width: 30, height: 30 }} />
+      <Image source={require('../../assets/images/cercle_ami.png')} style={{ width: 30, height: 30 }} />
     </TouchableOpacity>
   );
 };

@@ -36,15 +36,15 @@ export const ProfilMeRA = ({route, navigation}) => {
   const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
-  const imagePath = route.params?.imagePath ?? '';
+  // const imagePath = route.params?.imagePath ?? '';
+  const activeTab = route.params?.activeTab ?? '';
 
 
   return (
-    <View style={{flex: 1, backgroundColor: '#ffffff'}}>
       <ImageBackground
         style={Styles.bgGradient}
         source={require('../../../assets/images/MicrosoftTeams-image.png')}>
-        <MenuSlide imagePath={imagePath}/>
+        <MenuSlide imagePath={false} />
         <View style={{flexDirection: 'row', marginBottom: 20}}>
           <View
             style={{
@@ -139,7 +139,7 @@ export const ProfilMeRA = ({route, navigation}) => {
             />
           </TouchableOpacity>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Prend pass', {prendPass: true})}>
           <View
             style={{
               flexDirection: 'row',
@@ -384,9 +384,8 @@ export const ProfilMeRA = ({route, navigation}) => {
             </View>
           </View>
         </View>
-        <MenuBottom />
+        <MenuBottom navigation={navigation} activeTab={activeTab} />
       </ImageBackground>
-    </View>
   );
 };
 

@@ -5,15 +5,18 @@ import React, { useState, useMemo } from 'react';
 import { View, Text, Image, TouchableOpacity, Modal } from 'react-native';
 import Styles from '../../assets/style/Styles';
 import { useNavigation } from '@react-navigation/native';
-import { Pastille } from './Pastille';
 
-export const MenuSlide = () => {
+export const MenuSlide = ({route, icoPushChange, imagePath, prendPass}) => {
   const navigation = useNavigation();
-
-  const [imagePath, setImagePath] = useState(imagePath);
 
   // Constantes concernant la Modal du Menu Slide
   const [modalVisible, setModalVisible] = useState(false);
+
+  // const [icoPushChange, setIcoPushChange] = useState(icoPushChange);
+
+  // const [imagePath, setImagePath] = useState(imagePath);
+
+  // const [prendPass, setPrendPass] = useState(false);
 
   return (
     <View
@@ -24,7 +27,38 @@ export const MenuSlide = () => {
         paddingHorizontal: 20,
         paddingVertical: 20,
       }}>
-      <View
+      {prendPass ?
+        <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: 165,
+        }}>
+        <TouchableOpacity
+          accessibilityLabel="Accueil"
+          onPress={() => navigation.navigate('Moi')}>
+          <Image
+            source={require('../../assets/images/retour_flèche_bleu.png')}
+            style={{ width: 10, height: 20 }}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          accessibilityLabel="Accueil"
+          onPress={() => navigation.navigate('Moi')}>
+          <Text
+            style={{
+              fontFamily: 'Comfortaa',
+              fontWeight: '700',
+              fontSize: 18,
+              color: '#0019A7',
+            }}>
+            Retour mon profil
+          </Text>
+        </TouchableOpacity>
+        </View>
+        :
+        <View
         style={{
           flexDirection: 'row',
           alignItems: 'center',
@@ -58,14 +92,20 @@ export const MenuSlide = () => {
             Accueil
           </Text>
         </TouchableOpacity>
-      </View>
+        </View>
+        }
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <View style={{ left:-10, width:31, justifyContent:'center', alignItems: 'center'}}>
-          <Pastille imagePath={imagePath} />
+          <TouchableOpacity>
+            <Image source={imagePath === true ? require('../../assets/images/cercle_ami.png') : require('../../assets/images/Rencontre_amoureuse.png')} style={{ width: 30, height: 30 }} />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {
+          navigation.navigate('Notifications');
+          // setIcoPushChange(true);
+            }}>
           <Image
-            source={require('../../assets/images/notification_icons.png')}
+            source={icoPushChange ? require('../../assets/images/notification_icons-vert.png') : require('../../assets/images/notification_icons.png')}
             style={{ width: 30, height: 30, marginHorizontal: 15 }}
           />
         </TouchableOpacity>
@@ -194,8 +234,8 @@ export const MenuSlide = () => {
             {/* Cercle d'ami */}
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('ProfilMeCA', {currentImage:'ProfilMeCA'});
-                setImagePath('ProfilMeCA');
+                navigation.navigate('ProfilMeCA',{imagePath:true});
+                // setImagePath(true);
               }}>
               <View
                 style={{
@@ -255,8 +295,8 @@ export const MenuSlide = () => {
             {/* Rencontre amoureuse */}
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('ProfilMeRA', {currentImage:'ProfilMeRA'});
-                setImagePath('ProfilMeRA');
+                navigation.navigate('ProfilMeRA',{imagePastille:false});
+                // setImagePath(false);
               }}>
               <View
                 style={{
@@ -296,7 +336,7 @@ export const MenuSlide = () => {
               <View
                 style={{
                   position: 'absolute',
-                  top: 578,
+                  top: 558,
                   left: 83,
                   width: 184,
                   height: 34,

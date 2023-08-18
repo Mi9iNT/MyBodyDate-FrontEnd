@@ -12,7 +12,7 @@ import Styles from '../../../assets/style/Styles';
 import MenuSlide from '../../composants/MenuSlide';
 import MenuBottom from '../../composants/MenuBottom';
 import MenuTalk from '../../composants/MenuTalk';
-import OdlMessage from '../../composants/MessageReceived';
+import OdlMessage from '../../composants/OldMessage';
 
 export const Talk = ({ navigation, route }) => {
   // Masquer la barre de statut au montage de l'écran
