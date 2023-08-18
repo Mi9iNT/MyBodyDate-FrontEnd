@@ -15,7 +15,7 @@ import {MenuSlide} from '../composants/MenuSlide';
 import NotifcationsStyles from '../../assets/style/styleScreens/StylesNotifications';
 import MenuBottom from '../composants/MenuBottom';
 
-export const Notifications = ({route, navigation}) => {
+export const Notifications = ({route, navigation, icoPushChange}) => {
   // Masquer la barre de statut au montage de l'écran
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -27,8 +27,6 @@ export const Notifications = ({route, navigation}) => {
 
   const activeTab = route.params?.activeTab ?? '';
   const imagePath = route.params?.imagePath ?? '';
-  const icoPushChange = route.params?.icoPushChange ?? '';
-  const [buttonPressed, setButtonPressed] = useState();
 
   // Ce tableau à été fait pour avoir des images dynamiques, lorsque le serveur distant sera près il suffira de supprimer ce tableau et modifier le lien de l'image pour passer en uri: avec un lien dynamique ; jy ajouterais un exemple à l'endroit prévu dans le code
   const getAvatarImage = avatar => {
@@ -140,10 +138,12 @@ export const Notifications = ({route, navigation}) => {
         <MenuSlide imagePath={imagePath} icoPushChange={true} />
         <View style={NotifcationsStyles.viewTtitle}>
           <Text style={NotifcationsStyles.title}>Notifications</Text>
-          <Image
-            source={require('../../assets/boutons/icon-recherche.png')}
-            style={NotifcationsStyles.icoRecherche}
-          />
+          <TouchableOpacity onPress={() => navigation.navigate('Recherche')}>
+            <Image
+              source={require('../../assets/boutons/icon-recherche.png')}
+              style={NotifcationsStyles.icoRecherche}
+            />
+          </TouchableOpacity>
         </View>
       </View>
 

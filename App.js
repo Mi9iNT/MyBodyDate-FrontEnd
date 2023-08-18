@@ -51,8 +51,8 @@ import {Profil} from './components/screens/profil/Profil';
 import {ProfilMeRA} from './components/screens/profil/ProfilMeRA';
 import {ProfilMeRP} from './components/screens/profil/ProfilMeRP';
 import {ProfilMeCA} from './components/screens/profil/ProfilMeCA';
-import { Discover } from './components/screens/discover/Discover';
-import { Notifications } from './components/screens/Notifications';
+import {Discover} from './components/screens/discover/Discover';
+import {Notifications } from './components/screens/Notifications';
 import {Settings} from './components/screens/settings/Settings';
 import {NotificationsSettings} from './components/screens/settings/NotificationsSettings';
 import {SecurityAndPrivate} from './components/screens/settings/SecurityAndPrivate';
@@ -67,24 +67,55 @@ import {ModeVoyage} from './components/screens/settings/ModeVoyage';
 import {MettreEnPause} from './components/screens/settings/MettreEnPause';
 import {ModeDeConnexion} from './components/screens/settings/ModeDeConnexion';
 import {ChangerLocalisation} from './components/screens/settings/ChangerLocalisation';
-import { ParametresConfident } from './components/screens/settings/ParamtresConfident';
+import {ParametresConfident} from './components/screens/settings/ParamtresConfident';
 import {AutorisationsNecessaires} from './components/screens/settings/AutorisationsNecessaires';
-import { BloquerContacts } from './components/screens/settings/BloquerContacts';
+import {BloquerContacts} from './components/screens/settings/BloquerContacts';
 import {SupprimerCompte} from './components/screens/settings/SupprimerCompte';
 import {CompteNonTrouve} from './components/screens/settings/CompteNonTrouve';
 
-import { MenuBottom } from './components/composants/MenuBottom';
+import {MenuBottom} from './components/composants/MenuBottom';
 
 import {Messages} from './components/screens/messages/Messages';
 import {Map} from './components/screens/map/Map';
 import {Moi} from './components/screens/profil/Profil';
 
+import {Even} from './components/screens/even/Even';
+import {EvenBio} from './components/screens/even/EvenBio';
+
+import {Research} from './components/screens/research/Research';
+import {AdvancedFiltre} from './components/screens/research/AdvancedFiltre';
+import {SaTaille} from './components/screens/research/SaTaille';
+import {SaMorphologie} from './components/screens/research/SaMorphologie';
+import {OrigineEthnique } from './components/screens/research/OrigineEthnique';
+import {NiveauEtude} from './components/screens/research/NiveauEtude';
+import {Metier} from './components/screens/research/Metier';
+import {Religion} from './components/screens/research/Religion';
+import {SigneAstrologie} from './components/screens/research/SigneAstrologie';
+import {OrientationPolitique} from './components/screens/research/OrientationPolitique';
+import {Tabac} from './components/screens/research/Tabac';
+import {Alcool} from './components/screens/research/Alcool';
+import {PratiqueSportive} from './components/screens/research/PratiqueSportive';
+import {Enfant} from './components/screens/research/Enfants';
+import {Revenus} from './components/screens/research/Revenus';
+import {SearchPulse} from './components/screens/research/SearchPulse';
+import {SearchPulseSettings} from './components/screens/research/SearchPulseSettings';
+
+import {PrendPass} from './components/screens/pass/PrendPass';
+
+import {PulseSpotlight} from './components/screens/pulse/PulseSpotlight';
+import {PulseLike} from './components/screens/pulse/PulseLike';
+import {PulseProfil} from './components/screens/pulse/PulseProfil';
+import {PulseRecherche} from './components/screens/pulse/PulseRecherche';
+
+import {PassFlash21} from './components/screens/pass/PassFlash21';
+import {PassFlash19} from './components/screens/pass/PassFlash19';
+
 import {Talk} from './components/screens/talk/Talk';
 import {TalkChat} from './components/screens/talk/TalkChat';
-import { TalkPhone } from './components/screens/talk/TalkPhone';
-import { TalkPhoneAccept } from './components/screens/talk/TalkPhoneAccept';
+import {TalkPhone} from './components/screens/talk/TalkPhone';
+import {TalkPhoneAccept} from './components/screens/talk/TalkPhoneAccept';
 import {TalkVideo} from './components/screens/talk/TalkVideo';
-import { TalkVideoAccept } from './components/screens/talk/TalkVideoAccept';
+import {TalkVideoAccept} from './components/screens/talk/TalkVideoAccept';
 
 const Stack = createNativeStackNavigator();
 const MainStack = createNativeStackNavigator();
@@ -683,7 +714,136 @@ function App() {
           component={HomeTabs}
           options={{headerShown: false}}
         />
-        
+        <Stack.Screen
+          name="Evenements"
+          component={Even}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Evenements Bio"
+          component={EvenBio}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Recherche"
+          component={Research}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Filtres avances"
+          component={AdvancedFiltre}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Sa taille"
+          component={SaTaille}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Sa morphologie"
+          component={SaMorphologie}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Origine ethnique"
+          component={OrigineEthnique}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Niveau etude"
+          component={NiveauEtude}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Metier"
+          component={Metier}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Religion"
+          component={Religion}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Signe astro"
+          component={SigneAstrologie}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Orientation politique"
+          component={OrientationPolitique}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Tabac"
+          component={Tabac}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Alcool"
+          component={Alcool}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Pratique sportive"
+          component={PratiqueSportive}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Enfants"
+          component={Enfant}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Revenus"
+          component={Revenus}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Pulse recherche"
+          component={PulseRecherche}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Search pulse"
+          component={SearchPulse}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Search pulse settings"
+          component={SearchPulseSettings}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Prend pass"
+          component={PrendPass}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Pulse spotlight"
+          component={PulseSpotlight}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Pulse like"
+          component={PulseLike}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Pulse profil"
+          component={PulseProfil}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Pass flash 21"
+          component={PassFlash21}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Pass flash 19"
+          component={PassFlash19}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="Test"
           component={ScreenTest}

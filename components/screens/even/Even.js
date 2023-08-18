@@ -16,7 +16,7 @@ import {MenuBottom} from '../../composants/MenuBottom';
 
 import {MyComponentBis} from '../../composants/MyComponentBis';
 
-export const ProfilMeCA = ({route, navigation}) => {
+export const Even = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -37,10 +37,12 @@ export const ProfilMeCA = ({route, navigation}) => {
   const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
+  const activeTab = route.params?.activeTab ?? '';
+  const imagePath = route.params?.imagePath ?? '';
 
   return (
     <View style={{flex: 1}}>
-      <MenuSlide />
+      <MenuSlide imagePath={imagePath} />
       <View
         style={{
           height: 75,
@@ -92,7 +94,8 @@ export const ProfilMeCA = ({route, navigation}) => {
           />
         </View>
       </View>
-      <MyComponentBis />
+      <MyComponentBis navigation={navigation} />
+      <MenuBottom navigation={navigation} activeTab={activeTab} />
       {/* <ImageBackground
         source={require('../../../assets/images/bg-parametres.png')}
         style={{flex: 1}}>
@@ -295,12 +298,11 @@ export const ProfilMeCA = ({route, navigation}) => {
           </View>
         </View>
       </ImageBackground> */}
-      <MenuBottom />
     </View>
   );
 };
 
-ProfilMeCA.propTypes = {
+Even.propTypes = {
   route: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
 };

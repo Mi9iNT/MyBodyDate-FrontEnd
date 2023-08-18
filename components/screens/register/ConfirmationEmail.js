@@ -25,7 +25,7 @@ export const ConfirmationEmail = ({route, navigation}) => {
         style={Styles.bgGradient}
         source={require('../../../assets/images/Background.png')}>
         <View style={[Styles.ViewText2, Styles.mt100]}>
-          <Text style={[Styles.textTitleWhite2, {top: 50, left: 30}]}>
+          <Text style={[Styles.textTitleWhite2, {top: 50, left: 30, fontSize:24}]}>
             CONFRIMATION{'\n'}E-MAIL
           </Text>
         </View>
@@ -38,7 +38,7 @@ export const ConfirmationEmail = ({route, navigation}) => {
           </View>
         </View>
         <View style={[Styles.ViewText4, Styles.mt20]}>
-          <Text style={[Styles.textWhite3, Styles.mt50]}>
+          <Text style={[Styles.textWhite3, Styles.mt50, {fontSize:12}]}>
             Si vous n&apos;avez pas reçu d&apos;email, consultez vos spams ou
             rééssayez.
           </Text>

@@ -35,6 +35,8 @@ export const EvenBio = ({route, navigation}) => {
   const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
+  const imagePath = route.params?.imagePath ?? '';
+  const activeTab = route.params?.activeTab ?? '';
 
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -44,7 +46,7 @@ export const EvenBio = ({route, navigation}) => {
 
   return (
     <View style={{flex: 1}}>
-      <MenuSlide />
+      <MenuSlide imagePath={imagePath} />
       <View
         style={{
           height: 75,
@@ -247,8 +249,8 @@ export const EvenBio = ({route, navigation}) => {
             </View>
           </View>
         </View>
+      <MenuBottom navigation={navigation} activeTab={activeTab} />
       </ImageBackground>
-      <MenuBottom />
     </View>
   );
 };

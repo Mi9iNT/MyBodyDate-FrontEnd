@@ -15,7 +15,7 @@ import MenuSlide from '../../composants/MenuSlide';
 import {MenuBottom} from '../../composants/MenuBottom';
 import {MyComponentTer} from '../../composants/MyComponentTer';
 
-export const PrendPass = ({route, navigation}) => {
+export const CarteBriseGlace = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -40,73 +40,76 @@ export const PrendPass = ({route, navigation}) => {
   return (
     <View style={{flex: 1}}>
       <ImageBackground
-        source={require('../../../assets/images/bg-parametres.png')}
+        source={require('../../../assets/images/Background-Glace.png')}
         style={{flex: 1}}>
-        <View
+        {/* <Image
+        source={require('../../../assets/images/BackgroudWin.png')} // Ajoutez le chemin de votre image de fond
+        style={{
+          position: 'absolute',
+          bottom:160,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          resizeMode: 'cover', // Ajustez le mode de redimensionnement selon vos besoins
+        }}
+      /> */}
+        <Image
+          source={require('../../../assets/images/CroixB.png')}
           style={{
+            width: 20,
+            height: 18,
+            left: 330,
             top: 30,
-          }}>
-          <Text
+          }}
+        />
+        <View style={{Flex: 1, alignItems: 'center'}}>
+          <View
             style={{
-              fontSize: 24,
-              fontFamily: 'Gilory',
-              fontWeight: '700',
-              color: '#0019A7',
-              alignSelf: 'center',
-              textAlign: 'center',
-              margin: 30,
+              alignItems: 'center',
+              top: 180,
             }}>
-            Je prends mon pass
-          </Text>
-          <Text
-            style={{
-              fontSize: 15,
-              fontFamily: 'Comfortaa',
-              fontWeight: '700',
-              color: '#0019A7',
-              alignSelf: 'center',
-              textAlign: 'center',
-              marginBottom: 30,
-            }}>
-            Sélectionnez les critères essentiels{'\n'}pour vous
-          </Text>
-          <Image
-            source={require('../../../assets/images/bouton-continuer-1.png')}
-            style={{
-              width: 358,
-              height: 151,
-              alignSelf: 'center',
-              margin: 10,
-            }}
-          />
-          <Image
-            source={require('../../../assets/images/bouton-continuer-2.png')}
-            style={{
-              width: 359,
-              height: 151,
-              alignSelf: 'center',
-              margin: 15,
-            }}
-          />
-          <Image
-            source={require('../../../assets/images/bouton-continuer-3.png')}
-            style={{
-              width: 359,
-              height: 151,
-              alignSelf: 'center',
-              margin: 15,
-            }}
-          />
-        </View>
-        <View>
-          <MenuBottom />
+            <Image
+              source={require('../../../assets/images/Claire.png')}
+              style={{
+                width: 185,
+                height: 246,
+                top: 70,
+              }}
+            />
+            <Text
+              style={{
+                fontSize: 24,
+                fontFamily: 'Gilory',
+                fontWeight: '700',
+                color: '#0019A7',
+                top: 70,
+              }}>
+              Claire, Paris
+            </Text>
+            <Image
+              source={require('../../../assets/images/Bouton-Decouvrire.png')}
+              style={{
+                width: 351,
+                height: 56,
+                top: 140,
+              }}
+            />
+            <Image
+              source={require('../../../assets/images/BoutonQuitter.png')}
+              style={{
+                width: 351,
+                height: 56,
+                top: 160,
+              }}
+            />
+          </View>
         </View>
       </ImageBackground>
     </View>
   );
 };
 
-PrendPass.propTypes = {
+CarteBriseGlace.propTypes = {
   route: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
 };

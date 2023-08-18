@@ -6,15 +6,17 @@ import { View, Text, Image, TouchableOpacity, Modal } from 'react-native';
 import Styles from '../../assets/style/Styles';
 import { useNavigation } from '@react-navigation/native';
 
-export const MenuSlide = ({route}) => {
+export const MenuSlide = ({route, icoPushChange, imagePath, prendPass}) => {
   const navigation = useNavigation();
 
   // Constantes concernant la Modal du Menu Slide
   const [modalVisible, setModalVisible] = useState(false);
 
-  const [icoPushChange, setIcoPushChange] = useState(icoPushChange);
+  // const [icoPushChange, setIcoPushChange] = useState(icoPushChange);
 
-  const [imagePath, setImagePath] = useState(imagePath);
+  // const [imagePath, setImagePath] = useState(imagePath);
+
+  // const [prendPass, setPrendPass] = useState(false);
 
   return (
     <View
@@ -25,7 +27,38 @@ export const MenuSlide = ({route}) => {
         paddingHorizontal: 20,
         paddingVertical: 20,
       }}>
-      <View
+      {prendPass ?
+        <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: 165,
+        }}>
+        <TouchableOpacity
+          accessibilityLabel="Accueil"
+          onPress={() => navigation.navigate('Moi')}>
+          <Image
+            source={require('../../assets/images/retour_flèche_bleu.png')}
+            style={{ width: 10, height: 20 }}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          accessibilityLabel="Accueil"
+          onPress={() => navigation.navigate('Moi')}>
+          <Text
+            style={{
+              fontFamily: 'Comfortaa',
+              fontWeight: '700',
+              fontSize: 18,
+              color: '#0019A7',
+            }}>
+            Retour mon profil
+          </Text>
+        </TouchableOpacity>
+        </View>
+        :
+        <View
         style={{
           flexDirection: 'row',
           alignItems: 'center',
@@ -59,7 +92,8 @@ export const MenuSlide = ({route}) => {
             Accueil
           </Text>
         </TouchableOpacity>
-      </View>
+        </View>
+        }
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <View style={{ left:-10, width:31, justifyContent:'center', alignItems: 'center'}}>
           <TouchableOpacity>
@@ -68,7 +102,7 @@ export const MenuSlide = ({route}) => {
         </View>
         <TouchableOpacity onPress={() => {
           navigation.navigate('Notifications');
-          setIcoPushChange(true);
+          // setIcoPushChange(true);
             }}>
           <Image
             source={icoPushChange ? require('../../assets/images/notification_icons-vert.png') : require('../../assets/images/notification_icons.png')}
@@ -201,7 +235,7 @@ export const MenuSlide = ({route}) => {
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate('ProfilMeCA',{imagePath:true});
-                setImagePath(true);
+                // setImagePath(true);
               }}>
               <View
                 style={{
@@ -262,7 +296,7 @@ export const MenuSlide = ({route}) => {
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate('ProfilMeRA',{imagePastille:false});
-                setImagePath(false);
+                // setImagePath(false);
               }}>
               <View
                 style={{
