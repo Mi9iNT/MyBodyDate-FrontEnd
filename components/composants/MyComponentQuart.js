@@ -810,7 +810,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
   </>
 );
 
-const MyComponentTer = () => {
+const MyComponentQuart = () => {
   const [showDefaultCode2, setShowDefaultCode2] = useState(false);
 
   return (
@@ -824,4 +824,4 @@ const MyComponentTer = () => {
   );
 };
 
-export {MyComponentTer};
+export {MyComponentQuart};

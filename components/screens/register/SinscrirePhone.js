@@ -21,6 +21,7 @@ export const SignInPhone = ({route, navigation}) => {
 
   const [userPhone, setPhone] = React.useState();
   const [errorNumero, setErrorNumero] = React.useState('');
+  const [buttonPressed, setButtonPressed] = React.useState();
 
   const validatePhone = numero => {
     const phoneRegex = /^\+?\d{10}$/;
@@ -67,29 +68,31 @@ export const SignInPhone = ({route, navigation}) => {
         <View style={[Styles.ViewBtn2, {top: 250}]}>
           <TouchableOpacity
             style={Styles.btn}
-            onPress={() =>
+            onPress={() => {
               navigation.navigate('Confirmation numero', {
                 userConsent: consentement,
                 routeName: routeChoice,
                 loveCoach: loveCoach,
                 userPhone: userPhone,
-              })
-            }
+              });
+              setButtonPressed(true);
+            }}
             accessibilityLabel="Continuer">
-            <Text style={[Styles.textBtn9, {zIndex: 1, top: 45}]}>
+            <Text style={[Styles.textBtn9, {zIndex: 1, top: 45, color:buttonPressed?'#fff':'#0019A7'}]}>
               Continuer
             </Text>
             <Image
-              style={[
-                {
-                  top: 0,
-                  width: '90%',
-                  height: 60,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={require('../../../assets/boutons/Bouton-Blanc.png')}
+              style={{
+                width: 331,
+                height: 56,
+                flexShrink: 0,
+                alignSelf: 'center',
+              }}
+              source={
+                buttonPressed
+                  ? require('../../../assets/boutons/Bouton-Rouge.png')
+                  : require('../../../assets/boutons/Bouton-Blanc-Border.png')
+              }
             />
           </TouchableOpacity>
         </View>

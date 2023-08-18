@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
-import {View, Text, Image, ImageBackground} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, Image, ImageBackground, TouchableOpacity, StatusBar} from 'react-native';
 import PropTypes from 'prop-types';
 
 export const PulseLike = ({route, navigation}) => {
@@ -27,12 +27,26 @@ export const PulseLike = ({route, navigation}) => {
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
 
+  useEffect(() => {
+    StatusBar.setHidden(true);
+    return () => {
+      StatusBar.setHidden(false);
+    };
+  }, []);
+
+  const [boxPressed, setBoxPressed] = useState();
+  const [path, setPath] = useState(false);
+  const [buttonPressed, setButtonPressed] = useState();
   return (
     <View style={{flex: 1}}>
       <ImageBackground
         source={require('../../../assets/images/Background-22.png')}
         style={{flex: 1}}>
-        <View style={{left: 350, marginTop: 30}}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.goBack();
+          }}
+          style={{left: 350, width: 20, marginTop: 30}}>
           <Image
             source={require('../../../assets/images/Group-58.png')}
             style={{
@@ -41,49 +55,15 @@ export const PulseLike = ({route, navigation}) => {
               height: 18,
             }}
           />
+        </TouchableOpacity>
+        <View style={{flexDirection:'row', top:30}}>
+          <TouchableOpacity onPress={() => { setPath(true); navigation.navigate('Pulse like'); }} style={{width: '50%', height:40, borderBottomWidth: path ? 1 : 3, borderBottomColor:'#fff'}}>
+            <Text style={{color: '#FFF', textAlign: 'center', fontFamily: 'Comfortaa', fontSize: 20, fontStyle: 'normal', fontWeight: path ? 500 : 700}}>Pulse</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => { setPath(false); navigation.navigate('Pass flash 21'); }} style={{width: '50%', height:40, borderBottomWidth: !path ? 1 : 3, borderBottomColor:'#fff'}}>
+            <Text style={{color: '#FFF', textAlign: 'center', fontFamily: 'Comfortaa', fontSize: 20,fontStyle: 'normal', fontWeight: !path ? 500 : 700}}>Pass</Text>
+          </TouchableOpacity>
         </View>
-        <View
-          style={{
-            alignItems: 'center',
-            top: 20,
-            justifyContent: 'space-around',
-            flexDirection: 'row',
-          }}>
-          <Text
-            style={{
-              fontSize: 24,
-              fontFamily: 'Gilory',
-              fontWeight: '700',
-              color: '#FFF',
-            }}>
-            Pulse
-          </Text>
-          <Text
-            style={{
-              fontSize: 24,
-              fontFamily: 'Gilory',
-              fontWeight: '700',
-              color: '#FFF',
-            }}>
-            Pass
-          </Text>
-        </View>
-        <Image
-            source={require('../../../assets/images/Line-131.png')}
-            style={{
-              width: 195,
-              height: 3,
-              top: 30,
-            }}
-          />
-          <Image
-            source={require('../../../assets/images/Line-130.png')}
-            style={{
-              width: 390,
-              height: 1,
-              top: 30,
-            }}
-          />
         <View style={{alignItems: 'center'}}>
           <Text
             style={{
@@ -104,7 +84,7 @@ export const PulseLike = ({route, navigation}) => {
               top: 65,
               textAlign: 'center',
             }}>
-            Lorem ipsum dolor sit amet,{'\n'}consectetur adipiscing elit.
+            Achetez des Pulses pour découvrir qui vous a liké
           </Text>
           <Text
             style={{
@@ -120,44 +100,110 @@ export const PulseLike = ({route, navigation}) => {
         <View
           style={{
             alignItems: 'center',
-            top: 75,
+            top: 100,
             justifyContent: 'space-around',
             flexDirection: 'row',
           }}>
-          <Image
-            source={require('../../../assets/images/Group448-bis.png')}
+          <TouchableOpacity
+            onPress={() => {setBoxPressed('1 pulse')}}
+            style={{
+            width: 165,
+            height: 190,
+            padding: 5,
+            justifyContent:'center',
+            alignItems: 'center',
+            backgroundColor: 'rgba(255, 255, 255, 0.29)',
+            borderRadius: 48,
+            borderColor: '#fff',
+            borderWidth: boxPressed === '1 pulse' ? 3 : 0,
+          }}>
+            <View style={{width: '60%', height: '45%',flexDirection:'column', justifyContent:'space-around',alignItems:'center', }}>
+              <Text  style={{color: '#FFF',textAlign: 'center',fontFamily: 'Gilroy',fontSize: 32,fontStyle: 'normal',fontWeight: 700, }}>3,99 €</Text>
+            <View style={{width: '60%', height: 2, backgroundColor:'#fff', }} />
+            <Text  style={{color: '#FFF',textAlign: 'center',fontFamily: 'Gilroy',fontSize: 16,fontStyle: 'normal',fontWeight: 700,}}>1 Pulse</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {setBoxPressed('10 pulse')}}
+              style={{
+              width: 165,
+              height: 190,
+              padding: 5,
+              justifyContent:'center',
+              alignItems: 'center',
+              backgroundColor: 'rgba(255, 255, 255, 0.29)',
+              borderRadius: 48,
+              borderColor: '#fff',
+              borderWidth: boxPressed === '10 pulse' ? 3 : 0,
+            }}>
+            <View style={{width: '80%', height: '50%',flexDirection:'column', justifyContent:'space-around',alignItems:'center', }}>
+              <Text  style={{color: '#FFF',textAlign: 'center',fontFamily: 'Gilroy',fontSize: 32,fontStyle: 'normal',fontWeight: 700, }}>54,99 €</Text>
+              <View style={{width: '60%', height: 2, backgroundColor:'#fff', }} />
+              <Text style={{ color: '#FFF', textAlign: 'center', fontFamily: 'Gilroy', fontSize: 16, fontStyle: 'normal', fontWeight: 700, }}>10 Pulse</Text>
+              <Text  style={{color: '#FFF',textAlign: 'center',fontFamily: 'Gilroy',fontSize: 16,fontStyle: 'normal',fontWeight: 700,}}>Soit 6,00€/mois</Text>
+            </View>
+            <View style={{ position: 'absolute', top: 150,left:60, width: 95, height: 95, backgroundColor: boxPressed === '10 pulse' ? '#0019A7' : '#fff', borderRadius: 100, alignItems: 'center', justifyContent: 'center' }}>
+              <Text style={{ color: boxPressed === '10 pulse' ? '#fff' : '#0019A7', textAlign: 'center', fontFamily: 'Gilroy', fontSize: 13, fontStyle: 'normal', fontWeight: 700, }}>Econonomisez</Text>
+              <Text  style={{color: boxPressed === '10 pulse' ? '#fff' : '#0019A7',textAlign: 'center',fontFamily: 'Gilroy',fontSize: 15,fontStyle: 'normal',fontWeight: 700,}}>35%</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={{ alignItems: 'center', top: 130 }}>
+          <TouchableOpacity
+            onPress={() => {setBoxPressed('3 pulse')}}
             style={{
               width: 165,
               height: 190,
-            }}
-          />
-          <Image
-            source={require('../../../assets/images/Group449-bis.png')}
-            style={{
-              width: 165,
-              height: 230,
-              top: 20,
-            }}
-          />
+              padding: 5,
+              justifyContent:'center',
+              alignItems: 'center',
+              backgroundColor: 'rgba(255, 255, 255, 0.29)',
+              borderRadius: 48,
+              borderColor: '#fff',
+              borderWidth: boxPressed === '3 pulse' ? 3 : 0,
+            }}>
+            <View style={{width: '80%', height: '50%',flexDirection:'column', justifyContent:'space-around',alignItems:'center', }}>
+              <Text  style={{color: '#FFF',textAlign: 'center',fontFamily: 'Gilroy',fontSize: 32,fontStyle: 'normal',fontWeight: 700, }}>14,99 €</Text>
+              <View style={{width: '60%', height: 2, backgroundColor:'#fff', }} />
+              <Text style={{ color: '#FFF', textAlign: 'center', fontFamily: 'Gilroy', fontSize: 16, fontStyle: 'normal', fontWeight: 700, }}>3 Pulse</Text>
+              <Text  style={{color: '#FFF',textAlign: 'center',fontFamily: 'Gilroy',fontSize: 16,fontStyle: 'normal',fontWeight: 700,}}>Soit 6,66€/mois</Text>
+            </View>
+            <View style={{ position: 'absolute', top: 150,left:60, width: 95, height: 95, backgroundColor: boxPressed === '3 pulse' ? '#0019A7' : '#fff', borderRadius: 100, alignItems: 'center', justifyContent: 'center' }}>
+              <Text style={{ color: boxPressed === '3 pulse' ? '#fff' : '#0019A7', textAlign: 'center', fontFamily: 'Gilroy', fontSize: 13, fontStyle: 'normal', fontWeight: 700, }}>Econonomisez</Text>
+              <Text  style={{color: boxPressed === '3 pulse' ? '#fff' : '#0019A7',textAlign: 'center',fontFamily: 'Gilroy',fontSize: 15,fontStyle: 'normal',fontWeight: 700,}}>25%</Text>
+            </View>
+          </TouchableOpacity>
         </View>
-        <View style={{alignItems: 'center', top: 70}}>
+        <TouchableOpacity style={{top:200}} onPress={() => setButtonPressed(true)}>
           <Image
-            source={require('../../../assets/images/Group450-bis-V.png')}
             style={{
-              width: 160,
-              height: 225,
-            }}
-          />
-        </View>
-        <Image
-            source={require('../../../assets/images/acheter.png')}
-            style={{
-              width: 356,
+              width: 331,
               height: 56,
-              top: 90,
+              flexShrink: 0,
               alignSelf: 'center',
             }}
+            source={
+              buttonPressed
+                ? require('../../../assets/boutons/Bouton-Rouge.png')
+                : require('../../../assets/boutons/Bouton-Blanc-Border.png')
+            }
           />
+          <Text
+            style={[
+              {
+                top: -40,
+                textAlign: 'center',
+                alignSelf: 'center',
+                fontFamily: 'Comfortaa',
+                fontSize: 18,
+                fontStyle: 'normal',
+                fontWeight: 700,
+              },
+              {color: buttonPressed ? '#fff' : '#0019A7'},
+            ]}>
+            Acheter
+          </Text>
+        </TouchableOpacity>
       </ImageBackground>
     </View>
   );

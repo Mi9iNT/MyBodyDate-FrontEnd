@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable no-unused-vars */
+
 import React, {useState} from 'react';
 import {
   View,
@@ -10,7 +10,7 @@ import {
   ImageBackground,
 } from 'react-native';
 
-const DefaultCode1 = ({setShowDefaultCode2}) => (
+const DefaultCode1 = ({setShowDefaultCode2, navigation}) => (
   <ImageBackground
     source={require('../../assets/images/bg-parametres.png')}
     style={{flex: 1}}>
@@ -115,7 +115,7 @@ const DefaultCode1 = ({setShowDefaultCode2}) => (
             color: '#0019A7',
             marginBottom: 5,
           }}>
-          Soire rouge
+          Soirée rouge
         </Text>
         <Text
           style={{
@@ -127,7 +127,7 @@ const DefaultCode1 = ({setShowDefaultCode2}) => (
           }}>
           30 Juin 2023
         </Text>
-        <View
+        <TouchableOpacity onPress={() => navigation.navigate('Evenements Bio')}
           style={{
             left: 15,
           }}>
@@ -138,7 +138,7 @@ const DefaultCode1 = ({setShowDefaultCode2}) => (
               height: 33,
             }}
           />
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
     <View
@@ -354,7 +354,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
   </ImageBackground>
 );
 
-const MyComponentBis = () => {
+const MyComponentBis = ({navigation}) => {
   const [showDefaultCode2, setShowDefaultCode2] = useState(false);
 
   return (
@@ -362,7 +362,7 @@ const MyComponentBis = () => {
       {showDefaultCode2 ? (
         <DefaultCode2 setShowDefaultCode2={setShowDefaultCode2} />
       ) : (
-        <DefaultCode1 setShowDefaultCode2={setShowDefaultCode2} />
+        <DefaultCode1 setShowDefaultCode2={setShowDefaultCode2} navigation={navigation} />
       )}
     </>
   );

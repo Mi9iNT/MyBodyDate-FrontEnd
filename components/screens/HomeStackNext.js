@@ -34,7 +34,9 @@ export const HomeStackNext = ({navigation}) => {
             accessibilityLabel="S'inscrire"
             onPress={() => {
               setButtonPressed("S'inscrire");
-              navigation.navigate("S'inscrire", {routeName: "S'inscrire"});
+              navigation.navigate("Création et Développement", {
+                routeName: "S'inscrire",
+              });
             }}>
             <Text style={[Styles.textBtn6, {zIndex: 1, top: 10}]}>
               S'inscrire

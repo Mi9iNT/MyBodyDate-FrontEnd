@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
@@ -36,7 +35,7 @@ export const ProfilMeCA = ({route, navigation}) => {
   const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
-  const imagePastille = route.imagePastille ?? '';
+  // const imagePath = route.params?.imagePath ?? '';
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -49,7 +48,7 @@ export const ProfilMeCA = ({route, navigation}) => {
 
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
-      <MenuSlide imagePath={true}/>
+      <MenuSlide imagePath={true} />
       <ScrollView style={{backgroundColor: 'white'}}>
         <View style={{justifyContent: 'center'}}>
           <ImageBackground
