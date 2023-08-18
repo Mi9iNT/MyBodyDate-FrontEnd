@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState} from 'react';
 import {
   View,
   Text,
@@ -17,6 +18,8 @@ export const LinksSignIn = ({route, navigation}) => {
   console.log('Choix de route : ', routeChoice);
   console.log('Consentement : ', consentement);
 
+  const [buttonPressed, setButtonPressed] = useState();
+
   return (
     <View style={Styles.container}>
       <ImageBackground
@@ -25,71 +28,76 @@ export const LinksSignIn = ({route, navigation}) => {
         <Logo />
 
         <View style={Styles.ViewText2}>
-          <Text style={[Styles.textWhite, Styles.fb, {left: 30}]}>
+          <Text style={[Styles.textWhite, Styles.fb, {left: 30, fontSize:24}]}>
             UN COUP DE COEUR
           </Text>
-          <Text style={[Styles.textWhite, Styles.fb, {left: 30}]}>
+          <Text style={[Styles.textWhite, Styles.fb, {left: 30, fontSize:24}]}>
             N'ATTEND PAS
           </Text>
-          <Text style={[Styles.textWhite, Styles.fl, {top: 20, left: 30}]}>
+          <Text style={[Styles.textWhite, Styles.fl, {top: 20, left: 30, fontSize:24}]}>
             NE PERDEZ PLUS RIEN...{' '}
           </Text>
         </View>
 
-        <View style={Styles.ViewBtnLog}>
-          <View style={[{top: -20}]}>
+        <View style={[Styles.ViewBtnLog, {top: -20, width:'80%', alignSelf:'center'}]}>
+          <View style={[{top: -40}]}>
             <TouchableOpacity
               accessibilityLabel="Se connecter par email"
-              onPress={() =>
+              onPress={() => {
                 navigation.navigate("S'inscrire par mail", {
                   userConsent: consentement,
                   routeName: routeChoice,
                   loveCoach: loveCoach,
-                })
-              }>
-              <Text style={[Styles.textBtn6, {zIndex: 1, top: 55}]}>
+                });
+                setButtonPressed('mail');
+              }}>
+              <Text style={[Styles.textBtn6, {zIndex: 1, top: 40, fontSize:18}]}>
                 S'inscrire par email
               </Text>
               <Image
-                style={[
-                  {
-                    top: 10,
-                    width: '90%',
-                    height: 60,
-                    resizeMode: 'contain',
-                    alignSelf: 'center',
-                  },
-                ]}
-                source={require('../../../assets/boutons/Bouton-Rouge-Email.png')}
+                style={{
+                  width: 331,
+                  height: 56,
+                  flexShrink: 0,
+                  alignSelf: 'center',
+                  resizeMode:'contain',
+                }}
+                source={
+                  buttonPressed === 'mail'
+                    ? require('../../../assets/boutons/Bouton-Rouge-Email.png')
+                    : require('../../../assets/boutons/Bouton-Bleu-Email.png')
+                }
               />
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() =>
+              onPress={() => {
                 navigation.navigate("S'inscrire par numero", {
                   userConsent: consentement,
                   routeName: routeChoice,
                   loveCoach: loveCoach,
-                })
-              }
+                });
+                setButtonPressed('numero');
+              }}
               accessibilityLabel="Se connecter avec son numéro de téléphone">
-              <Text style={[Styles.textBtn6, {zIndex: 2, top: 45, left: 10}]}>
+              <Text style={[Styles.textBtn6, {zIndex: 2, top: 40, fontSize:18, left: 10}]}>
                 S'inscrire avec son n°
               </Text>
               <Image
-                style={[
-                  {
-                    top: 0,
-                    width: '90%',
-                    height: 60,
-                    resizeMode: 'contain',
-                    alignSelf: 'center',
-                  },
-                ]}
-                source={require('../../../assets/boutons/Bouton-Bleu-Telephone.png')}
+                style={{
+                  width: 331,
+                  height: 56,
+                  flexShrink: 0,
+                  alignSelf: 'center',
+                  resizeMode: 'contain',
+                }}
+                source={
+                  buttonPressed === 'numero'
+                    ? require('../../../assets/boutons/Bouton-Rouge.png')
+                    : require('../../../assets/boutons/Bouton-Bleu-Telephone.png')
+                }
               />
             </TouchableOpacity>
-            <View style={[{top: 10}]}>
-              <View style={[Styles.line]} />
+            <View style={[{top: 20}]}>
               <View>
                 <Text style={[Styles.textBtn, Styles.mb2, Styles.fl]}>
                   {' '}
@@ -115,7 +123,7 @@ export const LinksSignIn = ({route, navigation}) => {
                     Se connecter
                   </Text>
                 </TouchableOpacity>
-                <View style={[Styles.line]} />
+                <View style={[Styles.line, {top:10}]} />
               </View>
 
               <View>
