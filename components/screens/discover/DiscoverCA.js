@@ -1,22 +1,12 @@
-/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-  Modal,
-} from 'react-native';
+import {View, Text, Image, ImageBackground} from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
 import {MyComponent} from '../../composants/MyComponent';
 import {MenuBottom} from '../../composants/MenuBottom';
 import {More} from '../../composants/More';
-import Styles from '../../../assets/style/Styles';
-import LinearGradient from 'react-native-linear-gradient';
 
 export const DiscoverCA = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
@@ -48,12 +38,12 @@ export const DiscoverCA = ({route, navigation}) => {
       }}>
       <MenuSlide />
       <ImageBackground
-        source={require('../../../assets/images/Rectangle-43-J.png')}
+        source={require('../../../assets/images/BackJulie.png')}
         style={{
           width: '100%',
           height: '100%',
         }}>
-          <MyComponent />
+        <MyComponent />
         {/* <View style={{backgroundColor: '#ffffff', height: 30}}>
           <View
             style={{
@@ -320,14 +310,14 @@ export const DiscoverCA = ({route, navigation}) => {
             A 5km
           </Text>
         </View>
-          <More />
+        <More />
         <View
           style={{
-            top: -30,
+            bottom: 30,
             left: 25,
           }}>
           <Image
-            source={require('../../../assets/images/Rencontre-amoureuse.png')}
+            source={require('../../../assets/images/VousEtes---.png')}
             style={{
               width: 346,
               height: 78,
@@ -355,12 +345,13 @@ export const DiscoverCA = ({route, navigation}) => {
                 color: '#fff',
                 letterSpacing: 1,
               }}>
-              Julie{'   '}
+              Julie
             </Text>
             <Image
               source={require('../../../assets/images/quality-2.png')}
               style={{
                 top: 24,
+                left: 20,
                 width: 30,
                 height: 30,
               }}
@@ -368,7 +359,7 @@ export const DiscoverCA = ({route, navigation}) => {
           </View>
           <View
             style={{
-              top: -10,
+              bottom: 10,
               left: 15,
             }}>
             <Text
@@ -401,13 +392,20 @@ export const DiscoverCA = ({route, navigation}) => {
               style={{
                 top: 5,
               }}>
-              <Image
-                source={require('../../../assets/images/Group-6.png')}
+              <ImageBackground
+                source={require('../../../assets/images/Fond.png')}
                 style={{
                   width: 40,
                   height: 40,
-                }}
-              />
+                }}>
+                <Image
+                  source={require('../../../assets/images/Polygon2.png')}
+                  style={{
+                    top: 10,
+                    alignSelf: 'center',
+                  }}
+                />
+              </ImageBackground>
             </View>
           </View>
         </View>
@@ -422,7 +420,7 @@ export const DiscoverCA = ({route, navigation}) => {
               top: 5,
             }}>
             <Image
-              source={require('../../../assets/images/Group-25.png')}
+              source={require('../../../assets/images/Oeil.png')}
               style={{
                 width: 78,
                 height: 78,
@@ -434,7 +432,7 @@ export const DiscoverCA = ({route, navigation}) => {
               top: 20,
             }}>
             <Image
-              source={require('../../../assets/images/Group-26.png')}
+              source={require('../../../assets/images/Pouce-Disc.png')}
               style={{
                 width: 77,
                 height: 77,
