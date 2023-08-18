@@ -96,8 +96,8 @@ export const Settings = ({navigation}) => {
               style={settingsStyles.scrollView}
               contentContainerStyle={{paddingBottom: 10}}>
               {/* Style commun pour les éléments de notification */}
-              {renderNotificationItem('Notifications', () =>
-                navigation.navigate('Notifications'),
+              {renderNotificationItem('Notifications settings', () =>
+                navigation.navigate('Notifications settings'),
               )}
               {renderNotificationItem('Sécurité & vie privée', () =>
                 navigation.navigate('Securite et privee'),

@@ -20,6 +20,8 @@ export const SignInMail = ({route, navigation}) => {
   console.log('Love Coach : ', loveCoach);
 
   const [userEmail, setEmail] = React.useState();
+  const [buttonPressed, setButtonPressed] = React.useState();
+
   console.log('Email: ' + userEmail);
   return (
     <View style={Styles.container}>
@@ -27,11 +29,11 @@ export const SignInMail = ({route, navigation}) => {
         style={Styles.bgGradient}
         source={require('../../../assets/images/Background.png')}>
         <View style={[Styles.ViewText, Styles.mt50]}>
-          <Text style={[Styles.textTitleWhite2, {top: 100, left: 50}]}>
+          <Text style={[Styles.textTitleWhite2, {top: 100, left: 50, fontSize:24}]}>
             S'INSCRIRE
           </Text>
         </View>
-        <SafeAreaView style={[Styles.ViewInput, {top: 180}]}>
+        <SafeAreaView style={[Styles.ViewInput, {top: 140}]}>
           <TextInput
             style={Styles.TextInput}
             keyboardType="email-address"
@@ -50,29 +52,31 @@ export const SignInMail = ({route, navigation}) => {
         <View style={[Styles.ViewBtn2, {top: 250}]}>
           <TouchableOpacity
             style={Styles.btn}
-            onPress={() =>
+            onPress={() => {
               navigation.navigate('Confirmation email', {
                 userConsent: consentement,
                 routeName: routeChoice,
                 loveCoach: loveCoach,
                 userEmail: userEmail,
-              })
-            }
+              });
+              setButtonPressed(true);
+            }}
             accessibilityLabel="Continuer">
-            <Text style={[Styles.textBtn9, {zIndex: 1, top: 45}]}>
+            <Text style={[Styles.textBtn9, {zIndex: 1, top: 45, color: buttonPressed?'#fff':'#0019A7'}]}>
               Continuer
             </Text>
             <Image
-              style={[
-                {
-                  top: 0,
-                  width: '90%',
-                  height: 60,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={require('../../../assets/boutons/Bouton-Blanc.png')}
+              style={{
+                width: 331,
+                height: 56,
+                flexShrink: 0,
+                alignSelf: 'center',
+              }}
+              source={
+                buttonPressed
+                  ? require('../../../assets/boutons/Bouton-Rouge.png')
+                  : require('../../../assets/boutons/Bouton-Blanc-Border.png')
+              }
             />
           </TouchableOpacity>
         </View>

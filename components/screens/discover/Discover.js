@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
@@ -7,7 +8,7 @@ import {MenuSlide} from '../../composants/MenuSlide';
 import {MyComponent} from '../../composants/MyComponent';
 import {MenuBottom} from '../../composants/MenuBottom';
 import {More} from '../../composants/More';
-
+import Spotlight from '../../composants/Spotlight';
 export const Discover = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
@@ -29,6 +30,8 @@ export const Discover = ({route, navigation}) => {
   const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
+  const activeTab = route.params?.activeTab ?? '';
+  const imagePath = route.params?.imagePath ?? '';
 
   return (
     <View
@@ -36,14 +39,17 @@ export const Discover = ({route, navigation}) => {
         width: '100%',
         height: '100%',
       }}>
-      <MenuSlide />
+      <MenuSlide imagePath={imagePath} />
       <ImageBackground
         source={require('../../../assets/images/Rectangle-43.png')}
         style={{
           width: '100%',
           height: '100%',
+          resizeMode: 'contain',
         }}>
-        <MyComponent />
+        <>
+          <Spotlight navigation={navigation} />
+        </>
         <View style={{justifyContent: 'space-around', flexDirection: 'row'}}>
           <View
             style={{
@@ -258,8 +264,8 @@ export const Discover = ({route, navigation}) => {
             />
           </View>
         </View>
+        <MenuBottom navigation={navigation} activeTab={activeTab} />
       </ImageBackground>
-      <MenuBottom />
     </View>
   );
 };

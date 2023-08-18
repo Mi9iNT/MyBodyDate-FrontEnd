@@ -1,12 +1,14 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
   Image,
+  TouchableOpacity,
   ImageBackground,
+  StatusBar,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -32,12 +34,23 @@ export const PulseSpotlight = ({route, navigation}) => {
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
 
+  useEffect(() => {
+    StatusBar.setHidden(true);
+    return () => {
+      StatusBar.setHidden(false);
+    };
+  }, []);
+
+  const [boxPressed, setBoxPressed] = useState();
+
   return (
     <View style={{flex: 1}}>
       <ImageBackground
         source={require('../../../assets/images/Background-22.png')}
         style={{flex: 1}}>
-        <View style={{left: 350, marginTop: 30}}>
+        <TouchableOpacity
+          onPress={() => { navigation.goBack(); }}
+          style={{ left: 350, width: 20, marginTop: 30 }}>
           <Image
             source={require('../../../assets/images/Group-58.png')}
             style={{
@@ -46,8 +59,8 @@ export const PulseSpotlight = ({route, navigation}) => {
               height: 18,
             }}
           />
-        </View>
-        <View style={{alignItems: 'center'}}>
+        </TouchableOpacity>
+        <View style={{alignItems: 'center', marginTop: 50,}}>
           <Text
             style={{
               fontSize: 24,
@@ -82,24 +95,38 @@ export const PulseSpotlight = ({route, navigation}) => {
           style={{
             alignItems: 'center',
             top: 85,
+            height: 400,
             justifyContent: 'space-around',
-            flexDirection: 'row',
+            flexDirection: 'column',
           }}>
-          <ImageBackground
-            source={require('../../../assets/images/Rectangle-85.png')}
+          <View
+          style={{
+            alignItems: 'center',
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            width:'100%',
+          }}>
+          <TouchableOpacity
+            onPress={() => setBoxPressed('boxSpolight')}
             style={{
-              felx: 1,
+              flexDirection: 'column',
+              justifyContent: 'space-around',
+              padding: 5,
               alignItems: 'center',
               width: 154,
               height: 88,
+              backgroundColor: 'rgba(255, 255, 255, 0.29)',
+              borderRadius: 20,
+              borderColor: '#fff',
+              borderWidth: boxPressed === 'boxSpolight' ? 3 : 0,
             }}>
             <Text
               style={{
                 fontSize: 20,
                 fontFamily: 'Gilory',
+                textAlign: 'center',
                 fontWeight: '700',
                 color: '#FFF',
-                top:15,
               }}>
               Spotlight
             </Text>
@@ -107,28 +134,34 @@ export const PulseSpotlight = ({route, navigation}) => {
               style={{
                 fontSize: 15,
                 fontFamily: 'Gilory',
+                textAlign: 'center',
                 fontWeight: '700',
                 color: '#FFF',
-                top:25,
               }}>
               1,00 € min.
             </Text>
-          </ImageBackground>
-          <ImageBackground
-            source={require('../../../assets/images/Rectangle-85.png')}
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setBoxPressed('boxSuper')}
             style={{
-              felx: 1,
+              flexDirection: 'column',
               alignItems: 'center',
+              justifyContent: 'space-around',
+              padding: 5,
               width: 154,
               height: 88,
+              backgroundColor: 'rgba(255, 255, 255, 0.29)',
+              borderRadius: 20,
+              borderColor: '#fff',
+              borderWidth: boxPressed === 'boxSuper' ? 3 : 0,
             }}>
             <Text
               style={{
                 fontSize: 20,
                 fontFamily: 'Gilory',
+                textAlign: 'center',
                 fontWeight: '700',
                 color: '#FFF',
-                top:15,
               }}>
               Super spotlight
             </Text>
@@ -136,22 +169,50 @@ export const PulseSpotlight = ({route, navigation}) => {
               style={{
                 fontSize: 15,
                 fontFamily: 'Gilory',
+                textAlign: 'center',
                 fontWeight: '700',
                 color: '#FFF',
-                top:25,
               }}>
               4,29 € min.
             </Text>
-          </ImageBackground>
-        </View>
-        <View style={{alignItems: 'center', top: 120}}>
-          <Image
-            source={require('../../../assets/images/Group-45.png')}
+          </TouchableOpacity>
+          </View>
+          <TouchableOpacity
+            onPress={() => { setBoxPressed('boxAutre');  navigation.navigate('Search pulse')}}
             style={{
-              width: 340,
-              height: 240,
-            }}
-          />
+            flexDirection: 'column',
+            justifyContent: 'space-around',
+            alignSelf: 'center',
+            alignItems: 'center',
+            padding: 20,
+            width: 337,
+            height: 200,
+            backgroundColor: 'rgba(255, 255, 255, 0.29)',
+            borderRadius: 48,
+            borderColor: '#fff',
+            borderWidth: boxPressed === 'boxAutre' ? 3 : 0,
+            }}>
+            <Text
+                style={{
+                  fontSize: 32,
+                  fontFamily: 'Gilory',
+                  textAlign: 'center',
+                  fontWeight: '700',
+                  color: '#FFF',
+                }}>
+                Autre Pulse
+            </Text>
+            <Text
+                style={{
+                  fontSize: 15,
+                  fontFamily: 'Gilory',
+                  textAlign: 'center',
+                  fontWeight: '700',
+                  color: '#FFF',
+                }}>
+                Des options supplémentaires pour propulser votre profil
+            </Text>
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     </View>

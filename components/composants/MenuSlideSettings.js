@@ -15,6 +15,8 @@ export const MenuSlideSettings = ({settingsNavigation}) => {
   // Constantes concernant la Modal du Menu Slide
   const [modalVisible, setModalVisible] = useState(false);
 
+  const [icoPushChange, setIcoPushChange] = useState(icoPushChange);
+
   return (
     <View
       style={{
@@ -40,11 +42,16 @@ export const MenuSlideSettings = ({settingsNavigation}) => {
       </View>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <View style={{ left:-10, width:31, justifyContent:'center', alignItems: 'center'}}>
-          <Pastille imagePath={imagePath} />
+          <TouchableOpacity>
+            <Image source={imagePath === true ? require('../../assets/images/cercle_ami.png') : require('../../assets/images/Rencontre_amoureuse.png')} style={{ width: 30, height: 30 }} />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {
+          navigation.navigate('Notifications');
+          setIcoPushChange(true);
+            }}>
           <Image
-            source={require('../../assets/images/notification_icons.png')}
+            source={icoPushChange ? require('../../assets/images/notification_icons-vert.png') : require('../../assets/images/notification_icons.png')}
             style={{ width: 30, height: 30, marginHorizontal: 15 }}
           />
         </TouchableOpacity>

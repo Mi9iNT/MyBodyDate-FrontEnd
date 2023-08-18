@@ -22,7 +22,7 @@ export const Map = ({ navigation, route }) => {
     };
   }, []);
 
-  const activeTab = route.params?.activeTab;
+  const activeTab = route.params?.activeTab ?? '';
 
   const [userLocation, setUserLocation] = useState({
     latitude: 48.8966739567463,
