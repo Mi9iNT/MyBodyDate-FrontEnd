@@ -2,11 +2,16 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
-import {StatusBar} from 'react-native';
-import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
+import {StatusBar, TextInput} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  ImageBackground,
+} from 'react-native';
 import PropTypes from 'prop-types';
 
-export const NiveauDEtudes = ({route, navigation}) => {
+export const Offre = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -39,9 +44,8 @@ export const NiveauDEtudes = ({route, navigation}) => {
   ]);
 
   const handleAddProToggle = index => {
-    const newArray = addProVisible.map((value, idx) =>
-      idx === index ? !value : false,
-    );
+    const newArray = [...addProVisible];
+    newArray[index] = !newArray[index];
     setAddProVisible(newArray);
   };
 
@@ -65,44 +69,26 @@ export const NiveauDEtudes = ({route, navigation}) => {
         style={{
           alignSelf: 'center',
         }}>
-        <View
+        <Image
+          source={require('../../../assets/images/Distinct.png')}
           style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            top: 10,
-          }}>
-          <Image
-            source={require('../../../assets/images/Fleche-G-CA.png')}
-            style={{
-              width: 10,
-              height: 20,
-              right: 100,
-            }}
-          />
-          <View
-            style={{
-              flex: 1, // Utilisation du flex pour centrer l'image
-              alignItems: 'center', // Alignement horizontal au centre
-            }}>
-            <Image
-              source={require('../../../assets/images/btn_diplome.png')}
-              style={{
-                width: 78,
-                height: 84,
-                right: 15,
-              }}
-            />
-          </View>
-        </View>
+            width: 70,
+            height: 70,
+            top: 30,
+            alignSelf: 'center',
+          }}
+        />
         <Text
           style={{
             fontFamily: 'Gilroy',
             fontWeight: '700',
             fontSize: 20,
-            color: '#9424FA',
+            color: '#000',
             top: 50,
+            textAlign: 'center',
+            alignSelf: 'center',
           }}>
-          Niveau d'études
+          Publier une offre
         </Text>
       </View>
       <View>
@@ -111,68 +97,88 @@ export const NiveauDEtudes = ({route, navigation}) => {
             fontFamily: 'Gilroy',
             fontWeight: '700',
             fontSize: 14,
-            color: '#9424FA',
-            top: 80,
+            color: '#000',
+            top: 140,
             left: 30,
           }}>
-          Votre niveau d'études
+          Intitulé de l'offre
         </Text>
       </View>
-      <View style={{left: 30}}>
-        {[
-          'CAP, Apprentissage (boulanger,...)',
-          'Lycée',
-          'École commerce/technique',
-          'Étudiant de 1er cycle universitaire',
-          'Licence',
-          'Étudiant de 2e ou 3e cycle universitaire',
-          'Master ou doctorat',
-        ].map((label, index) => (
+      <View style={{alignSelf: 'center'}}>
+        <ImageBackground
+          source={require('../../../assets/images/RectangleRP.png')}
+          style={{
+            width: 353,
+            height: 40,
+            top: 150,
+          }}>
           <View
-            key={index}
             style={{
-              top: 100 + index * 20,
               flexDirection: 'row',
               alignItems: 'center',
+              left: 10,
             }}>
-            <TouchableOpacity onPress={() => handleAddProToggle(index)}>
-              <Image
-                source={
-                  addProVisible[index]
-                    ? require('../../../assets/images/EllipsePleineCA.png')
-                    : require('../../../assets/images/EllipseVideCA.png')
-                }
-              />
-            </TouchableOpacity>
-            <Text
+            <TextInput
               style={{
+                fontSize: 14,
                 fontFamily: 'Comfortaa',
                 fontWeight: '700',
-                fontSize: 16,
-                color: '#9424FA',
-                left: 20,
-              }}>
-              {label}
-            </Text>
+                color: '#6D6966',
+                left: 10,
+              }}
+              defaultValue="Lorem ipsum"
+              // Vous pouvez ajouter des gestionnaires d'événements ici pour gérer les changements de texte, etc.
+            />
           </View>
-        ))}
+        </ImageBackground>
+      </View>
+      <View>
         <Text
           style={{
-            fontFamily: 'Comfortaa',
+            fontFamily: 'Gilroy',
             fontWeight: '700',
-            fontSize: 12,
-            color: '#9424FA',
-            left: 20,
-            top: 250,
+            fontSize: 14,
+            color: '#000',
+            top: 190,
+            left: 30,
           }}>
-          Choix unique.
+          Description de l'offre
         </Text>
+      </View>
+      <View style={{alignSelf: 'center'}}>
+        <ImageBackground
+          source={require('../../../assets/images/Rectangle-B-RP.png')}
+          style={{
+            width: 345,
+            height: 230,
+            top: 200,
+          }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              left: 10,
+            }}>
+            <TextInput
+              style={{
+                fontSize: 14,
+                fontFamily: 'Comfortaa',
+                fontWeight: '700',
+                color: '#6D6966',
+                left: 20,
+                top: 20,
+              }}
+              defaultValue="Lorem ipsum"
+              // Vous pouvez ajouter des gestionnaires d'événements ici pour gérer les changements de texte, etc.
+            />
+          </View>
+        </ImageBackground>
       </View>
     </View>
   );
 };
 
-NiveauDEtudes.propTypes = {
+Offre.propTypes = {
   route: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
 };

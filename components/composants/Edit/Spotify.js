@@ -2,11 +2,16 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
-import {StatusBar} from 'react-native';
-import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
+import {StatusBar, TextInput} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  ImageBackground,
+} from 'react-native';
 import PropTypes from 'prop-types';
 
-export const NiveauDEtudes = ({route, navigation}) => {
+export const Spotify = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -39,9 +44,8 @@ export const NiveauDEtudes = ({route, navigation}) => {
   ]);
 
   const handleAddProToggle = index => {
-    const newArray = addProVisible.map((value, idx) =>
-      idx === index ? !value : false,
-    );
+    const newArray = [...addProVisible];
+    newArray[index] = !newArray[index];
     setAddProVisible(newArray);
   };
 
@@ -65,35 +69,15 @@ export const NiveauDEtudes = ({route, navigation}) => {
         style={{
           alignSelf: 'center',
         }}>
-        <View
+        <Image
+          source={require('../../../assets/images/Spoty.png')}
           style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            top: 10,
-          }}>
-          <Image
-            source={require('../../../assets/images/Fleche-G-CA.png')}
-            style={{
-              width: 10,
-              height: 20,
-              right: 100,
-            }}
-          />
-          <View
-            style={{
-              flex: 1, // Utilisation du flex pour centrer l'image
-              alignItems: 'center', // Alignement horizontal au centre
-            }}>
-            <Image
-              source={require('../../../assets/images/btn_diplome.png')}
-              style={{
-                width: 78,
-                height: 84,
-                right: 15,
-              }}
-            />
-          </View>
-        </View>
+            width: 84,
+            height: 84,
+            top: 30,
+            alignSelf: 'center',
+          }}
+        />
         <Text
           style={{
             fontFamily: 'Gilroy',
@@ -102,7 +86,7 @@ export const NiveauDEtudes = ({route, navigation}) => {
             color: '#9424FA',
             top: 50,
           }}>
-          Niveau d'études
+          Ma playlist Spotify
         </Text>
       </View>
       <View>
@@ -115,64 +99,52 @@ export const NiveauDEtudes = ({route, navigation}) => {
             top: 80,
             left: 30,
           }}>
-          Votre niveau d'études
+          Entrez le lien URL de votre playlist.
         </Text>
       </View>
-      <View style={{left: 30}}>
-        {[
-          'CAP, Apprentissage (boulanger,...)',
-          'Lycée',
-          'École commerce/technique',
-          'Étudiant de 1er cycle universitaire',
-          'Licence',
-          'Étudiant de 2e ou 3e cycle universitaire',
-          'Master ou doctorat',
-        ].map((label, index) => (
-          <View
-            key={index}
-            style={{
-              top: 100 + index * 20,
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <TouchableOpacity onPress={() => handleAddProToggle(index)}>
-              <Image
-                source={
-                  addProVisible[index]
-                    ? require('../../../assets/images/EllipsePleineCA.png')
-                    : require('../../../assets/images/EllipseVideCA.png')
-                }
-              />
-            </TouchableOpacity>
-            <Text
-              style={{
-                fontFamily: 'Comfortaa',
-                fontWeight: '700',
-                fontSize: 16,
-                color: '#9424FA',
-                left: 20,
-              }}>
-              {label}
-            </Text>
-          </View>
-        ))}
-        <Text
+      <ImageBackground
+        source={require('../../../assets/images/RectangleActivite.png')}
+        style={{
+          width: 354,
+          height: 40,
+          left: 20,
+          top: 140,
+        }}>
+        <View
           style={{
-            fontFamily: 'Comfortaa',
-            fontWeight: '700',
-            fontSize: 12,
-            color: '#9424FA',
+            flexDirection: 'row',
             left: 20,
-            top: 250,
           }}>
-          Choix unique.
-        </Text>
-      </View>
+          <TextInput
+            style={{
+              fontSize: 14,
+              fontFamily: 'Comfortaa',
+              fontWeight: '700',
+              color: '#929EDE',
+              padding: 5,
+              left: 20,
+            }}
+            defaultValue="URL"
+            // Vous pouvez ajouter des gestionnaires d'événements ici pour gérer les changements de texte, etc.
+          />
+        </View>
+      </ImageBackground>
+      <Text
+        style={{
+          fontFamily: 'Comfortaa',
+          fontWeight: '700',
+          fontSize: 12,
+          color: '#9424FA',
+          left: 30,
+          top: 450,
+        }}>
+        Choix unique.
+      </Text>
     </View>
   );
 };
 
-NiveauDEtudes.propTypes = {
+Spotify.propTypes = {
   route: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
 };

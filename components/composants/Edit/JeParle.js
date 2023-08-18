@@ -3,10 +3,10 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
-import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import PropTypes from 'prop-types';
 
-export const NiveauDEtudes = ({route, navigation}) => {
+export const JeParle = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -39,9 +39,8 @@ export const NiveauDEtudes = ({route, navigation}) => {
   ]);
 
   const handleAddProToggle = index => {
-    const newArray = addProVisible.map((value, idx) =>
-      idx === index ? !value : false,
-    );
+    const newArray = [...addProVisible];
+    newArray[index] = !newArray[index];
     setAddProVisible(newArray);
   };
 
@@ -65,35 +64,16 @@ export const NiveauDEtudes = ({route, navigation}) => {
         style={{
           alignSelf: 'center',
         }}>
-        <View
+        <Image
+          source={require('../../../assets/images/language.png')}
           style={{
-            flexDirection: 'row',
+            width: 78,
+            height: 84,
+            top: 30,
             alignItems: 'center',
-            top: 10,
-          }}>
-          <Image
-            source={require('../../../assets/images/Fleche-G-CA.png')}
-            style={{
-              width: 10,
-              height: 20,
-              right: 100,
-            }}
-          />
-          <View
-            style={{
-              flex: 1, // Utilisation du flex pour centrer l'image
-              alignItems: 'center', // Alignement horizontal au centre
-            }}>
-            <Image
-              source={require('../../../assets/images/btn_diplome.png')}
-              style={{
-                width: 78,
-                height: 84,
-                right: 15,
-              }}
-            />
-          </View>
-        </View>
+            alignSelf: 'center',
+          }}
+        />
         <Text
           style={{
             fontFamily: 'Gilroy',
@@ -102,7 +82,7 @@ export const NiveauDEtudes = ({route, navigation}) => {
             color: '#9424FA',
             top: 50,
           }}>
-          Niveau d'études
+          Je parle couramment...
         </Text>
       </View>
       <View>
@@ -115,47 +95,18 @@ export const NiveauDEtudes = ({route, navigation}) => {
             top: 80,
             left: 30,
           }}>
-          Votre niveau d'études
+          Séléctionnez vos langues parlées.
         </Text>
       </View>
-      <View style={{left: 30}}>
-        {[
-          'CAP, Apprentissage (boulanger,...)',
-          'Lycée',
-          'École commerce/technique',
-          'Étudiant de 1er cycle universitaire',
-          'Licence',
-          'Étudiant de 2e ou 3e cycle universitaire',
-          'Master ou doctorat',
-        ].map((label, index) => (
-          <View
-            key={index}
-            style={{
-              top: 100 + index * 20,
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <TouchableOpacity onPress={() => handleAddProToggle(index)}>
-              <Image
-                source={
-                  addProVisible[index]
-                    ? require('../../../assets/images/EllipsePleineCA.png')
-                    : require('../../../assets/images/EllipseVideCA.png')
-                }
-              />
-            </TouchableOpacity>
-            <Text
-              style={{
-                fontFamily: 'Comfortaa',
-                fontWeight: '700',
-                fontSize: 16,
-                color: '#9424FA',
-                left: 20,
-              }}>
-              {label}
-            </Text>
-          </View>
-        ))}
+        <Image
+          source={require('../../../assets/images/Francais.png')}
+          style={{
+            width: 308,
+            height: 51,
+            left:50,
+            top:140,
+          }}
+        />
         <Text
           style={{
             fontFamily: 'Comfortaa',
@@ -163,16 +114,15 @@ export const NiveauDEtudes = ({route, navigation}) => {
             fontSize: 12,
             color: '#9424FA',
             left: 20,
-            top: 250,
+            top: 450,
           }}>
-          Choix unique.
+          Choix multiples.
         </Text>
       </View>
-    </View>
   );
 };
 
-NiveauDEtudes.propTypes = {
+JeParle.propTypes = {
   route: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
 };
