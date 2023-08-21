@@ -1,14 +1,8 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-  Modal,
-} from 'react-native';
+import {View, Text, Image, ImageBackground} from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
 import {MyComponent} from '../../composants/MyComponent';
@@ -17,7 +11,6 @@ import {More} from '../../composants/more/More';
 import Styles from '../../../assets/style/Styles';
 import LinearGradient from 'react-native-linear-gradient';
 import Spotlight from '../../composants/Spotlight';
-
 export const Discover = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
@@ -164,14 +157,24 @@ export const Discover = ({route, navigation}) => {
                 color: '#fff',
                 letterSpacing: 1,
               }}>
-              Kolia{'   '}
+              Kolia
             </Text>
             <Image
               source={require('../../../assets/images/quality-2.png')}
               style={{
                 top: 24,
+                left: 20,
                 width: 30,
                 height: 30,
+              }}
+            />
+            <Image
+              source={require('../../../assets/images/Médaille.png')}
+              style={{
+                top: 24,
+                left: 20,
+                width: 30,
+                height: 44,
               }}
             />
           </View>
