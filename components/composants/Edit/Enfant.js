@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {MyComponentEnfant} from '../../composants/Edit/MyComponentEnfant';
+import {MyComponentEnfant} from './MyComponentEnfant';
 
 export const Enfant = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';

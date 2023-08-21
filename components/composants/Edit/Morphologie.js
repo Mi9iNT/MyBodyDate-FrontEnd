@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {MyComponentMorphologie} from '../../composants/Edit/MyComponentMorphologie';
+import {MyComponentMorphologie} from './MyComponentMorphologie';
 
 export const Morphologie = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';

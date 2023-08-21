@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {MyComponentStatut} from '../../composants/Edit/MyComponentStatut';
+import {MyComponentStatut} from './MyComponentStatut';
 
 export const Statut = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';

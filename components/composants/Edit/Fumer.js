@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {MyComponentFumer} from '../../composants/Edit/MyComponentFumer';
+import {MyComponentFumer} from './MyComponentFumer';
 
 export const Fumer = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';

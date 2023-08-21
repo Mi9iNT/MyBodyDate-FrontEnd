@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {MyComponentAlcool} from '../../composants/Edit/MyComponentAlcool';
+import {MyComponentAlcool} from './MyComponentAlcool';
 
 export const Alcool = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';

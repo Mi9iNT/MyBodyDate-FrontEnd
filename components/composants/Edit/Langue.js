@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {MyComponentLangue} from '../../composants/Edit/MyComponentLangue';
+import {MyComponentLangue} from './MyComponentLangue';
 
 export const Langue = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
