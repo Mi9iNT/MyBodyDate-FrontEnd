@@ -40,9 +40,7 @@ export const EvenBio = ({route, navigation}) => {
 
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const handleImageClick = imageId => {
-    setSelectedImage(imageId);
-  };
+  const [eventPath, setEvenPath] = useState(true);
 
   return (
     <View style={{flex: 1}}>
@@ -103,26 +101,46 @@ export const EvenBio = ({route, navigation}) => {
         style={{flex: 1}}>
         <View
           style={{
+            width: '100%',
+            alignSelf: 'center',
+            justifyContent:'space-between',
             alignItems: 'center',
             top: 20,
             flexDirection: 'row',
           }}>
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress={() => { setEvenPath(true); }}
+              style={{
+                width: '50%',
+                height: 40,
+                borderBottomWidth: eventPath ? 2 : 0,
+                borderColor: '#0019A7',
+              }}
+            >
             <Text
               style={{
                 fontSize: 16,
                 fontFamily: 'Comfortaa',
                 fontWeight: '700',
                 color: '#0019A7',
+                textAlign:'center',
               }}>
               Événements à venir
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => { setEvenPath(false); }}
+            style={{
+              width: '50%',
+              height: 40,
+              borderBottomWidth: !eventPath ? 2 : 0,
+              borderColor: '#0019A7',
+            }}>
             <Text
             style={{
               fontSize: 16,
               fontFamily: 'Comfortaa',
+              textAlign: 'center',
               fontWeight: '700',
               color: '#0019A7',
             }}>
@@ -130,7 +148,8 @@ export const EvenBio = ({route, navigation}) => {
             </Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity
+         {eventPath ? (<>
+          <TouchableOpacity
           onPress={() => {navigation.navigate('Evenements')}}
           style={{
             top: 50,
@@ -244,7 +263,102 @@ export const EvenBio = ({route, navigation}) => {
             </TouchableOpacity>
             </View>
           </View>
-        </View>
+          </View>
+        </>
+        ) : (
+            <>
+               <View
+      style={{
+        left: 30,
+        top: 50,
+        justifyContent: 'space-around',
+      }}>
+      <Text
+        style={{
+          fontSize: 24,
+          fontFamily: 'Comfortaa',
+          fontWeight: '700',
+          color: '#0019A7',
+        }}>
+        Mes événements
+      </Text>
+      <Text
+        style={{
+          fontSize: 16,
+          fontFamily: 'Comfortaa',
+          fontWeight: '700',
+          color: '#929EDE',
+        }}>
+        Mes prochaines dates
+      </Text>
+    </View>
+    <View
+      style={{
+        alignItems: 'center',
+        top: 80,
+        justifyContent: 'space-around',
+        flexDirection: 'row',
+      }}>
+      <View>
+        <Image
+          source={require('../../../assets/images/Event1.png')}
+          style={{
+            width: 187,
+            height: 152,
+          }}
+        />
+      </View>
+      <View
+        style={{
+          marginTop: 0, // Définir la marge supérieure pour remonter le bloc
+          marginBottom: 10, // Définir la marge inférieure pour espacer le bloc
+        }}>
+        <Text
+          style={{
+            fontSize: 15,
+            fontFamily: 'Gilory',
+            fontWeight: '700',
+            color: '#FF84D7',
+            marginBottom: 5,
+          }}>
+          Paris
+        </Text>
+        <Text
+          style={{
+            fontSize: 20,
+            fontFamily: 'Gilory',
+            fontWeight: '700',
+            color: '#0019A7',
+            marginBottom: 5,
+          }}>
+          Soire rouge
+        </Text>
+        <Text
+          style={{
+            fontSize: 20,
+            fontFamily: 'Gilory',
+            fontWeight: '700',
+            color: '#FF84D7',
+            marginBottom: 45,
+          }}>
+          30 Juin 2023
+        </Text>
+        <Text
+          style={{
+            fontSize: 14,
+            fontFamily: 'Gilory',
+            fontWeight: '700',
+            color: '#929EDE',
+            textAlign: 'right',
+          }}>
+          Complet
+        </Text>
+      </View>
+    </View>
+            </>
+        )}
+       
+        
       <MenuBottom navigation={navigation} activeTab={activeTab} />
       </ImageBackground>
     </View>
