@@ -100,7 +100,7 @@ const [copyMessage, setCopyMessage] = useState('');
             {/* Bloquer */}
             <TouchableOpacity style={{ flexDirection:'row', justifyContent:'space-between', alignSelf:'center', alignItems:'center', width:'80%', height:50, borderColor:'#0019A7', borderBottomWidth: 1}} onPress={() => {bloquerOpen ? setbloquerOpen(false) : setbloquerOpen(true);}}>
               <Text style={{ color: '#0019A7',fontFamily: 'Gilroy', fontSize: 20, fontStyle: 'normal', fontWeight: 700 }}>Bloquer</Text>
-              <Image source={require('../../assets/images/flèche-B.png')} style={{resizeMode:'contain', width: 10, height: 20, transform: [{rotate: bloquerOpen ? '90deg' : '-90deg'}]}} />
+              <Image source={require('../../../assets/images/flèche-B.png')} style={{resizeMode:'contain', width: 10, height: 20, transform: [{rotate: bloquerOpen ? '90deg' : '-90deg'}]}} />
             </TouchableOpacity>
             {bloquerOpen ? (
             <>
@@ -115,7 +115,7 @@ const [copyMessage, setCopyMessage] = useState('');
           {/* Signaler */}
           <TouchableOpacity style={{ flexDirection:'row', justifyContent:'space-between', alignSelf:'center', alignItems:'center', width:'80%', height:50, borderColor:'#0019A7', borderBottomWidth: 1}} onPress={() => {signalerOpen ? setSignalerOpen(false) : setSignalerOpen(true);}}>
             <Text style={{ color: '#0019A7',fontFamily: 'Gilroy', fontSize: 20, fontStyle: 'normal', fontWeight: 700 }}>Signaler</Text>
-            <Image source={require('../../assets/images/flèche-B.png')} style={{resizeMode:'contain', width: 10, height: 20, transform: [{rotate: signalerOpen ? '90deg' : '-90deg'}]}} />
+            <Image source={require('../../../assets/images/flèche-B.png')} style={{resizeMode:'contain', width: 10, height: 20, transform: [{rotate: signalerOpen ? '90deg' : '-90deg'}]}} />
           </TouchableOpacity>
           {signalerOpen ? (
             <>
@@ -143,7 +143,7 @@ const [copyMessage, setCopyMessage] = useState('');
           </TouchableOpacity>
           {/* Annuler */}
           <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '30%', height: 50, top: bloquerOpen ? 60 : bloquerOpen && signalerOpen ? 60 : signalerOpen ? 60 :  180, left:40}} onPress={() => {setShowModal(false);}}>
-            <Image source={require('../../assets/images/croix-bold-rouge.png')}/>
+            <Image source={require('../../../assets/images/croix-bold-rouge.png')}/>
             <Text style={{ color: '#0019A7', fontFamily: 'Gilroy', fontSize: 20, fontStyle: 'normal', fontWeight: 700 }}>Annuler</Text>
           </TouchableOpacity>
         </>) : linkModal === 'Bloquer' ? (

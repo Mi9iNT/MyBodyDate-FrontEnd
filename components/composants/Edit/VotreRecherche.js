@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {MyComponentVotreRecherche} from '../../composants/Edit/MyComponentVotreRecherche';
+import {MyComponentVotreRecherche} from './MyComponentVotreRecherche';
 
 export const VotreRecherche = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';

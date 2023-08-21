@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {MyComponentAstrologie} from '../../composants/Edit/MyComponentAstrologie';
+import {MyComponentAstrologie} from './MyComponentAstrologie';
 
 export const Astrologie = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
