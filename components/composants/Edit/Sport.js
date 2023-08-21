@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {MyComponentSport} from '../../composants/Edit/MyComponentSport';
+import {MyComponentSport} from './MyComponentSport';
 
 export const Sport = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';

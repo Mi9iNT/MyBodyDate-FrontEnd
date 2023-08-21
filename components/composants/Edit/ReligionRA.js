@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {MyComponentReligion} from '../../composants/Edit/MyComponentReligion';
+import {MyComponentReligion} from './MyComponentReligion';
 
 export const ReligionRA = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
