@@ -138,7 +138,8 @@ export const EvenBio = ({route, navigation}) => {
             Mes événements
           </Text>
         </View>
-        <View
+        <TouchableOpacity
+          onPress={() => {navigation.navigate('Evenements')}}
           style={{
             top: 50,
             left: 30,
@@ -162,7 +163,7 @@ export const EvenBio = ({route, navigation}) => {
             }}>
             Voir tous les évenements
           </Text>
-        </View>
+        </TouchableOpacity>
         <View
           style={{
             alignItems: 'center',
@@ -239,13 +240,16 @@ export const EvenBio = ({route, navigation}) => {
               style={{
                 left: 120,
               }}>
-              <Image
+              <TouchableOpacity
+                onPress={() => { navigation.navigate('Evenements') }}>
+                <Image
                 source={require('../../../assets/images/Reserver.png')}
                 style={{
                   width: 115,
                   height: 33,
                 }}
               />
+            </TouchableOpacity>
             </View>
           </View>
         </View>
