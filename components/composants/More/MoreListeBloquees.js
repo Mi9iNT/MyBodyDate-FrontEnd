@@ -44,26 +44,26 @@ const MoreListeBloquees = () => {
           contentContainerStyle={{ paddingBottom: 20, }}>
         <View style={{ width: 250, left: 10, flexDirection: 'column', justifyContent: 'space-between' }}>
           <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-around', height:120}}>
-            <Image source={require('../../assets/images/charles-ellipse.png')} style={{ width: 80, height: 80, resizeMode: 'contain', }} />
+            <Image source={require('../../../assets/images/charles-ellipse.png')} style={{ width: 80, height: 80, resizeMode: 'contain', }} />
             <Text style={{ color: '#0019A7', textAlign: 'left', fontFamily: 'Comfortaa', fontSize: 20, fontStyle: 'normal', fontWeight: 700 }}>Charles</Text>
             <RadioInput
               selected={selectedOption === true}
               onPress={() =>  {selectedOption === true ? setSelectedOption(false) : setSelectedOption(true);}} />
             <TouchableOpacity style={{position:'absolute', alignSelf: 'flex-end',alignItems:'center', justifyContent:'space-between', right: 10, flexDirection:'row', backgroundColor:'transparent', width:120,height:32,}}>
-              <Image source={require('../../assets/images/croix-bold-rouge.png')} style={{ width: 12, height: 12, resizeMode: 'contain', }} />
+              <Image source={require('../../../assets/images/croix-bold-rouge.png')} style={{ width: 12, height: 12, resizeMode: 'contain', }} />
               <Text style={{ color: '#0019A7', textAlign: 'left', fontFamily: 'Comfortaa', fontSize: 20, fontStyle: 'normal', fontWeight: 700 }}>Débloquer</Text>
             </TouchableOpacity>
           </View>
           <View style={{ backgroundColor: '#0019A7', height: 2, width: '80%', alignSelf: 'center' }} />  
           <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-around', height:120}}>
-            <Image source={require('../../assets/images/bruno-ellipse.png')} style={{ width: 80, height: 80, resizeMode: 'contain', }} />
+            <Image source={require('../../../assets/images/bruno-ellipse.png')} style={{ width: 80, height: 80, resizeMode: 'contain', }} />
             <Text style={{ color: '#0019A7', textAlign: 'left', fontFamily: 'Comfortaa', fontSize: 20, fontStyle: 'normal', fontWeight: 700 }}>Bruno</Text>
             <RadioInput
               selected={selectedOption === true}
               onPress={() => { selectedOption === true ? setSelectedOption(false) : setSelectedOption(true); }}
             />
             <TouchableOpacity style={{position:'absolute', alignSelf: 'flex-end',alignItems:'center', justifyContent:'space-between', right: 10, flexDirection:'row', backgroundColor:'transparent', width:120,height:32,}}>
-              <Image source={require('../../assets/images/croix-bold-rouge.png')} style={{ width: 12, height: 12, resizeMode: 'contain', }} />
+              <Image source={require('../../../assets/images/croix-bold-rouge.png')} style={{ width: 12, height: 12, resizeMode: 'contain', }} />
               <Text style={{ color: '#0019A7', textAlign: 'left', fontFamily: 'Comfortaa', fontSize: 20, fontStyle: 'normal', fontWeight: 700 }}>Débloquer</Text>
             </TouchableOpacity>
           </View>
