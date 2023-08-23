@@ -12,7 +12,7 @@ import {
 
 const DefaultCode1 = ({setShowDefaultCode2, navigation}) => (
   <ImageBackground
-    source={require('../../assets/images/bg-parametres.png')}
+    source={require('../../../assets/images/bg-parametres.png')}
     style={{flex: 1}}>
     <View
       style={{
@@ -32,7 +32,7 @@ const DefaultCode1 = ({setShowDefaultCode2, navigation}) => (
           Événements à venir
         </Text>
         <Image
-          source={require('../../assets/images/Line-107.png')}
+          source={require('../../../assets/images/Line-107.png')}
           style={{
             right: 18,
             width: 195,
@@ -89,7 +89,7 @@ const DefaultCode1 = ({setShowDefaultCode2, navigation}) => (
       }}>
       <View>
         <Image
-          source={require('../../assets/images/Event1.png')}
+          source={require('../../../assets/images/Event1.png')}
           style={{
             width: 187,
             height: 152,
@@ -132,7 +132,7 @@ const DefaultCode1 = ({setShowDefaultCode2, navigation}) => (
             left: 15,
           }}>
           <Image
-            source={require('../../assets/images/Reserver.png')}
+            source={require('../../../assets/images/Reserver.png')}
             style={{
               width: 115,
               height: 33,
@@ -150,7 +150,7 @@ const DefaultCode1 = ({setShowDefaultCode2, navigation}) => (
       }}>
       <View>
         <Image
-          source={require('../../assets/images/Event2.png')}
+          source={require('../../../assets/images/Event2.png')}
           style={{
             width: 187,
             height: 152,
@@ -174,7 +174,7 @@ const DefaultCode1 = ({setShowDefaultCode2, navigation}) => (
             flexDirection: 'row',
           }}>
           <Image
-            source={require('../../assets/images/PointR.png')}
+            source={require('../../../assets/images/PointR.png')}
             style={{
               width: 9,
               height: 9,
@@ -207,7 +207,7 @@ const DefaultCode1 = ({setShowDefaultCode2, navigation}) => (
             left: 15,
           }}>
           <Image
-            source={require('../../assets/images/Reserver.png')}
+            source={require('../../../assets/images/Reserver.png')}
             style={{
               width: 115,
               height: 33,
@@ -221,7 +221,7 @@ const DefaultCode1 = ({setShowDefaultCode2, navigation}) => (
 
 const DefaultCode2 = ({setShowDefaultCode2}) => (
   <ImageBackground
-    source={require('../../assets/images/bg-parametres.png')}
+    source={require('../../../assets/images/bg-parametres.png')}
     style={{flex: 1}}>
     <View
       style={{
@@ -279,7 +279,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
       </Text>
     </View>
     <Image
-      source={require('../../assets/images/Line-107.png')}
+      source={require('../../../assets/images/Line-107.png')}
       style={{
         width: 195,
         height: 3,
@@ -297,7 +297,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
       }}>
       <View>
         <Image
-          source={require('../../assets/images/Event1.png')}
+          source={require('../../../assets/images/Event1.png')}
           style={{
             width: 187,
             height: 152,

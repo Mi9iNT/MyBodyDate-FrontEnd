@@ -6,6 +6,9 @@ import {View, Text, Image, ImageBackground} from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
 import {MenuBottom} from '../../composants/MenuBottom';
+import {More} from '../../composants/more/More';
+import Styles from '../../../assets/style/Styles';
+import LinearGradient from 'react-native-linear-gradient';
 
 export const DiscoverBio = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';

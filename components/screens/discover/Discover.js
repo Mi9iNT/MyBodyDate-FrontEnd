@@ -7,7 +7,9 @@ import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
 import {MyComponent} from '../../composants/MyComponent';
 import {MenuBottom} from '../../composants/MenuBottom';
-import {More} from '../../composants/More';
+import {More} from '../../composants/more/More';
+import Styles from '../../../assets/style/Styles';
+import LinearGradient from 'react-native-linear-gradient';
 import Spotlight from '../../composants/Spotlight';
 export const Discover = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';

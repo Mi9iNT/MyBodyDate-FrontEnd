@@ -182,3 +182,4 @@ NiveauDEtudes.propTypes = {
   route: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
 };
+
