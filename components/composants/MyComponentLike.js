@@ -64,17 +64,17 @@ const DefaultCode1 = ({setShowDefaultCode2}) => (
         <Image
           source={require('../../assets/images/Tous21.png')}
           style={{
-            width: 123,
-            height: 29,
-            right: 5,
+            width: 120,
+            height: 35,
+            right: 3,
           }}
         />
         <Image
           source={require('../../assets/images/Proximite12.png')}
           style={{
-            width: 126,
-            height: 30,
-            right: 2,
+            width: 139,
+            height: 33,
+            top: 1,
           }}
         />
         <Image
@@ -201,17 +201,17 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
         <Image
           source={require('../../assets/images/Tous5.png')}
           style={{
-            width: 123,
-            height: 29,
-            right: 5,
+            width: 120,
+            height: 35,
+            right: 3,
           }}
         />
         <Image
           source={require('../../assets/images/Proximite2.png')}
           style={{
-            width: 126,
-            height: 30,
-            right: 2,
+            width: 139,
+            height: 33,
+            top: 1,
           }}
         />
         <Image

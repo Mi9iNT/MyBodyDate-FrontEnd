@@ -5,7 +5,7 @@ import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image} from 'react-native';
 import PropTypes from 'prop-types';
-import {MyComponentOrigine} from '../../composants/Edit/MyComponentOrigine';
+import {MyComponentOrigine} from './MyComponentOrigine';
 
 export const Origine = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
@@ -102,7 +102,6 @@ export const Origine = ({route, navigation}) => {
     </View>
   );
 };
-
 
 Origine.propTypes = {
   route: PropTypes.object.isRequired,

@@ -3,13 +3,9 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
-import {
-  View,
-  Text,
-  Image,
-} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import PropTypes from 'prop-types';
-import {MyComponentAlcool} from '../../composants/Edit/MyComponentAlcool';
+import {MyComponentAlcool} from './MyComponentAlcool';
 
 export const Alcool = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';

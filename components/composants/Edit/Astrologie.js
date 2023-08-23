@@ -3,13 +3,9 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
-import {
-  View,
-  Text,
-  Image,
-} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import PropTypes from 'prop-types';
-import {MyComponentAstrologie} from '../../composants/Edit/MyComponentAstrologie';
+import {MyComponentAstrologie} from './MyComponentAstrologie';
 
 export const Astrologie = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';

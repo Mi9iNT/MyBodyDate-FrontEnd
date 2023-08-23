@@ -3,13 +3,9 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import {StatusBar, TextInput} from 'react-native';
-import {
-  View,
-  Text,
-  Image,
-} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import PropTypes from 'prop-types';
-import {MyComponentFumer} from '../../composants/Edit/MyComponentFumer';
+import {MyComponentFumer} from './MyComponentFumer';
 
 export const Fumer = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
@@ -113,4 +109,3 @@ Fumer.propTypes = {
   route: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
 };
-

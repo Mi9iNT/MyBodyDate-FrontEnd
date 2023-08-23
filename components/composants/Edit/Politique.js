@@ -5,7 +5,7 @@ import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image} from 'react-native';
 import PropTypes from 'prop-types';
-import {MyComponentPolitique} from '../../composants/Edit/MyComponentPolitique';
+import {MyComponentPolitique} from './MyComponentPolitique';
 
 export const Politique = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';

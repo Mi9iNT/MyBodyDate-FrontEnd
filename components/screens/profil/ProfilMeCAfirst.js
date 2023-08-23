@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
@@ -7,7 +8,7 @@ import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
 import Styles from '../../../assets/style/Styles';
 
-export const ProfilMeCAFirst = ({route, navigation, imagePath}) => {
+export const ProfilMeCAfirst = ({route, navigation, imagePath}) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -86,20 +87,10 @@ export const ProfilMeCAFirst = ({route, navigation, imagePath}) => {
               fontWeight: '700',
               fontSize: 14,
               color: '#9424FA',
-              left: 5,
               top: 15,
             }}>
-            Ajoutez jusqua 3 photos de vous, pour
-          </Text>
-          <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '500',
-              fontSize: 14,
-              color: '#9424FA',
-              top: 15,
-            }}>
-            agrandir votre cercle social.
+            Ajoutez jusqua 3 photos de vous, pour{'\n'}agrandir votre cercle
+            social.
           </Text>
         </View>
         <View
@@ -137,7 +128,7 @@ export const ProfilMeCAFirst = ({route, navigation, imagePath}) => {
           source={require('../../../assets/images/Line133.png')}
           style={{
             width: 310,
-            height: 1,
+            height: 2,
             top: 80,
             alignItems: 'center',
             alignSelf: 'center',
@@ -149,7 +140,7 @@ export const ProfilMeCAFirst = ({route, navigation, imagePath}) => {
             fontWeight: '700',
             fontSize: 14,
             color: '#9424FA',
-            top: 85,
+            top: 90,
             left: 45,
           }}>
           Pour plus de photos sur votre profil,{'\n'}ajoutez votre flux
@@ -238,37 +229,39 @@ export const ProfilMeCAFirst = ({route, navigation, imagePath}) => {
               marginTop: 450,
               left: 10,
             }}>
-            <View
-              style={{
-                bottom: 380,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../../assets/images/btn_diplome.png')}
-              />
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  fontSize: 15,
-                  color: '#9424FA',
-                  left: 20,
-                }}>
-                Niveau d'étude
-              </Text>
               <TouchableOpacity
-                onPress={() => handleAddProToggle(0)}
-                style={{width: 35, height: 35, left: 169}}>
+                onPress={() => {
+                  handleAddProToggle(0);
+                  navigation.navigate('NiveauDEtudes');
+                }}
+                style={{
+                  bottom: 380,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}>
                 <Image
-                  source={
-                    addProVisible[0]
-                      ? require('../../../assets/images/add_plein.png')
-                      : require('../../../assets/images/add_vide.png')
-                  }
+                  source={require('../../../assets/images/btn_diplome.png')}
                 />
+                <Text
+                  style={{
+                    fontFamily: 'Comfortaa',
+                    fontWeight: '700',
+                    fontSize: 15,
+                    color: '#9424FA',
+                    left: 20,
+                  }}>
+                  Niveau d'étude
+                </Text>
+                <View style={{width: 35, height: 35, left: 169}}>
+                  <Image
+                    source={
+                      addProVisible[0]
+                        ? require('../../../assets/images/add_plein.png')
+                        : require('../../../assets/images/add_vide.png')
+                    }
+                  />
+                </View>
               </TouchableOpacity>
-            </View>
             <View
               style={{
                 bottom: 360,
@@ -450,7 +443,7 @@ export const ProfilMeCAFirst = ({route, navigation, imagePath}) => {
   );
 };
 
-ProfilMeCAFirst.propTypes = {
+ProfilMeCAfirst.propTypes = {
   route: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
 };

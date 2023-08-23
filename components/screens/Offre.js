@@ -11,9 +11,6 @@ import {
   TextInput,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import MenuSlide from '../../composants/MenuSlide';
-import {MenuBottom} from '../../composants/MenuBottom';
-import {MyComponentTer} from '../../composants/MyComponentTer';
 
 export const Offre = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';

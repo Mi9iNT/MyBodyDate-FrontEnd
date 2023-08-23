@@ -38,6 +38,7 @@ export const ProfilMeRPfirst = ({route, navigation}) => {
     false,
     false,
     false,
+    false,
   ]);
 
   const handleAddProToggle = index => {
@@ -71,11 +72,10 @@ export const ProfilMeRPfirst = ({route, navigation}) => {
             fontFamily: 'Gilroy',
             fontWeight: '700',
             fontSize: 22,
-            lineHeight: 26,
             color: 'black',
             textAlign: 'center',
           }}>
-          Progil éditer
+          Profil éditer
         </Text>
         <View style={{marginTop: 20, marginLeft: 20}}>
           <Text
@@ -83,7 +83,6 @@ export const ProfilMeRPfirst = ({route, navigation}) => {
               fontFamily: 'Gilroy',
               fontWeight: '700',
               fontSize: 22,
-              lineHeight: 26,
               color: 'black',
             }}>
             Photos
@@ -91,14 +90,13 @@ export const ProfilMeRPfirst = ({route, navigation}) => {
           <Text
             style={{
               fontFamily: 'Comfortaa',
-              fontWeight: '500',
-              fontSize: 16,
-              lineHeight: 18,
+              fontWeight: '700',
+              fontSize: 14,
               color: 'black',
               marginTop: 10,
             }}>
-            Ajoutez jusqu'a 3 photos professionnels de vous pour gagner en
-            crédibilité.
+            Ajoutez jusqu'à 3 photos professionnelles de{'\n'}vous pour gagner
+            en crédibilité.
           </Text>
           <View
             style={{
@@ -157,221 +155,280 @@ export const ProfilMeRPfirst = ({route, navigation}) => {
             style={{
               fontFamily: 'Gilroy',
               fontWeight: '700',
-              fontSize: 22,
-              lineHeight: 26,
+              fontSize: 20,
               color: 'black',
             }}>
-            A propos de moi
+            À propos de moi
           </Text>
           <Text
             style={{
               fontFamily: 'Comfortaa',
               fontWeight: '500',
-              fontSize: 16,
-              lineHeight: 18,
+              fontSize: 14,
               color: 'black',
-              marginTop: 10,
+              marginTop: 20,
             }}>
-            Ecrivez votre intitulé impactant.
+            Ecrivez votre phrase d'accroche.
           </Text>
           <View
             style={{
               borderWidth: 1,
               borderColor: '#E0BDFF',
               borderRadius: 30,
-              marginTop: 10,
+              marginTop: 20,
               padding: 10,
+              right: 10,
             }}>
             <TextInput
-              placeholder="Partagez le meilleur votre expérience, en résumé..."
-              style={{color: 'black', textAlign: 'left'}}
+              placeholder="Partagez le meilleur de votre expérience,      en résumé..."
+              style={{
+                color: 'black',
+                textAlign: 'left',
+                bottom: 30,
+                width: 300,
+                height: 100,
+              }}
             />
           </View>
         </View>
-        <View style={{marginTop: 35, marginLeft: 20}}>
+        <View style={{marginTop: 10, marginLeft: 20}}>
           <Text
             style={{
               fontFamily: 'Gilroy',
               fontWeight: '700',
               fontSize: 22,
-              lineHeight: 26,
               color: 'black',
+              top: 20,
             }}>
             Mes infos de base
           </Text>
           <View
-            style={{flexDirection: 'row', marginTop: 15, alignItems: 'center'}}>
-            <Image
-              source={require('../../../assets/images/statut.png')}
-              style={{marginRight: 10}}
-            />
-            <Text
+            style={{
+              marginTop: 430,
+              left: 8,
+            }}>
+            <View
               style={{
-                fontFamily: 'Comfortaa',
-                fontWeight: '500',
-                fontSize: 16,
-                lineHeight: 18,
-                color: 'black',
+                bottom: 380,
+                flexDirection: 'row',
+                alignItems: 'center',
               }}>
-              Statut
-            </Text>
-            <TouchableOpacity
-              onPress={() => handleAddProToggle(0)}
-              style={{marginLeft: 'auto', marginRight: 10}}>
-              <Image
-                source={
-                  addProVisible[0]
-                    ? require('../../../assets/images/add_pro_plein.png')
-                    : require('../../../assets/images/add_pro_vide.png')
-                }
-              />
-            </TouchableOpacity>
-          </View>
-          <View
-            style={{flexDirection: 'row', marginTop: 15, alignItems: 'center'}}>
-            <Image
-              source={require('../../../assets/images/recherche_emploi.png')}
-              style={{marginRight: 10}}
-            />
-            <Text
+              <Image source={require('../../../assets/images/statut.png')} />
+              <Text
+                style={{
+                  fontFamily: 'Comfortaa',
+                  fontWeight: '700',
+                  fontSize: 16,
+                  color: 'black',
+                  left: 20,
+                }}>
+                Statut
+              </Text>
+              <TouchableOpacity
+                onPress={() => handleAddProToggle(0)}
+                style={{width: 3, height: 35, left: 220}}>
+                <Image
+                  source={
+                    addProVisible[0]
+                      ? require('../../../assets/images/add_pro_plein.png')
+                      : require('../../../assets/images/add_pro_vide.png')
+                  }
+                />
+              </TouchableOpacity>
+            </View>
+            <View
               style={{
-                fontFamily: 'Comfortaa',
-                fontWeight: '500',
-                fontSize: 16,
-                lineHeight: 18,
-                color: 'black',
+                bottom: 340,
+                flexDirection: 'row',
+                alignItems: 'center',
               }}>
-              Recherche
-            </Text>
-            <TouchableOpacity
-              onPress={() => handleAddProToggle(1)}
-              style={{marginLeft: 'auto', marginRight: 10}}>
               <Image
-                source={
-                  addProVisible[1]
-                    ? require('../../../assets/images/add_pro_plein.png')
-                    : require('../../../assets/images/add_pro_vide.png')
-                }
+                source={require('../../../assets/images/recherche_emploi.png')}
               />
-            </TouchableOpacity>
-          </View>
-          <View
-            style={{flexDirection: 'row', marginTop: 15, alignItems: 'center'}}>
-            <Image
-              source={require('../../../assets/images/publier__offre.png')}
-              style={{marginRight: 10}}
-            />
-            <Text
+              <Text
+                style={{
+                  fontFamily: 'Comfortaa',
+                  fontWeight: '700',
+                  fontSize: 16,
+                  color: 'black',
+                  left: 20,
+                }}>
+                Recherche
+              </Text>
+              <TouchableOpacity
+                onPress={() => handleAddProToggle(1)}
+                style={{width: 35, height: 35, left: 187}}>
+                <Image
+                  source={
+                    addProVisible[1]
+                      ? require('../../../assets/images/add_pro_plein.png')
+                      : require('../../../assets/images/add_pro_vide.png')
+                  }
+                />
+              </TouchableOpacity>
+            </View>
+            <View
               style={{
-                fontFamily: 'Comfortaa',
-                fontWeight: '500',
-                fontSize: 16,
-                lineHeight: 18,
-                color: 'black',
+                bottom: 300,
+                flexDirection: 'row',
+                alignItems: 'center',
               }}>
-              Publier une offre
-            </Text>
-            <TouchableOpacity
-              onPress={() => handleAddProToggle(2)}
-              style={{marginLeft: 'auto', marginRight: 10}}>
               <Image
-                source={
-                  addProVisible[2]
-                    ? require('../../../assets/images/add_pro_plein.png')
-                    : require('../../../assets/images/add_pro_vide.png')
-                }
+                source={require('../../../assets/images/publier__offre.png')}
               />
-            </TouchableOpacity>
-          </View>
-          <View
-            style={{flexDirection: 'row', marginTop: 15, alignItems: 'center'}}>
-            <Image
-              source={require('../../../assets/images/langue_pro.png')}
-              style={{marginRight: 10}}
-            />
-            <Text
+              <Text
+                style={{
+                  fontFamily: 'Comfortaa',
+                  fontWeight: '700',
+                  fontSize: 16,
+                  color: 'black',
+                  left: 20,
+                }}>
+                Publier une offre
+              </Text>
+              <TouchableOpacity
+                onPress={() => handleAddProToggle(2)}
+                style={{width: 35, height: 35, left: 142}}>
+                <Image
+                  source={
+                    addProVisible[2]
+                      ? require('../../../assets/images/add_pro_plein.png')
+                      : require('../../../assets/images/add_pro_vide.png')
+                  }
+                />
+              </TouchableOpacity>
+            </View>
+            <View
               style={{
-                fontFamily: 'Comfortaa',
-                fontWeight: '500',
-                fontSize: 16,
-                lineHeight: 18,
-                color: 'black',
+                bottom: 260,
+                flexDirection: 'row',
+                alignItems: 'center',
               }}>
-              Je parle courament
-            </Text>
-            <TouchableOpacity
-              onPress={() => handleAddProToggle(3)}
-              style={{marginLeft: 'auto', marginRight: 10}}>
               <Image
-                source={
-                  addProVisible[3]
-                    ? require('../../../assets/images/add_pro_plein.png')
-                    : require('../../../assets/images/add_pro_vide.png')
-                }
+                source={require('../../../assets/images/langue_pro.png')}
               />
-            </TouchableOpacity>
-          </View>
-          <View
-            style={{flexDirection: 'row', marginTop: 15, alignItems: 'center'}}>
-            <Image
-              source={require('../../../assets/images/distinctions.png')}
-              style={{marginRight: 10}}
-            />
-            <Text
+              <Text
+                style={{
+                  fontFamily: 'Comfortaa',
+                  fontWeight: '700',
+                  fontSize: 16,
+                  color: 'black',
+                  left: 20,
+                }}>
+                Je parle courament
+              </Text>
+              <TouchableOpacity
+                onPress={() => handleAddProToggle(3)}
+                style={{width: 35, height: 35, left: 123}}>
+                <Image
+                  source={
+                    addProVisible[3]
+                      ? require('../../../assets/images/add_pro_plein.png')
+                      : require('../../../assets/images/add_pro_vide.png')
+                  }
+                />
+              </TouchableOpacity>
+            </View>
+            <View
               style={{
-                fontFamily: 'Comfortaa',
-                fontWeight: '500',
-                fontSize: 16,
-                lineHeight: 18,
-                color: 'black',
+                bottom: 220,
+                flexDirection: 'row',
+                alignItems: 'center',
               }}>
-              Mes distinctions
-            </Text>
-            <TouchableOpacity
-              onPress={() => handleAddProToggle(4)}
-              style={{marginLeft: 'auto', marginRight: 10}}>
               <Image
-                source={
-                  addProVisible[4]
-                    ? require('../../../assets/images/add_pro_plein.png')
-                    : require('../../../assets/images/add_pro_vide.png')
-                }
+                source={require('../../../assets/images/distinctions.png')}
               />
-            </TouchableOpacity>
-          </View>
-          <View
-            style={{flexDirection: 'row', marginTop: 15, alignItems: 'center'}}>
-            <Image
-              source={require('../../../assets/images/distinctions.png')}
-              style={{marginRight: 10}}
-            />
-            <Text
+              <Text
+                style={{
+                  fontFamily: 'Comfortaa',
+                  fontWeight: '700',
+                  fontSize: 16,
+                  color: 'black',
+                  left: 20,
+                }}>
+                Mes distinctions
+              </Text>
+              <TouchableOpacity
+                onPress={() => handleAddProToggle(4)}
+                style={{width: 35, height: 35, left: 142}}>
+                <Image
+                  source={
+                    addProVisible[4]
+                      ? require('../../../assets/images/add_pro_plein.png')
+                      : require('../../../assets/images/add_pro_vide.png')
+                  }
+                />
+              </TouchableOpacity>
+            </View>
+            <View
               style={{
-                fontFamily: 'Comfortaa',
-                fontWeight: '500',
-                fontSize: 16,
-                lineHeight: 18,
-                color: 'black',
+                bottom: 180,
+                flexDirection: 'row',
+                alignItems: 'center',
               }}>
-              Mes softs skils
-            </Text>
-            <TouchableOpacity
-              onPress={() => handleAddProToggle(5)}
-              style={{marginLeft: 'auto', marginRight: 10}}>
               <Image
-                source={
-                  addProVisible[5]
-                    ? require('../../../assets/images/add_pro_plein.png')
-                    : require('../../../assets/images/add_pro_vide.png')
-                }
+                source={require('../../../assets/images/distinctions.png')}
               />
-            </TouchableOpacity>
+              <Text
+                style={{
+                  fontFamily: 'Comfortaa',
+                  fontWeight: '700',
+                  fontSize: 16,
+                  color: 'black',
+                  left: 20,
+                }}>
+                Mes compétences
+              </Text>
+              <TouchableOpacity
+                onPress={() => handleAddProToggle(5)}
+                style={{width: 35, height: 35, left: 131}}>
+                <Image
+                  source={
+                    addProVisible[5]
+                      ? require('../../../assets/images/add_pro_plein.png')
+                      : require('../../../assets/images/add_pro_vide.png')
+                  }
+                />
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                bottom: 140,
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}>
+              <Image
+                source={require('../../../assets/images/LinkedIn-RP.png')}
+              />
+              <Text
+                style={{
+                  fontFamily: 'Comfortaa',
+                  fontWeight: '700',
+                  fontSize: 16,
+                  color: 'black',
+                  left: 20,
+                }}>
+                Url LinkedIn
+              </Text>
+              <TouchableOpacity
+                onPress={() => handleAddProToggle(6)}
+                style={{width: 35, height: 35, left: 180}}>
+                <Image
+                  source={
+                    addProVisible[6]
+                      ? require('../../../assets/images/add_pro_plein.png')
+                      : require('../../../assets/images/add_pro_vide.png')
+                  }
+                />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </ScrollView>
     </View>
   );
 };
+
 
 ProfilMeRPfirst.propTypes = {
   route: PropTypes.object.isRequired,

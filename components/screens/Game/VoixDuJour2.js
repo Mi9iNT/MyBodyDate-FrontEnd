@@ -7,13 +7,8 @@ import {
   Text,
   Image,
   ImageBackground,
-  TouchableOpacity,
-  TextInput,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import MenuSlide from '../../composants/MenuSlide';
-import {MenuBottom} from '../../composants/MenuBottom';
-import {MyComponentTer} from '../../composants/MyComponentTer';
 
 export const VoixDuJour2 = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
@@ -40,8 +35,11 @@ export const VoixDuJour2 = ({route, navigation}) => {
   return (
     <View style={{flex: 1}}>
       <ImageBackground
-        source={require('../../../assets/images/Background-VJ2.png')}
-        style={{flex: 1}}>
+        source={require('../../../assets/images/Background.png')}
+        style={{
+          width: '100%',
+          height: '100%',
+        }}>
         <Image
           source={require('../../../assets/images/Group-58.png')}
           style={{
@@ -55,12 +53,24 @@ export const VoixDuJour2 = ({route, navigation}) => {
           <Text
             style={{
               fontSize: 24,
+              fontFamily: 'Gilory',
+              fontWeight: '700',
+              color: '#FFF',
+              alignSelf: 'center',
+              textAlign: 'center',
+              top: 40,
+            }}>
+            La voix du jour
+          </Text>
+          <Text
+            style={{
+              fontSize: 24,
               fontFamily: 'Comfortaa',
               fontWeight: '400',
               color: '#FFF',
               alignSelf: 'center',
               textAlign: 'center',
-              top: 105,
+              top: 75,
             }}>
             Envie d'en savoir plus sur{'\n'}Rachel ?
           </Text>
@@ -72,7 +82,7 @@ export const VoixDuJour2 = ({route, navigation}) => {
               color: '#FFF',
               alignSelf: 'center',
               textAlign: 'center',
-              top: 135,
+              top: 95,
             }}>
             Découvrez sa voix !
           </Text>
@@ -81,7 +91,7 @@ export const VoixDuJour2 = ({route, navigation}) => {
               justifyContent: 'space-around',
               flexDirection: 'row',
               alignItems: 'center',
-              top: 180,
+              top: 135,
             }}>
             <Image
               source={require('../../../assets/images/Play-P.png')}
@@ -111,7 +121,7 @@ export const VoixDuJour2 = ({route, navigation}) => {
             style={{
               width: 237,
               height: 237,
-              top: 210,
+              top: 175,
             }}
           />
           <Text
@@ -120,7 +130,9 @@ export const VoixDuJour2 = ({route, navigation}) => {
               fontFamily: 'Comfortaa',
               fontWeight: '700',
               color: '#FFF',
-              top: 215,
+              top: 175,
+              alignSelf: 'center',
+              textAlign: 'center',
             }}>
             Rachel
           </Text>
@@ -129,7 +141,7 @@ export const VoixDuJour2 = ({route, navigation}) => {
             style={{
               width: 331,
               height: 56,
-              top: 230,
+              top: 200,
             }}
           />
           <View
@@ -137,7 +149,7 @@ export const VoixDuJour2 = ({route, navigation}) => {
               justifyContent: 'space-around',
               flexDirection: 'row',
               alignItems: 'center',
-              top: 250,
+              top: 220,
             }}>
             <Image
               source={require('../../../assets/images/Rejouer.png')}
