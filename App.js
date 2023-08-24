@@ -45,12 +45,14 @@ import {Felicitations} from './components/screens/register/Felicitations';
 import {HomeStackNext} from './components/screens/HomeStackNext';
 import {SignInMail} from './components/screens/register/SinscrireMail';
 import {SignInPhone} from './components/screens/register/SinscrirePhone';
-import {RecuperationCode} from './components/screens/RecuperationCode';
+import {RecuperationCode} from './components/screens/register/RecuperationCode';
 import {ConfirmationNumero} from './components/screens/register/ConfirmationNumero';
 import {Profil} from './components/screens/profil/Profil';
 import {ProfilMeRA} from './components/screens/profil/ProfilMeRA';
 import {ProfilMeRP} from './components/screens/profil/ProfilMeRP';
 import {ProfilMeCA} from './components/screens/profil/ProfilMeCA';
+import {NiveauDEtudes} from './components/composants/edit/NiveauDEtudes';
+import {ProfilMeCAfirst} from './components/screens/profil/ProfilMeCAfirst';
 import {Discover} from './components/screens/discover/Discover';
 import {Notifications } from './components/screens/Notifications';
 import {Settings} from './components/screens/settings/Settings';
@@ -87,7 +89,7 @@ import {AdvancedFiltre} from './components/screens/research/AdvancedFiltre';
 import {SaTaille} from './components/screens/research/SaTaille';
 import {SaMorphologie} from './components/screens/research/SaMorphologie';
 import {OrigineEthnique } from './components/screens/research/OrigineEthnique';
-import {NiveauEtude} from './components/screens/research/NiveauEtude';
+import {NiveauEtudeResearch} from './components/screens/research/NiveauEtudeResearch';
 import {Metier} from './components/screens/research/Metier';
 import {Religion} from './components/screens/research/Religion';
 import {SigneAstrologie} from './components/screens/research/SigneAstrologie';
@@ -551,6 +553,16 @@ function App() {
           options={{headerShown: false}}
         />
         <Stack.Screen
+          name="ProfilMeCAfirst"
+          component={ProfilMeCAfirst}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="NiveauDEtudes"
+          component={NiveauDEtudes}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
           name="Notifications"
           component={Notifications}
           options={{headerShown: false}}
@@ -751,7 +763,7 @@ function App() {
         />
         <Stack.Screen
           name="Niveau etude"
-          component={NiveauEtude}
+          component={NiveauEtudeResearch}
           options={{headerShown: false}}
         />
         <Stack.Screen

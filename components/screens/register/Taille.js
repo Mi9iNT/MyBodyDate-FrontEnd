@@ -6,14 +6,11 @@ import {
   Image,
   SafeAreaView,
   TouchableOpacity,
-  ScrollView,
   FlatList,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Styles from '../../../assets/style/Styles';
 
 export const Taille = ({route, navigation}) => {
-  // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -23,15 +20,8 @@ export const Taille = ({route, navigation}) => {
   const accesPosition = route.params?.accesPosition ?? '';
   const genre = route.params?.genre ?? '';
   const userBirth = route.params?.userBirth ?? '';
-  console.log('Choix de route : ', routeChoice);
-  console.log('Consentement : ', consentement);
-  console.log('Love Coach : ', loveCoach);
-  console.log('Email : ', userEmail);
-  console.log('Téléphone : ', userPhone);
-  console.log('Ville : ', userCity);
-  console.log('Accès position : ', accesPosition);
-  console.log('Genre : ', genre);
-  console.log('Date de naissance : ', userBirth);
+
+  const [buttonPressed, setButtonPressed] = useState();
 
   const scrollViewRef = useRef();
 
@@ -43,7 +33,7 @@ export const Taille = ({route, navigation}) => {
     scrollViewRef.current.scrollToOffset({offset: 0, animated: true});
   };
 
-  const [taille, setTaille] = React.useState();
+  const [taille, setTaille] = useState();
   console.log('Taille: ' + taille);
 
   const Data = [];
@@ -52,7 +42,7 @@ export const Taille = ({route, navigation}) => {
     Data.push({index: i, value: value + ' cm'});
   }
 
-  const [selectedIndex, setSelectedIndex] = React.useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   const handlePress = value => {
     setTaille(value);
@@ -89,60 +79,65 @@ export const Taille = ({route, navigation}) => {
       <ImageBackground
         style={Styles.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText]}>
-          <Text style={[Styles.textTitleWhite3, {top: 100}]}>
-            VOTRE TAILLE ?
-          </Text>
+        <View style={{flex: 5}}>
+          <View style={[Styles.ViewText]}>
+            <Text style={[Styles.textTitleWhite3, {top: 100}]}>
+              VOTRE TAILLE ?
+            </Text>
+          </View>
+          <View style={{flexDirection: 'row',height:130, width:'80%',justifyContent:'center',alignSelf:'center',alignItems:'center',bottom:250,}}>
+            <SafeAreaView style={[{top: 0, justifyContent:'center',}]}>
+              <FlatList
+                ref={scrollViewRef}
+                style={{height:130,alignSelf:'center'}}
+                data={Data}
+                initialNumToRender={3}
+                refreshing={true}
+                progressViewOffset={1}
+                renderItem={renderItem}
+                keyExtractor={item => item.index.toString()}
+              />
+            </SafeAreaView>
+            <View style={{flexDirection: 'column', height:130, left:20,alignItems:'center',}}>
+              <TouchableOpacity
+                style={{
+                  top:10,
+                  width: 20,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  alignSelf: 'flex-end',
+                }}
+                onPress={scrollUp}
+                accessibilityLabel="Monter">
+                <Image
+                  source={require('../../../assets/boutons/Arrow1.png')}
+                  style={{height: 70, resizeMode: 'contain'}}
+                />
+              </TouchableOpacity>
+              
+              <TouchableOpacity
+                style={{
+                  width: 20,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  alignSelf: 'flex-end',
+                  bottom:10,
+                }}
+                onPress={scrollDown}
+                accessibilityLabel="Descendre">
+                <Image
+                  source={require('../../../assets/boutons/Arrow2.png')}
+                  style={{ height: 70, resizeMode: 'contain'}}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
-
-        <SafeAreaView style={[{top: 180}]}>
+        <View style={[{flex: 1}]}>
           <TouchableOpacity
             style={Styles.btn}
-            onPress={scrollUp}
-            accessibilityLabel="Monter">
-            <Icon
-              name="arrow-up"
-              style={Styles.ScrollBtnUp}
-              size={19}
-              color="#fff"
-            />
-          </TouchableOpacity>
-
-          <ScrollView style={[Styles.ViewScroll]} alwaysBounceVertical={true}>
-            <FlatList
-              ref={scrollViewRef}
-              style={[Styles.ViewFlatlist]}
-              data={Data}
-              initialNumToRender={3}
-              refreshing={true}
-              progressViewOffset={1}
-              renderItem={renderItem}
-              keyExtractor={item => item.index.toString()}
-            />
-          </ScrollView>
-
-          <View style={Styles.barreScrollBtn} />
-
-          <TouchableOpacity
-            style={Styles.btn}
-            onPress={scrollDown}
-            accessibilityLabel="Descendre">
-            <Icon
-              name="arrow-down"
-              size={19}
-              style={Styles.ScrollBtnDown}
-              color="#fff"
-            />
-          </TouchableOpacity>
-        </SafeAreaView>
-        <View style={[Styles.ViewTextChoice, {top: 200, left: 40}]}>
-          <Text style={[Styles.textWhite2, {top: 60}]}>Choix unique.</Text>
-        </View>
-
-        <View style={[Styles.ViewBtn1, {top: 20}]}>
-          <TouchableOpacity
-            style={Styles.btn}
-            onPress={() =>
+            onPress={() => {
+              setButtonPressed('Continuer');
               navigation.navigate('Langue parler', {
                 userConsent: consentement,
                 routeName: routeChoice,
@@ -154,10 +149,18 @@ export const Taille = ({route, navigation}) => {
                 genre: genre,
                 userBirth: userBirth,
                 userSize: taille,
-              })
-            }
+              });
+            }}
             accessibilityLabel="Continuer">
-            <Text style={[Styles.textBtn9, {zIndex: 1, top: 45}]}>
+            <Text
+              style={[
+                Styles.textBtn9,
+                {
+                  zIndex: 1,
+                  top: 40,
+                  color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
+                },
+              ]}>
               Continuer
             </Text>
             <Image
@@ -165,12 +168,16 @@ export const Taille = ({route, navigation}) => {
                 {
                   top: 0,
                   width: '90%',
-                  height: 60,
+                  height: 56,
                   resizeMode: 'contain',
                   alignSelf: 'center',
                 },
               ]}
-              source={require('../../../assets/boutons/Bouton-Blanc.png')}
+              source={
+                buttonPressed === 'Continuer'
+                  ? require('../../../assets/boutons/Bouton-Rouge.png')
+                  : require('../../../assets/boutons/Bouton-Blanc.png')
+              }
             />
           </TouchableOpacity>
         </View>

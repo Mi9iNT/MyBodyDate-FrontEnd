@@ -54,6 +54,8 @@ export const Prenium = ({route, navigation}) => {
   console.log('Rythme de vie 2 : ', rythmeDeVie2);
   console.log('Prénom : ', userPrenom);
 
+  const [buttonPressed, setButtonPressed] = useState();
+
   //Constante permettant de savoir si l'utilisateur à appuyer sur play ou sur pause
   const [isPlaying, setIsPlaying] = React.useState(false);
   // Obtenir et formater la date courante en utilisant la méthode Date()
@@ -84,9 +86,15 @@ export const Prenium = ({route, navigation}) => {
         source={require('../../../assets/images/Background.png')}>
         <View style={[Styles.ViewText, {top: 100}]}>
           <Text style={[Styles.textWhiteCenter]}>ABONNEMENT PRENIUM</Text>
-          <Text style={[Styles.textWhiteRound, {top: 50}]}>{userPrenom}</Text>
+          <Text style={[Styles.textWhiteRound, {top: 50, padding: 10}]}>
+            {userPrenom}
+          </Text>
           {/* Parenthèse (id) à changer par n° id_user de la bdd */}
-          <Text style={[Styles.textBlueCenter, {top: 80}]}>
+          <Text
+            style={[
+              Styles.textBlueCenter,
+              {top: 80, fontFamily: 'Comfortaa-Bold'},
+            ]}>
             ID.{formattedDate}.(id)
           </Text>
           <Text style={[Styles.textWhite4, {top: 100}]}>
@@ -106,7 +114,7 @@ export const Prenium = ({route, navigation}) => {
               <Image
                 source={
                   radioValue
-                    ? require('../../../assets/images/radio_selected_noir.png')
+                    ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
                 style={{width: 20, height: 20}}
@@ -118,7 +126,7 @@ export const Prenium = ({route, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={Styles.btn}
-            onPress={() =>
+            onPress={() => {
               navigation.navigate('Prenium', {
                 userConsent: consentement,
                 routeName: routeChoice,
@@ -139,8 +147,8 @@ export const Prenium = ({route, navigation}) => {
                 rythmeDeVie1: rythmeDeVie1,
                 rythmeDeVie2: rythmeDeVie2,
                 userPrenom: userPrenom,
-              })
-            }
+              });
+            }}
             accessibilityLabel="Voir les conditions d'abonnement Prenium<">
             <Text style={[Styles.textBtn8, {top: 120}]}>
               Voir les conditions d&apos;abonnement Prenium
@@ -149,7 +157,8 @@ export const Prenium = ({route, navigation}) => {
           <View style={[{top: 110}]}>
             <TouchableOpacity
               style={Styles.btn}
-              onPress={() =>
+              onPress={() => {
+                setButtonPressed('Continuer');
                 navigation.navigate('Compte', {
                   userConsent: consentement,
                   routeName: routeChoice,
@@ -170,23 +179,33 @@ export const Prenium = ({route, navigation}) => {
                   rythmeDeVie1: rythmeDeVie1,
                   rythmeDeVie2: rythmeDeVie2,
                   userPrenom: userPrenom,
-                })
-              }
+                });
+              }}
               accessibilityLabel="Continuer">
-              <Text style={[Styles.textBtn9, {zIndex: 1, top: 45}]}>
+              <Text
+                style={[
+                  Styles.textBtn9,
+                  {
+                    zIndex: 1,
+                    top: 40,
+                    color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
+                  },
+                ]}>
                 Continuer
               </Text>
               <Image
                 style={[
                   {
-                    top: 0,
-                    width: '90%',
-                    height: 60,
+                    height: 56,
                     resizeMode: 'contain',
                     alignSelf: 'center',
                   },
                 ]}
-                source={require('../../../assets/boutons/Bouton-Blanc.png')}
+                source={
+                  buttonPressed === 'Continuer'
+                    ? require('../../../assets/boutons/Bouton-Rouge.png')
+                    : require('../../../assets/boutons/Bouton-Blanc.png')
+                }
               />
             </TouchableOpacity>
           </View>

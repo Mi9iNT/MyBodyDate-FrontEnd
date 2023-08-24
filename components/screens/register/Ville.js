@@ -25,6 +25,9 @@ export const Ville = ({route, navigation}) => {
 
   const [userCity, setVille] = React.useState();
   console.log('Ville: ' + userCity);
+
+  const [buttonPressed, setButtonPressed] = React.useState('');
+
   return (
     <View style={Styles.container}>
       <ImageBackground
@@ -43,7 +46,16 @@ export const Ville = ({route, navigation}) => {
             onChangeText={userCity => setVille(userCity)}
             value={userCity}
           />
-          <Text style={[Styles.textWhite4, {top: 50}]}>
+          <Text
+            style={[
+              {
+                top: 60,
+                left: 55,
+                color: '#FFF',
+                fontFamily: 'Comfortaa-Bold',
+                fontSize: 12,
+              },
+            ]}>
             Faites des rencontres locales.
           </Text>
         </SafeAreaView>
@@ -51,7 +63,8 @@ export const Ville = ({route, navigation}) => {
         <View style={[Styles.ViewBtn2, {top: 280}]}>
           <TouchableOpacity
             style={Styles.btn}
-            onPress={() =>
+            onPress={() => {
+              setButtonPressed('Continuer');
               navigation.navigate('Accès Position', {
                 userConsent: consentement,
                 routeName: routeChoice,
@@ -59,10 +72,18 @@ export const Ville = ({route, navigation}) => {
                 userEmail: userEmail,
                 userPhone: userPhone,
                 userCity: userCity,
-              })
-            }
+              });
+            }}
             accessibilityLabel="Continuer">
-            <Text style={[Styles.textBtn9, {zIndex: 1, top: 45}]}>
+            <Text
+              style={[
+                Styles.textBtn9,
+                {
+                  zIndex: 1,
+                  top: 42,
+                  color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
+                },
+              ]}>
               Continuer
             </Text>
             <Image
@@ -70,12 +91,16 @@ export const Ville = ({route, navigation}) => {
                 {
                   top: 0,
                   width: '90%',
-                  height: 60,
+                  height: 56,
                   resizeMode: 'contain',
                   alignSelf: 'center',
                 },
               ]}
-              source={require('../../../assets/boutons/Bouton-Blanc.png')}
+              source={
+                buttonPressed === 'Continuer'
+                  ? require('../../../assets/boutons/Bouton-Rouge.png')
+                  : require('../../../assets/boutons/Bouton-Blanc.png')
+              }
             />
           </TouchableOpacity>
         </View>

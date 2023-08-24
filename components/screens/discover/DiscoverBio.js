@@ -2,17 +2,9 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-  Modal,
-} from 'react-native';
+import {View, Text, Image, ImageBackground} from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
-import {MyComponent} from '../../composants/MyComponent';
 import {MenuBottom} from '../../composants/MenuBottom';
 import {More} from '../../composants/more/More';
 import Styles from '../../../assets/style/Styles';
@@ -48,7 +40,7 @@ export const DiscoverBio = ({route, navigation}) => {
       }}>
       <MenuSlide />
       <ImageBackground
-        source={require('../../../assets/images/Rectangle-44.png')}
+        source={require('../../../assets/images/Background.png')}
         style={{
           width: '100%',
           height: '100%',
@@ -254,10 +246,10 @@ export const DiscoverBio = ({route, navigation}) => {
             top: 50,
           }}>
           <ImageBackground
-            source={require('../../../assets/images/Rectangle-40-G.png')}
+            source={require('../../../assets/images/Bio-RencontreAmoureuse.png')}
             style={{
               width: 396,
-              height: 416,
+              height: 417,
             }}>
             <Text
               style={{
@@ -300,20 +292,42 @@ export const DiscoverBio = ({route, navigation}) => {
                 justifyContent: 'space-around',
                 flexDirection: 'row',
                 alignItems: 'center',
-                top: 20,
+                top: 60,
               }}>
               <Image
-                source={require('../../../assets/images/Rencontre-amoureuse-I.png')}
+                source={require('../../../assets/images/RencontreAmoureuse.png')}
                 style={{
                   width: 232,
                   height: 40,
                 }}
               />
               <Image
-                source={require('../../../assets/images/Sportif-I.png')}
+                source={require('../../../assets/images/Sportif-ve.png')}
                 style={{
-                  width: 110,
+                  width: 122,
                   height: 40,
+                }}
+              />
+            </View>
+            <View
+              style={{
+                justifyContent: 'space-around',
+                top: 80,
+                left: 10,
+              }}>
+              <Image
+                source={require('../../../assets/images/EterneAmoureux.png')}
+                style={{
+                  width: 239,
+                  height: 40,
+                }}
+              />
+              <Image
+                source={require('../../../assets/images/CuisineGourmet.png')}
+                style={{
+                  width: 339,
+                  height: 40,
+                  top: 20,
                 }}
               />
             </View>
@@ -322,41 +336,19 @@ export const DiscoverBio = ({route, navigation}) => {
                 justifyContent: 'space-around',
                 flexDirection: 'row',
                 alignItems: 'center',
-                top: 40,
+                top: 120,
               }}>
               <Image
-                source={require('../../../assets/images/Eternel-amoureux-I.png')}
+                source={require('../../../assets/images/CercleAmi-e-s.png')}
                 style={{
-                  width: 205,
+                  width: 167,
                   height: 40,
                 }}
               />
               <Image
-                source={require('../../../assets/images/Globe-trotter-I.png')}
+                source={require('../../../assets/images/GlobeTrotter.png')}
                 style={{
-                  width: 153,
-                  height: 40,
-                }}
-              />
-            </View>
-            <View
-              style={{
-                justifyContent: 'space-around',
-                flexDirection: 'row',
-                alignItems: 'center',
-                top: 60,
-              }}>
-              <Image
-                source={require('../../../assets/images/Cuisine-Gourmet-I.png')}
-                style={{
-                  width: 205,
-                  height: 40,
-                }}
-              />
-              <Image
-                source={require('../../../assets/images/Cercle-d-amis-I.png')}
-                style={{
-                  width: 161,
+                  width: 186,
                   height: 40,
                 }}
               />
@@ -371,24 +363,26 @@ export const DiscoverBio = ({route, navigation}) => {
             top: 60,
           }}>
           <Image
-            source={require('../../../assets/images/bouton-continuer-K.png')}
+            source={require('../../../assets/images/Bio-K.png')}
             style={{
               width: 100,
               height: 100,
+              left: 20,
             }}
           />
           <Image
-            source={require('../../../assets/images/bouton-continuer-K-1.png')}
+            source={require('../../../assets/images/Bio-K-1.png')}
             style={{
               width: 100,
               height: 101,
+              left: 20,
             }}
           />
           <Image
-            source={require('../../../assets/images/bouton-continuer-K-2.png')}
+            source={require('../../../assets/images/Bio-K-2.png')}
             style={{
-              width: 100,
-              height: 102,
+              width: 142,
+              height: 142,
             }}
           />
         </View>

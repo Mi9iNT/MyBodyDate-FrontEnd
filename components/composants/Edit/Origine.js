@@ -103,7 +103,6 @@ export const Origine = ({route, navigation}) => {
   );
 };
 
-
 Origine.propTypes = {
   route: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,

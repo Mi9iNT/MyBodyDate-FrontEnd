@@ -36,6 +36,7 @@ export const DateDeNaissance = ({route, navigation}) => {
   const [shortDate, setShortDate] = useState('');
   const [age, setAge] = useState();
   const today = new Date();
+  const [buttonPressed, setButtonPressed] = useState();
 
   const handleDateSelect = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -117,8 +118,30 @@ export const DateDeNaissance = ({route, navigation}) => {
             width: 130,
             height: 46,
           }}>
-          <Text style={[Styles.textWhite6]}>{label}</Text>
-          <Text style={[Styles.textWhite6]}>{subText}</Text>
+          <Text
+            style={[
+              {
+                fontFamily: selected === 'oui' ? 'Comfortaa-Bold' : 'Comfortaa',
+                fontSize: 13,
+                fontStyle: 'normal',
+                color: selected === 'oui' ? '#0019A7' : '#fff',
+                fontWeight: selected === 'oui' ? 700 : 500,
+              },
+            ]}>
+            {label}
+          </Text>
+          <Text
+            style={[
+              {
+                fontFamily: selected === 'oui' ? 'Comfortaa-Bold' : 'Comfortaa',
+                fontSize: 13,
+                fontStyle: 'normal',
+                color: selected === 'oui' ? '#0019A7' : '#fff',
+                fontWeight: selected === 'oui' ? 700 : 500,
+              },
+            ]}>
+            {subText}
+          </Text>
         </View>
       </TouchableOpacity>
     );
@@ -143,8 +166,8 @@ export const DateDeNaissance = ({route, navigation}) => {
                   {
                     top: 0,
                     width: 320,
-                    height: 160,
-                    borderRadius: 50,
+                    height: 140,
+                    borderRadius: 100,
                     padding: 16,
                     color: '#fff',
                     borderColor: '#0F0BAE',
@@ -161,7 +184,7 @@ export const DateDeNaissance = ({route, navigation}) => {
                   <Text
                     style={[
                       {
-                        color: '#FFF',
+                        color: '#0019A7',
                         textAlign: 'center',
                         fontFamily: 'Comfortaa',
                         fontSize: 18,
@@ -265,14 +288,17 @@ export const DateDeNaissance = ({route, navigation}) => {
           </View>
 
           <View style={[Styles.ViewTextChoice, {top: 220, left: 30}]}>
-            <Text style={[Styles.textWhite2]}>Choix unique.</Text>
+            <Text style={[Styles.textWhite2, {fontSize: 12}]}>
+              Choix unique.
+            </Text>
           </View>
         </View>
 
         <View style={[Styles.ViewBtn1, {flex: 1}]}>
           <TouchableOpacity
             style={{}}
-            onPress={() =>
+            onPress={() => {
+              setButtonPressed('Continuer');
               navigation.navigate('Taille', {
                 userConsent: consentement,
                 routeName: routeChoice,
@@ -283,23 +309,22 @@ export const DateDeNaissance = ({route, navigation}) => {
                 accesPosition: accesPosition,
                 genre: genre,
                 userBirth: shortDate,
-              })
-            }
+              });
+            }}
             accessibilityLabel="Continuer">
-            <Text style={[Styles.textBtn9, {zIndex: 1, top: 23}]}>
+            <Text style={[Styles.textBtn9, {zIndex: 1, top: 23, color:buttonPressed === 'Continuer' ? '#fff' : '#0019A7'}]}>
               Continuer
             </Text>
             <Image
               style={[
                 {
-                  top: -20,
-                  width: '90%',
-                  height: 60,
+                  bottom: 20,
+                  height: 56,
                   resizeMode: 'contain',
                   alignSelf: 'center',
                 },
               ]}
-              source={require('../../../assets/boutons/Bouton-Blanc.png')}
+              source={buttonPressed === 'Continuer' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc.png')}
             />
           </TouchableOpacity>
         </View>

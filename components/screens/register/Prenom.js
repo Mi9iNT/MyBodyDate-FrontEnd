@@ -10,6 +10,7 @@ import {
   Switch,
   Modal,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import Styles from '../../../assets/style/Styles';
 
 export const Prenom = ({route, navigation}) => {
@@ -31,7 +32,7 @@ export const Prenom = ({route, navigation}) => {
   const userRecherche2 = route.params?.userRecherche2 ?? '';
   const userAffinites = route.params?.userAffinites ?? '';
   const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-  const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
+  const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
   console.log('Choix de route : ', routeChoice);
   console.log('Consentement : ', consentement);
   console.log('Love Coach : ', loveCoach);
@@ -50,6 +51,8 @@ export const Prenom = ({route, navigation}) => {
   console.log('Affinité(s) : ', userAffinites);
   console.log('Rythme de vie 1 : ', rythmeDeVie1);
   console.log('Rythme de vie 2 : ', rythmeDeVie2);
+
+  const [buttonPressed, setButtonPressed] = useState();
 
   // Obtenir et formater la date courante en utilisant la méthode Date()
   const currentDate = new Date();
@@ -90,7 +93,7 @@ export const Prenom = ({route, navigation}) => {
                 fontWeight: 700,
                 textTransform: 'uppercase',
               }}>
-              PRÉNOM
+              IDENTIFIANT
             </Text>
             <Text
               style={{
@@ -104,7 +107,7 @@ export const Prenom = ({route, navigation}) => {
               }}>
               Sur MyBodyDate votre vrai prénom est visible de tous les membres
               sauf si vous préférez afficher votre pseudo. Les modérateurs
-              passent tout les pseudo en revue.
+              passent tous les pseudos en revue.
             </Text>
             <Text
               style={{
@@ -197,8 +200,10 @@ export const Prenom = ({route, navigation}) => {
               ]}>
               ID.{formattedDate}.(id)
             </Text>
-            <View style={{top: 240, left: 20}}>
-              <Text style={[Styles.textWhite2]}>Choix unique.</Text>
+            <View style={{top: 260, left: 20}}>
+              <Text style={[Styles.textWhite2, {fontSize: 12}]}>
+                Choix unique.
+              </Text>
             </View>
           </View>
         </View>
@@ -206,44 +211,34 @@ export const Prenom = ({route, navigation}) => {
           <TouchableOpacity
             style={{justifyContent: 'center', alignItems: 'center', height: 56}}
             onPress={() => {
+              setButtonPressed('Continuer');
               setModalVisible(true);
-              /* 1. Navigate to the Details route with params */
-              // navigation.navigate('Confirmation prenom', {
-              //   userConsent: consentement,
-              //   routeName: routeChoice,
-              //   loveCoach: loveCoach,
-              //   userEmail: userEmail,
-              //   userPhone: userPhone,
-              //   userCity: userCity,
-              //   accesPosition: accesPosition,
-              //   genre: genre,
-              //   userBirth: userBirth,
-              //   userSize: userSize,
-              //   userLang: userLang,
-              //   userSituation: userSituation,
-              //   userOrientation: userOrientation,
-              //   userRecherche1: userRecherche1,
-              //   userRecherche2: userRecherche2,
-              //   userAffinites: userAffinites,
-              //   rythmeDeVie1: rythmeDeVie1,
-              //   rythmeDeVie2: rythmeDeVie2,
-              // });
             }}
             accessibilityLabel="Continuer">
-            <Text style={[Styles.textBtn9, {zIndex: 1, top: 25}]}>
+            <Text
+              style={[
+                Styles.textBtn9,
+                {
+                  zIndex: 1,
+                  top: 40,
+                  color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
+                },
+              ]}>
               Continuer
             </Text>
             <Image
               style={[
                 {
-                  top: -18,
-                  width: '90%',
-                  height: 60,
+                  height: 56,
                   resizeMode: 'contain',
                   alignSelf: 'center',
                 },
               ]}
-              source={require('../../../assets/boutons/Bouton-Blanc.png')}
+              source={
+                buttonPressed === 'Continuer'
+                  ? require('../../../assets/boutons/Bouton-Rouge.png')
+                  : require('../../../assets/boutons/Bouton-Blanc.png')
+              }
             />
           </TouchableOpacity>
         </View>
@@ -256,10 +251,10 @@ export const Prenom = ({route, navigation}) => {
           <View
             style={{
               position: 'absolute',
-              top: 200,
+              top: 160,
               width: 390,
-              height: 582,
-              backgroundColor: '#FFFFFF',
+              height: 620,
+              backgroundColor: '#FFF',
               borderTopLeftRadius: 50,
               borderTopRightRadius: 50,
             }}>
@@ -277,14 +272,14 @@ export const Prenom = ({route, navigation}) => {
               <Image
                 source={require('../../../assets/images/avertissement.png')}
                 style={{
-                  top: -160,
+                  bottom: 180,
                   width: 70,
                   height: 70,
                   resizeMode: 'contain',
                   alignSelf: 'center',
                 }}
               />
-              <View style={{top: -160, width: '80%', alignSelf: 'center'}}>
+              <View style={{bottom: 180, width: '80%', alignSelf: 'center'}}>
                 <Text
                   style={{
                     color: '#0019A7',
@@ -293,7 +288,7 @@ export const Prenom = ({route, navigation}) => {
                     fontSize: 20,
                     fontStyle: 'normal',
                     fontWeight: 700,
-                    lineHeight:100,
+                    lineHeight: 100,
                   }}>
                   Règles concernant le pseudo ?
                 </Text>
@@ -306,7 +301,7 @@ export const Prenom = ({route, navigation}) => {
                     fontStyle: 'normal',
                     fontWeight: 700,
                     fontSize: 16,
-                    marginBottom:20,
+                    marginBottom: 20,
                   }}>
                   Pour vérifiez que votre pseudo soit bien approuvé
                 </Text>
@@ -326,81 +321,127 @@ export const Prenom = ({route, navigation}) => {
                       •
                     </Text>
                     <Text
-                      style={{
-                        color: '#0019A7',
-                        textAlign: 'left',
-                        fontFamily: 'Gilroy',
-                        fontSize: 20,
-                        fontStyle: 'normal',
-                        fontWeight: 700,
-                        fontSize: 16,
-                      }}>
+                      style={[
+                        Styles.mb10,
+                        {
+                          color: '#0019A7',
+                          textAlign: 'left',
+                          fontFamily: 'Gilroy',
+                          fontSize: 20,
+                          fontStyle: 'normal',
+                          fontWeight: 700,
+                          fontSize: 16,
+                        },
+                      ]}>
                       Pour vérifiez que votre pseudo soit bien approuvé
                     </Text>
                     <View style={{flexDirection: 'column'}} />
                   </View>
                   <View style={{flexDirection: 'row'}}>
                     <Text
-                      style={{
-                        color: '#0019A7',
-                        textAlign: 'left',
-                        fontFamily: 'Gilroy',
-                        fontSize: 20,
-                        fontStyle: 'normal',
-                        fontWeight: 700,
-                        fontSize: 16,
-                        marginRight: 8,
-                      }}>
+                      style={[
+                        Styles.mb10,
+                        {
+                          color: '#0019A7',
+                          textAlign: 'left',
+                          fontFamily: 'Gilroy',
+                          fontSize: 20,
+                          fontStyle: 'normal',
+                          fontWeight: 700,
+                          fontSize: 16,
+                          marginRight: 8,
+                        },
+                      ]}>
                       •
                     </Text>
                     <Text
-                      style={{
-                        color: '#0019A7',
-                        textAlign: 'left',
-                        fontFamily: 'Gilroy',
-                        fontSize: 20,
-                        fontStyle: 'normal',
-                        fontWeight: 700,
-                        fontSize: 16,
-                      }}>
+                      style={[
+                        Styles.mb10,
+                        {
+                          color: '#0019A7',
+                          textAlign: 'left',
+                          fontFamily: 'Gilroy',
+                          fontSize: 20,
+                          fontStyle: 'normal',
+                          fontWeight: 700,
+                          fontSize: 16,
+                        },
+                      ]}>
                       N’incluez pas votre nom complet N’incluez pas vos
                       coordonnées
                     </Text>
                   </View>
                   <View style={{flexDirection: 'row'}}>
                     <Text
-                      style={{
-                        color: '#0019A7',
-                        textAlign: 'left',
-                        fontFamily: 'Gilroy',
-                        fontSize: 20,
-                        fontStyle: 'normal',
-                        fontWeight: 700,
-                        fontSize: 16,
-                        marginRight: 8,
-                      }}>
+                      style={[
+                        Styles.mb10,
+                        {
+                          color: '#0019A7',
+                          textAlign: 'left',
+                          fontFamily: 'Gilroy',
+                          fontSize: 20,
+                          fontStyle: 'normal',
+                          fontWeight: 700,
+                          fontSize: 16,
+                          marginRight: 8,
+                        },
+                      ]}>
                       •
                     </Text>
                     <Text
-                      style={{
-                        color: '#0019A7',
-                        textAlign: 'left',
-                        fontFamily: 'Gilroy',
-                        fontSize: 20,
-                        fontStyle: 'normal',
-                        fontWeight: 700,
-                        fontSize: 16,
-                        lineHeight: 24,
-                        marginBottom: 8,
-                      }}>
+                      style={[
+                        Styles.mb10,
+                        {
+                          color: '#0019A7',
+                          textAlign: 'left',
+                          fontFamily: 'Gilroy',
+                          fontSize: 20,
+                          fontStyle: 'normal',
+                          fontWeight: 700,
+                          fontSize: 16,
+                          lineHeight: 20,
+                          marginBottom: 8,
+                        },
+                      ]}>
                       N’incluez aucune remarque sexuelle explicite ni vulgaire
                     </Text>
                   </View>
                 </View>
               </View>
-              <TouchableOpacity style={{ top: -100 }} onPress={() => { setModalVisible(false); navigation.navigate('Confirmation prenom'); }}>
+              <TouchableOpacity
+                style={{bottom: 80}}
+                onPress={() => {
+                  setButtonPressed('Compris');
+                  setModalVisible(false);
+                  navigation.navigate('Confirmation prenom', {
+                    userConsent: consentement,
+                    routeName: routeChoice,
+                    loveCoach: loveCoach,
+                    userEmail: userEmail,
+                    userPhone: userPhone,
+                    userCity: userCity,
+                    accesPosition: accesPosition,
+                    genre: genre,
+                    userBirth: userBirth,
+                    userSize: userSize,
+                    userLang: userLang,
+                    userSituation: userSituation,
+                    userOrientation: userOrientation,
+                    userRecherche1: userRecherche1,
+                    userRecherche2: userRecherche2,
+                    userAffinites: userAffinites,
+                    rythmeDeVie1: rythmeDeVie1,
+                    rythmeDeVie2: rythmeDeVie2,
+                    userPrenom: prenom,
+                    pseudo: pseudo,
+                  });
+                }}>
                 <Image
-                  source={require('../../../assets/boutons/Bouton-Bleu-Court.png')}
+                  source={
+                    buttonPressed === 'Compris'
+                      ? require('../../../assets/boutons/Bouton-Rouge-Court.png')
+                      : require('../../../assets/boutons/Bouton-Bleu-Court.png')
+                  }
                   style={{
                     width: 148,
                     height: 56,
@@ -410,7 +451,7 @@ export const Prenom = ({route, navigation}) => {
                 />
                 <Text
                   style={{
-                    top: -40,
+                    bottom: 40,
                     color: '#FFF',
                     textAlign: 'center',
                     fontFamily: 'Comfortaa',
@@ -427,4 +468,31 @@ export const Prenom = ({route, navigation}) => {
       </ImageBackground>
     </View>
   );
+};
+Prenom.propTypes = {
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      routeName: PropTypes.string,
+      userConsent: PropTypes.string,
+      loveCoach: PropTypes.string,
+      userEmail: PropTypes.string,
+      userPhone: PropTypes.string,
+      userCity: PropTypes.string,
+      accesPosition: PropTypes.string,
+      genre: PropTypes.string,
+      userBirth: PropTypes.string,
+      userSize: PropTypes.string,
+      userLang: PropTypes.string,
+      userSituation: PropTypes.string,
+      userOrientation: PropTypes.string,
+      userRecherche1: PropTypes.string,
+      userRecherche2: PropTypes.array,
+      userAffinites: PropTypes.array,
+      rythmeDeVie1: PropTypes.string,
+      rythmeDeVie2: PropTypes.array,
+      userPrenom: PropTypes.string,
+      pseudo: PropTypes.string,
+    }),
+  }).isRequired,
+  navigation: PropTypes.object.isRequired,
 };

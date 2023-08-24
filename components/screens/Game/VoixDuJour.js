@@ -7,13 +7,8 @@ import {
   Text,
   Image,
   ImageBackground,
-  TouchableOpacity,
-  TextInput,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import MenuSlide from '../../composants/MenuSlide';
-import {MenuBottom} from '../../composants/MenuBottom';
-import {MyComponentTer} from '../../composants/MyComponentTer';
 
 export const VoixDuJour = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
@@ -40,8 +35,11 @@ export const VoixDuJour = ({route, navigation}) => {
   return (
     <View style={{flex: 1}}>
       <ImageBackground
-        source={require('../../../assets/images/Background-VJ.png')}
-        style={{flex: 1}}>
+        source={require('../../../assets/images/Background.png')}
+        style={{
+          width: '100%',
+          height: '100%',
+        }}>
         <View style={{Flex: 1}}>
           <Image
             source={require('../../../assets/images/Group-58.png')}
@@ -55,12 +53,33 @@ export const VoixDuJour = ({route, navigation}) => {
           <Text
             style={{
               fontSize: 24,
+              fontFamily: 'Gilory',
+              fontWeight: '700',
+              color: '#FFF',
+              alignSelf: 'center',
+              textAlign: 'center',
+              top: 40,
+            }}>
+            La voix du jour
+          </Text>
+          <Image
+            source={require('../../../assets/images/MicGame.png')}
+            style={{
+              width: 55,
+              height: 55,
+              top: 150,
+              alignSelf: 'center',
+            }}
+          />
+          <Text
+            style={{
+              fontSize: 24,
               fontFamily: 'Comfortaa',
               fontWeight: '400',
               color: '#FFF',
               alignSelf: 'center',
               textAlign: 'center',
-              top: 205,
+              top: 155,
             }}>
             Retrouvez qui a la voix de :
           </Text>
@@ -72,7 +91,7 @@ export const VoixDuJour = ({route, navigation}) => {
               color: '#FFF',
               alignSelf: 'center',
               textAlign: 'center',
-              top: 235,
+              top: 185,
             }}>
             Soprano
           </Text>
@@ -85,7 +104,7 @@ export const VoixDuJour = ({route, navigation}) => {
               alignSelf: 'center',
               textAlign: 'center',
               fontStyle: 'italic',
-              top: 235,
+              top: 185,
             }}>
             Celine Dion
           </Text>
@@ -94,7 +113,7 @@ export const VoixDuJour = ({route, navigation}) => {
             style={{
               width: 122,
               height: 122,
-              top: 300,
+              top: 220,
               left: 195,
             }}>
             <Image
@@ -111,7 +130,7 @@ export const VoixDuJour = ({route, navigation}) => {
               fontFamily: 'Comfortaa',
               fontWeight: '400',
               color: '#FFF',
-              top: 300,
+              top: 220,
               left: 230,
             }}>
             Gaëlle
@@ -121,7 +140,7 @@ export const VoixDuJour = ({route, navigation}) => {
             style={{
               width: 122,
               height: 122,
-              top: 300,
+              top: 220,
               left: 45,
             }}>
             <Image
@@ -138,7 +157,7 @@ export const VoixDuJour = ({route, navigation}) => {
               fontFamily: 'Comfortaa',
               fontWeight: '400',
               color: '#FFF',
-              top: 300,
+              top: 220,
               left: 70,
             }}>
             Rachel
@@ -148,7 +167,7 @@ export const VoixDuJour = ({route, navigation}) => {
             style={{
               width: 122,
               height: 122,
-              top: 200,
+              top: 120,
               left: 240,
             }}>
             <Image
@@ -165,7 +184,7 @@ export const VoixDuJour = ({route, navigation}) => {
               fontFamily: 'Comfortaa',
               fontWeight: '400',
               color: '#FFF',
-              top: 200,
+              top: 120,
               left: 270,
             }}>
             Beverly
