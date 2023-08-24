@@ -28,10 +28,10 @@ export const LinksLogIn = ({route, navigation}) => {
           <Text style={[Styles.textWhite, {top: 0, left: 50}]}>
             UN COUP DE COEUR
           </Text>
-          <Text style={[Styles.textWhite, {top: 10, left: 50}]}>
+          <Text style={[Styles.textWhite, {top: 0, left: 50}]}>
             N'ATTEND PAS
           </Text>
-          <Text style={[Styles.textWhite, Styles.fl, {top: 30, left: 50}]}>
+          <Text style={[Styles.textWhite, Styles.fl, {top: 10, left: 50}]}>
             NE PERDEZ PLUS RIEN...{' '}
           </Text>
         </View>
