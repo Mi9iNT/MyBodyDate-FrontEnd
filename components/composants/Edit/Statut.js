@@ -3,11 +3,7 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import {StatusBar, TextInput} from 'react-native';
-import {
-  View,
-  Text,
-  Image,
-} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import PropTypes from 'prop-types';
 import {MyComponentStatut} from './MyComponentStatut';
 

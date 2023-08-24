@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
@@ -12,7 +13,6 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
-import Styles from '../../../assets/style/Styles';
 
 export const ProfilMeCA = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
@@ -103,7 +103,7 @@ export const ProfilMeCA = ({route, navigation}) => {
                     color: '#fff',
                     letterSpacing: 1,
                   }}>
-                  Raluca{'     '}
+                  Raluca
                 </Text>
                 <Image
                   source={require('../../../assets/images/quality-2-2.png')}
@@ -111,25 +111,30 @@ export const ProfilMeCA = ({route, navigation}) => {
                     top: 5,
                     width: 30,
                     height: 30,
+                    left: 35,
+                  }}
+                />
+                <Image
+                  source={require('../../../assets/images/Médaille.png')}
+                  style={{
+                    top: 5,
+                    left: 45,
+                    width: 30,
+                    height: 44,
                   }}
                 />
               </View>
-              <View
+              <Text
                 style={{
-                  top: 10,
+                  fontSize: 16,
+                  fontFamily: 'Comfortaa',
+                  fontWeight: '700',
+                  color: '#fff',
+                  letterSpacing: 1,
                   left: 10,
                 }}>
-                <Text
-                  style={{
-                    fontSize: 16,
-                    fontFamily: 'Comfortaa',
-                    fontWeight: '700',
-                    color: '#fff',
-                    letterSpacing: 1,
-                  }}>
-                  43, Paris
-                </Text>
-              </View>
+                43, Paris
+              </Text>
             </View>
           </ImageBackground>
           <View
@@ -140,13 +145,36 @@ export const ProfilMeCA = ({route, navigation}) => {
               marginTop: 25,
             }}>
             <Text
-              style={{width: 257, height: 35, color: '#0019A7', fontSize: 15}}>
+              style={{
+                width: 257,
+                height: 35,
+                color: '#0019A7',
+                fontSize: 15,
+                left: 30,
+              }}>
               ID.20230510.88
             </Text>
-            <Image
-              source={require('../../../assets/images/Rectangle-40-P.png')}
-              style={{width: 96, height: 30, borderRadius: 30}}
-            />
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('ProfilMeCAfirst');
+              }}>
+              <ImageBackground
+                source={require('../../../assets/images/Rectangle-40-P.png')}
+                style={{width: 96, height: 30, borderRadius: 30, right: 5}}>
+                <Text
+                  style={{
+                    fontSize: 15,
+                    fontFamily: 'Comfortaa',
+                    fontWeight: '700',
+                    color: '#fff',
+                    alignSelf: 'center',
+                    textAlign: 'center',
+                    top: 5,
+                  }}>
+                  Éditer
+                </Text>
+              </ImageBackground>
+            </TouchableOpacity>
           </View>
           <View
             style={{
@@ -154,38 +182,13 @@ export const ProfilMeCA = ({route, navigation}) => {
               justifyContent: 'flex-start',
               paddingHorizontal: 20,
             }}>
-            <Text style={{color: '#0019A7', fontSize: 18}}>Ecouter :</Text>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate('Felicitations', {
-                  userConsent: '',
-                  routeName: '',
-                  loveCoach: '',
-                  userEmail: '',
-                  userPhone: '',
-                  userCity: '',
-                  accesPosition: '',
-                  genre: '',
-                  userBirth: '',
-                  userSize: '',
-                  userLang: '',
-                  userSituation: '',
-                  userOrientation: '',
-                  userRecherche1: '',
-                  userRecherche2: '',
-                  userAffinites: '',
-                  rythmeDeVie1: '',
-                  rythmeDeVie2: '',
-                  userPrenom: '',
-                  userVoice: '',
-                  userPhoto: '',
-                })
-              }>
-              <Image
-                source={require('../../../assets/images/voix_ondes_profil.png')}
-                style={{width: 100, height: 30}}
-              />
-            </TouchableOpacity>
+            <Text style={{color: '#0019A7', fontSize: 18, left: 30}}>
+              Écouter :
+            </Text>
+            <Image
+              source={require('../../../assets/images/voix_ondes_profil.png')}
+              style={{width: 100, height: 30, left: 30}}
+            />
           </View>
           <View
             style={{
@@ -195,9 +198,15 @@ export const ProfilMeCA = ({route, navigation}) => {
               marginTop: 20,
             }}>
             <Text
-              style={{width: 336, height: 52, color: '#0019A7', fontSize: 15}}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras arcu
-              neque, tempus sed interdum ut.
+              style={{
+                fontFamily: 'Comfortaa',
+                fontWeight: '700',
+                color: '#0019A7',
+                fontSize: 15,
+                left: 15,
+              }}>
+              Lorem ipsum dolor sit amet, consectetur{'\n'}adipiscing elit. Cras
+              arcu neque, tempus{'\n'}sed interdum ut.
             </Text>
           </View>
           <View
@@ -209,99 +218,122 @@ export const ProfilMeCA = ({route, navigation}) => {
             }}>
             <Image
               source={require('../../../assets/images/validation-du-ticket-1.png')}
-              style={{width: 35, height: 35}}
+              style={{width: 55, height: 55, bottom: 10}}
             />
-            <Text
-              style={{
-                textDecorationLine: 'underline',
-                color: '#0019A7',
-                marginTop: 7,
-                marginLeft: 10,
-                fontSize: 15,
-              }}>
-              Je prends mon pass
-            </Text>
-            <Image
+            <View style={{top: 5}}>
+              <Text
+                style={{
+                  fontFamily: 'Comfortaa',
+                  fontWeight: '700',
+                  color: '#0019A7',
+                  fontSize: 15,
+                }}>
+                Je prends mon pass
+              </Text>
+              <View
+                style={{
+                  borderBottomWidth: 1, // Ajustez cette valeur pour l'épaisseur du soulignement
+                  borderBottomColor: '#0019A7',
+                  bottom: 1, // Ajustez la distance entre le texte et le soulignement
+                }}
+              />
+            </View>
+            <ImageBackground
               source={require('../../../assets/images/image-16.png')}
-              style={{width: 40, height: 30, marginLeft: 60}}
-            />
+              style={{width: 40, height: 30, marginLeft: 60, right: 15}}>
+              <Text
+                style={{
+                  fontFamily: 'Comfortaa',
+                  fontWeight: '700',
+                  color: '#0019A7',
+                  fontSize: 18,
+                  left: 40,
+                  bottom: 15,
+                }}>
+                7
+              </Text>
+            </ImageBackground>
             <Image
               source={require('../../../assets/images/heart-1.png')}
-              style={{width: 30, height: 30, marginLeft: 30}}
+              style={{
+                width: 40,
+                height: 40,
+                marginLeft: 30,
+                right: 15,
+                bottom: 5,
+              }}
             />
           </View>
           <View
             style={{
-              height: 1,
+              height: 1.5,
               backgroundColor: '#0019A7',
-              marginVertical: 20,
+              marginVertical: 8,
               marginHorizontal: 20,
             }}
           />
-          <Text style={{color: '#9424FA', fontSize: 20, marginHorizontal: 20}}>
-            A propos de moi
+          <Text
+            style={{
+              fontFamily: 'Comfortaa',
+              fontWeight: '700',
+              color: '#9424FA',
+              fontSize: 20,
+              left: 20,
+            }}>
+            À propos de moi
           </Text>
-          <View style={{marginTop: 5}}>
+          <View style={{marginTop: 10}}>
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <View style={{flexDirection: 'column'}}>
-                <View style={{flexDirection: 'row', alignItems: 'flex-start'}}>
+                <View style={{flexDirection: 'row'}}>
                   <Image
                     source={require('../../../assets/images/genre.png')}
                     style={{
-                      width: '40%',
-                      aspectRatio: 3,
-                      resizeMode: 'contain',
-                      marginHorizontal: 10,
+                      width: 144,
+                      height: 40,
+                      marginRight: 20,
                     }}
                   />
                   <Image
                     source={require('../../../assets/images/alcool.png')}
                     style={{
-                      width: '40%',
-                      aspectRatio: 3,
-                      resizeMode: 'contain',
-                      marginHorizontal: 5,
+                      width: 208,
+                      height: 40,
                     }}
                   />
                 </View>
-                <View style={{flexDirection: 'row', alignItems: 'flex-start'}}>
+                <View style={{flexDirection: 'row', top: 10}}>
                   <Image
                     source={require('../../../assets/images/fume.png')}
                     style={{
-                      width: '40%',
-                      aspectRatio: 3,
-                      resizeMode: 'contain',
-                      marginHorizontal: 10,
+                      width: 184,
+                      height: 40,
+                      marginRight: 20,
                     }}
                   />
                   <Image
                     source={require('../../../assets/images/situation.png')}
                     style={{
-                      width: '40%',
-                      aspectRatio: 3,
-                      resizeMode: 'contain',
-                      marginHorizontal: 5,
+                      width: 151,
+                      height: 40,
                     }}
                   />
                 </View>
-                <View style={{flexDirection: 'row', alignItems: 'flex-start'}}>
+                <View style={{flexDirection: 'row', left: 18, top: 20}}>
                   <Image
                     source={require('../../../assets/images/CercleDamis.png')}
                     style={{
-                      width: '40%',
-                      aspectRatio: 3,
-                      resizeMode: 'contain',
-                      marginHorizontal: 10,
+                      width: 162,
+                      height: 40,
+                      marginRight: 20,
                     }}
                   />
                   <Image
                     source={require('../../../assets/images/Sportif.png')}
                     style={{
-                      width: '40%',
-                      aspectRatio: 3,
-                      resizeMode: 'contain',
-                      marginHorizontal: 5,
+                      width: 110,
+                      height: 40,
                     }}
                   />
                 </View>
@@ -320,20 +352,20 @@ export const ProfilMeCA = ({route, navigation}) => {
           }}>
           <View
             style={{flexDirection: 'row', marginTop: 45, alignItems: 'center'}}>
-            <Image
-              source={require('../../../assets/images/etude.png')}
-              style={{width: 32, height: 36, marginRight: 20, marginLeft: 20}}
-            />
-            <Text
-              style={{
-                fontFamily: 'Comfortaa',
-                fontWeight: '500',
-                fontSize: 15,
-                lineHeight: 18,
-                color: 'white',
-              }}>
-              Niveau d'études...
-            </Text>
+              <Image
+                source={require('../../../assets/images/etude.png')}
+                style={{width: 32, height: 36, marginRight: 20, marginLeft: 20}}
+              />
+              <Text
+                style={{
+                  fontFamily: 'Comfortaa',
+                  fontWeight: '500',
+                  fontSize: 15,
+                  lineHeight: 18,
+                  color: 'white',
+                }}>
+                Niveau d'études...
+              </Text>
           </View>
           <Text
             style={{

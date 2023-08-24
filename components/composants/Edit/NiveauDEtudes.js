@@ -71,6 +71,10 @@ export const NiveauDEtudes = ({route, navigation}) => {
             alignItems: 'center',
             top: 10,
           }}>
+          <TouchableOpacity
+                onPress={() => {
+                  navigation.goBack();
+                }}>
           <Image
             source={require('../../../assets/images/Fleche-G-CA.png')}
             style={{
@@ -79,6 +83,7 @@ export const NiveauDEtudes = ({route, navigation}) => {
               right: 100,
             }}
           />
+          </TouchableOpacity>
           <View
             style={{
               flex: 1, // Utilisation du flex pour centrer l'image

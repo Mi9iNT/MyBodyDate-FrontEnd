@@ -3,11 +3,7 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
-import {
-  View,
-  Text,
-  Image,
-} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import PropTypes from 'prop-types';
 import {MyComponentSport} from './MyComponentSport';
 
@@ -111,4 +107,3 @@ Sport.propTypes = {
   route: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
 };
-

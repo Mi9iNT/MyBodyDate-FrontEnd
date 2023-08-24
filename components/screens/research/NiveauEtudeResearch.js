@@ -1,3 +1,6 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import {
   StatusBar,
@@ -11,7 +14,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-export const NiveauEtude = ({navigation}) => {
+export const NiveauEtudeResearch = ({navigation}) => {
   useEffect(() => {
     StatusBar.setHidden(true);
     return () => {
@@ -273,8 +276,8 @@ export const NiveauEtude = ({navigation}) => {
   );
 };
 
-NiveauEtude.propTypes = {
+NiveauEtudeResearch.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
 
-export default NiveauEtude;
+export default NiveauEtudeResearch;

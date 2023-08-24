@@ -55,7 +55,7 @@ export const MesLikeRecu = ({route, navigation}) => {
             height: 1,
             top: 50,
             position: 'absolute',
-            right: 40,
+            right: 15,
           }}
         />
         <Text
@@ -64,12 +64,14 @@ export const MesLikeRecu = ({route, navigation}) => {
             fontFamily: 'Comfortaa',
             fontWeight: '700',
             color: '#0019A7',
+            right: 25,
           }}>
           Likes
         </Text>
         <View
           style={{
             flexDirection: 'row',
+            left: 25,
           }}>
           <TextInput
             style={{
@@ -95,8 +97,8 @@ export const MesLikeRecu = ({route, navigation}) => {
       <ImageBackground
         source={require('../../../assets/images/Bouton-DansLike.png')}
         style={{
-          width: 358,
-          height: 160,
+          width: 363,
+          height: 162,
           top: 155,
           alignSelf: 'center',
         }}>
