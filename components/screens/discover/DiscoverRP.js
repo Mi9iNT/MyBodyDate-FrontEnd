@@ -7,8 +7,6 @@ import {
   Text,
   Image,
   ImageBackground,
-  TouchableOpacity,
-  Modal,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
@@ -48,7 +46,7 @@ export const DiscoverRP = ({route, navigation}) => {
       }}>
       <MenuSlide />
       <ImageBackground
-        source={require('../../../assets/images/Rectangle-43-L.png')}
+        source={require('../../../assets/images/BackLisa.png')}
         style={{
           width: '100%',
           height: '100%',
@@ -327,10 +325,10 @@ export const DiscoverRP = ({route, navigation}) => {
             left: 25,
           }}>
           <Image
-            source={require('../../../assets/images/Rencontre-amoureuse-1.png')}
+            source={require('../../../assets/images/VousEtes---RP.png')}
             style={{
-              width: 346,
-              height: 78,
+              width: 351,
+              height: 69,
               borderColor: '#0019A7',
               borderRadius: 20,
             }}
@@ -401,13 +399,20 @@ export const DiscoverRP = ({route, navigation}) => {
               style={{
                 top: 5,
               }}>
-              <Image
-                source={require('../../../assets/images/Group-6.png')}
+              <ImageBackground
+                source={require('../../../assets/images/Fond.png')}
                 style={{
                   width: 40,
                   height: 40,
-                }}
-              />
+                }}>
+                <Image
+                  source={require('../../../assets/images/Polygon2.png')}
+                  style={{
+                    top: 10,
+                    alignSelf: 'center',
+                  }}
+                />
+              </ImageBackground>
             </View>
           </View>
         </View>
@@ -422,7 +427,7 @@ export const DiscoverRP = ({route, navigation}) => {
               top: 5,
             }}>
             <Image
-              source={require('../../../assets/images/Group-25.png')}
+              source={require('../../../assets/images/Oeil.png')}
               style={{
                 width: 78,
                 height: 78,
@@ -434,7 +439,7 @@ export const DiscoverRP = ({route, navigation}) => {
               top: 20,
             }}>
             <Image
-              source={require('../../../assets/images/Group-26.png')}
+              source={require('../../../assets/images/Pouce-Disc.png')}
               style={{
                 width: 77,
                 height: 77,
