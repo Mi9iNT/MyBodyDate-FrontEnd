@@ -56,6 +56,8 @@ export const CharteEngagement = ({route, navigation}) => {
   console.log('Prénom : ', userPrenom);
   console.log('Voix : ', userVoice);
 
+  const [buttonPressed, setButtonPressed] = useState('');
+
   const [modalCharteVisible, setModalCharteVisible] = useState(true);
 
   return (
@@ -67,22 +69,35 @@ export const CharteEngagement = ({route, navigation}) => {
           <Text style={[Styles.textWhiteCenter]}>CHARTE</Text>
           <Text style={[Styles.textWhiteCenter]}>D&apos;ENGAGEMENT</Text>
         </View>
-
-        <ScrollView style={[Styles.ViewText, {top: -150, left: 30}]}>
-          <Text style={[Styles.textWhite2, {top: 20}]}>
-            Respect mutuel{'\n'}
+        <ScrollView
+          style={{
+            bottom: 20,
+            height: 250,
+            width: 351,
+            alignSelf: 'center',
+            paddingTop: 10,
+          }}
+          contentContainerStyle={{paddingBottom: 10}}>
+          <Text style={[Styles.textWhite2, {top: 20, fontSize: 16}]}>
+            <Text style={[{fontFamily: 'Comfortaa-Bold', fontSize: 18}]}>
+              Respect mutuel{'\n'}
+            </Text>
             {'\n'}
             C&apos;est la base d&apos;une vraie histoire alors privilégiez les
             échanges respectueux dès le début.
           </Text>
-          <Text style={[Styles.textWhite2]}>
-            Soyez sincère{'\n'}
+          <Text style={[Styles.textWhite2, {fontSize: 16, bottom: 20}]}>
+            <Text style={[{fontFamily: 'Comfortaa-Bold', fontSize: 18}]}>
+              Soyez sincère{'\n'}
+            </Text>
             {'\n'}
             Un profil (photo, âge, infos) qui vous reflète vraiment sera
             toujours plus séduisant.
           </Text>
-          <Text style={[Styles.textWhite2]}>
-            Restez prudent{'\n'}
+          <Text style={[Styles.textWhite2, {fontSize: 16, bottom: 60}]}>
+            <Text style={[{fontFamily: 'Comfortaa-Bold', fontSize: 18}]}>
+              Restez prudent{'\n'}
+            </Text>
             {'\n'}
             Échangez via les messages, les appels vidéo et audio avant de donner
             vos infos personnelles.
@@ -94,84 +109,189 @@ export const CharteEngagement = ({route, navigation}) => {
             onRequestClose={() => {
               setModalCharteVisible(!modalCharteVisible);
             }}>
-            <View style={Styles.centeredView4}>
-              <Text style={[Styles.textBlueCenter3, {top: -80}]}>
-                VÉRIFICATION
-              </Text>
-              <Image
-                style={[
-                  {
-                    width: 100,
-                    height: 130,
-                    top: -80,
-                    resizeMode: 'cover',
-                    borderWidth: 2,
-                    borderColor: '#0F0BAE',
-                    borderRadius: 20,
-                  },
-                ]}
-                blurRadius={10}
-                source={require('../../../assets/images/kalvin.png')}
-              />
-              <Text style={[Styles.textBlueBold, {top: -60}]}>
-                Prenez cette pose et faites un selfie
-              </Text>
-              <Text style={[Styles.textBlueCenter3, {top: -40, width: 320}]}>
-                Nous les comparerons avec les photos de profil pour vérifier
-                votre identité.
-              </Text>
-              <TouchableOpacity
-                onPress={() => setModalCharteVisible(false)}
-                accessibilityLabel="Prendre une photo">
-                <Text style={[Styles.textBtn6, {zIndex: 1, top: 25, left: 15}]}>
-                  Prendre une photo
-                </Text>
-                <Image
-                  style={[
-                    {
-                      top: -20,
-                      width: 320,
-                      height: 60,
-                      resizeMode: 'contain',
-                      alignSelf: 'center',
-                    },
-                  ]}
-                  source={require('../../../assets/boutons/Bouton-Noir-Photo.png')}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[Styles.row]}
-                onPress={() => setModalCharteVisible(false)}
-                accessibilityLabel="Politique de Confidentialité">
-                <Text style={[Styles.textBlue]}>
-                  Politique de Confidentialité
-                </Text>
-              </TouchableOpacity>
-              <View style={[Styles.line]} />
-              <TouchableOpacity
-                style={[Styles.row]}
-                onPress={() => setModalCharteVisible(false)}
-                accessibilityLabel="Comment MyBodyDate utilise vos photos">
-                <Text style={[Styles.textBlue]}>
-                  Comment MyBodyDate utilise vos photos
-                </Text>
-              </TouchableOpacity>
-              <View style={[Styles.line]} />
-              <TouchableOpacity
-                style={[Styles.row]}
-                onPress={() => setModalCharteVisible(false)}
-                accessibilityLabel="Retirer votre consentement via notre équipe d'aide">
-                <Text style={[Styles.textBlue]}>
-                  Retirer votre consentement via notre équipe d&apos;aide
-                </Text>
-              </TouchableOpacity>
+            <View
+              style={{
+                height: 850,
+                borderTopLeftRadius: 40,
+                borderTopRightRadius: 40,
+              }}>
+              <ScrollView
+                style={{
+                  top: 0,
+                  height: 700,
+                }}
+                contentContainerStyle={{paddingBottom: 80, paddingTop: 0}}>
+                <View
+                  style={{
+                    top: 50,
+                    height: 900,
+                    borderTopLeftRadius: 40,
+                    borderTopRightRadius: 40,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundColor: '#FFF',
+                  }}>
+                  <Text
+                    style={[
+                      Styles.textBlueCenter3,
+                      {bottom: 80, fontFamily: 'Comfortaa-Bold', fontSize: 24},
+                    ]}>
+                    VÉRIFICATION
+                  </Text>
+                  <View style={{bottom: 20, width: 151}}>
+                    <Image
+                      style={[
+                        {
+                          width: 151,
+                          resizeMode: 'contain',
+                          borderWidth: 2,
+                          borderColor: '#0F0BAE',
+                          borderRadius: 30,
+                        },
+                      ]}
+                      blurRadius={0}
+                      source={require('../../../assets/images/Kolia-Verif.png')}
+                    />
+                    <Image
+                      style={[
+                        {
+                          position: 'absolute',
+                          bottom: 155,
+                          left: 15,
+                          width: 34,
+                          resizeMode: 'contain',
+                        },
+                      ]}
+                      blurRadius={0}
+                      source={require('../../../assets/images/ico-protection.png')}
+                    />
+                  </View>
+                  <View
+                    style={{
+                      top: 20,
+                      flexDirection: 'column',
+                      width: '100%',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}>
+                    <Text
+                      style={[
+                        Styles.textBlueBold,
+                        {
+                          fontFamily: 'Comfortaa-Bold',
+                          fontSize: 24,
+                          width: '80%',
+                          alignSelf: 'center',
+                          textAlign: 'center',
+                        },
+                      ]}>
+                      Prenez cette pose et faites un selfie
+                    </Text>
+                    <Text
+                      style={[
+                        Styles.textBlueCenter3,
+                        {
+                          width: 320,
+                          fontFamily: 'Comfortaa-Bold',
+                          fontSize: 18,
+                          top: 20,
+                        },
+                      ]}>
+                      Nous les comparerons avec les photos de profil pour
+                      vérifier votre identité.
+                    </Text>
+                  </View>
+
+                  <TouchableOpacity
+                    style={{top: 50}}
+                    onPress={() => {
+                      setButtonPressed('Photo');
+                      setModalCharteVisible(false);
+                    }}
+                    accessibilityLabel="Prendre une photo">
+                    <Text
+                      style={[Styles.textBtn6, {zIndex: 1, top: 25, left: 15}]}>
+                      Prendre une photo
+                    </Text>
+                    <Image
+                      style={[
+                        {
+                          bottom: 20,
+                          height: 56,
+                          resizeMode: 'contain',
+                          alignSelf: 'center',
+                        },
+                      ]}
+                      source={
+                        buttonPressed === 'Photo'
+                          ? require('../../../assets/boutons/Bouton-Rouge-Photo.png')
+                          : require('../../../assets/boutons/Bouton-Noir-Photo.png')
+                      }
+                    />
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[Styles.row, {top: 50, alignItems: 'center'}]}
+                    onPress={() => setModalCharteVisible(false)}
+                    accessibilityLabel="Politique de Confidentialité">
+                    <Text style={[Styles.textBlue, {fontSize: 18}]}>
+                      Politique de Confidentialité
+                    </Text>
+                    <Image
+                      style={{
+                        width: 17,
+                        height: 17,
+                        resizeMode: 'contain',
+                        transform: [{rotate: '180deg'}],
+                      }}
+                      source={require('../../../assets/images/flèche-B.png')}
+                    />
+                  </TouchableOpacity>
+                  <View style={[Styles.line, {top: 50}]} />
+                  <TouchableOpacity
+                    style={[Styles.row, {top: 50, alignItems: 'center'}]}
+                    onPress={() => setModalCharteVisible(false)}
+                    accessibilityLabel="Comment MyBodyDate utilise vos photos">
+                    <Text style={[Styles.textBlue, {fontSize: 18}]}>
+                      Comment MyBodyDate utilise vos photos
+                    </Text>
+                    <Image
+                      style={{
+                        width: 17,
+                        height: 17,
+                        resizeMode: 'contain',
+                        transform: [{rotate: '180deg'}],
+                      }}
+                      source={require('../../../assets/images/flèche-B.png')}
+                    />
+                  </TouchableOpacity>
+                  <View style={[Styles.line, {top: 50}]} />
+                  <TouchableOpacity
+                    style={[Styles.row, {top: 50, alignItems: 'center'}]}
+                    onPress={() => setModalCharteVisible(false)}
+                    accessibilityLabel="Retirer votre consentement via notre équipe d'aide">
+                    <Text style={[Styles.textBlue, {fontSize: 18}]}>
+                      Retirer votre consentement via notre équipe d&apos;aide
+                    </Text>
+                    <Image
+                      style={{
+                        width: 17,
+                        height: 17,
+                        resizeMode: 'contain',
+                        transform: [{rotate: '180deg'}],
+                      }}
+                      source={require('../../../assets/images/ico-info-B.png')}
+                    />
+                  </TouchableOpacity>
+                </View>
+              </ScrollView>
             </View>
           </Modal>
         </ScrollView>
 
-        <View style={[{top: -20}]}>
+        <View style={[{bottom: 20}]}>
           <TouchableOpacity
-            onPress={() =>
+            onPress={() => {
+              setButtonPressed('Aceepter');
               navigation.navigate('Felicitations', {
                 userConsent,
                 routeName,
@@ -193,23 +313,26 @@ export const CharteEngagement = ({route, navigation}) => {
                 rythmeDeVie2,
                 userPrenom,
                 userVoice,
-              })
-            }
+              });
+            }}
             accessibilityLabel="J'accepte">
-            <Text style={[Styles.textBtn6, {zIndex: 1, top: 25}]}>
+            <Text style={[Styles.textBtn6, {zIndex: 1, top: 20}]}>
               J&apos;accepte
             </Text>
             <Image
               style={[
                 {
-                  top: -20,
-                  width: '90%',
-                  height: 60,
+                  bottom: 20,
+                  height: 56,
                   resizeMode: 'contain',
                   alignSelf: 'center',
                 },
               ]}
-              source={require('../../../assets/boutons/Bouton-Bleu.png')}
+              source={
+                buttonPressed === 'Accepter'
+                  ? require('../../../assets/boutons/Bouton-Rouge.png')
+                  : require('../../../assets/boutons/Bouton-Bleu.png')
+              }
             />
           </TouchableOpacity>
         </View>
@@ -224,128 +347,3 @@ CharteEngagement.propTypes = {
 };
 
 export default CharteEngagement;
-
-// import React, { useState } from 'react';
-// import {
-//     View,
-//     Text,
-//     Modal,
-//     Image,
-//     ScrollView,
-//     ImageBackground,
-//     TouchableOpacity,
-// } from 'react-native';
-// import Styles from '../../assets/style/Styles';
-
-// export const CharteEngagement = ({ route, navigation }) => {
-
-//     // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
-//     const routeChoice = route.params?.routeName ?? '';
-//     const consentement = route.params?.userConsent ?? '';
-//     const loveCoach = route.params?.loveCoach ?? '';
-//     const userEmail = route.params?.userEmail ?? '';
-//     const userPhone = route.params?.userPhone ?? '';
-//     const userCity = route.params?.userCity ?? '';
-//     const accesPosition = route.params?.accesPosition ?? '';
-//     const genre = route.params?.genre ?? '';
-//     const userBirth = route.params?.userBirth ?? '';
-//     const userSize = route.params?.userSize ?? '';
-//     const userLang = route.params?.userLang ?? '';
-//     const userSituation = route.params?.userSituation ?? '';
-//     const userOrientation = route.params?.userOrientation ?? '';
-//     const userRecherche1 = route.params?.userRecherche1 ?? '';
-//     const userRecherche2 = route.params?.userRecherche2 ?? '';
-//     const userAffinites = route.params?.userAffinites ?? '';
-//     const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-//     const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
-//     const userPrenom = route.params?.userPrenom ?? '';
-//     const userVoice = route.params?.userVoice ?? '';
-//     console.log('Choix de route : ' , routeChoice);
-//     console.log('Consentement : ' , consentement);
-//     console.log('Love Coach : ', loveCoach);
-//     console.log('Email : ', userEmail);
-//     console.log('Téléphone : ', userPhone);
-//     console.log('Ville : ', userCity);
-//     console.log('Accès position : ', accesPosition);
-//     console.log('Genre : ', genre);
-//     console.log('Date de naissance : ', userBirth);
-//     console.log('Taille : ', userSize);
-//     console.log('Langues : ', userLang);
-//     console.log('Situation : ', userSituation);
-//     console.log('Orientation : ', userOrientation);
-//     console.log('Recherche 1 : ', userRecherche1);
-//     console.log('Recherche 2 : ', userRecherche2);
-//     console.log('Affinité(s) : ', userAffinites);
-//     console.log('Rythme de vie 1 : ', rythmeDeVie1);
-//     console.log('Rythme de vie 2 : ', rythmeDeVie2);
-//     console.log('Prénom : ', userPrenom);
-//     console.log('Voix : ', userVoice);
-
-//     // Constantes concernant la Modal d'information de l'empreinte vocal
-//     const [modalCharteVisible, setModalCharteVisible] = useState(true)
-
-//     return (
-//     <View style={Styles.container}>
-//             <ImageBackground style={[Styles.bgGradient]} source={require('../../assets/images/Background.png')}>
-//             <View style={[Styles.ViewText, { top: 100 }]}>
-//                     <Text style={[Styles.textWhiteCenter]}>CHARTE</Text>
-//                     <Text style={[Styles.textWhiteCenter]}>D'ENGAGEMENT</Text>
-//             </View>
-
-//             <ScrollView style={[Styles.ViewText, {top:-150, left:30}]}>
-
-//                     <Text style={[Styles.textWhite2, {top:20}]}>Respect mutuel{"\n"}{"\n"}C'est la base d'une vraie histoire alors privilégiez les échanges respectueux dès le début.</Text>
-//                 <Text style={[Styles.textWhite2]}>Soyez sincère{"\n"}{"\n"}Un profil (photo, âge, infos) qui vous reflète vraiment sera toujours plus séduisant.</Text>
-//                 <Text style={[Styles.textWhite2]}>Restez prudent{"\n"}{"\n"}Échangez via les messages, les appels vidéo et audio avant de donner vos infos personnelles.</Text>
-//                 <Modal animationType="slide" transparent={true} visible={modalCharteVisible} onRequestClose={() => { setModalCharteVisible(!modalCharteVisible); }}>
-//                     <View style={Styles.centeredView4}>
-//                         <Text style={[Styles.textBlueCenter3, { top: -80 }]}>VÉRIFICATION</Text>
-//                         <Image style={[{ width: 100, height: 130, top: -80, resizeMode: 'cover', borderWidth: 2, borderColor: '#0F0BAE', borderRadius: 20 }]} blurRadius={10} source={require('../../assets/images/kalvin.png')} />
-//                         <Text style={[Styles.textBlueBold, { top: -60 }]}>Prenez cette pose et faites un selfie</Text>
-//                         <Text style={[Styles.textBlueCenter3, { top: -40, width:320 }]}>Nous les comperons avec les photos de profil pour vérifier votre identité.</Text>
-//                          <TouchableOpacity
-//                             onPress={() => setModalCharteVisible(false)}
-//                             accessibilityLabel="Prendre une photo">
-//                                 <Text style={[Styles.textBtn6, { zIndex:1, top:25, left:15}]}>Prendre une photo</Text>
-//                                 <Image style={[{ top: -20, width: 320, height: 60, resizeMode: 'contain', alignSelf:'center'}]} source={require('../../assets/boutons/Bouton-Noir-Photo.png')} />
-//                         </TouchableOpacity>
-
-//                         <TouchableOpacity
-//                             style={[Styles.row]}
-//                             onPress={() => setModalCharteVisible(false)}
-//                             accessibilityLabel="Politique de Confidentialité">
-//                                 <Text style={[Styles.textBlue]}>Politique de Confidentialité</Text>
-//                         </TouchableOpacity>
-//                         <View style={[Styles.line]}></View>
-//                         <TouchableOpacity
-//                             style={[Styles.row]}
-//                             onPress={() => setModalCharteVisible(false)}
-//                             accessibilityLabel="Comment MyBodyDate utilise vos photos">
-//                             <Text style={[Styles.textBlue]}>Comment MyBodyDate utilise vos photos</Text>
-//                         </TouchableOpacity>
-//                         <View style={[Styles.line]}></View>
-//                         <TouchableOpacity
-//                             style={[Styles.row]}
-//                             onPress={() => setModalCharteVisible(false)}
-//                             accessibilityLabel="CRetirer votre consentement via notre équipe d'aide">
-//                             <Text style={[Styles.textBlue]}>Retirer votre consentement via notre équipe d'aide</Text>
-//                         </TouchableOpacity>
-//                     </View>
-//                 </Modal>
-
-//             </ScrollView>
-//             <View style={[{top:-20}]}>
-//                 <TouchableOpacity
-//                  onPress={() => navigation.navigate('Felicitations', {
-//                      userConsent: consentement, routeName: routeChoice, loveCoach: loveCoach, userEmail: userEmail, userPhone: userPhone, userCity: userCity, accesPosition: accesPosition, genre: genre, userBirth: userBirth, userSize: userSize, userLang: userLang, userSituation: userSituation, userOrientation: userOrientation, userRecherche1: userRecherche1, userRecherche2: userRecherche2, userAffinites: userAffinites, rythmeDeVie1: rythmeDeVie1, rythmeDeVie2: rythmeDeVie2, userPrenom: userPrenom, userVoice: userVoice
-//                         })}
-//                     accessibilityLabel="J'accepte">
-//                     <Text style={[Styles.textBtn6, { zIndex:1, top:25}]}>J'accepte</Text>
-//                     <Image style={[{ top: -20, width: '90%', height: 60, resizeMode: 'contain', alignSelf:'center'}]} source={require('../../assets/boutons/Bouton-Bleu.png')} />
-//                 </TouchableOpacity>
-//             </View>
-//         </ImageBackground>
-//     </View>
-
-//     )
-// }

@@ -43,6 +43,8 @@ export const RythmeDeVie1 = ({route, navigation}) => {
   console.log('Recherche 2 : ', userRecherche2);
   console.log('Affinité(s) : ', userAffinites);
 
+  const [buttonPressed, setButtonPressed] = useState();
+
   // Constante permettant de récupérer la valeur du bouton sélectionner par l'utilisateur
   const [rythmeDeVie1, setState] = useState('');
 
@@ -61,43 +63,86 @@ export const RythmeDeVie1 = ({route, navigation}) => {
           <Text style={[Styles.textTitleWhite3]}>VOTRE RYTHME DE VIE ?</Text>
         </View>
 
-        <View style={[Styles.ViewBTNSelect, {top: 250}]}>
+        <View style={[Styles.ViewBTNSelect, {top: 200}]}>
+          <Text
+            style={{
+              color: '#FFF',
+              fontFamily: 'Comfortaa-Bold',
+              fontSize: 18,
+              fontStyle: 'normal',
+              left: 50,
+            }}>
+            Vous êtes plutôt ?
+          </Text>
           <TouchableOpacity
-            style={[Styles.btn, Styles.mt20]}
+            style={[
+              Styles.mt20,
+              {
+                width: '80%',
+                height: 56,
+                alignSelf: 'center',
+                borderColor: '#0019A7',
+                borderWidth: 2,
+                borderRadius: 100,
+                justifyContent: 'center',
+              },
+            ]}
             onPress={() => setState({state: 'Matinale'})}
             accessibilityLabel="Matinale">
             <Text
-              style={
-                rythmeDeVie1.state === 'Matinale'
-                  ? [Styles.btnSelected, {color: '#0F0BAE'}]
-                  : Styles.btnNotSelected
-              }>
+              style={{
+                color: rythmeDeVie1.state === 'Matinale' ? '#0019A7' : '#FFF',
+                textAlign: 'center',
+                fontFamily:
+                  rythmeDeVie1.state === 'Matinale'
+                    ? 'Comfortaa-Bold'
+                    : 'Comfortaa',
+                fontSize: 18,
+                fontStyle: 'normal',
+              }}>
               Matinale
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[Styles.btn, Styles.mt20]}
-            onPress={() => setState({state: 'Couche Tard'})}
-            accessibilityLabel="Couche Tard">
+            style={[
+              Styles.mt20,
+              {
+                width: '80%',
+                height: 56,
+                alignSelf: 'center',
+                borderColor: '#0019A7',
+                borderWidth: 2,
+                borderRadius: 100,
+                justifyContent: 'center',
+              },
+            ]}
+            onPress={() => setState({state: 'Couche tard'})}
+            accessibilityLabel="Couche tard">
             <Text
-              style={
-                rythmeDeVie1.state === 'Couche Tard'
-                  ? [Styles.btnSelected, {color: '#0F0BAE'}]
-                  : Styles.btnNotSelected
-              }>
-              Couche Tard
+              style={{
+                color: rythmeDeVie1.state === 'Couche tard' ? '#0019A7' : '#FFF',
+                textAlign: 'center',
+                fontFamily:
+                  rythmeDeVie1.state === 'Couche tard'
+                    ? 'Comfortaa-Bold'
+                    : 'Comfortaa',
+                fontSize: 18,
+                fontStyle: 'normal',
+              }}>
+              Couche tard
             </Text>
           </TouchableOpacity>
         </View>
 
         <View style={{top: 280, left: 40}}>
-          <Text style={[Styles.textWhite2]}>Choix unique.</Text>
+          <Text style={[Styles.textWhite2, {fontSize: 12}]}>Choix unique.</Text>
         </View>
 
         <View style={[Styles.ViewBtn2, {top: 140}]}>
           <TouchableOpacity
             style={Styles.btn}
-            onPress={() =>
+            onPress={() => {
+              setButtonPressed('Continuer');
               navigation.navigate('Rythme2', {
                 userConsent: consentement,
                 routeName: routeChoice,
@@ -116,23 +161,33 @@ export const RythmeDeVie1 = ({route, navigation}) => {
                 userRecherche2: userRecherche2,
                 userAffinites: userAffinites,
                 rythmeDeVie1: rythmeDeVie1,
-              })
-            }
+              });
+            }}
             accessibilityLabel="Continuer">
-            <Text style={[Styles.textBtn9, {zIndex: 1, top: 45}]}>
+            <Text
+              style={[
+                Styles.textBtn9,
+                {
+                  zIndex: 1,
+                  top: 40,
+                  color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
+                },
+              ]}>
               Continuer
             </Text>
             <Image
               style={[
                 {
-                  top: 0,
-                  width: '90%',
-                  height: 60,
+                  height: 56,
                   resizeMode: 'contain',
                   alignSelf: 'center',
                 },
               ]}
-              source={require('../../../assets/boutons/Bouton-Blanc.png')}
+              source={
+                buttonPressed === 'Continuer'
+                  ? require('../../../assets/boutons/Bouton-Rouge.png')
+                  : require('../../../assets/boutons/Bouton-Blanc.png')
+              }
             />
           </TouchableOpacity>
         </View>

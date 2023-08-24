@@ -26,7 +26,7 @@ export const HomeStackNext = ({navigation}) => {
         </View>
         <View style={[Styles.ViewText2, {top: 200}]}>
           <Text style={[Styles.textBlue2]}>UN COUP DE COEUR N'ATTEND PAS</Text>
-          <Text style={[Styles.textBlue22]}>NE PERDEZ PLUS RIEN... </Text>
+          <Text style={[Styles.textBlue22, {top:20}]}>NE PERDEZ PLUS RIEN... </Text>
         </View>
         <View style={[Styles.ViewBtn, {top: -50}]}>
           <TouchableOpacity
@@ -34,7 +34,7 @@ export const HomeStackNext = ({navigation}) => {
             accessibilityLabel="S'inscrire"
             onPress={() => {
               setButtonPressed("S'inscrire");
-              navigation.navigate("Création et Développement", {
+              navigation.navigate("Bienvenue", {
                 routeName: "S'inscrire",
               });
             }}>
@@ -63,11 +63,11 @@ export const HomeStackNext = ({navigation}) => {
             accessibilityLabel="Se connecter"
             onPress={() => {
               setButtonPressed('Se connecter');
-              navigation.navigate('ProfilMe', {
+              navigation.navigate('Liens de connexion', {
                 routeName: 'Se connecter',
               });
             }}>
-            <Text style={[Styles.textBtn6, {zIndex: 2, top: 10}]}>
+            <Text style={[Styles.textBtn6, {zIndex: 2, top: 10,}]}>
               Se connecter
             </Text>
             <Image
