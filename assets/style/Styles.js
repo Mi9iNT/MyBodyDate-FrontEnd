@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     alignSelf: 'center',
     textDecorationLine: 'underline',
-    textDecorationColor: 'red',
+    textDecorationColor: '#880808',
     fontFamily: 'Comfortaa',
   },
   textError2: {
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     alignSelf: 'center',
     textDecorationLine: 'underline',
-    textDecorationColor: 'red',
+    textDecorationColor: '#880808',
     fontFamily: 'Comfortaa',
   },
   textWhiteCenter: {
@@ -580,11 +580,19 @@ const styles = StyleSheet.create({
   },
   SelectedText: {
     textAlign: 'center',
+    alignSelf:'center',
     color: '#0F0BAE',
+    fontFamily: 'Comfortaa-Bold',
+    fontSize: 20,
+    width: 80,
   },
   NotSelectedText: {
     textAlign: 'center',
+    alignSelf:'center',
     color: '#FFF',
+    fontFamily: 'Comfortaa',
+    fontSize: 18,
+    width: 80,
   },
   btnSelected: {
     color: '#0F0BAE',

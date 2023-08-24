@@ -45,7 +45,7 @@ import {Felicitations} from './components/screens/register/Felicitations';
 import {HomeStackNext} from './components/screens/HomeStackNext';
 import {SignInMail} from './components/screens/register/SinscrireMail';
 import {SignInPhone} from './components/screens/register/SinscrirePhone';
-import {RecuperationCode} from './components/screens/RecuperationCode';
+import {RecuperationCode} from './components/screens/register/RecuperationCode';
 import {ConfirmationNumero} from './components/screens/register/ConfirmationNumero';
 import {Profil} from './components/screens/profil/Profil';
 import {ProfilMeRA} from './components/screens/profil/ProfilMeRA';

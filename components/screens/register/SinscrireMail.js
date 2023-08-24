@@ -62,20 +62,20 @@ export const SignInMail = ({route, navigation}) => {
               setButtonPressed(true);
             }}
             accessibilityLabel="Continuer">
-            <Text style={[Styles.textBtn9, {zIndex: 1, top: 45, color: buttonPressed?'#fff':'#0019A7'}]}>
+            <Text style={[Styles.textBtn9, {zIndex: 1, top: 42, color: buttonPressed?'#fff':'#0019A7'}]}>
               Continuer
             </Text>
             <Image
               style={{
-                width: 331,
                 height: 56,
                 flexShrink: 0,
                 alignSelf: 'center',
+                resizeMode:'contain',
               }}
               source={
                 buttonPressed
                   ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Blanc-Border.png')
+                  : require('../../../assets/boutons/Bouton-Blanc.png')
               }
             />
           </TouchableOpacity>
