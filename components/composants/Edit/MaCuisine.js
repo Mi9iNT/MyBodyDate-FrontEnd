@@ -2,37 +2,11 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
-import {StatusBar, TextInput} from 'react-native';
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  ImageBackground,
-} from 'react-native';
-import PropTypes from 'prop-types';
+import {StatusBar} from 'react-native';
+import {View, Text, Image,ImageBackground, TextInput, TouchableOpacity, Modal} from 'react-native';
 
-export const MaCuisine = ({route, navigation}) => {
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  const userSituation = route.params?.userSituation ?? '';
-  const userOrientation = route.params?.userOrientation ?? '';
-  const userRecherche1 = route.params?.userRecherche1 ?? '';
-  const userRecherche2 = route.params?.userRecherche2 ?? '';
-  const userAffinites = route.params?.userAffinites ?? '';
-  const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-  const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
-  const userPrenom = route.params?.userPrenom ?? '';
-  const userVoice = route.params?.userVoice ?? '';
+export const MaCuisine = ({visibleMaCuisine, closeModalMaCuisine}) => {
+  const [modalMaCuisinelVisible, setModalMaCuisinelVisible] = useState(false);
 
   const [modalVisible, setModalVisible] = useState(false);
   const [addProVisible, setAddProVisible] = useState([
@@ -91,14 +65,38 @@ export const MaCuisine = ({route, navigation}) => {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: '#fff',
-        alignSelf: 'center',
-        height: '100%',
-        width: '100%',
-      }}>
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={visibleMaCuisine}
+      onRequestClose={closeModalMaCuisine}>
+      {/* Arrière-plan semi-transparent */}
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Couleur semi-transparente
+          justifyContent: 'center', // Centrer verticalement
+          alignItems: 'center', // Centrer horizontalement
+        }}>
+        <TouchableOpacity
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+          }}
+          onPress={() => closeModalMaCuisine()}
+          accessibilityLabel="Ferme la fenêtre"
+        />
+        {/* Contenu de la modal */}
+        <View
+          style={{
+            top: 40,
+            width: 394,
+            height: 700,
+            backgroundColor: 'white',
+            borderTopLeftRadius: 50,
+            borderTopRightRadius: 50,
+          }}>
       <View
         style={{
           alignSelf: 'center',
@@ -108,7 +106,7 @@ export const MaCuisine = ({route, navigation}) => {
           style={{
             width: 82,
             height: 84,
-            top: 30,
+            top: 15,
             alignItems: 'center',
             alignSelf: 'center',
           }}
@@ -119,7 +117,7 @@ export const MaCuisine = ({route, navigation}) => {
             fontWeight: '700',
             fontSize: 20,
             color: '#9424FA',
-            top: 50,
+            top: 20,
           }}>
           Ma cuisine favorite...
         </Text>
@@ -131,8 +129,8 @@ export const MaCuisine = ({route, navigation}) => {
             fontWeight: '700',
             fontSize: 14,
             color: '#9424FA',
-            top: 80,
-            left: 30,
+            top: 35,
+            left: 40,
           }}>
           Sélectionnez vos cuisines favorites.
         </Text>
@@ -142,7 +140,7 @@ export const MaCuisine = ({route, navigation}) => {
         style={{
           width: 354,
           height: 40,
-          top: 140,
+          top: 60,
           alignSelf: 'center',
         }}>
         <View
@@ -178,7 +176,7 @@ export const MaCuisine = ({route, navigation}) => {
           fontSize: 14,
           color: '#9424FA',
           left: 30,
-          top: 170,
+          top: 80,
         }}>
         Cuisines populaires :
       </Text>
@@ -188,7 +186,7 @@ export const MaCuisine = ({route, navigation}) => {
             justifyContent: 'space-around',
             flexDirection: 'row',
             alignItems: 'center',
-            top: 180,
+            top: 100,
           }}>
           <TouchableOpacity onPress={toggleEscargotImage}>
             <ImageBackground
@@ -270,7 +268,7 @@ export const MaCuisine = ({route, navigation}) => {
             justifyContent: 'space-around',
             flexDirection: 'row',
             alignItems: 'center',
-            top: 200,
+            top: 120,
           }}>
           <TouchableOpacity onPress={togglePizzaImage}>
             <ImageBackground
@@ -348,11 +346,10 @@ export const MaCuisine = ({route, navigation}) => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+      </View>
+      </View>
+    </Modal>
   );
 };
 
-MaCuisine.propTypes = {
-  route: PropTypes.object.isRequired,
-  navigation: PropTypes.object.isRequired,
-};
+export default MaCuisine;

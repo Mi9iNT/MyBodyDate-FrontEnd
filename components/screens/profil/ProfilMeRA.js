@@ -98,10 +98,14 @@ export const ProfilMeRA = ({route, navigation}) => {
             <Text style={{color: '#0019A7', fontSize: 16, marginTop: 5}}>
               43, Paris
             </Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('ProfilMeRAfirst');
+            }}>
             <Image
               source={require('../../../assets/images/boutonContinuer2.png')}
               style={{width: 96, height: 24, marginTop: 10}}
-            />
+            /></TouchableOpacity>
           </View>
         </View>
 

@@ -3,13 +3,7 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  ScrollView,
-} from 'react-native';
+import {View, Text, Image, ImageBackground, TouchableOpacity,ScrollView} from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
 
@@ -154,22 +148,27 @@ export const ProfilMeRP = ({route, navigation}) => {
               }}>
               ID.20230510.88
             </Text>
-            <ImageBackground
-              source={require('../../../assets/images/bouton_continuer.png')}
-              style={{width: 120, height: 30, borderRadius: 30, right: 35}}>
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  color: '#000',
-                  alignSelf: 'center',
-                  textAlign: 'center',
-                  top: 5,
-                }}>
-                Éditer
-              </Text>
-            </ImageBackground>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('ProfilMeRPfirst');
+              }}>
+              <ImageBackground
+                source={require('../../../assets/images/bouton_continuer.png')}
+                style={{width: 120, height: 30, borderRadius: 30, right: 35}}>
+                <Text
+                  style={{
+                    fontSize: 15,
+                    fontFamily: 'Comfortaa',
+                    fontWeight: '700',
+                    color: '#000',
+                    alignSelf: 'center',
+                    textAlign: 'center',
+                    top: 5,
+                  }}>
+                  Éditer
+                </Text>
+              </ImageBackground>
+            </TouchableOpacity>
           </View>
           <View
             style={{
@@ -365,7 +364,7 @@ export const ProfilMeRP = ({route, navigation}) => {
                 fontFamily: 'Comfortaa',
                 fontWeight: '700',
                 fontSize: 15,
-                  color: 'black',
+                color: 'black',
               }}>
               Statut
             </Text>
@@ -391,7 +390,7 @@ export const ProfilMeRP = ({route, navigation}) => {
                 fontFamily: 'Comfortaa',
                 fontWeight: '700',
                 fontSize: 15,
-                  color: 'black',
+                color: 'black',
               }}>
               Recherche
             </Text>
@@ -417,7 +416,7 @@ export const ProfilMeRP = ({route, navigation}) => {
                 fontFamily: 'Comfortaa',
                 fontWeight: '700',
                 fontSize: 15,
-                  color: 'black',
+                color: 'black',
               }}>
               Mon offre
             </Text>
@@ -440,7 +439,12 @@ export const ProfilMeRP = ({route, navigation}) => {
               color: 'black',
               marginLeft: 20,
             }}>
-            Le responsable des ressources humaines est chargé(e){'\n'}de gérer l'ensemble des activités liées aux ressources humaines{'\n'}au sein de l'entreprise. Il/elle joue un rôle clé dans le{'\n'}développement et la mise en œuvre des politiques RH pour{'\n'}soutenir les objectifs organisationnels tout en veillant au{'\n'}bien-être des employés...
+            Le responsable des ressources humaines est chargé(e){'\n'}de gérer
+            l'ensemble des activités liées aux ressources humaines{'\n'}au sein
+            de l'entreprise. Il/elle joue un rôle clé dans le{'\n'}développement
+            et la mise en œuvre des politiques RH pour{'\n'}soutenir les
+            objectifs organisationnels tout en veillant au{'\n'}bien-être des
+            employés...
           </Text>
           <View
             style={{flexDirection: 'row', marginTop: 45, alignItems: 'center'}}>
@@ -453,7 +457,7 @@ export const ProfilMeRP = ({route, navigation}) => {
                 fontFamily: 'Comfortaa',
                 fontWeight: '700',
                 fontSize: 15,
-                  color: 'black',
+                color: 'black',
               }}>
               Je parle couramment
             </Text>
@@ -479,7 +483,7 @@ export const ProfilMeRP = ({route, navigation}) => {
                 fontFamily: 'Comfortaa',
                 fontWeight: '700',
                 fontSize: 15,
-                  color: 'black',
+                color: 'black',
               }}>
               Mes distinctions
             </Text>
@@ -505,7 +509,7 @@ export const ProfilMeRP = ({route, navigation}) => {
                 fontFamily: 'Comfortaa',
                 fontWeight: '700',
                 fontSize: 15,
-                  color: 'black',
+                color: 'black',
               }}>
               Mes offres d'emploi
             </Text>

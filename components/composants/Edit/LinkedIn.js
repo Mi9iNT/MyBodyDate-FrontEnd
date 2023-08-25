@@ -2,31 +2,12 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
-import {StatusBar, TextInput} from 'react-native';
-import {View, Text, Image, ImageBackground} from 'react-native';
-import PropTypes from 'prop-types';
+import {StatusBar} from 'react-native';
+import {View, Text, Image, ImageBackground, TextInput, TouchableOpacity, Modal} from 'react-native';
+import {MyComponentLinkedIn} from './MyComponentLinkedIn';
 
-export const LinkedIn = ({route, navigation}) => {
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  const userSituation = route.params?.userSituation ?? '';
-  const userOrientation = route.params?.userOrientation ?? '';
-  const userRecherche1 = route.params?.userRecherche1 ?? '';
-  const userRecherche2 = route.params?.userRecherche2 ?? '';
-  const userAffinites = route.params?.userAffinites ?? '';
-  const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-  const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
-  const userPrenom = route.params?.userPrenom ?? '';
-  const userVoice = route.params?.userVoice ?? '';
+export const LinkedIn = ({visibleLinkedIn, closeModalLinkedIn}) => {
+  const [modalLinkedInlVisible, setModalLinkedInlVisible] = useState(false);
 
   const [modalVisible, setModalVisible] = useState(false);
   const [addProVisible, setAddProVisible] = useState([
@@ -52,18 +33,42 @@ export const LinkedIn = ({route, navigation}) => {
   }, []);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: '#fff',
-        alignSelf: 'center',
-        height: '100%',
-        width: '100%',
-      }}>
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={visibleLinkedIn}
+      onRequestClose={closeModalLinkedIn}>
+      {/* Arrière-plan semi-transparent */}
       <View
         style={{
-          alignSelf: 'center',
+          flex: 1,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Couleur semi-transparente
+          justifyContent: 'center', // Centrer verticalement
+          alignItems: 'center', // Centrer horizontalement
         }}>
+        <TouchableOpacity
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+          }}
+          onPress={() => closeModalLinkedIn()}
+          accessibilityLabel="Ferme la fenêtre"
+        />
+        {/* Contenu de la modal */}
+        <View
+          style={{
+            top: 40,
+            width: 394,
+            height: 700,
+            backgroundColor: 'white',
+            borderTopLeftRadius: 50,
+            borderTopRightRadius: 50,
+          }}>
+          <View
+            style={{
+              alignSelf: 'center',
+            }}>
         <Image
           source={require('../../../assets/images/LinkedIn.png')}
           style={{
@@ -137,10 +142,9 @@ export const LinkedIn = ({route, navigation}) => {
         Choix unique.
       </Text>
     </View>
+        </View>
+    </Modal>
   );
 };
 
-LinkedIn.propTypes = {
-  route: PropTypes.object.isRequired,
-  navigation: PropTypes.object.isRequired,
-};
+export default LinkedIn;
