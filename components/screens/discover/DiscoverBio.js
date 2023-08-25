@@ -10,7 +10,7 @@ import {More} from '../../composants/more/More';
 import Styles from '../../../assets/style/Styles';
 import LinearGradient from 'react-native-linear-gradient';
 
-export const DiscoverBio = ({route, navigation}) => {
+export const DiscoverBio = ({route, navigation, imagePath}) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -38,7 +38,7 @@ export const DiscoverBio = ({route, navigation}) => {
         width: '100%',
         height: '100%',
       }}>
-      <MenuSlide />
+      <MenuSlide imagePath={imagePath}/>
       <ImageBackground
         source={require('../../../assets/images/Background.png')}
         style={{
@@ -387,7 +387,7 @@ export const DiscoverBio = ({route, navigation}) => {
           />
         </View>
       </ImageBackground>
-      <MenuBottom />
+      <MenuBottom  activeTab={'Discover'}/>
     </View>
   );
 };

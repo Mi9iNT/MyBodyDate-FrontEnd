@@ -11,7 +11,7 @@ import {More} from '../../composants/more/More';
 import Styles from '../../../assets/style/Styles';
 import LinearGradient from 'react-native-linear-gradient';
 import Spotlight from '../../composants/Spotlight';
-export const Discover = ({route, navigation}) => {
+export const Discover = ({route, navigation, imagePath, activeTab}) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -32,8 +32,6 @@ export const Discover = ({route, navigation}) => {
   const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
-  const activeTab = route.params?.activeTab ?? '';
-  const imagePath = route.params?.imagePath ?? '';
 
   return (
     <View
@@ -266,7 +264,7 @@ export const Discover = ({route, navigation}) => {
             />
           </View>
         </View>
-        <MenuBottom navigation={navigation} activeTab={activeTab} />
+        <MenuBottom navigation={navigation} active={'Discover'} />
       </ImageBackground>
     </View>
   );

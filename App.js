@@ -140,7 +140,7 @@ function HomeTabs() {
       }}
       tabBar={props => <MenuBottom {...props} />}>
       <Tab.Screen
-        name="ProfilMeRA"
+        name="Discover"
         component={Discover}
         options={{headerShown: false}}
       />
@@ -565,6 +565,11 @@ function App() {
         <Stack.Screen
           name="Notifications"
           component={Notifications}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Discover"
+          component={HomeTabs}
           options={{headerShown: false}}
         />
         {/* SETTINGS SCREENS */}

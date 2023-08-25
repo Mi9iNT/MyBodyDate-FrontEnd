@@ -10,7 +10,7 @@ import {More} from '../../composants/more/More';
 import Styles from '../../../assets/style/Styles';
 import LinearGradient from 'react-native-linear-gradient';
 
-export const DiscoverCA = ({route, navigation}) => {
+export const DiscoverCA = ({route, navigation, imagePath}) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -38,7 +38,7 @@ export const DiscoverCA = ({route, navigation}) => {
         width: '100%',
         height: '100%',
       }}>
-      <MenuSlide />
+      <MenuSlide imagePath={imagePath}/>
       <ImageBackground
         source={require('../../../assets/images/BackJulie.png')}
         style={{
@@ -46,202 +46,6 @@ export const DiscoverCA = ({route, navigation}) => {
           height: '100%',
         }}>
         <MyComponent />
-        {/* <View style={{backgroundColor: '#ffffff', height: 30}}>
-          <View
-            style={{
-              width: 320,
-              height: 20,
-            }}>
-            <TouchableOpacity
-              style={{
-                justifyContent: 'space-around',
-                flexDirection: 'row',
-                width: 160,
-                height: 120,
-                marginHorizontal: 130,
-              }}>
-              <Text
-                style={{
-                  fontSize: 13,
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  color: '#0019A7',
-                  letterSpacing: 1,
-                }}>
-                Spotlight
-              </Text>
-              <Image
-                source={require('../../../assets/images/fleche-bas-p.png')}
-                style={{
-                  width: 25,
-                  height: 23,
-                  resizeMode: 'contain',
-                }}
-              />
-            </TouchableOpacity>
-          </View>
-        </View> */}
-        {/* <ImageBackground
-          source={require('../../../assets/images/Rectangle-89.png')}
-          style={{width: 400, height: 127}}>
-          <View
-            style={{
-              width: 320,
-              height: 20,
-            }}>
-            <TouchableOpacity
-              style={{
-                justifyContent: 'space-around',
-                flexDirection: 'row',
-                width: 160,
-                height: 120,
-                marginHorizontal: 130,
-              }}>
-              <Text
-                style={{
-                  fontSize: 13,
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  color: '#fff',
-                  letterSpacing: 1,
-                }}>
-                Spotlight
-              </Text>
-              <Image
-                source={require('../../../assets/images/fleche-haut-p.png')}
-                style={{
-                  width: 25,
-                  height: 23,
-                  resizeMode: 'contain',
-                }}
-              />
-            </TouchableOpacity>
-          </View>
-          <View
-            style={{
-              justifyContent: 'space-between',
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <View
-              style={{
-                justifyContent: 'space-between',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../../assets/images/Ellipse-99.png')}
-                style={{
-                  top: 5,
-                  left: 5,
-                  width: 85,
-                  height: 85,
-                  resizeMode: 'contain',
-                }}
-              />
-              <Text
-                style={{
-                  top: -7.2,
-                  left: 5,
-                  fontSize: 13,
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  color: '#fff',
-                  letterSpacing: 1,
-                }}>
-                Evenements
-              </Text>
-            </View>
-            <View
-              style={{
-                top: 5,
-                justifyContent: 'space-between',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../../assets/images/Ellipse-96.png')}
-                style={{
-                  borderRadius: 60,
-                  width: 60,
-                  height: 60,
-                  resizeMode: 'contain',
-                }}
-              />
-              <Text
-                style={{
-                  fontSize: 13,
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  color: '#fff',
-                  letterSpacing: 1,
-                }}>
-                Alex
-              </Text>
-            </View>
-            <View
-              style={{
-                top: 5,
-                justifyContent: 'space-between',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../../assets/images/Ellipse-97.png')}
-                style={{
-                  width: 60,
-                  height: 60,
-                  resizeMode: 'contain',
-                }}
-              />
-              <Text
-                style={{
-                  fontSize: 13,
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  color: '#fff',
-                  letterSpacing: 1,
-                }}>
-                Mike
-              </Text>
-            </View>
-            <View
-              style={{
-                top: 5,
-                justifyContent: 'space-between',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../../assets/images/Ellipse-98.png')}
-                style={{
-                  width: 60,
-                  height: 60,
-                  resizeMode: 'contain',
-                }}
-              />
-              <Text
-                style={{
-                  fontSize: 13,
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  color: '#fff',
-                  letterSpacing: 1,
-                }}>
-                Beverly
-              </Text>
-            </View>
-            <Image
-              source={require('../../../assets/images/fleche-drot-p.png')}
-              style={{
-                right: 10,
-                width: 25,
-                height: 23,
-                resizeMode: 'contain',
-              }}
-            />
-          </View>
-        </ImageBackground> */}
         <View style={{justifyContent: 'space-around', flexDirection: 'row'}}>
           <View
             style={{
@@ -455,7 +259,7 @@ export const DiscoverCA = ({route, navigation}) => {
           </View>
         </View>
       </ImageBackground>
-      <MenuBottom />
+      <MenuBottom activeTab={'Moi'}/>
     </View>
   );
 };

@@ -6,7 +6,7 @@ import { View, Text, Image, TouchableOpacity, Modal } from 'react-native';
 import Styles from '../../assets/style/Styles';
 import { useNavigation } from '@react-navigation/native';
 
-export const MenuSlide = ({route, icoPushChange, imagePath, prendPass}) => {
+export const MenuSlide = ({route, icoPushChange, imagePath, backButton}) => {
   const navigation = useNavigation();
 
   // Constantes concernant la Modal du Menu Slide
@@ -16,7 +16,9 @@ export const MenuSlide = ({route, icoPushChange, imagePath, prendPass}) => {
 
   // const [imagePath, setImagePath] = useState(imagePath);
 
-  // const [prendPass, setPrendPass] = useState(false);
+  const [linkSelected, setLinkSelected] = useState();
+
+  
 
   return (
     <View
@@ -27,7 +29,7 @@ export const MenuSlide = ({route, icoPushChange, imagePath, prendPass}) => {
         paddingHorizontal: 20,
         paddingVertical: 20,
       }}>
-      {prendPass ?
+      {backButton ?
         <View
         style={{
           flexDirection: 'row',
@@ -95,10 +97,17 @@ export const MenuSlide = ({route, icoPushChange, imagePath, prendPass}) => {
         </View>
         }
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <View style={{ left:-10, width:31, justifyContent:'center', alignItems: 'center'}}>
-          <TouchableOpacity>
-            <Image source={imagePath === true ? require('../../assets/images/cercle_ami.png') : require('../../assets/images/Rencontre_amoureuse.png')} style={{ width: 30, height: 30 }} />
-          </TouchableOpacity>
+        <View style={{ right:10, width:31, justifyContent:'center', alignItems: 'center'}}>
+            <Image
+              source={
+                imagePath === 'Ami'
+                  ? require('../../assets/images/cercle_ami.png')
+                  : imagePath === 'Amour'
+                  ? require('../../assets/images/Rencontre_amoureuse.png')
+                  : require('../../assets/images/Cercle-Pro-Sombre.png')
+              }
+              style={{ width: 30, height: 30 }}
+            />
         </View>
         <TouchableOpacity onPress={() => {
           navigation.navigate('Notifications');
@@ -115,9 +124,9 @@ export const MenuSlide = ({route, icoPushChange, imagePath, prendPass}) => {
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => setModalVisible(false)}>
+          <TouchableOpacity onPress={() => setModalVisible(false)} style={{ backgroundColor: 'transparent', height: '100%', width: '100%', position: 'absolute', right: 0 }} />
           <View
             style={{
-              position: 'absolute',
               top: 61,
               left: 94,
               width: 322,
@@ -128,21 +137,88 @@ export const MenuSlide = ({route, icoPushChange, imagePath, prendPass}) => {
               borderWidth: 1,
               borderColor: '#0019A7',
             }}>
-            <TouchableOpacity onPress={() => setModalVisible(false)} style={{backgroundColor:'transparent', height:'100%', width:'30%', position:'absolute', left: -95}}  />
-            {/* Paramètres */}
-            <View
-              style={{
-                top: 51,
-                left: 80,
-                width: 196,
-                height: 24,
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems:'center',
-              }}>
+            <View style={{top: 20, flexDirection: 'column', justifyContent: 'space-around'}}>
+
+              <View style={{left:60, height:'22%', width:'66%', flexDirection:'column', justifyContent: 'space-between',}}>
+
+             {/* Jeux */}
               <TouchableOpacity
+                style={{
+                  width: '40%',
+                  height: 24,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignSelf:'flex-end',
+                  alignItems:'center',
+                }}
+                accessibilityLabel="Jeux"
+                  onPress={() => { setModalVisible(false); navigation.navigate('Settings')}}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontFamily: 'gilroy',
+                    fontWeight: '700',
+                    color: '#0019A7',
+                    textAlign: 'right',
+                  }}>
+                  Jeux
+                </Text>
+                <Image
+                  source={require('../../assets/boutons/ico-jeux.png')}
+                  style={{
+                    width: 25,
+                    height: 25,
+                    resizeMode: 'contain',
+                  }}
+                />
+              </TouchableOpacity>
+
+
+            {/* Apps Affinitaires */}
+
+              <TouchableOpacity
+                style={{
+                  width: '90%',
+                  height: 24,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignSelf:'flex-end',
+                  alignItems:'center',
+                }}
+                accessibilityLabel="Apps Affinitaires"
+                  onPress={() => { setModalVisible(false); }}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontFamily: 'gilroy',
+                    fontWeight: '700',
+                    color: '#0019A7',
+                    textAlign: 'right',
+                  }}>
+                  Apps Affinitaires
+                </Text>
+                <Image
+                  source={require('../../assets/boutons/ico-app-affinite.png')}
+                  style={{
+                    width: 25,
+                    height: 25,
+                    resizeMode: 'contain',
+                  }}
+                />
+              </TouchableOpacity>
+
+            {/* Paramètres */}
+              <TouchableOpacity
+                style={{
+                  width: '70%',
+                  height: 24,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignSelf:'flex-end',
+                  alignItems:'center',
+                }}
                 accessibilityLabel="Paramètres"
-                onPress={() => navigation.navigate('Settings')}>
+                  onPress={() => { setModalVisible(false); navigation.navigate('Settings', {imagePath: imagePath})}}>
                 <Text
                   style={{
                     fontSize: 20,
@@ -153,205 +229,185 @@ export const MenuSlide = ({route, icoPushChange, imagePath, prendPass}) => {
                   }}>
                   Paramètres
                 </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-              style={{
-                width: 35,
-                height: 35,
-              }}
-                accessibilityLabel="Paramètres"
-                onPress={() => navigation.navigate('Settings')}>
                 <Image
                   source={require('../../assets/images/parametres.png')}
                   style={{
-                    width: '100%',
-                    height: '100%',
+                    width: 25,
+                    height: 25,
                     resizeMode: 'contain',
                   }}
                 />
               </TouchableOpacity>
+
             </View>
 
-            {/* Professionnel */}
+            <View style={{marginVertical: 15, height:1, width:215, backgroundColor:'#0019A7', alignSelf:'center'}} />
+            <Text style={{left: 40, color: '#0019A7',fontFamily: 'Gilroy-Bold',fontSize: 20,fontStyle: 'normal',fontWeight: 700, }}>Choisir un mode</Text>
+            <View style={{top: 20, width: 292, height: 350, justifyContent:'space-between', flexDirection:'column',}}>
+               {/* Professionnel */}
             <TouchableOpacity
-              onPress={() => navigation.navigate('ProfilMeRP')}>
-              <View
-                style={{
-                  position: 'absolute',
-                  top: 265,
-                  left: 83,
-                  width: 196,
-                  height: 24,
-                }}>
-                <Text
+              style={{
+                height: 110,
+                width:268,
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignSelf:'center',
+                alignItems:'center',
+                backgroundColor: linkSelected === 'Professionnel' ? 'rgba(0, 25, 167, 0.13)' : 'transparent',
+                borderRadius: 22,
+                padding: 2,
+                }}
+                  onPress={() => { setModalVisible(false); setLinkSelected('Professionnel'); navigation.navigate('ProfilMeRP', { imagePath: 'Professionnel' }); }}>
+                <Image
+                  source={require('../../assets/images/mybodydate_favicon-1.png')}
+                  style={{
+                    width: 38,
+                    height: 38,
+                    resizeMode: 'contain',
+                  }}
+                />
+                <View
+                  style={{
+                    height: '70%',
+                    width: '70%',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                  }}>
+                  <Text
                   style={{
                     fontSize: 20,
-                    fontFamily: 'gilroy',
-                    fontWeight: '700',
+                    fontFamily: 'Gilroy-Bold',
+                    fontWeight: 700,
                     color: '#0019A7',
                   }}>
                   Professionnel
                 </Text>
-              </View>
-              <View
-                style={{
-                  position: 'absolute',
-                  top: 286,
-                  left: 31,
-                  width: 30,
-                  height: 30,
-                }}>
-                <Image
-                  source={require('../../assets/images/mybodydate_favicon-1.png')}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    resizeMode: 'contain',
-                  }}
-                />
-              </View>
-              <View
-                style={{
-                  position: 'absolute',
-                  top: 302,
-                  left: 83,
-                  width: 184,
-                  height: 36,
-                }}>
                 <Text
                   style={{
                     fontSize: 16,
-                    fontFamily: 'comfortaa',
-                    fontWeight: '700',
+                    fontFamily: 'Comfortaa-Bold',
+                    fontWeight: '500',
                     color: '#0019A7',
                   }}>
                   Trouvez des contacts qui vous font évoluer.
                 </Text>
-              </View>
+                </View>
+                
             </TouchableOpacity>
-
+              <View style={{marginVertical: 10, height:1, width:215, backgroundColor:'#0019A7', alignSelf:'center'}} />
             {/* Cercle d'ami */}
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('ProfilMeCA',{imagePath:true});
-                // setImagePath(true);
-              }}>
-              <View
-                style={{
-                  position: 'absolute',
-                  top: 396,
-                  left: 83,
-                  width: 196,
-                  height: 24,
-                }}>
-                <Text
-                  style={{
-                    fontSize: 20,
-                    fontFamily: 'gilroy',
-                    fontWeight: '700',
-                    color: '#0019A7',
-                  }}>
-                  Cercle d'ami
-                </Text>
-              </View>
-              <View
-                style={{
-                  position: 'absolute',
-                  top: 414,
-                  left: 31,
-                  width: 30,
-                  height: 30,
+                    setModalVisible(false);
+                navigation.navigate('ProfilMeCA',{imagePath:'Ami'});
+                setLinkSelected('Ami');
+              }}
+              style={{
+                height: 110,
+                width:268,
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignSelf:'center',
+                alignItems:'center',
+                backgroundColor: linkSelected === 'Ami' ? 'rgba(0, 25, 167, 0.13)' : 'transparent',
+                borderRadius: 22,
+                padding: 2,
                 }}>
                 <Image
                   source={require('../../assets/images/mybodydate_favicon-2.png')}
                   style={{
-                    width: '100%',
-                    height: '100%',
+                    width: 38,
+                    height: 38,
                     resizeMode: 'contain',
                   }}
                 />
-              </View>
-              <View
-                style={{
-                  position: 'absolute',
-                  top: 433,
-                  left: 83,
-                  width: 184,
-                  height: 52,
-                }}>
+                <View
+                  style={{
+                    height: '70%',
+                    width: '70%',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                  }}>
+                  <Text
+                  style={{
+                    fontSize: 20,
+                    fontFamily: 'Gilroy-Bold',
+                    fontWeight: '700',
+                    color: '#0019A7',
+                  }}>
+                  Cercle d'ami.es
+                </Text>
                 <Text
                   style={{
                     fontSize: 16,
-                    fontFamily: 'comfortaa',
-                    fontWeight: '700',
+                    fontFamily: 'Comfortaa-Bold',
+                    fontWeight: '500',
                     color: '#0019A7',
                   }}>
                   Agrandissez votre cercle social.
                 </Text>
-              </View>
+                </View>
+                
             </TouchableOpacity>
-
+              <View style={{marginVertical: 10, height:1, width:215, backgroundColor:'#0019A7', alignSelf:'center'}} />
             {/* Rencontre amoureuse */}
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('ProfilMeRA',{imagePastille:false});
-                // setImagePath(false);
-              }}>
-              <View
-                style={{
-                  position: 'absolute',
-                  top: 518,
-                  left: 83,
-                  width: 210,
-                  height: 48,
-                }}>
-                <Text
-                  style={{
-                    fontSize: 20,
-                    fontFamily: 'gilroy',
-                    fontWeight: '700',
-                    color: '#0019A7',
-                  }}>
-                  Rencontre amoureuse
-                </Text>
-              </View>
-              <View
-                style={{
-                  position: 'absolute',
-                  top: 536,
-                  left: 31,
-                  width: 30,
-                  height: 30,
+                setModalVisible(false);
+                navigation.navigate('Moi',{imagePath:'Amour'});
+                setLinkSelected('Amour');
+              }}
+              style={{
+                height: 110,
+                width:268,
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignSelf:'center',
+                alignItems:'center',
+                backgroundColor: linkSelected === 'Amour' ? 'rgba(0, 25, 167, 0.13)' : 'transparent',
+                borderRadius: 22,
+                padding: 2,
                 }}>
                 <Image
                   source={require('../../assets/images/mybodydate_favicon-3.png')}
                   style={{
-                    width: '100%',
-                    height: '100%',
+                    width: 38,
+                    height: 38,
                     resizeMode: 'contain',
                   }}
                 />
-              </View>
-              <View
-                style={{
-                  position: 'absolute',
-                  top: 558,
-                  left: 83,
-                  width: 184,
-                  height: 34,
-                }}>
+                <View
+                  style={{
+                    height: '85%',
+                    width: '70%',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                  }}>
+                  <Text
+                  style={{
+                    fontSize: 20,
+                    fontFamily: 'Gilroy-Bold',
+                    fontWeight: '700',
+                    color: '#0019A7',
+                  }}>
+                  Recontre amoureuse
+                </Text>
                 <Text
                   style={{
                     fontSize: 16,
-                    fontFamily: 'comfortaa',
-                    fontWeight: '700',
+                    fontFamily: 'Comfortaa-Bold',
+                    fontWeight: '500',
                     color: '#0019A7',
                   }}>
                   Un coup de coeur n'attend pas.
                 </Text>
-              </View>
+                </View>
+                
             </TouchableOpacity>
+            </View>
+
+            </View>
+
           </View>
         </Modal>
         <TouchableOpacity onPress={() => setModalVisible(true)}>

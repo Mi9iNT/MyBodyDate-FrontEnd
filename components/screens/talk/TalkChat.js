@@ -216,7 +216,7 @@ export const TalkChat = ({navigation, route}) => {
         </SafeAreaView>
       </ImageBackground>
 
-      <MenuBottom navigation={navigation} activeTab={activeTab} />
+      <MenuBottom navigation={navigation} activeTab={'Talk'} />
     </View>
   );
 };

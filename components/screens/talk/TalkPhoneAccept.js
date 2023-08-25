@@ -17,7 +17,6 @@ import {
 import PropTypes from 'prop-types';
 import Styles from '../../../assets/style/Styles';
 import MenuSlide from '../../composants/MenuSlide';
-import MenuBottom from '../../composants/MenuBottom';
 
 export const TalkPhoneAccept = ({ navigation, route }) => {
   // Masquer la barre de statut au montage de l'écran

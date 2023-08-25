@@ -20,7 +20,7 @@ const commonTextStyles = {
   fontWeight: '700',
 };
 
-export const Settings = ({navigation}) => {
+export const Settings = ({navigation, backButton, imagePath}) => {
   // Masquer la barre de statut au montage de l'écran
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -87,7 +87,7 @@ export const Settings = ({navigation}) => {
       <ImageBackground
         style={settingsStyles.bgGradient}
         source={require('../../../assets/images/bg-parametres.png')}>
-        <MenuSlide />
+        <MenuSlide backButton={false} imagePath={imagePath}/>
         <View style={{flex: 11}}>
           <Text style={settingsStyles.title}>Paramètres</Text>
           <View style={settingsStyles.separator} />

@@ -55,7 +55,7 @@ export const ProfilMeCAfirst = ({route, navigation, imagePath}) => {
 
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
-      <MenuSlide imagePath={true} />
+      <MenuSlide imagePath={'Ami'} />
       <ScrollView>
         <View>
           <Text

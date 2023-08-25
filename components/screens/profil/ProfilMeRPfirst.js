@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
 import Styles from '../../../assets/style/Styles';
 
-export const ProfilMeRPfirst = ({route, navigation}) => {
+export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -64,7 +64,7 @@ export const ProfilMeRPfirst = ({route, navigation}) => {
           paddingHorizontal: 20,
           paddingVertical: 10,
         }}>
-        <MenuSlide />
+        <MenuSlide imagePath={'Professionnel'}/>
       </View>
       <ScrollView>
         <Text

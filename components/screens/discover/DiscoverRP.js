@@ -16,7 +16,7 @@ import {More} from '../../composants/more/More';
 import Styles from '../../../assets/style/Styles';
 import LinearGradient from 'react-native-linear-gradient';
 
-export const DiscoverRP = ({route, navigation}) => {
+export const DiscoverRP = ({route, navigation, imagePath}) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -44,7 +44,7 @@ export const DiscoverRP = ({route, navigation}) => {
         width: '100%',
         height: '100%',
       }}>
-      <MenuSlide />
+      <MenuSlide imagePath={imagePath}/>
       <ImageBackground
         source={require('../../../assets/images/BackLisa.png')}
         style={{
@@ -460,7 +460,7 @@ export const DiscoverRP = ({route, navigation}) => {
           </View>
         </View>
       </ImageBackground>
-      <MenuBottom />
+      <MenuBottom navigation={navigation} activeTab={'Moi'}/>
     </View>
   );
 };

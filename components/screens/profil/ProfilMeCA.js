@@ -48,7 +48,7 @@ export const ProfilMeCA = ({route, navigation}) => {
 
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
-      <MenuSlide imagePath={true} />
+      <MenuSlide imagePath={'Ami'} />
       <ScrollView style={{backgroundColor: 'white'}}>
         <View style={{justifyContent: 'center'}}>
           <ImageBackground

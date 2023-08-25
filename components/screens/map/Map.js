@@ -12,7 +12,7 @@ import customMarkerIcon from '../../../assets/boutons/marker-map.png';
 import customMarkerIconBlue from '../../../assets/boutons/marker-map-blue.png';
 import SliderMap from '../../composants/SliderMap';
 
-export const Map = ({ navigation, route }) => {
+export const Map = ({ navigation, route, }) => {
   // Masquer la barre de statut au montage de l'écran
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -21,8 +21,6 @@ export const Map = ({ navigation, route }) => {
       StatusBar.setHidden(false);
     };
   }, []);
-
-  const activeTab = route.params?.activeTab ?? '';
 
   const [userLocation, setUserLocation] = useState({
     latitude: 48.8966739567463,
@@ -231,7 +229,7 @@ export const Map = ({ navigation, route }) => {
           <RecenterButton onPress={centerMapOnUser} />
         </View>
       </View>
-      <MenuBottom navigation={navigation} activeTab={activeTab} />
+      <MenuBottom navigation={navigation} activeTab={'Map'} />
     </View>
   );
 };
