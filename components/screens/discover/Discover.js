@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
 import {MyComponent} from '../../composants/MyComponent';
 import {MenuBottom} from '../../composants/MenuBottom';
-import {More} from '../../composants/more/More';
+import {More} from '../../composants/More/More';
 import Styles from '../../../assets/style/Styles';
 import LinearGradient from 'react-native-linear-gradient';
 import Spotlight from '../../composants/Spotlight';
@@ -172,7 +172,7 @@ export const Discover = ({route, navigation}) => {
               source={require('../../../assets/images/Médaille.png')}
               style={{
                 top: 24,
-                left: 20,
+                left: 40,
                 width: 30,
                 height: 44,
               }}

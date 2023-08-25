@@ -4,10 +4,10 @@
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image, TouchableOpacity, Modal} from 'react-native';
-import {MyComponentVotreRecherche} from './MyComponentVotreRecherche';
+import {MyComponentReligion} from './MyComponentReligion';
 
-export const VotreRecherche = ({visibleVotreRecherche, closeModalVotreRecherche}) => {
-  const [modalVotreRecherchelVisible, setModalVotreRecherchelVisible] = useState(false);
+export const Religion = ({visibleReligion, closeModalReligion}) => {
+  const [modalReligionVisible, setModalReligionVisible] = useState(false);
 
   const [modalVisible, setModalVisible] = useState(false);
   const [addProVisible, setAddProVisible] = useState([
@@ -36,8 +36,8 @@ export const VotreRecherche = ({visibleVotreRecherche, closeModalVotreRecherche}
     <Modal
       animationType="slide"
       transparent={true}
-      visible={visibleVotreRecherche}
-      onRequestClose={closeModalVotreRecherche}>
+      visible={visibleReligion}
+      onRequestClose={closeModalReligion}>
       {/* Arrière-plan semi-transparent */}
       <View
         style={{
@@ -52,7 +52,7 @@ export const VotreRecherche = ({visibleVotreRecherche, closeModalVotreRecherche}
             width: '100%',
             height: '100%',
           }}
-          onPress={() => closeModalVotreRecherche()}
+          onPress={() => closeModalReligion()}
           accessibilityLabel="Ferme la fenêtre"
         />
         {/* Contenu de la modal */}
@@ -69,44 +69,44 @@ export const VotreRecherche = ({visibleVotreRecherche, closeModalVotreRecherche}
             style={{
               alignSelf: 'center',
             }}>
-        <Image
-          source={require('../../../assets/images/LoupeRP.png')}
-          style={{
-            width: 84,
-            height: 84,
-            top: 30,
-            alignSelf: 'center',
-          }}
-        />
-        <Text
-          style={{
-            fontFamily: 'Gilroy',
-            fontWeight: '700',
-            fontSize: 20,
-            color: '#000',
-            top: 50,
-          }}>
-          Votre rechreche
-        </Text>
-      </View>
-      <View>
-        <Text
-          style={{
-            fontFamily: 'Gilroy',
-            fontWeight: '700',
-            fontSize: 14,
-            color: '#000',
-            top: 80,
-            left: 30,
-          }}>
-          Sélectionnez votre rechreche.
-        </Text>
-      </View>
-      <MyComponentVotreRecherche />
+            <Image
+              source={require('../../../assets/images/ReligionB.png')}
+              style={{
+                width: 84,
+                height: 84,
+                top: 30,
+                alignSelf: 'center',
+              }}
+            />
+            <Text
+              style={{
+                fontFamily: 'Gilroy',
+                fontWeight: '700',
+                fontSize: 20,
+                color: '#0019A7',
+                top: 50,
+              }}>
+              Religion
+            </Text>
+          </View>
+          <View>
+            <Text
+              style={{
+                fontFamily: 'Gilroy',
+                fontWeight: '700',
+                fontSize: 14,
+                color: '#0019A7',
+                top: 80,
+                left: 30,
+              }}>
+              Sélectionnez votre religion.
+            </Text>
+          </View>
+          <MyComponentReligion />
         </View>
       </View>
     </Modal>
   );
 };
 
-export default VotreRecherche;
+export default Religion;

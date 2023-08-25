@@ -3,31 +3,11 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
-import {View, Text, Image} from 'react-native';
-import PropTypes from 'prop-types';
+import {View, Text, Image, TouchableOpacity, Modal} from 'react-native';
 import {MyComponentAlcool} from './MyComponentAlcool';
 
-export const Alcool = ({route, navigation}) => {
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  const userSituation = route.params?.userSituation ?? '';
-  const userOrientation = route.params?.userOrientation ?? '';
-  const userRecherche1 = route.params?.userRecherche1 ?? '';
-  const userRecherche2 = route.params?.userRecherche2 ?? '';
-  const userAffinites = route.params?.userAffinites ?? '';
-  const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-  const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
-  const userPrenom = route.params?.userPrenom ?? '';
-  const userVoice = route.params?.userVoice ?? '';
+export const Alcool = ({visibleAlcool, closeModalAlcool}) => {
+  const [modalAlcoollVisible, setModalAlcoollVisible] = useState(false);
 
   const [modalVisible, setModalVisible] = useState(false);
   const [addProVisible, setAddProVisible] = useState([
@@ -53,7 +33,38 @@ export const Alcool = ({route, navigation}) => {
   }, []);
 
   return (
-    <View style={{flex: 1, backgroundColor: '#fff'}}>
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={visibleAlcool}
+      onRequestClose={closeModalAlcool}>
+      {/* Arrière-plan semi-transparent */}
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Couleur semi-transparente
+          justifyContent: 'center', // Centrer verticalement
+          alignItems: 'center', // Centrer horizontalement
+        }}>
+        <TouchableOpacity
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+          }}
+          onPress={() => closeModalAlcool()}
+          accessibilityLabel="Ferme la fenêtre"
+        />
+        {/* Contenu de la modal */}
+        <View
+          style={{
+            top: 40,
+            width: 394,
+            height: 700,
+            backgroundColor: 'white',
+            borderTopLeftRadius: 50,
+            borderTopRightRadius: 50,
+          }}>
       <View
         style={{
           flexDirection: 'row',
@@ -95,11 +106,10 @@ export const Alcool = ({route, navigation}) => {
         </Text>
       </View>
       <MyComponentAlcool />
-    </View>
+        </View>
+      </View>
+    </Modal>
   );
 };
 
-Alcool.propTypes = {
-  route: PropTypes.object.isRequired,
-  navigation: PropTypes.object.isRequired,
-};
+export default Alcool;
