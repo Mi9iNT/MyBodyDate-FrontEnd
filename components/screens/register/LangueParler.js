@@ -38,6 +38,8 @@ export const LangueParler = ({route, navigation}) => {
   console.log('Taille : ', userSize);
   console.log('Langues : ', userLang);
 
+  const [buttonPressed, setButtonPressed] = useState();
+
   // La constante currentLocale permet de récupérer la/les langues selectionné(s) dans les paramètres du téléphone au travers des NativesModules
   const {I18nManager} = NativeModules;
   const currentLocale = I18nManager.localeIdentifier;
@@ -184,7 +186,7 @@ export const LangueParler = ({route, navigation}) => {
                 style={Styles.SelectedImage}
                 source={
                   selectedValues.includes('Français')
-                    ? require('../../../assets/images/radio_selected_noir.png')
+                    ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
@@ -198,7 +200,7 @@ export const LangueParler = ({route, navigation}) => {
                 style={Styles.SelectedImage}
                 source={
                   selectedValues.includes('Espagnol')
-                    ? require('../../../assets/images/radio_selected_noir.png')
+                    ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
@@ -212,7 +214,7 @@ export const LangueParler = ({route, navigation}) => {
                 style={Styles.SelectedImage}
                 source={
                   selectedValues.includes('Néerlandais')
-                    ? require('../../../assets/images/radio_selected_noir.png')
+                    ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
@@ -226,7 +228,7 @@ export const LangueParler = ({route, navigation}) => {
                 style={Styles.SelectedImage}
                 source={
                   selectedValues.includes('Portugais')
-                    ? require('../../../assets/images/radio_selected_noir.png')
+                    ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
@@ -240,7 +242,7 @@ export const LangueParler = ({route, navigation}) => {
                 style={Styles.SelectedImage}
                 source={
                   selectedValues.includes('Polonais')
-                    ? require('../../../assets/images/radio_selected_noir.png')
+                    ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
@@ -254,7 +256,7 @@ export const LangueParler = ({route, navigation}) => {
                 style={Styles.SelectedImage}
                 source={
                   selectedValues.includes('Chinois')
-                    ? require('../../../assets/images/radio_selected_noir.png')
+                    ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
@@ -270,7 +272,7 @@ export const LangueParler = ({route, navigation}) => {
                 style={Styles.SelectedImage}
                 source={
                   selectedValues.includes('Anglais')
-                    ? require('../../../assets/images/radio_selected_noir.png')
+                    ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
@@ -284,7 +286,7 @@ export const LangueParler = ({route, navigation}) => {
                 style={Styles.SelectedImage}
                 source={
                   selectedValues.includes('Allemand')
-                    ? require('../../../assets/images/radio_selected_noir.png')
+                    ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
@@ -298,7 +300,7 @@ export const LangueParler = ({route, navigation}) => {
                 style={Styles.SelectedImage}
                 source={
                   selectedValues.includes('Italien')
-                    ? require('../../../assets/images/radio_selected_noir.png')
+                    ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
@@ -312,7 +314,7 @@ export const LangueParler = ({route, navigation}) => {
                 style={Styles.SelectedImage}
                 source={
                   selectedValues.includes('Arabe')
-                    ? require('../../../assets/images/radio_selected_noir.png')
+                    ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
@@ -326,7 +328,7 @@ export const LangueParler = ({route, navigation}) => {
                 style={Styles.SelectedImage}
                 source={
                   selectedValues.includes('Grec')
-                    ? require('../../../assets/images/radio_selected_noir.png')
+                    ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
@@ -349,7 +351,7 @@ export const LangueParler = ({route, navigation}) => {
           </View>
         </View>
         <View style={{top: -100}}>
-          <Text style={[Styles.textWhite3, {left: 30}]}>Choix multiples.</Text>
+          <Text style={[Styles.textWhite3, {left: 30,fontSize:12}]}>Choix multiples.</Text>
           <View style={[Styles.line]} />
         </View>
 
@@ -370,9 +372,10 @@ export const LangueParler = ({route, navigation}) => {
             Langue de votre appareil.
           </Text>
         </View>
-        <View style={[{top: -30}]}>
+        <View style={[{bottom: 30}]}>
           <TouchableOpacity
-            onPress={() =>
+            onPress={() => {
+              setButtonPressed('Continuer');
               navigation.navigate('Situation', {
                 userConsent: consentement,
                 routeName: routeChoice,
@@ -385,23 +388,21 @@ export const LangueParler = ({route, navigation}) => {
                 userBirth: userBirth,
                 userSize: userSize,
                 userLang: lang,
-              })
+              });}
             }
             accessibilityLabel="Continuer">
-            <Text style={[Styles.textBtn9, {zIndex: 1, top: 45}]}>
+            <Text style={[Styles.textBtn9, {zIndex: 1, top: 40, color:buttonPressed === 'Continuer' ? '#fff' : '#0019A7'}]}>
               Continuer
             </Text>
             <Image
               style={[
                 {
-                  top: 0,
-                  width: '90%',
-                  height: 60,
+                  height: 56,
                   resizeMode: 'contain',
                   alignSelf: 'center',
                 },
               ]}
-              source={require('../../../assets/boutons/Bouton-Blanc.png')}
+              source={buttonPressed === 'Continuer' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc.png')}
             />
           </TouchableOpacity>
         </View>

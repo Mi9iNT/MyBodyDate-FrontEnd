@@ -50,6 +50,8 @@ export const EmpreinteVocal = ({route, navigation}) => {
   console.log('Rythme de vie 2 : ', rythmeDeVie2);
   console.log('Prénom : ', userPrenom);
 
+  const [buttonPressed, setButtonPressed] = useState('');
+
   // Constantes concernant la Modal d'information de l'empreinte vocal
   const [modalRecaptchaVisible, setModalInfoVocaVisible] = useState(false);
 
@@ -67,7 +69,7 @@ export const EmpreinteVocal = ({route, navigation}) => {
           <Text
             style={[
               Styles.textWhite2,
-              {top: 10, alignSelf: 'center', width: '90%'},
+              {top: 20, alignSelf: 'center', width: '80%', fontSize: 15},
             ]}>
             Enregistrer un mesage vocale introductif à l'attention des personnes
             que vous croisez, et émouvoir votre futur match
@@ -75,7 +77,7 @@ export const EmpreinteVocal = ({route, navigation}) => {
           <View
             style={[
               {
-                top: -70,
+                bottom: 80,
                 backgroundColor: 'white',
                 borderRadius: 100,
                 height: 120,
@@ -98,8 +100,10 @@ export const EmpreinteVocal = ({route, navigation}) => {
               source={require('../../../assets/images/micro.png')}
             />
           </View>
-          <Text style={[Styles.textWhiteCenter2, {top: -60}]}>30 secondes</Text>
-          <View style={[{top: -40, alignSelf: 'center', width: '100%'}]}>
+          <Text style={[Styles.textWhiteCenter2, {bottom: 60}]}>
+            30 secondes
+          </Text>
+          <View style={[{bottom: 40, alignSelf: 'center', width: '100%'}]}>
             <TouchableOpacity
               style={[{top: -70}]}
               onPress={() => setModalInfoVocaVisible(true)}
@@ -112,7 +116,7 @@ export const EmpreinteVocal = ({route, navigation}) => {
                 />
               </Text>
             </TouchableOpacity>
-            <View style={[{flexDirection: 'row', marginLeft: 50, top: -10}]}>
+            <View style={[{flexDirection: 'row', marginLeft: 50, bottom: 10}]}>
               <View style={{flex: 2}}>
                 <TouchableOpacity
                   style={Styles.btnInputLang}
@@ -122,7 +126,7 @@ export const EmpreinteVocal = ({route, navigation}) => {
                     style={Styles.SelectedImage}
                     source={
                       selectedVoice === 'Soprano'
-                        ? require('../../../assets/images/radio_selected_noir.png')
+                        ? require('../../../assets/images/radio_selected.png')
                         : require('../../../assets/images/radio_unselected.png')
                     }
                   />
@@ -136,7 +140,7 @@ export const EmpreinteVocal = ({route, navigation}) => {
                     style={Styles.SelectedImage}
                     source={
                       selectedVoice === 'Mezzo'
-                        ? require('../../../assets/images/radio_selected_noir.png')
+                        ? require('../../../assets/images/radio_selected.png')
                         : require('../../../assets/images/radio_unselected.png')
                     }
                   />
@@ -152,7 +156,7 @@ export const EmpreinteVocal = ({route, navigation}) => {
                     style={Styles.SelectedImage}
                     source={
                       selectedVoice === 'Alto'
-                        ? require('../../../assets/images/radio_selected_noir.png')
+                        ? require('../../../assets/images/radio_selected.png')
                         : require('../../../assets/images/radio_unselected.png')
                     }
                   />
@@ -168,7 +172,7 @@ export const EmpreinteVocal = ({route, navigation}) => {
                     style={Styles.SelectedImage}
                     source={
                       selectedVoice === 'Baryton'
-                        ? require('../../../assets/images/radio_selected_noir.png')
+                        ? require('../../../assets/images/radio_selected.png')
                         : require('../../../assets/images/radio_unselected.png')
                     }
                   />
@@ -182,7 +186,7 @@ export const EmpreinteVocal = ({route, navigation}) => {
                     style={Styles.SelectedImage}
                     source={
                       selectedVoice === 'Ténor'
-                        ? require('../../../assets/images/radio_selected_noir.png')
+                        ? require('../../../assets/images/radio_selected.png')
                         : require('../../../assets/images/radio_unselected.png')
                     }
                   />
@@ -204,10 +208,12 @@ export const EmpreinteVocal = ({route, navigation}) => {
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={{top: 10}}>
-              <Text style={[Styles.textWhite3]}>Choix unique.</Text>
+            <View style={{top: 20}}>
+              <Text style={[Styles.textWhite3, {fontSize: 12, left: 30}]}>
+                Choix unique.
+              </Text>
               <TouchableOpacity
-                style={[Styles.btn, {top: 10}]}
+                style={[Styles.btn, {top: 20}]}
                 onPress={() =>
                   navigation.navigate("Charte d'engagement", {
                     userConsent: consentement,
@@ -246,14 +252,20 @@ export const EmpreinteVocal = ({route, navigation}) => {
             onRequestClose={() => {
               setModalInfoVocaVisible(!modalRecaptchaVisible);
             }}>
-            <View style={[Styles.centeredView3, {top: 200}]}>
-              <Text style={[Styles.textBlueCenter3, {top: -200}]}>
+            <TouchableOpacity
+              onPress={() => {
+                setModalInfoVocaVisible(false);
+              }}
+              style={{position: 'absolute', width: '100%', height: 200}}
+            />
+            <View style={[Styles.centeredView3, {top: 140}]}>
+              <Text style={[Styles.textBlueCenter3, {bottom: 180, fontFamily:'Comfortaa-Bold', fontSize:24}]}>
                 VOTRE TYPE DE VOIX
               </Text>
               <Image
                 style={[
                   {
-                    top: -160,
+                    bottom: 140,
                     width: 30,
                     height: 30,
                     resizeMode: 'contain',
@@ -262,36 +274,37 @@ export const EmpreinteVocal = ({route, navigation}) => {
                 ]}
                 source={require('../../../assets/boutons/info.png')}
               />
-              <Text style={[Styles.textBlue, {top: -130}]}>
+              <Text style={[Styles.textBlue, {bottom: 110}]}>
                 <Text style={[Styles.textBlueBold]}>Soprano</Text> est la voix
                 la plus aigue de femme.
               </Text>
-              <Text style={[Styles.textBlue, {top: -130}]}>
+              <Text style={[Styles.textBlue, Styles.mt10, {bottom: 110}]}>
                 <Text style={[Styles.textBlueBold]}>Mezzo Soprona</Text> est la
                 voix médium.
               </Text>
-              <Text style={[Styles.textBlue, {top: -130}]}>
+              <Text style={[Styles.textBlue, Styles.mt10, {bottom: 110}]}>
                 <Text style={[Styles.textBlueBold]}>Alto (contralto)</Text> est
                 la voix de femme la plus grave et est très rare.
               </Text>
-              <Text style={[Styles.textBlue, {top: -130}]}>
+              <Text style={[Styles.textBlue, Styles.mt10, {bottom: 110}]}>
                 Pour les hommes la voix la plus aigue est{' '}
                 <Text style={[Styles.textBlueBold]}>Ténor</Text>.
               </Text>
-              <Text style={[Styles.textBlue, {top: -130}]}>
+              <Text style={[Styles.textBlue, Styles.mt10, {bottom: 110}]}>
                 <Text style={[Styles.textBlueBold]}>Baryton</Text> est la voix
                 médium.
               </Text>
-              <Text style={[Styles.textBlue, {top: -130}]}>
+              <Text style={[Styles.textBlue, Styles.mt10, {bottom: 110}]}>
                 <Text style={[Styles.textBlueBold]}>Basse</Text> est la plus
                 grave.
               </Text>
             </View>
           </Modal>
-          <View style={[Styles.ViewBtn, {top: -40}]}>
+          <View style={[Styles.ViewBtn, {bottom: 30}]}>
             <TouchableOpacity
               style={Styles.btn}
-              onPress={() =>
+              onPress={() => {
+                setButtonPressed('Continuer');
                 navigation.navigate("Charte d'engagement", {
                   userConsent: consentement,
                   routeName: routeChoice,
@@ -313,23 +326,33 @@ export const EmpreinteVocal = ({route, navigation}) => {
                   rythmeDeVie2: rythmeDeVie2,
                   userPrenom: userPrenom,
                   userVoice: selectedVoice,
-                })
-              }
+                });
+              }}
               accessibilityLabel="Continuer">
-              <Text style={[Styles.textBtn9, {zIndex: 4, top: 45}]}>
+              <Text
+                style={[
+                  Styles.textBtn9,
+                  {
+                    zIndex: 4,
+                    top: 40,
+                    color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
+                  },
+                ]}>
                 Continuer
               </Text>
               <Image
                 style={[
                   {
-                    top: 0,
-                    width: '90%',
-                    height: 60,
+                    height: 56,
                     resizeMode: 'contain',
                     alignSelf: 'center',
                   },
                 ]}
-                source={require('../../../assets/boutons/Bouton-Blanc.png')}
+                source={
+                  buttonPressed === 'Continuer'
+                    ? require('../../../assets/boutons/Bouton-Rouge.png')
+                    : require('../../../assets/boutons/Bouton-Blanc.png')
+                }
               />
             </TouchableOpacity>
           </View>

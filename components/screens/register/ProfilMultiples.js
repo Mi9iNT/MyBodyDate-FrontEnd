@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import Styles from '../../../assets/style/Styles';
 
 /* Screen 2 */
@@ -32,8 +33,9 @@ export const ProfilMultiples = ({route, navigation}) => {
   const userRecherche2 = route.params?.userRecherche2 ?? '';
   const userAffinites = route.params?.userAffinites ?? '';
   const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-  const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
+  const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
+  const pseudo = route.params?.pseudo ?? '';
   console.log('Choix de route : ', routeChoice);
   console.log('Consentement : ', consentement);
   console.log('Love Coach : ', loveCoach);
@@ -53,6 +55,9 @@ export const ProfilMultiples = ({route, navigation}) => {
   console.log('Rythme de vie 1 : ', rythmeDeVie1);
   console.log('Rythme de vie 2 : ', rythmeDeVie2);
   console.log('Prénom : ', userPrenom);
+  console.log('Pseudo : ', pseudo);
+
+  const [buttonPressed, setButtonPressed] = useState();
 
   //Constante permettant de savoir si l'utilisateur à appuyer sur play ou sur pause
   const [isPlaying, setIsPlaying] = React.useState(false);
@@ -84,31 +89,46 @@ export const ProfilMultiples = ({route, navigation}) => {
         source={require('../../../assets/images/Background.png')}>
         <View style={[Styles.ViewText, {top: 100}]}>
           <Text style={[Styles.textWhiteCenter]}>PROFIL MULTIPLIÉS</Text>
-          <Text style={[Styles.textWhiteRound, {top: 50}]}>{userPrenom}</Text>
+          <Text style={[Styles.textWhiteRound, {top: 40, padding: 10}]}>
+            {userPrenom}
+          </Text>
           {/* Parenthèse (id) à changer par n° id_user de la bdd */}
-          <Text style={[Styles.textBlueCenter, {top: 80}]}>
+          <Text
+            style={[
+              Styles.textBlueCenter,
+              {top: 80, fontFamily: 'Comfortaa-Bold'},
+            ]}>
             ID.{formattedDate}.(id)
           </Text>
           <Text style={[Styles.textWhite4, {top: 100}]}>
-            Grâce au profil multipliés,{'\n'}vous bénéficiez gratuitement d’une{'\n'}visibilité de votre profil auprès de{'\n'}votre communauté d’affinité ;{'\n'}Parent célibataire, sénior,{'\n'}Gay/lesbienne et libertin.
+            Grâce au profil multipliés,{'\n'}vous bénéficiez gratuitement d’une
+            {'\n'}visibilité de votre profil auprès de{'\n'}votre communauté
+            d’affinité ;{'\n'}Parent célibataire, sénior,{'\n'}Gay/lesbienne et
+            libertin.
           </Text>
-          <View style={{flexDirection:'row', gap:20, alignSelf:'center', marginBottom:20}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              gap: 20,
+              alignSelf: 'center',
+              marginBottom: 20,
+            }}>
             <Image
-              style={[{top: 120,width: 113,height: 57,resizeMode:'cover'}]}
+              style={[{top: 120, width: 113, height: 57, resizeMode: 'cover'}]}
               source={require('../../../assets/images/cheerflakes-thumb.png')}
             />
             <Image
-              style={[{top: 120,width: 113,height: 57,resizeMode:'cover'}]}
+              style={[{top: 120, width: 113, height: 57, resizeMode: 'cover'}]}
               source={require('../../../assets/images/winegap-thmb.png')}
             />
           </View>
-          <View style={{flexDirection:'row', gap:20, alignSelf:'center'}}>
+          <View style={{flexDirection: 'row', gap: 20, alignSelf: 'center'}}>
             <Image
-              style={[{top: 120,width: 113,height: 57,resizeMode:'cover'}]}
+              style={[{top: 120, width: 113, height: 57, resizeMode: 'cover'}]}
               source={require('../../../assets/images/gopride-thumb.png')}
             />
             <Image
-              style={[{top: 120,width: 113,height: 57,resizeMode:'cover'}]}
+              style={[{top: 120, width: 113, height: 57, resizeMode: 'cover'}]}
               source={require('../../../assets/images/openbetween-thumb.png')}
             />
           </View>
@@ -117,7 +137,7 @@ export const ProfilMultiples = ({route, navigation}) => {
               <Image
                 source={
                   radioValue
-                    ? require('../../../assets/images/radio_selected_noir.png')
+                    ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
                 style={{width: 20, height: 20}}
@@ -127,13 +147,25 @@ export const ProfilMultiples = ({route, navigation}) => {
               </Text>
             </View>
           </TouchableOpacity>
-          <Text style={[{top: 120,color: '#FFF',textAlign: 'center',fontFamily: 'Comfortaa',fontSize: 12,fontStyle: 'normal',fontWeight: 700, }]}>
+          <Text
+            style={[
+              {
+                top: 120,
+                color: '#FFF',
+                textAlign: 'center',
+                fontFamily: 'Comfortaa',
+                fontSize: 12,
+                fontStyle: 'normal',
+                fontWeight: 700,
+              },
+            ]}>
             Voir les profils dans les paramètres plus tard
           </Text>
-          <View style={[{top: 110}]}>
+          <View style={[{top: 120}]}>
             <TouchableOpacity
               style={Styles.btn}
-              onPress={() =>
+              onPress={() => {
+                setButtonPressed('Continuer');
                 navigation.navigate('Prenium', {
                   userConsent: consentement,
                   routeName: routeChoice,
@@ -154,23 +186,33 @@ export const ProfilMultiples = ({route, navigation}) => {
                   rythmeDeVie1: rythmeDeVie1,
                   rythmeDeVie2: rythmeDeVie2,
                   userPrenom: userPrenom,
-                })
-              }
+                });
+              }}
               accessibilityLabel="Continuer">
-              <Text style={[Styles.textBtn9, {zIndex: 1, top: 45}]}>
+              <Text
+                style={[
+                  Styles.textBtn9,
+                  {
+                    zIndex: 1,
+                    top: 40,
+                    color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
+                  },
+                ]}>
                 Continuer
               </Text>
               <Image
                 style={[
                   {
-                    top: 0,
-                    width: '90%',
-                    height: 60,
+                    height: 56,
                     resizeMode: 'contain',
                     alignSelf: 'center',
                   },
                 ]}
-                source={require('../../../assets/boutons/Bouton-Blanc.png')}
+                source={
+                  buttonPressed === 'Continuer'
+                    ? require('../../../assets/boutons/Bouton-Rouge.png')
+                    : require('../../../assets/boutons/Bouton-Blanc.png')
+                }
               />
             </TouchableOpacity>
           </View>
@@ -178,4 +220,31 @@ export const ProfilMultiples = ({route, navigation}) => {
       </ImageBackground>
     </View>
   );
+};
+ProfilMultiples.propTypes = {
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      routeName: PropTypes.string,
+      userConsent: PropTypes.string,
+      loveCoach: PropTypes.string,
+      userEmail: PropTypes.string,
+      userPhone: PropTypes.string,
+      userCity: PropTypes.string,
+      accesPosition: PropTypes.string,
+      genre: PropTypes.string,
+      userBirth: PropTypes.string,
+      userSize: PropTypes.string,
+      userLang: PropTypes.string,
+      userSituation: PropTypes.string,
+      userOrientation: PropTypes.string,
+      userRecherche1: PropTypes.string,
+      userRecherche2: PropTypes.array,
+      userAffinites: PropTypes.array,
+      rythmeDeVie1: PropTypes.string,
+      rythmeDeVie2: PropTypes.array,
+      userPrenom: PropTypes.string,
+      pseudo: PropTypes.string,
+    }),
+  }).isRequired,
+  navigation: PropTypes.object.isRequired,
 };

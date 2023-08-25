@@ -39,14 +39,14 @@ export const LinksSignIn = ({route, navigation}) => {
           </Text>
         </View>
 
-        <View style={[Styles.ViewBtnLog, {top: -20, width:'80%', alignSelf:'center'}]}>
-          <View style={[{top: -40}]}>
+        <View style={[Styles.ViewBtnLog, {bottom: 20, width:'80%', alignSelf:'center'}]}>
+          <View style={[{bottom: 40}]}>
             <TouchableOpacity
               accessibilityLabel="Se connecter par email"
               onPress={() => {
                 navigation.navigate("S'inscrire par mail", {
                   userConsent: consentement,
-                  routeName: routeChoice,
+                  routeName: "S'inscrire par mail",
                   loveCoach: loveCoach,
                 });
                 setButtonPressed('mail');
@@ -73,7 +73,7 @@ export const LinksSignIn = ({route, navigation}) => {
               onPress={() => {
                 navigation.navigate("S'inscrire par numero", {
                   userConsent: consentement,
-                  routeName: routeChoice,
+                  routeName: "S'inscrire par numero",
                   loveCoach: loveCoach,
                 });
                 setButtonPressed('numero');
@@ -92,7 +92,7 @@ export const LinksSignIn = ({route, navigation}) => {
                 }}
                 source={
                   buttonPressed === 'numero'
-                    ? require('../../../assets/boutons/Bouton-Rouge.png')
+                    ? require('../../../assets/boutons/Bouton-Rouge-Telephone.png')
                     : require('../../../assets/boutons/Bouton-Bleu-Telephone.png')
                 }
               />
@@ -131,7 +131,7 @@ export const LinksSignIn = ({route, navigation}) => {
                   onPress={() =>
                     navigation.navigate('Recuperation email', {
                       userConsent: consentement,
-                      routeName: routeChoice,
+                      routeName: 'Recuperation de compte',
                       loveCoach: loveCoach,
                     })
                   }

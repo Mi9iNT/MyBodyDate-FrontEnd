@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
@@ -22,7 +22,9 @@ export const ConfirmationNumero = ({route, navigation}) => {
   console.log('Love Coach : ', loveCoach);
   console.log('Téléphone : ', userPhone);
 
-  const [userCode, setCode] = React.useState('');
+  const [userCode, setCode] = useState('');
+
+  const [buttonPressed, setButtonPressed] = useState('');
 
   return (
     <View style={Styles.container}>
@@ -47,27 +49,32 @@ export const ConfirmationNumero = ({route, navigation}) => {
         <View style={[{top: -100}]}>
           <TouchableOpacity
             style={[{top: -10}]}
-            onPress={() =>
+            onPress={() => {
+              setButtonPressed('Reessayez');
               navigation.navigate("S'inscrire par numero", {
                 userConsent: consentement,
                 routeName: routeChoice,
                 loveCoach: loveCoach,
-              })
-            }
+              });
+            }}
             accessibilityLabel="Récupérer mon compte">
-            <Text style={[Styles.textBtn6, {top: 45, zIndex: 2}]}>
+            <Text style={[Styles.textBtn6, {top: 42, zIndex: 2}]}>
               Réessayez
             </Text>
             <Image
               style={[
                 {
                   width: '80%',
-                  height: 60,
+                  height: 56,
                   alignSelf: 'center',
                   resizeMode: 'contain',
                 },
               ]}
-              source={require('../../../assets/boutons/Bouton-Noir.png')}
+              source={
+                buttonPressed === 'Reessayez'
+                  ? require('../../../assets/boutons/Bouton-Rouge.png')
+                  : require('../../../assets/boutons/Bouton-Noir.png')
+              }
             />
           </TouchableOpacity>
           <Text style={[Styles.textWhite3, {top: 20}]}>
@@ -75,27 +82,32 @@ export const ConfirmationNumero = ({route, navigation}) => {
           </Text>
           <TouchableOpacity
             style={[{top: 20}]}
-            onPress={() =>
+            onPress={() => {
+              setButtonPressed('Recup');
               navigation.navigate("S'inscrire par mail", {
                 userConsent: consentement,
                 routeName: routeChoice,
                 loveCoach: loveCoach,
-              })
-            }
+              });
+            }}
             accessibilityLabel="Récupérer mon compte">
-            <Text style={[Styles.textBtn6, {top: 45, zIndex: 3}]}>
+            <Text style={[Styles.textBtn6, {top: 42, left: 10, zIndex: 3}]}>
               S&apos;inscrire par email
             </Text>
             <Image
               style={[
                 {
                   width: '80%',
-                  height: 60,
+                  height: 56,
                   alignSelf: 'center',
                   resizeMode: 'contain',
                 },
               ]}
-              source={require('../../../assets/boutons/Bouton-Rouge-Email.png')}
+              source={
+                buttonPressed === 'Recup'
+                  ? require('../../../assets/boutons/Bouton-Noir-Email.png')
+                  : require('../../../assets/boutons/Bouton-Rouge-Email.png')
+              }
             />
           </TouchableOpacity>
           <Text style={[Styles.textWhite3, {top: 40}]}>
@@ -104,28 +116,41 @@ export const ConfirmationNumero = ({route, navigation}) => {
         </View>
         <View style={[{top: -20}]}>
           <TouchableOpacity
-            onPress={() =>
+            onPress={() => {
+              setButtonPressed('Continuer');
               navigation.navigate('Ville', {
                 userConsent: consentement,
                 routeName: routeChoice,
                 loveCoach: loveCoach,
                 userPhone: userPhone,
-              })
-            }
+              });
+            }}
             accessibilityLabel="Continuer">
-            <Text style={[Styles.textBtn9, {zIndex: 1, top: 45}]}>
+            <Text
+              style={[
+                Styles.textBtn9,
+                {
+                  zIndex: 1,
+                  top: 40,
+                  color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
+                },
+              ]}>
               Continuer
             </Text>
             <Image
               style={[
                 {
                   width: '100%',
-                  height: 60,
+                  height: 56,
                   alignSelf: 'center',
                   resizeMode: 'contain',
                 },
               ]}
-              source={require('../../../assets/boutons/Bouton-Blanc.png')}
+              source={
+                buttonPressed === 'Continuer'
+                  ? require('../../../assets/boutons/Bouton-Rouge.png')
+                  : require('../../../assets/boutons/Bouton-Blanc.png')
+              }
             />
           </TouchableOpacity>
         </View>
@@ -147,77 +172,3 @@ ConfirmationNumero.propTypes = {
 };
 
 export default ConfirmationNumero;
-
-// import * as React from 'react';
-// import {
-//     View,
-//     Text,
-//     ImageBackground,
-//     Image,
-//     SafeAreaView,
-//     TextInput,
-//     TouchableOpacity,
-// } from 'react-native';
-// import Styles from '../../assets/style/Styles';
-
-// export const ConfirmationNumero = ({ route, navigation }) => {
-
-//     // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
-//     const routeChoice = route.params?.routeName ?? '';
-//     const consentement = route.params?.userConsent ?? '';
-//     const loveCoach = route.params?.loveCoach ?? '';
-//     const userPhone = route.params?.userPhone ?? '';
-//     console.log('Choix de route : ' , routeChoice);
-//     console.log('Consentement : ' , consentement);
-//     console.log('Love Coach : ', loveCoach);
-//     console.log('Téléphone : ', userPhone);
-
-//     const [userCode, setCode] = React.useState();
-
-//     return (
-//     <View style={Styles.container}>
-//         <ImageBackground style={Styles.bgGradient} source={require('../../assets/images/Background.png')}>
-//            <View style={[Styles.ViewText2, {top:100}]}>
-//                 <Text style={[Styles.textTitleWhite3]}>CONFRIMATION</Text>
-//                 <Text style={[Styles.textTitleWhite3]}>NUMÉRO</Text>
-//             </View>
-//             <SafeAreaView style={[Styles.ViewInput, {top: 20}]}>
-//                 <TextInput
-//                     style={Styles.TextInput}
-//                     keyboardType='numeric'
-//                     placeholder='Entrez le code reçu par sms'
-//                     placeholderTextColor='#FFF'
-//                     maxLength={11}
-//                     onChangeText={(userCode) => setCode(userCode)}
-//                     value={userCode}
-//                 />
-
-//             </SafeAreaView>
-//                 <View style={[{ top: -100 }]}>
-
-//                 <TouchableOpacity style={[{top:-10}]} onPress={() => navigation.navigate('S\'inscrire par numero', {userConsent : consentement, routeName : routeChoice, loveCoach : loveCoach})} accessibilityLabel="Récupérer mon compte">
-//                     <Text style={[Styles.textBtn6, {top:45, zIndex:2}]}>Réessayez</Text>
-//                     <Image style={[{ width: '80%', height: 60, alignSelf:'center', resizeMode: 'contain'}]} source={require('../../assets/boutons/Bouton-Noir.png')} />
-//                 </TouchableOpacity>
-//                 <Text style={[Styles.textWhite3, { top: 20 }]}>Si vous n'avez pas reçu d'sms, veuillez rééssayez.</Text>
-//                 <TouchableOpacity style={[{ top: 20 }]} onPress={() => navigation.navigate('S\'inscrire par mail', {userConsent : consentement, routeName : routeChoice, loveCoach : loveCoach})} accessibilityLabel="Récupérer mon compte">
-//                     <Text style={[Styles.textBtn6, {top:45, zIndex:3}]}>S'inscrire par email</Text>
-//                     <Image style={[{ width: '80%', height: 60, alignSelf:'center', resizeMode: 'contain'}]} source={require('../../assets/boutons/Bouton-Rouge-Email.png')} />
-//                 </TouchableOpacity>
-
-//                 <Text style={[Styles.textWhite3,{top:40}]}>Utilisez un autre moyen pour vous inscrire</Text>
-
-//             </View>
-
-//             <View style={[{ top: -20 }]}>
-//                 <TouchableOpacity onPress={() => navigation.navigate('Ville', {userConsent : consentement, routeName : routeChoice, loveCoach : loveCoach, userPhone: userPhone})} accessibilityLabel="Continuer">
-//                     <Text style={[Styles.textBtn9, { zIndex:1, top:45}]}>Continuer</Text>
-//                     <Image style={[{ width: '100%', height: 60, alignSelf:'center', resizeMode: 'contain'}]} source={require('../../assets/boutons/Bouton-Blanc.png')} />
-//                 </TouchableOpacity>
-
-//             </View>
-//         </ImageBackground>
-//     </View>
-
-//     )
-// }

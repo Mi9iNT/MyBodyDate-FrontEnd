@@ -38,6 +38,8 @@ export const Orientation = ({route, navigation}) => {
   // Constante permettant de récupérer la valeur du bouton sélectionner par l'utilisateur
   const [orientation, setState] = useState('');
 
+  const [buttonPressed, setButtonPressed] = useState();
+
   const handleOrientationSelection = selectedOrientation => {
     setOrientation({state: selectedOrientation});
   };
@@ -53,56 +55,110 @@ export const Orientation = ({route, navigation}) => {
           <Text style={[Styles.textTitleWhite3]}>VOTRE ORIENATION ?</Text>
         </View>
 
-        <View style={[Styles.ViewBTNSelect, {top: 200}]}>
+        <View style={[Styles.ViewBTNSelect, {top: 160}]}>
           <TouchableOpacity
-            style={[Styles.btn, Styles.mt20]}
+            style={[
+              Styles.mt20,
+              {
+                width: '80%',
+                height: 56,
+                alignSelf: 'center',
+                borderColor: '#0019A7',
+                borderWidth: 2,
+                borderRadius: 100,
+                justifyContent: 'center',
+              },
+            ]}
             onPress={() => setState({state: 'HétérosexeLle'})}
             accessibilityLabel="HétérosexeLle">
             <Text
-              style={
-                orientation.state === 'HétérosexeLle'
-                  ? [Styles.btnSelected, {color: '#0F0BAE'}]
-                  : Styles.btnNotSelected
-              }>
+              style={{
+                color:
+                  orientation.state === 'HétérosexeLle' ? '#0019A7' : '#fff',
+                textAlign: 'center',
+                fontFamily:
+                  orientation.state === 'HétérosexeLle'
+                    ? 'Comfortaa-Bold'
+                    : 'Comfortaa',
+                fontSize: 18,
+                fontStyle: 'normal',
+                fontWeight: orientation.state === 'HétérosexeLle' ? 700 : 500,
+              }}>
               HétérosexeLle
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[Styles.btn, Styles.mt20]}
+            style={[
+              Styles.mt20,
+              {
+                width: '80%',
+                height: 56,
+                alignSelf: 'center',
+                borderColor: '#0019A7',
+                borderWidth: 2,
+                borderRadius: 100,
+                justifyContent: 'center',
+              },
+            ]}
             onPress={() => setState({state: 'HomosexueLle'})}
             accessibilityLabel="HomosexueLle">
             <Text
-              style={
-                orientation.state === 'HomosexueLle'
-                  ? [Styles.btnSelected, {color: '#0F0BAE'}]
-                  : Styles.btnNotSelected
-              }>
+              style={{
+                color:
+                  orientation.state === 'HomosexueLle' ? '#0019A7' : '#fff',
+                textAlign: 'center',
+                fontFamily:
+                  orientation.state === 'HomosexueLle'
+                    ? 'Comfortaa-Bold'
+                    : 'Comfortaa',
+                fontSize: 18,
+                fontStyle: 'normal',
+                fontWeight: orientation.state === 'HomosexueLle' ? 700 : 500,
+              }}>
               HomosexueLle
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[Styles.btn, Styles.mt20]}
+            style={[
+              Styles.mt20,
+              {
+                width: '80%',
+                height: 56,
+                alignSelf: 'center',
+                borderColor: '#0019A7',
+                borderWidth: 2,
+                borderRadius: 100,
+                justifyContent: 'center',
+              },
+            ]}
             onPress={() => setState({state: 'BisexueLle'})}
             accessibilityLabel="BisexueLle">
             <Text
-              style={
-                orientation.state === 'BisexueLle'
-                  ? [Styles.btnSelected, {color: '#0F0BAE'}]
-                  : Styles.btnNotSelected
-              }>
+              style={{
+                color: orientation.state === 'BisexueLle' ? '#0019A7' : '#fff',
+                textAlign: 'center',
+                fontFamily:
+                  orientation.state === 'BisexueLle'
+                    ? 'Comfortaa-Bold'
+                    : 'Comfortaa',
+                fontSize: 18,
+                fontStyle: 'normal',
+                fontWeight: orientation.state === 'BisexueLle' ? 700 : 500,
+              }}>
               BisexueLle
             </Text>
           </TouchableOpacity>
         </View>
 
         <View style={{top: 280, left: 40}}>
-          <Text style={[Styles.textWhite2]}>Choix unique.</Text>
+          <Text style={[Styles.textWhite2, {fontSize: 12}]}>Choix unique.</Text>
         </View>
 
         <View style={[Styles.ViewBtn2, {top: 130}]}>
           <TouchableOpacity
             style={Styles.btn}
-            onPress={() =>
+            onPress={() => {
+              setButtonPressed('Continuer');
               navigation.navigate('Recherche1', {
                 userConsent: consentement,
                 routeName: routeChoice,
@@ -117,10 +173,18 @@ export const Orientation = ({route, navigation}) => {
                 userLang: userLang,
                 userSituation: userSituation,
                 userOrientation: orientation.state,
-              })
-            }
+              });
+            }}
             accessibilityLabel="Continuer">
-            <Text style={[Styles.textBtn9, {zIndex: 1, top: 45}]}>
+            <Text
+              style={[
+                Styles.textBtn9,
+                {
+                  zIndex: 1,
+                  top: 40,
+                  color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
+                },
+              ]}>
               Continuer
             </Text>
             <Image
@@ -133,7 +197,11 @@ export const Orientation = ({route, navigation}) => {
                   alignSelf: 'center',
                 },
               ]}
-              source={require('../../../assets/boutons/Bouton-Blanc.png')}
+              source={
+                buttonPressed === 'Continuer'
+                  ? require('../../../assets/boutons/Bouton-Rouge.png')
+                  : require('../../../assets/boutons/Bouton-Blanc.png')
+              }
             />
           </TouchableOpacity>
         </View>

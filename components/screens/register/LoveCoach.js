@@ -20,7 +20,7 @@ export const LoveCoach = ({route, navigation}) => {
 
   const RadioInput = ({label, selected, onPress}) => {
     const icon = selected
-      ? require('../../../assets/images/radio_selected_noir.png')
+      ? require('../../../assets/images/radio_selected.png')
       : require('../../../assets/images/radio_unselected.png');
 
     return (
@@ -119,7 +119,6 @@ export const LoveCoach = ({route, navigation}) => {
             </Text>
             <Image
               style={{
-                width: 331,
                 height: 56,
                 flexShrink: 0,
                 alignSelf: 'center',
@@ -128,7 +127,7 @@ export const LoveCoach = ({route, navigation}) => {
               source={
                 buttonPressed
                   ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Blanc-Border.png')
+                  : require('../../../assets/boutons/Bouton-Blanc.png')
               }
             />
           </TouchableOpacity>
