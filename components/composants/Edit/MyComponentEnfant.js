@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Text,
   Image,
-  ImageBackground,
 } from 'react-native';
 
 const DefaultCode1 = ({setShowDefaultCode2}) => (

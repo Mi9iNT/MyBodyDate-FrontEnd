@@ -6,7 +6,7 @@ import {enableLatestRenderer} from 'react-native-maps';
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {HomeStack} from './components/screens/HomeStack';
 import {Bienvenue} from './components/screens/Bienvenue';
@@ -49,12 +49,13 @@ import {RecuperationCode} from './components/screens/register/RecuperationCode';
 import {ConfirmationNumero} from './components/screens/register/ConfirmationNumero';
 import {Profil} from './components/screens/profil/Profil';
 import {ProfilMeRA} from './components/screens/profil/ProfilMeRA';
+import {ProfilMeRAfirst} from './components/screens/profil/ProfilMeRAfirst';
 import {ProfilMeRP} from './components/screens/profil/ProfilMeRP';
+import {ProfilMeRPfirst} from './components/screens/profil/ProfilMeRPfirst';
 import {ProfilMeCA} from './components/screens/profil/ProfilMeCA';
-import {NiveauDEtudes} from './components/composants/edit/NiveauDEtudes';
 import {ProfilMeCAfirst} from './components/screens/profil/ProfilMeCAfirst';
 import {Discover} from './components/screens/discover/Discover';
-import {Notifications } from './components/screens/Notifications';
+import {Notifications} from './components/screens/Notifications';
 import {Settings} from './components/screens/settings/Settings';
 import {NotificationsSettings} from './components/screens/settings/NotificationsSettings';
 import {SecurityAndPrivate} from './components/screens/settings/SecurityAndPrivate';
@@ -88,7 +89,7 @@ import {Research} from './components/screens/research/Research';
 import {AdvancedFiltre} from './components/screens/research/AdvancedFiltre';
 import {SaTaille} from './components/screens/research/SaTaille';
 import {SaMorphologie} from './components/screens/research/SaMorphologie';
-import {OrigineEthnique } from './components/screens/research/OrigineEthnique';
+import {OrigineEthnique} from './components/screens/research/OrigineEthnique';
 import {NiveauEtudeResearch} from './components/screens/research/NiveauEtudeResearch';
 import {Metier} from './components/screens/research/Metier';
 import {Religion} from './components/screens/research/Religion';
@@ -548,6 +549,11 @@ function App() {
           options={{headerShown: false}}
         />
         <Stack.Screen
+          name="ProfilMeRPfirst"
+          component={ProfilMeRPfirst}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
           name="ProfilMeCA"
           component={ProfilMeCA}
           options={{headerShown: false}}
@@ -555,11 +561,6 @@ function App() {
         <Stack.Screen
           name="ProfilMeCAfirst"
           component={ProfilMeCAfirst}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="NiveauDEtudes"
-          component={NiveauDEtudes}
           options={{headerShown: false}}
         />
         <Stack.Screen
@@ -576,6 +577,11 @@ function App() {
         <Stack.Screen
           name="ProfilMeRA"
           component={ProfilMeRA}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="ProfilMeRAfirst"
+          component={ProfilMeRAfirst}
           options={{headerShown: false}}
         />
         {/* SETTINGS SCREENS */}
