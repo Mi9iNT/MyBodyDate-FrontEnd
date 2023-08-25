@@ -9,7 +9,7 @@ import {
 import Styles from '../../assets/style/Styles';
 
 //Home Screen
-export const HomeStack = ({navigation}) => {
+export const Home = ({navigation}) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       navigation.navigate('Home Next');

@@ -117,7 +117,7 @@ export const Felicitations = ({route, navigation}) => {
           <TouchableOpacity
             onPress={() => {
               setButtonPressed('Continuer');
-              navigation.navigate('ProfilMeRA', {
+              navigation.navigate('Tabs', {
                 userConsent: consentement,
                 routeName: routeChoice,
                 loveCoach: loveCoach,

@@ -41,7 +41,7 @@ export const ProfilMeRP = ({route, navigation}) => {
 
   return (
     <View style={{flex: 1, backgroundColor: 'black'}}>
-      <MenuSlide imagePath={'Professionnel'} />
+      <MenuSlide imagePath={'Professionnel-Clair'} />
       <ScrollView style={{backgroundColor: 'black'}}>
         <View style={{justifyContent: 'center'}}>
           <ImageBackground

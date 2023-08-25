@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import StyleModeInvisible from '../../../assets/style/styleScreens/styleSettings/StyleModeInvisible';
 import PropTypes from 'prop-types';
-import MenuSlideSettings from '../../composants/MenuSlideSettings';
+import MenuSlide from '../../composants/MenuSlide';
 
 export const ModeInvisible = ({navigation}) => {
   // Masquer la barre de statut au montage de l'écran
@@ -34,7 +34,7 @@ export const ModeInvisible = ({navigation}) => {
     <ImageBackground
       style={StyleModeInvisible.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings settingsNavigation={() => navigation.navigate('Settings')} />
+      <MenuSlide settingsNavigation={'Settings'} backButton={'Retour'} />
       <View style={{flex:5}}>
       <Text
         style={StyleModeInvisible.title}>

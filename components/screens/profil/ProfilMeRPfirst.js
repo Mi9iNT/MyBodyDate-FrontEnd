@@ -6,13 +6,7 @@ import {ImageBackground, StatusBar, TextInput} from 'react-native';
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
-import {Statut} from '../../composants/edit/Statut';
-import {VotreRecherche} from '../../composants/edit/VotreRecherche';
-import {Offre} from '../../composants/edit/Offre';
-import {Langue} from '../../composants/edit/Langue';
-import {Distinct} from '../../composants/edit/Distinct';
-import {Competence} from '../../composants/edit/Competence';
-import {LinkedIn} from '../../composants/edit/LinkedIn';
+import Styles from '../../../assets/style/Styles';
 
 export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
   const routeChoice = route.params?.routeName ?? '';
@@ -32,19 +26,11 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
   const userRecherche2 = route.params?.userRecherche2 ?? '';
   const userAffinites = route.params?.userAffinites ?? '';
   const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-  const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
+  const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
+
   const [modalVisible, setModalVisible] = useState(false);
-
-  const [openModalStatut, setOpenModalStatut] = useState(false);
-  const [openModalVotreRecherche, setOpenModalVotreRecherche] = useState(false);
-  const [openModalOffre, setOpenModalOffre] = useState(false);
-  const [openModalLangue, setOpenModalLangue] = useState(false);
-  const [openModalDistinct, setOpenModalDistinct] = useState(false);
-  const [openModalCompetence, setOpenModalCompetence] = useState(false);
-  const [openModalLinkedIn, setOpenModalLinkedIn] = useState(false);
-
   const [addProVisible, setAddProVisible] = useState([
     false,
     false,
@@ -69,17 +55,8 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
   }, []);
 
   return (
-    <View style={{flex: 1, backgroundColor: '#fff', padding: 10}}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          paddingHorizontal: 20,
-          paddingVertical: 10,
-        }}>
-        <MenuSlide imagePath={'Professionnel'}/>
-      </View>
+    <View style={{flex: 1, backgroundColor: '#fff'}}>
+      <MenuSlide imagePath={'Professionnel'} backButton={'Retour profil pro'} />
       <ScrollView>
         <Text
           style={{
@@ -221,15 +198,7 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
               marginTop: 430,
               left: 8,
             }}>
-            <Statut
-              visibleStatut={openModalStatut}
-              closeModalStatut={() => setOpenModalStatut(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(0);
-                setOpenModalStatut(true);
-              }}
+            <View
               style={{
                 bottom: 380,
                 flexDirection: 'row',
@@ -246,7 +215,8 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                 }}>
                 Statut
               </Text>
-              <View
+              <TouchableOpacity
+                onPress={() => handleAddProToggle(0)}
                 style={{width: 3, height: 35, left: 220}}>
                 <Image
                   source={
@@ -255,17 +225,9 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                       : require('../../../assets/images/add_pro_vide.png')
                   }
                 />
-              </View>
               </TouchableOpacity>
-            <VotreRecherche
-              visibleVotreRecherche={openModalVotreRecherche}
-              closeModalVotreRecherche={() => setOpenModalVotreRecherche(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(1);
-                setOpenModalVotreRecherche(true);
-              }}
+            </View>
+            <View
               style={{
                 bottom: 340,
                 flexDirection: 'row',
@@ -284,7 +246,8 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                 }}>
                 Recherche
               </Text>
-              <View
+              <TouchableOpacity
+                onPress={() => handleAddProToggle(1)}
                 style={{width: 35, height: 35, left: 187}}>
                 <Image
                   source={
@@ -293,17 +256,9 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                       : require('../../../assets/images/add_pro_vide.png')
                   }
                 />
-            </View>
               </TouchableOpacity>
-            <Offre
-              visibleOffre={openModalOffre}
-              closeModalOffre={() => setOpenModalOffre(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(2);
-                setOpenModalOffre(true);
-              }}
+            </View>
+            <View
               style={{
                 bottom: 300,
                 flexDirection: 'row',
@@ -322,7 +277,8 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                 }}>
                 Publier une offre
               </Text>
-              <View
+              <TouchableOpacity
+                onPress={() => handleAddProToggle(2)}
                 style={{width: 35, height: 35, left: 142}}>
                 <Image
                   source={
@@ -331,17 +287,9 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                       : require('../../../assets/images/add_pro_vide.png')
                   }
                 />
-            </View>
               </TouchableOpacity>
-            <Langue
-              visibleLangue={openModalLangue}
-              closeModalLangue={() => setOpenModalLangue(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(3);
-                setOpenModalLangue(true);
-              }}
+            </View>
+            <View
               style={{
                 bottom: 260,
                 flexDirection: 'row',
@@ -360,7 +308,8 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                 }}>
                 Je parle courament
               </Text>
-              <View
+              <TouchableOpacity
+                onPress={() => handleAddProToggle(3)}
                 style={{width: 35, height: 35, left: 123}}>
                 <Image
                   source={
@@ -369,17 +318,9 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                       : require('../../../assets/images/add_pro_vide.png')
                   }
                 />
-            </View>
               </TouchableOpacity>
-            <Distinct
-              visibleDistinct={openModalDistinct}
-              closeModalDistinct={() => setOpenModalDistinct(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(4);
-                setOpenModalDistinct(true);
-              }}
+            </View>
+            <View
               style={{
                 bottom: 220,
                 flexDirection: 'row',
@@ -398,7 +339,8 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                 }}>
                 Mes distinctions
               </Text>
-              <View
+              <TouchableOpacity
+                onPress={() => handleAddProToggle(4)}
                 style={{width: 35, height: 35, left: 142}}>
                 <Image
                   source={
@@ -407,17 +349,9 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                       : require('../../../assets/images/add_pro_vide.png')
                   }
                 />
-              </View>
               </TouchableOpacity>
-            <Competence
-              visibleCompetence={openModalCompetence}
-              closeModalCompetence={() => setOpenModalCompetence(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(5);
-                setOpenModalCompetence(true);
-              }}
+            </View>
+            <View
               style={{
                 bottom: 180,
                 flexDirection: 'row',
@@ -436,7 +370,8 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                 }}>
                 Mes compétences
               </Text>
-              <View
+              <TouchableOpacity
+                onPress={() => handleAddProToggle(5)}
                 style={{width: 35, height: 35, left: 131}}>
                 <Image
                   source={
@@ -445,17 +380,9 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                       : require('../../../assets/images/add_pro_vide.png')
                   }
                 />
-            </View>
               </TouchableOpacity>
-            <LinkedIn
-              visibleLinkedIn={openModalLinkedIn}
-              closeModalLinkedIn={() => setOpenModalLinkedIn(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(6);
-                setOpenModalLinkedIn(true);
-              }}
+            </View>
+            <View
               style={{
                 bottom: 140,
                 flexDirection: 'row',
@@ -474,7 +401,8 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                 }}>
                 Url LinkedIn
               </Text>
-              <View
+              <TouchableOpacity
+                onPress={() => handleAddProToggle(6)}
                 style={{width: 35, height: 35, left: 180}}>
                 <Image
                   source={
@@ -483,8 +411,8 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                       : require('../../../assets/images/add_pro_vide.png')
                   }
                 />
-            </View>
               </TouchableOpacity>
+            </View>
           </View>
         </View>
       </ScrollView>

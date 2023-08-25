@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import notificationsStyle from '../../../assets/style/styleScreens/styleSettings/StyleNotification';
-import MenuSlideSettings from '../../composants/MenuSlideSettings';
+import MenuSlide from '../../composants/MenuSlide';
 import NotificationsStyles from '../../../assets/style/styleScreens/styleSettings/StyleNotification';
 
 export const NotificationsSettings = ({navigation}) => {
@@ -31,7 +31,7 @@ export const NotificationsSettings = ({navigation}) => {
     <ImageBackground
       style={NotificationsStyles.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings settingsNavigation={() => navigation.navigate('Settings')} />
+      <MenuSlide settingsNavigation={'Settings'} backButton={'Retour'} />
       <View style={{flex:10}}>
       <Text
         style={NotificationsStyles.title}>

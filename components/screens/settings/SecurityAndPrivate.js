@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import StyleSecurityAndPrivate from '../../../assets/style/styleScreens/styleSettings/StyleSecutityAndPrivate';
-import MenuSlideSettings from '../../composants/MenuSlideSettings';
+import MenuSlide from '../../composants/MenuSlide';
 
 export const SecurityAndPrivate = ({navigation}) => {
   // Masquer la barre de statut au montage de l'écran
@@ -29,7 +29,7 @@ export const SecurityAndPrivate = ({navigation}) => {
     <ImageBackground
       style={StyleSecurityAndPrivate.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings settingsNavigation={() => navigation.navigate('Settings')} />
+      <MenuSlide settingsNavigation={() => navigation.navigate('Settings')} backButton={'Retour'} />
       <View style={{flex:5}}>
       <Text
         style={StyleSecurityAndPrivate.title}>

@@ -227,7 +227,7 @@ const SliderMap = () => {
         }}>
         <TouchableOpacity
           onPress={scrollLeft}
-          style={{justifyContent: 'center', alignItems: 'center'}}>
+          style={{justifyContent: 'center', alignItems: 'center', tabIndex:1}}>
           <Image
             source={require('../../assets/images/retour_flèche_bleu.png')}
             style={{width: 20, height: 20}}
@@ -249,7 +249,7 @@ const SliderMap = () => {
 
         <TouchableOpacity
           onPress={scrollRight}
-          style={{justifyContent: 'center', alignItems: 'center'}}>
+          style={{justifyContent: 'center', alignItems: 'center', tabIndex:2}}>
           <Image
             source={require('../../assets/images/retour_flèche_bleu.png')}
             style={{width: 20, height: 20, transform: [{rotate: '180deg'}]}}

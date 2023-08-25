@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import StyleSupprimerCompte from '../../../assets/style/styleScreens/styleSettings/StyleSupprimerCompte';
 import PropTypes from 'prop-types';
-import MenuSlideSettings from '../../composants/MenuSlideSettings';
+import MenuSlide from '../../composants/MenuSlide';
 
 export const SupprimerCompte = ({navigation}) => {
   useEffect(() => {
@@ -30,9 +30,7 @@ export const SupprimerCompte = ({navigation}) => {
     <ImageBackground
       style={StyleSupprimerCompte.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings
-        settingsNavigation={() => navigation.navigate('Settings')}
-      />
+      <MenuSlide settingsNavigation={'Settings'} backButton={'Retour'} />
       <View style={{flex: 6}}>
         <Text style={StyleSupprimerCompte.title}>Supprimer mon compte</Text>
         <View style={StyleSupprimerCompte.separator} />

@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import StyleMettreEnPause from '../../../assets/style/styleScreens/styleSettings/StyleMettreEnPause';
 import PropTypes from 'prop-types';
-import MenuSlideSettings from '../../composants/MenuSlideSettings';
+import MenuSlide from '../../composants/MenuSlide';
 
 export const MettreEnPause = ({navigation}) => {
   useEffect(() => {
@@ -86,9 +86,7 @@ export const MettreEnPause = ({navigation}) => {
     <ImageBackground
       style={StyleMettreEnPause.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings
-        settingsNavigation={() => navigation.navigate('Settings')}
-      />
+      <MenuSlide settingsNavigation={'Settings'} backButton={'Retour'} />
       <View style={{flex: 10}}>
         <Text style={StyleMettreEnPause.title}>
           Mettre mon compte {'\n'}en pause

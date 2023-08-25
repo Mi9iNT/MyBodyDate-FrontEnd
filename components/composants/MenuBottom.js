@@ -4,17 +4,16 @@ import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from '../../assets/style/StyleComposants/StyleMenuBottom';
 
-export const MenuBottom = ({ navigation, route, active }) => {
+export const MenuBottom = ({ navigation, route, active, imagePath }) => {
   const [activeTab, setActiveTab] = useState(active ?? 'Discover');
 
   if (!navigation) {
     return null;
   }
-  console.log('ActiveTab Menuslide : '+active);
-
+  // console.log('imagePath menuBottom : ' + imagePath);
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => { setActiveTab('Discover'); navigation.navigate('Discover'); }}>
+      <TouchableOpacity onPress={() => { setActiveTab('Discover'); navigation.navigate('TabDiscover'); }}>
         <Image
           source={require('../../assets/boutons/explorateur.png')}
           style={styles.tabImage}
@@ -23,7 +22,7 @@ export const MenuBottom = ({ navigation, route, active }) => {
         {activeTab === 'Discover' ? <View style={styles.activeIndicator} /> : active === 'Discover' ? <View style={styles.activeIndicator} /> : null}
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => { setActiveTab('Talk'); navigation.navigate('Talk'); }}>
+      <TouchableOpacity onPress={() => { setActiveTab('Talk'); navigation.navigate('TabTalk'); }}>
         <Image
           source={require('../../assets/boutons/chat.png')}
           style={styles.tabImage}
@@ -32,7 +31,7 @@ export const MenuBottom = ({ navigation, route, active }) => {
         {activeTab === 'Talk' ? <View style={styles.activeIndicator} /> : active === 'Talk' ? <View style={styles.activeIndicator} /> : null}
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => { setActiveTab('Messages'); navigation.navigate('Messages'); }}>
+      <TouchableOpacity onPress={() => { setActiveTab('Messages'); navigation.navigate('TabMessages'); }}>
         <Image
           source={require('../../assets/boutons/email.png')}
           style={styles.tabImage}
@@ -41,7 +40,7 @@ export const MenuBottom = ({ navigation, route, active }) => {
         {activeTab === 'Messages' ? <View style={styles.activeIndicator} /> : active === 'Messages' ? <View style={styles.activeIndicator} /> : null}
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => { setActiveTab('Map'); navigation.navigate('Map'); }}>
+      <TouchableOpacity onPress={() => { setActiveTab('Map'); navigation.navigate('TabMap'); }}>
         <Image
           source={require('../../assets/boutons/locator.png')}
           style={styles.tabImage}
@@ -50,7 +49,7 @@ export const MenuBottom = ({ navigation, route, active }) => {
         {activeTab === 'Map' ? <View style={styles.activeIndicator} /> : active === 'Map' ? <View style={styles.activeIndicator} /> : null}
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => { setActiveTab('Moi'); navigation.navigate('Moi');}}>
+      <TouchableOpacity onPress={() => { setActiveTab('Moi'); navigation.navigate('TabMoi');}}>
         <Image
           source={require('../../assets/boutons/user.png')}
           style={styles.tabImage}

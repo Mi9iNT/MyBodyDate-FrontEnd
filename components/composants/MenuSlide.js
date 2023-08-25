@@ -6,7 +6,7 @@ import { View, Text, Image, TouchableOpacity, Modal } from 'react-native';
 import Styles from '../../assets/style/Styles';
 import { useNavigation } from '@react-navigation/native';
 
-export const MenuSlide = ({route, icoPushChange, imagePath, backButton}) => {
+export const MenuSlide = ({route, icoPushChange, imagePath, backButton, settingsNavigation}) => {
   const navigation = useNavigation();
 
   // Constantes concernant la Modal du Menu Slide
@@ -18,7 +18,7 @@ export const MenuSlide = ({route, icoPushChange, imagePath, backButton}) => {
 
   const [linkSelected, setLinkSelected] = useState();
 
-  
+  console.log(settingsNavigation);
 
   return (
     <View
@@ -29,7 +29,7 @@ export const MenuSlide = ({route, icoPushChange, imagePath, backButton}) => {
         paddingHorizontal: 20,
         paddingVertical: 20,
       }}>
-      {backButton ?
+      {backButton === 'Retour' ?
         <View
         style={{
           flexDirection: 'row',
@@ -39,15 +39,32 @@ export const MenuSlide = ({route, icoPushChange, imagePath, backButton}) => {
         }}>
         <TouchableOpacity
           accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate('Moi')}>
+          onPress={() => settingsNavigation ? navigation.navigate(settingsNavigation) : navigation.navigate('Tabs')}>
           <Image
             source={require('../../assets/images/retour_flèche_bleu.png')}
             style={{ width: 10, height: 20 }}
           />
         </TouchableOpacity>
+        </View>
+        : backButton === 'Retour profil' ?
+        <View
+          style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: 125,
+        }}>
         <TouchableOpacity
           accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate('Moi')}>
+          onPress={() => navigation.navigate('Tabs')}>
+          <Image
+            source={imagePath === 'Professionnel' ? require('../../assets/images/retour_flèche_noir.png') : imagePath === 'Professionnel-Clair' ? require('../../assets/images/retour_flèche_blanc.png') : require('../../assets/images/retour_flèche_bleu.png')}
+            style={{ width: 10, height: 20 }}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          accessibilityLabel="Accueil"
+          onPress={() => navigation.navigate('Tabs')}>
           <Text
             style={{
               fontFamily: 'Comfortaa',
@@ -55,7 +72,37 @@ export const MenuSlide = ({route, icoPushChange, imagePath, backButton}) => {
               fontSize: 18,
               color: '#0019A7',
             }}>
-            Retour mon profil
+            {backButton}
+          </Text>
+        </TouchableOpacity>
+        </View>
+        : backButton === 'Retour profil pro' ?
+        <View
+          style={{
+          width:155,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}>
+        <TouchableOpacity
+          accessibilityLabel="Accueil"
+          onPress={() => navigation.navigate('Tabs')}>
+          <Image
+             source={imagePath === 'Professionnel' ? require('../../assets/images/retour_flèche_noir.png') : imagePath === 'Professionnel-Clair' ? require('../../assets/images/retour_flèche_blanc.png') : require('../../assets/images/retour_flèche_bleu.png')}
+            style={{ width: 10, height: 20 }}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          accessibilityLabel="Retour profil pro"
+          onPress={() => navigation.navigate('ProfilMe')}>
+          <Text
+            style={{
+              fontFamily: 'Comfortaa',
+              fontWeight: '700',
+              fontSize: 18,
+              color: imagePath === 'Professionnel' ? '#000' : imagePath === 'Professionnel-Clair' ? '#fff' : '#0019A7',
+            }}>
+            Retour Profil Pro
           </Text>
         </TouchableOpacity>
         </View>
@@ -67,17 +114,17 @@ export const MenuSlide = ({route, icoPushChange, imagePath, backButton}) => {
         }}>
         <TouchableOpacity
           accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate('ProfilMe')}>
+          onPress={() => navigation.navigate('Tabs')}>
           <Image
-            source={require('../../assets/images/retour_flèche_bleu.png')}
+            source={imagePath === 'Professionnel' ? require('../../assets/images/retour_flèche_noir.png') : imagePath === 'Professionnel-Clair' ? require('../../assets/images/retour_flèche_blanc.png') : require('../../assets/images/retour_flèche_bleu.png')}
             style={{ width: 10, height: 20 }}
           />
         </TouchableOpacity>
         <TouchableOpacity
           accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate('ProfilMe')}>
+          onPress={() => navigation.navigate('Tabs')}>
           <Image
-            source={require('../../assets/images/home_1.png')}
+            source={imagePath === 'Professionnel-Clair' ? require('../../assets/images/home_blanc.png') : require('../../assets/images/home_1.png')}
             style={{ width: 20, height: 20, marginHorizontal: 15 }}
           />
         </TouchableOpacity>
@@ -89,7 +136,7 @@ export const MenuSlide = ({route, icoPushChange, imagePath, backButton}) => {
               fontFamily: 'Comfortaa',
               fontWeight: '700',
               fontSize: 18,
-              color: '#0019A7',
+              color: imagePath === 'Professionnel' ? '#000' : imagePath === 'Professionnel-Clair' ? '#fff' : '#0019A7',
             }}>
             Accueil
           </Text>
@@ -104,6 +151,8 @@ export const MenuSlide = ({route, icoPushChange, imagePath, backButton}) => {
                   ? require('../../assets/images/cercle_ami.png')
                   : imagePath === 'Amour'
                   ? require('../../assets/images/Rencontre_amoureuse.png')
+                  : imagePath === 'Professionnel-Clair'
+                  ? require('../../assets/images/Cercle-Pro-Clair.png')
                   : require('../../assets/images/Cercle-Pro-Sombre.png')
               }
               style={{ width: 30, height: 30 }}
@@ -114,7 +163,7 @@ export const MenuSlide = ({route, icoPushChange, imagePath, backButton}) => {
           // setIcoPushChange(true);
             }}>
           <Image
-            source={icoPushChange ? require('../../assets/images/notification_icons-vert.png') : require('../../assets/images/notification_icons.png')}
+            source={icoPushChange ? require('../../assets/images/notification_icons-vert.png') : !icoPushChange && imagePath === 'Professionnel-Clair' ? require('../../assets/images/notification_icons-blanc.png') : !icoPushChange && imagePath === 'Professionnel' ? require('../../assets/images/notification_icons-noir.png') : require('../../assets/images/notification_icons.png') }
             style={{ width: 30, height: 30, marginHorizontal: 15 }}
           />
         </TouchableOpacity>
@@ -218,7 +267,7 @@ export const MenuSlide = ({route, icoPushChange, imagePath, backButton}) => {
                   alignItems:'center',
                 }}
                 accessibilityLabel="Paramètres"
-                  onPress={() => { setModalVisible(false); navigation.navigate('Settings', {imagePath: imagePath})}}>
+                  onPress={() => { setModalVisible(false); navigation.navigate('SettingsStack', {imagePath: imagePath})}}>
                 <Text
                   style={{
                     fontSize: 20,
@@ -257,7 +306,7 @@ export const MenuSlide = ({route, icoPushChange, imagePath, backButton}) => {
                 borderRadius: 22,
                 padding: 2,
                 }}
-                  onPress={() => { setModalVisible(false); setLinkSelected('Professionnel'); navigation.navigate('ProfilMeRP', { imagePath: 'Professionnel' }); }}>
+                  onPress={() => { setModalVisible(false); setLinkSelected('Professionnel'); navigation.navigate('ProfilMeRPfirst', { imagePath: 'Professionnel' }); }}>
                 <Image
                   source={require('../../assets/images/mybodydate_favicon-1.png')}
                   style={{
@@ -299,7 +348,7 @@ export const MenuSlide = ({route, icoPushChange, imagePath, backButton}) => {
             <TouchableOpacity
               onPress={() => {
                     setModalVisible(false);
-                navigation.navigate('ProfilMeCA',{imagePath:'Ami'});
+                navigation.navigate('ProfilMeCAfirst',{imagePath:'Ami'});
                 setLinkSelected('Ami');
               }}
               style={{
@@ -354,7 +403,7 @@ export const MenuSlide = ({route, icoPushChange, imagePath, backButton}) => {
             <TouchableOpacity
               onPress={() => {
                 setModalVisible(false);
-                navigation.navigate('Moi',{imagePath:'Amour'});
+                navigation.navigate('ProfilMeRAfirst',{imagePath:'Amour'});
                 setLinkSelected('Amour');
               }}
               style={{
@@ -412,7 +461,7 @@ export const MenuSlide = ({route, icoPushChange, imagePath, backButton}) => {
         </Modal>
         <TouchableOpacity onPress={() => setModalVisible(true)}>
           <Image
-            source={require('../../assets/images/menu_mobile.png')}
+            source={imagePath === 'Professionnel' ? require('../../assets/images/menu-mobile-noir.png') : imagePath === 'Professionnel-Clair' ? require('../../assets/images/menu-mobile-blanc.png') : require('../../assets/images/menu_mobile.png')}
             style={{ width: 30, height: 30, marginLeft: 5 }}
           />
         </TouchableOpacity>

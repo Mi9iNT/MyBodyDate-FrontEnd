@@ -423,7 +423,7 @@ export const ProfilMeRA = ({route, navigation, imagePath}) => {
           </View>
         </View>
       </View>
-      <MenuBottom navigation={navigation} activeTab={'Moi'} />
+      <MenuBottom navigation={navigation} activeTab={'Moi'} imagePath={imagePath} />
     </ImageBackground>
   );
 };

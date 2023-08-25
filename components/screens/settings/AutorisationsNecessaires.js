@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import StyleAutorisationsNecessaires from '../../../assets/style/styleScreens/styleSettings/StyleAutorisationsNecessaires';
-import MenuSlideSettings from '../../composants/MenuSlideSettings';
+import MenuSlide from '../../composants/MenuSlide';
 
 export const AutorisationsNecessaires = ({navigation}) => {
   // Masquer la barre de statut au montage de l'écran
@@ -27,7 +27,7 @@ export const AutorisationsNecessaires = ({navigation}) => {
     <ImageBackground
       style={StyleAutorisationsNecessaires.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings settingsNavigation={() => navigation.navigate('Parametre de confidentialites')} />
+      <MenuSlide settingsNavigation={'Parametre de confidentialites'} backButton={'Retour'} />
       <Text
         style={StyleAutorisationsNecessaires.title}>
         Autorisations nécessaires

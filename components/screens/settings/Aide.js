@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import StyleAide from '../../../assets/style/styleScreens/styleSettings/StyleContactAndFAQ';
-import MenuSlideSettings from '../../composants/MenuSlideSettings';
+import MenuSlide from '../../composants/MenuSlide';
 
 export const Aide = ({navigation}) => {
   // Masquer la barre de statut au montage de l'écran
@@ -28,7 +28,7 @@ export const Aide = ({navigation}) => {
     <ImageBackground
       style={StyleAide.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings settingsNavigation={() => navigation.navigate('Contact et FAQ')} />
+      <MenuSlide settingsNavigation={'Contact et FAQ'} backButton={'Retour'} />
       <View style={{flex:5}}>
       <Text
         style={StyleAide.title}>

@@ -46,7 +46,7 @@ export const PrendPass = ({ route, navigation }) => {
     <ImageBackground
       source={require('../../../assets/images/bg-parametres.png')}
       style={{ flex: 1 }}>
-      <MenuSlide imagePath={imagePath} prendPass={true} />
+      <MenuSlide imagePath={imagePath} backButton={'Retour profil'} />
       <View style={{ height: 654 }}>
         <ScrollView
           style={{

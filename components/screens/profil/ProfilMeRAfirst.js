@@ -76,7 +76,7 @@ export const ProfilMeRAfirst = ({route, navigation, imagePath}) => {
 
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
-      <MenuSlide imagePath={true} />
+      <MenuSlide imagePath={'Amour'} />
       <ScrollView>
         <View>
           <Text
