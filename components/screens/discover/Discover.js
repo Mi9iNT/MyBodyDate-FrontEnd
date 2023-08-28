@@ -2,7 +2,7 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
-import {View, Text, Image, ImageBackground} from 'react-native';
+import {View, Text, Image, ImageBackground, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
 import {MyComponent} from '../../composants/MyComponent';
@@ -11,7 +11,9 @@ import {More} from '../../composants/more/More';
 import Styles from '../../../assets/style/Styles';
 import LinearGradient from 'react-native-linear-gradient';
 import Spotlight from '../../composants/Spotlight';
-export const Discover = ({route, navigation, imagePath, activeTab}) => {
+
+export const Discover = ({ route, navigation }) => {
+
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -32,6 +34,8 @@ export const Discover = ({route, navigation, imagePath, activeTab}) => {
   const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
+  const tabPath = route.params?.tabPath ?? '';
+  const imagePath = 'Amour';
 
   return (
     <View
@@ -39,7 +43,7 @@ export const Discover = ({route, navigation, imagePath, activeTab}) => {
         width: '100%',
         height: '100%',
       }}>
-      <MenuSlide imagePath={imagePath} />
+      <MenuSlide imagePath={imagePath} tabPath={'Amour'} />
       <ImageBackground
         source={require('../../../assets/images/Rectangle-43.png')}
         style={{
@@ -51,7 +55,7 @@ export const Discover = ({route, navigation, imagePath, activeTab}) => {
           <Spotlight navigation={navigation} />
         </>
         <View style={{justifyContent: 'space-around', flexDirection: 'row'}}>
-          <View
+          <TouchableOpacity
             style={{
               width: 140,
               height: 4,
@@ -60,7 +64,7 @@ export const Discover = ({route, navigation, imagePath, activeTab}) => {
               marginHorizontal: 8,
             }}
           />
-          <View
+          <TouchableOpacity
             style={{
               width: 140,
               height: 4,
@@ -227,9 +231,13 @@ export const Discover = ({route, navigation, imagePath, activeTab}) => {
             top: 350,
             left: 300,
           }}>
-          <View
+          <TouchableOpacity
             style={{
+              backgroundColor:'red',
               top: 5,
+              width: 78,
+              height: 78,
+              borderRadius: 100,
             }}>
             <Image
               source={require('../../../assets/images/profil_user_community.png')}
@@ -238,22 +246,30 @@ export const Discover = ({route, navigation, imagePath, activeTab}) => {
                 height: 78,
               }}
             />
-          </View>
-          <View
+          </TouchableOpacity>
+          <TouchableOpacity
             style={{
+              backgroundColor:'red',
               top: 20,
+              width: 78,
+              height: 78,
+              borderRadius: 100,
             }}>
             <Image
               source={require('../../../assets/images/profil_coeur.png')}
               style={{
-                width: 77,
-                height: 77,
+                width: 78,
+                height: 78,
               }}
             />
-          </View>
+          </TouchableOpacity>
           <View
             style={{
+              backgroundColor: 'red',
               top: 35,
+              width: 78,
+              height: 78,
+              borderRadius: 100,
             }}>
             <Image
               source={require('../../../assets/images/profil_croix.png')}
@@ -264,7 +280,7 @@ export const Discover = ({route, navigation, imagePath, activeTab}) => {
             />
           </View>
         </View>
-        <MenuBottom navigation={navigation} active={'Discover'} />
+        <MenuBottom navigation={navigation} route={route} tabPath={'Amour'} active={'Discover'} />
       </ImageBackground>
     </View>
   );

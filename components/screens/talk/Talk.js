@@ -14,7 +14,11 @@ import MenuBottom from '../../composants/MenuBottom';
 import MenuTalk from '../../composants/MenuTalk';
 import OdlMessage from '../../composants/OldMessage';
 
-export const Talk = ({ navigation, route, activeTab, imagePath }) => {
+export const Talk = ({ navigation, route, imagePath }) => {
+
+  const tabPath = route.params?.tabPath ?? '';
+  console.log(tabPath);
+
   // Masquer la barre de statut au montage de l'écran
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -26,7 +30,7 @@ export const Talk = ({ navigation, route, activeTab, imagePath }) => {
   const [user, setUser] = useState(user);
   return (
     <View style={{backgroundColor:'#fff', height:'100%', width:'auto'}}>
-      <MenuSlide imagePath={imagePath} />
+      <MenuSlide imagePath={imagePath} tabPath={tabPath} />
       <View>
         <MenuTalk user={user}  navigation={navigation} />
       </View>
@@ -35,7 +39,7 @@ export const Talk = ({ navigation, route, activeTab, imagePath }) => {
       style={{top: '10%', resizeMode: 'contain'}}>
         <OdlMessage navigation={ navigation } />
       </ImageBackground>
-      <MenuBottom navigation={navigation} activeTab={'Talk'} />
+      <MenuBottom navigation={navigation} />
     </View>
   );
 };

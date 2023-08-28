@@ -1,19 +1,39 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react-native/no-inline-styles */
+
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from '../../assets/style/StyleComposants/StyleMenuBottom';
 
-export const MenuBottom = ({ navigation, route, active, imagePath }) => {
+export const MenuBottom = ({ navigation, route, active, tabPath }) => {
+
   const [activeTab, setActiveTab] = useState(active ?? 'Discover');
+  const [path, setPath] = useState(tabPath);
 
   if (!navigation) {
     return null;
   }
-  // console.log('imagePath menuBottom : ' + imagePath);
+  // Logique de détermination de l'écran en fonction de tabPath
+  let tabPathDiscover;
+  if (tabPath === 'Professionnel') {
+    tabPathDiscover = 'DiscoverRP';
+  } else if (tabPath === 'Ami') {
+    tabPathDiscover = 'DiscoverCA';
+  } else {
+    tabPathDiscover = 'TabDiscover';
+  }
+
+  let tabPathMoi = 'TabMoi';
+  if (tabPath === 'Professionnel') {
+    tabPathMoi = 'ProfilMeRP';
+  } else if (tabPath === 'Ami') {
+    tabPathMoi = 'ProfilMeCA';
+  } else {
+    tabPathMoi = 'TabMoi';
+  }
+  // console.log(path);
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => { setActiveTab('Discover'); navigation.navigate('TabDiscover'); }}>
+      <TouchableOpacity onPress={() => { setActiveTab('Discover'); setPath(tabPath); navigation.navigate(tabPathDiscover, {tabPath:tabPath}); }}>
         <Image
           source={require('../../assets/boutons/explorateur.png')}
           style={styles.tabImage}
@@ -22,7 +42,7 @@ export const MenuBottom = ({ navigation, route, active, imagePath }) => {
         {activeTab === 'Discover' ? <View style={styles.activeIndicator} /> : active === 'Discover' ? <View style={styles.activeIndicator} /> : null}
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => { setActiveTab('Talk'); navigation.navigate('TabTalk'); }}>
+      <TouchableOpacity onPress={() => { setActiveTab('Talk'); setPath(tabPath); navigation.navigate('TabTalk', { tabPath: tabPath }); }}>
         <Image
           source={require('../../assets/boutons/chat.png')}
           style={styles.tabImage}
@@ -31,7 +51,7 @@ export const MenuBottom = ({ navigation, route, active, imagePath }) => {
         {activeTab === 'Talk' ? <View style={styles.activeIndicator} /> : active === 'Talk' ? <View style={styles.activeIndicator} /> : null}
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => { setActiveTab('Messages'); navigation.navigate('TabMessages'); }}>
+      <TouchableOpacity onPress={() => { setActiveTab('Messages'); setPath(tabPath); navigation.navigate('TabMessages', { tabPath: tabPath }); }}>
         <Image
           source={require('../../assets/boutons/email.png')}
           style={styles.tabImage}
@@ -40,7 +60,7 @@ export const MenuBottom = ({ navigation, route, active, imagePath }) => {
         {activeTab === 'Messages' ? <View style={styles.activeIndicator} /> : active === 'Messages' ? <View style={styles.activeIndicator} /> : null}
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => { setActiveTab('Map'); navigation.navigate('TabMap'); }}>
+      <TouchableOpacity onPress={() => { setActiveTab('Map'); setPath(tabPath); navigation.navigate('TabMap', { tabPath: tabPath }); }}>
         <Image
           source={require('../../assets/boutons/locator.png')}
           style={styles.tabImage}
@@ -49,13 +69,13 @@ export const MenuBottom = ({ navigation, route, active, imagePath }) => {
         {activeTab === 'Map' ? <View style={styles.activeIndicator} /> : active === 'Map' ? <View style={styles.activeIndicator} /> : null}
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => { setActiveTab('Moi'); navigation.navigate('TabMoi');}}>
+      <TouchableOpacity onPress={() => { setActiveTab('Moi'); setPath(tabPath); navigation.navigate(tabPathMoi, { tabPath: tabPath });}}>
         <Image
           source={require('../../assets/boutons/user.png')}
           style={styles.tabImage}
         />
         <Text style={styles.tabText}>Moi</Text>
-        {activeTab === 'Moi' ? <View style={styles.activeIndicator} /> : active === 'Moi' ? <View style={styles.activeIndicator} /> : null}
+        {activeTab === 'Moi' && active === 'Moi' ? <View style={styles.activeIndicator} /> : tabPathMoi === 'TabMoi'  && activeTab === 'Moi' ? <View style={styles.activeIndicator} /> : null}
       </TouchableOpacity>
     </View>
   );

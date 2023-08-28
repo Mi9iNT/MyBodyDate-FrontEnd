@@ -29,6 +29,7 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
   const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
+  const tabPath = route.params?.tabPath ?? '';
 
   const [modalVisible, setModalVisible] = useState(false);
   const [addProVisible, setAddProVisible] = useState([
@@ -56,7 +57,7 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
 
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
-      <MenuSlide imagePath={'Professionnel'} backButton={'Retour profil pro'} />
+      <MenuSlide imagePath={'Professionnel'} backButton={'Retour profil pro'} tabPath={'Professionnel'} />
       <ScrollView>
         <Text
           style={{

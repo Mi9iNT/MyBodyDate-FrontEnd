@@ -13,6 +13,7 @@ import customMarkerIconBlue from '../../../assets/boutons/marker-map-blue.png';
 import SliderMap from '../../composants/SliderMap';
 
 export const Map = ({ navigation, route, imagePath }) => {
+  const tabPath = route.params?.tabPath ?? '';
   // Masquer la barre de statut au montage de l'écran
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -229,7 +230,7 @@ export const Map = ({ navigation, route, imagePath }) => {
           <RecenterButton onPress={centerMapOnUser} />
         </View>
       </View>
-      <MenuBottom navigation={navigation} activeTab={'Map'} />
+      <MenuBottom navigation={navigation} route={route} tabPath={tabPath} active={'Map'} />
     </ImageBackground>
   );
 };

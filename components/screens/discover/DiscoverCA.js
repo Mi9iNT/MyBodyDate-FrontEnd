@@ -9,6 +9,7 @@ import {MenuBottom} from '../../composants/MenuBottom';
 import {More} from '../../composants/more/More';
 import Styles from '../../../assets/style/Styles';
 import LinearGradient from 'react-native-linear-gradient';
+import Spotlight from '../../composants/Spotlight';
 
 export const DiscoverCA = ({route, navigation, imagePath}) => {
   const routeChoice = route.params?.routeName ?? '';
@@ -38,14 +39,14 @@ export const DiscoverCA = ({route, navigation, imagePath}) => {
         width: '100%',
         height: '100%',
       }}>
-      <MenuSlide imagePath={imagePath}/>
+      <MenuSlide imagePath={'Ami'} tabPath={'Ami'} />
       <ImageBackground
         source={require('../../../assets/images/BackJulie.png')}
         style={{
           width: '100%',
           height: '100%',
         }}>
-        <MyComponent />
+        <Spotlight />
         <View style={{justifyContent: 'space-around', flexDirection: 'row'}}>
           <View
             style={{
@@ -259,7 +260,7 @@ export const DiscoverCA = ({route, navigation, imagePath}) => {
           </View>
         </View>
       </ImageBackground>
-      <MenuBottom activeTab={'Moi'}/>
+      <MenuBottom navigation={navigation} tabPath={'Ami'} active={'Discover'} />
     </View>
   );
 };

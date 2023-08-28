@@ -139,7 +139,7 @@ export const Messages = ({ navigation, route, userLike }) => {
           </>
         </View>
       </ImageBackground>
-      <MenuBottom navigation={navigation} activeTab={'Messages'} />
+      <MenuBottom navigation={navigation} />
     </View>
   );
 };

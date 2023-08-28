@@ -47,7 +47,6 @@ import {SignInMail} from './components/screens/register/SinscrireMail';
 import {SignInPhone} from './components/screens/register/SinscrirePhone';
 import {RecuperationCode} from './components/screens/register/RecuperationCode';
 import {ConfirmationNumero} from './components/screens/register/ConfirmationNumero';
-import {Profil} from './components/screens/profil/Profil';
 import {ProfilMeRA} from './components/screens/profil/ProfilMeRA';
 import {ProfilMeRAfirst} from './components/screens/profil/ProfilMeRAfirst';
 import {ProfilMeRP} from './components/screens/profil/ProfilMeRP';
@@ -55,6 +54,9 @@ import {ProfilMeRPfirst} from './components/screens/profil/ProfilMeRPfirst';
 import {ProfilMeCA} from './components/screens/profil/ProfilMeCA';
 import {ProfilMeCAfirst} from './components/screens/profil/ProfilMeCAfirst';
 import {Discover} from './components/screens/discover/Discover';
+import {DiscoverCA} from './components/screens/discover/DiscoverCA';
+import {DiscoverRP} from './components/screens/discover/DiscoverRP';
+import {DiscoverBio} from './components/screens/discover/DiscoverBio';
 import {Notifications} from './components/screens/Notifications';
 import {Settings} from './components/screens/settings/Settings';
 import {NotificationsSettings} from './components/screens/settings/NotificationsSettings';
@@ -135,7 +137,9 @@ const SettingsStack = createNativeStackNavigator();
 enableLatestRenderer();
 
 // Composant pour les écrans des onglets
-function TabNavigator() {
+function TabNavigator({ route }) {
+  const { tabPath } = route.params;
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -182,37 +186,42 @@ function HomeNavigator() {
       <HomeStack.Screen name="Love Coach" component={LoveCoach} options={{ headerShown: false }} />
       <HomeStack.Screen name="Liens d'inscription" component={LinksSignIn} options={{ headerShown: false }} />
       <HomeStack.Screen name="Liens de connexion" component={LinksLogIn} options={{ headerShown: false }} />
-      <HomeStack.Screen name="S'inscrire par mail" component={SignInMail} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="S'inscrire par numero" component={SignInPhone} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Confirmation numero" component={ConfirmationNumero} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Recuperation email" component={RecuperationCompte} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Confirmation email" component={ConfirmationEmail} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Ville" component={Ville} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Accès Position" component={AccesPosition} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Genre" component={Genre} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Date de naissance" component={DateDeNaissance} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Taille" component={Taille} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Langue parler" component={LangueParler} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Situation" component={Situation} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Orientation" component={Orientation} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Recherche1" component={Recherche1} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Recherche2" component={Recherche2} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Objectifs" component={Objectifs} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Affinite" component={Affinite} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Rythme1" component={RythmeDeVie1} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Rythme2" component={RythmeDeVie2} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Prenom" component={Prenom} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Confirmation prenom" component={ConfirmationPrenom} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Profil multiples" component={ProfilMultiples} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Prenium" component={Prenium} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Compte" component={Compte} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Recuperation code" component={RecuperationCode} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Confirmation compte" component={ConfirmationCompte} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="AjoutPhoto" component={AjoutPhoto} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Ajouter photo" component={AjoutPhoto} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Empreinte vocal" component={EmpreinteVocal} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
-      <HomeStack.Screen name="Charte d'engagement" component={CharteEngagement} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 }, }} />
+      <HomeStack.Screen name="S'inscrire par mail" component={SignInMail} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="S'inscrire par numero" component={SignInPhone} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Confirmation numero" component={ConfirmationNumero} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Recuperation email" component={RecuperationCompte} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Confirmation email" component={ConfirmationEmail} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Ville" component={Ville} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Accès Position" component={AccesPosition} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Genre" component={Genre} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Date de naissance" component={DateDeNaissance} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Taille" component={Taille} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Langue parler" component={LangueParler} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Situation" component={Situation} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Orientation" component={Orientation} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Recherche1" component={Recherche1} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Recherche2" component={Recherche2} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Objectifs" component={Objectifs} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Affinite" component={Affinite} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Rythme1" component={RythmeDeVie1} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Rythme2" component={RythmeDeVie2} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Prenom" component={Prenom} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Confirmation prenom" component={ConfirmationPrenom} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Profil multiples" component={ProfilMultiples} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Prenium" component={Prenium} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Compte" component={Compte} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Recuperation code" component={RecuperationCode} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Confirmation compte" component={ConfirmationCompte} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="AjoutPhoto" component={AjoutPhoto} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Ajouter photo" component={AjoutPhoto} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Empreinte vocal" component={EmpreinteVocal} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
+      <HomeStack.Screen name="Charte d'engagement" component={CharteEngagement} options={{ headerShown: true, title: 'Retour', headerTransparent: true, headerTintColor: '#FFF', headerTintStyle: { borderBottomColor: '#FFF', borderBottomWidth: 2 } }} />
       <HomeStack.Screen name="Felicitations" component={Felicitations} options={{ headerShown: false }} />
+      {/* Discover */}
+      <HomeStack.Screen name="Discover" component={Discover} options={{ headerShown: false }} />
+      <HomeStack.Screen name="DiscoverCA" component={DiscoverCA} options={{ headerShown: false }} />
+      <HomeStack.Screen name="DiscoverRP" component={DiscoverRP} options={{ headerShown: false }} />
+      <HomeStack.Screen name="DiscoverBio" component={DiscoverBio} options={{ headerShown: false }} />
       {/* Profil */}
       <HomeStack.Screen name="ProfilMeRP" component={ProfilMeRP} options={{ headerShown: false }} />
       <HomeStack.Screen name="ProfilMeRPfirst" component={ProfilMeRPfirst} options={{ headerShown: false }} />
@@ -299,13 +308,12 @@ function MainNavigator() {
       <Stack.Screen name="Home Next" component={ScreenTest} options={{ headerShown: false }} />
       <Stack.Screen name="Bienvenue" component={Bienvenue} options={{ headerShown: false }} />
       <Stack.Screen name="Tabs" component={TabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="SettingsStack" component={SettingsStackScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Home" component={HomeNavigator} options={{headerShown: false}} />
       {/* <Stack.Screen name="Discover" component={HomeTabs} options={{headerShown: false}} /> */}
       {/* <Stack.Screen name="ProfilMe" component={HomeTabs} options={{headerShown: false}} /> */}
       {/* <Stack.Screen name="Messages" component={HomeTabs} options={{headerShown: false}} /> */}
       {/* <Stack.Screen name="Map" component={HomeTabs} options={{headerShown: false}} /> */}
       {/* <Stack.Screen name="Moi" component={HomeTabs} options={{headerShown: false}} /> */}
-      <Stack.Screen name="Test" component={ScreenTest} options={{headerShown: false}} />
     </Stack.Navigator>
   );
 }

@@ -36,6 +36,7 @@ export const ProfilMeCA = ({route, navigation}) => {
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
   // const imagePath = route.params?.imagePath ?? '';
+  const tabPath = route.params?.tabPath ?? '';
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -48,7 +49,7 @@ export const ProfilMeCA = ({route, navigation}) => {
 
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
-      <MenuSlide imagePath={'Ami'} />
+      <MenuSlide imagePath={'Ami'} tabPath={'Ami'} />
       <ScrollView style={{backgroundColor: 'white'}}>
         <View style={{justifyContent: 'center'}}>
           <ImageBackground

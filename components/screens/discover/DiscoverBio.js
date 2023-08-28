@@ -387,7 +387,7 @@ export const DiscoverBio = ({route, navigation, imagePath}) => {
           />
         </View>
       </ImageBackground>
-      <MenuBottom  activeTab={'Discover'}/>
+      <MenuBottom />
     </View>
   );
 };

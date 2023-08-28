@@ -41,7 +41,7 @@ export const ProfilMeRA = ({route, navigation, imagePath}) => {
     <ImageBackground
       style={Styles.bgGradient}
       source={require('../../../assets/images/MicrosoftTeams-image.png')}>
-      <MenuSlide imagePath={'Amour'} />
+      <MenuSlide imagePath={'Amour'} tabPath={'Amour'} />
       <View style={{flexDirection: 'row', marginBottom: 20}}>
         <View
           style={{
@@ -423,7 +423,7 @@ export const ProfilMeRA = ({route, navigation, imagePath}) => {
           </View>
         </View>
       </View>
-      <MenuBottom navigation={navigation} activeTab={'Moi'} imagePath={imagePath} />
+      <MenuBottom navigation={navigation} tabPath={'Amour'} active={'Moi'} />
     </ImageBackground>
   );
 };
