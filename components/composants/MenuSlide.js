@@ -16,6 +16,16 @@ export const MenuSlide = ({route, icoPushChange, imagePath, backButton, settings
 
   // const [imagePath, setImagePath] = useState(imagePath);
 
+ 
+
+  const getRandomLink = () => {
+    const link1 = 'Voix du jour';
+    const link2 = 'Carte magique';
+    const randomIndex = Math.floor(Math.random() * 2);
+    return randomIndex === 0 ?  navigation.navigate(link1) :  navigation.navigate(link2);
+  };
+
+
   const [linkSelected, setLinkSelected] = useState();
 
   console.log(settingsNavigation);
@@ -201,7 +211,7 @@ export const MenuSlide = ({route, icoPushChange, imagePath, backButton, settings
                   alignItems:'center',
                 }}
                 accessibilityLabel="Jeux"
-                  onPress={() => { setModalVisible(false); navigation.navigate('Settings')}}>
+                  onPress={() => { setModalVisible(false); getRandomLink(); }}>
                 <Text
                   style={{
                     fontSize: 20,
@@ -221,7 +231,6 @@ export const MenuSlide = ({route, icoPushChange, imagePath, backButton, settings
                   }}
                 />
               </TouchableOpacity>
-
 
             {/* Apps Affinitaires */}
 

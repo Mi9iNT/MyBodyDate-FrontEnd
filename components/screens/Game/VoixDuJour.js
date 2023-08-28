@@ -7,6 +7,7 @@ import {
   Text,
   Image,
   ImageBackground,
+  TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -32,6 +33,10 @@ export const VoixDuJour = ({route, navigation}) => {
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
 
+  const [userSelected, setUserSelected] = useState();
+  const [userSelected2, setUserSelected2] = useState();
+  const [userSelected3, setUserSelected3] = useState();
+
   return (
     <View style={{flex: 1}}>
       <ImageBackground
@@ -40,16 +45,21 @@ export const VoixDuJour = ({route, navigation}) => {
           width: '100%',
           height: '100%',
         }}>
-        <View style={{Flex: 1}}>
-          <Image
+        <View style={{ Flex: 1 }}>
+          <TouchableOpacity onPress={() => { navigation.goBack(); }} style={{
+              left: 330,
+              top: 50,
+              width: 20,
+          }}>
+            <Image
             source={require('../../../assets/images/Group-58.png')}
             style={{
               width: 20,
-              height: 18,
-              left: 330,
-              top: 30,
+              height: 20,
+              resizeMode:'contain',
             }}
           />
+          </TouchableOpacity>
           <Text
             style={{
               fontSize: 24,
@@ -58,7 +68,7 @@ export const VoixDuJour = ({route, navigation}) => {
               color: '#FFF',
               alignSelf: 'center',
               textAlign: 'center',
-              top: 40,
+              top: 50,
             }}>
             La voix du jour
           </Text>
@@ -67,7 +77,7 @@ export const VoixDuJour = ({route, navigation}) => {
             style={{
               width: 55,
               height: 55,
-              top: 150,
+              top: 110,
               alignSelf: 'center',
             }}
           />
@@ -79,7 +89,7 @@ export const VoixDuJour = ({route, navigation}) => {
               color: '#FFF',
               alignSelf: 'center',
               textAlign: 'center',
-              top: 155,
+              top: 130,
             }}>
             Retrouvez qui a la voix de :
           </Text>
@@ -91,7 +101,7 @@ export const VoixDuJour = ({route, navigation}) => {
               color: '#FFF',
               alignSelf: 'center',
               textAlign: 'center',
-              top: 185,
+              top: 160,
             }}>
             Soprano
           </Text>
@@ -104,91 +114,126 @@ export const VoixDuJour = ({route, navigation}) => {
               alignSelf: 'center',
               textAlign: 'center',
               fontStyle: 'italic',
-              top: 185,
+              top: 160,
             }}>
             Celine Dion
           </Text>
-          <ImageBackground
-            source={require('../../../assets/images/VoixEllipse.png')}
-            style={{
+          <TouchableOpacity onPress={() => { setUserSelected3(null); setUserSelected2(null); setUserSelected('Gaëlle'); }} style={{
               width: 122,
-              height: 122,
-              top: 220,
+              top: 200,
               left: 195,
+              flexDirection:'column',
+              justifyContent: 'space-between',
+              alignItems: 'center',
             }}>
             <Image
               source={require('../../../assets/images/VoixGae.png')}
               style={{
                 width: 119,
                 height: 119,
+                resizeMode: 'contain',
+                borderRadius: 100,
+                borderColor: userSelected === 'Gaëlle' ? '#A70000' : '#fff',
+                borderWidth: 4,
               }}
             />
-          </ImageBackground>
-          <Text
-            style={{
-              fontSize: 20,
-              fontFamily: 'Comfortaa',
-              fontWeight: '400',
-              color: '#FFF',
-              top: 220,
-              left: 230,
-            }}>
-            Gaëlle
-          </Text>
-          <ImageBackground
-            source={require('../../../assets/images/VoixEllipse.png')}
-            style={{
+            <Text
+              style={{
+                fontSize: 20,
+                fontFamily: 'Comfortaa',
+                fontWeight: '400',
+                color: '#FFF',
+              }}>
+              Gaëlle
+            </Text>
+            {userSelected ?
+            <Text style={{fontSize: 20,
+                fontFamily: 'Comfortaa',
+                fontWeight: '400',
+                color: userSelected === 'Gaëlle' ? '#A70000' : '#fff' }}>
+              {userSelected === 'Gaëlle' ?
+                'Perdu' : null}
+            </Text>
+             : null }
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => { setUserSelected3(null); setUserSelected(null); setUserSelected2('Rachel'); navigation.navigate('Voix du jour2'); }} style={{
               width: 122,
-              height: 122,
-              top: 220,
+              top: 200,
               left: 45,
-            }}>
+              flexDirection:'column',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+          }}>
             <Image
               source={require('../../../assets/images/VoixRac.png')}
               style={{
                 width: 119,
                 height: 119,
+                resizeMode: 'contain',
+                borderRadius: 100,
+                borderColor: userSelected2 === 'Rachel' ? '#0019A7' : '#fff',
+                borderWidth: 4,
               }}
             />
-          </ImageBackground>
-          <Text
-            style={{
-              fontSize: 20,
-              fontFamily: 'Comfortaa',
-              fontWeight: '400',
-              color: '#FFF',
-              top: 220,
-              left: 70,
-            }}>
-            Rachel
-          </Text>
-          <ImageBackground
-            source={require('../../../assets/images/VoixEllipse.png')}
+            <Text
+              style={{
+                fontSize: 20,
+                fontFamily: 'Comfortaa',
+                fontWeight: '400',
+                color: '#FFF',
+              }}>
+              Rachel
+            </Text>
+            {userSelected2 ?
+              <Text style={{
+                fontSize: 20,
+                fontFamily: 'Comfortaa',
+                fontWeight: '400',
+                color: userSelected2 === 'Rachel' ? '#0019A7' : '#A70000' }}>
+              {userSelected2 === 'Rachel' ?
+                'Gagné' : null}
+            </Text>
+             : null }
+
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => { setUserSelected3('Beverly'); setUserSelected2(null); setUserSelected(null); }}
             style={{
               width: 122,
-              height: 122,
-              top: 120,
+              top: 100,
               left: 240,
-            }}>
+              flexDirection:'column',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+          }}>
             <Image
               source={require('../../../assets/images/VoixBev.png')}
               style={{
                 width: 119,
                 height: 119,
+                resizeMode: 'contain',
+                borderRadius: 100,
+                borderColor: userSelected3 === 'Beverly' ? '#A70000' : '#fff',
+                borderWidth: 4,
               }}
             />
-          </ImageBackground>
-          <Text
-            style={{
-              fontSize: 20,
-              fontFamily: 'Comfortaa',
-              fontWeight: '400',
-              color: '#FFF',
-              top: 120,
-              left: 270,
-            }}>
-            Beverly
-          </Text>
+            <Text
+              style={{
+                fontSize: 20,
+                fontFamily: 'Comfortaa',
+                fontWeight: '400',
+                color: '#FFF',
+              }}>
+              Beverly
+            </Text>
+            {userSelected3 ?
+            <Text style={{fontSize: 20,
+                fontFamily: 'Comfortaa',
+                fontWeight: '400',
+                color: userSelected3 === 'Beverly' ? '#A70000' : '#fff' }}>
+              {userSelected3 === 'Beverly' ? 'Perdu' : null}
+            </Text>
+             : null }
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     </View>

@@ -113,6 +113,12 @@ import {PulseRecherche} from './components/screens/pulse/PulseRecherche';
 import {PassFlash21} from './components/screens/pass/PassFlash21';
 import {PassFlash19} from './components/screens/pass/PassFlash19';
 
+// Game
+import {VoixDuJour} from './components/screens/game/VoixDuJour';
+import {VoixDuJour2} from './components/screens/game/VoixDuJour2';
+import {CarteBriseGlace} from './components/screens/game/CarteBriseGlace';
+import {CarteMagique} from './components/screens/game/CarteMagique';
+
 import {Talk} from './components/screens/talk/Talk';
 import {TalkChat} from './components/screens/talk/TalkChat';
 import {TalkPhone} from './components/screens/talk/TalkPhone';
@@ -244,6 +250,11 @@ function HomeNavigator() {
       <Stack.Screen name="Prend pass" component={PrendPass} options={{headerShown: false}} />
       <Stack.Screen name="Pass flash 21" component={PassFlash21} options={{headerShown: false}} />
       <Stack.Screen name="Pass flash 19" component={PassFlash19} options={{ headerShown: false }} />
+      {/* Game */}
+      <Stack.Screen name="Voix du jour" component={VoixDuJour} options={{headerShown: false}} />
+      <Stack.Screen name="Voix du jour2" component={VoixDuJour2} options={{headerShown: false}} />
+      <Stack.Screen name="Carte brise glace" component={CarteBriseGlace} options={{headerShown: false}} />
+      <Stack.Screen name="Carte magique" component={CarteMagique} options={{headerShown: false}} />
       {/* Talk */}
       <Stack.Screen name="TalkChat" component={TalkChat} options={{headerShown: false}} />
       <Stack.Screen name="TalkPhone" component={TalkPhone} options={{headerShown: false}} />
