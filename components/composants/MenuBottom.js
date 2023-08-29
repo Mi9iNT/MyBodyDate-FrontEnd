@@ -1,261 +1,84 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react-native/no-inline-styles */
+
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from '../../assets/style/StyleComposants/StyleMenuBottom';
 
-export const MenuBottom = ({ navigation, route }) => {
-  const [activeTab, setActiveTab] = useState(activeTab ?? 'ProfilMeRA');
+export const MenuBottom = ({ navigation, route, active, tabPath }) => {
 
-  const handleTabPress = tabName => {
-    setActiveTab(tabName);
-    navigation.navigate(tabName, { activeTab: tabName });
-  };
+  const [activeTab, setActiveTab] = useState(active ?? 'Discover');
+  const [path, setPath] = useState(tabPath);
 
   if (!navigation) {
     return null;
   }
+  // Logique de détermination de l'écran en fonction de tabPath
+  let tabPathDiscover;
+  if (tabPath === 'Professionnel') {
+    tabPathDiscover = 'DiscoverRP';
+  } else if (tabPath === 'Ami') {
+    tabPathDiscover = 'DiscoverCA';
+  } else {
+    tabPathDiscover = 'TabDiscover';
+  }
 
+  let tabPathMoi = 'TabMoi';
+  if (tabPath === 'Professionnel') {
+    tabPathMoi = 'ProfilMeRP';
+  } else if (tabPath === 'Ami') {
+    tabPathMoi = 'ProfilMeCA';
+  } else {
+    tabPathMoi = 'TabMoi';
+  }
+  // console.log(path);
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => handleTabPress('ProfilMeRA')}>
+      <TouchableOpacity onPress={() => { setActiveTab('Discover'); setPath(tabPath); navigation.navigate(tabPathDiscover, {tabPath:tabPath}); }}>
         <Image
           source={require('../../assets/boutons/explorateur.png')}
           style={styles.tabImage}
         />
         <Text style={styles.tabText}>Découvrir</Text>
-        {activeTab === 'ProfilMeRA' && <View style={styles.activeIndicator} />}
+        {activeTab === 'Discover' ? <View style={styles.activeIndicator} /> : active === 'Discover' ? <View style={styles.activeIndicator} /> : null}
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => handleTabPress('Talk')}>
+      <TouchableOpacity onPress={() => { setActiveTab('Talk'); setPath(tabPath); navigation.navigate('TabTalk', { tabPath: tabPath }); }}>
         <Image
           source={require('../../assets/boutons/chat.png')}
           style={styles.tabImage}
         />
         <Text style={styles.tabText}>Talk</Text>
-        {activeTab === 'Talk' && <View style={styles.activeIndicator} />}
+        {activeTab === 'Talk' ? <View style={styles.activeIndicator} /> : active === 'Talk' ? <View style={styles.activeIndicator} /> : null}
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => handleTabPress('Messages')}>
+      <TouchableOpacity onPress={() => { setActiveTab('Messages'); setPath(tabPath); navigation.navigate('TabMessages', { tabPath: tabPath }); }}>
         <Image
           source={require('../../assets/boutons/email.png')}
           style={styles.tabImage}
         />
         <Text style={styles.tabText}>Messages</Text>
-        {activeTab === 'Messages' && <View style={styles.activeIndicator} />}
+        {activeTab === 'Messages' ? <View style={styles.activeIndicator} /> : active === 'Messages' ? <View style={styles.activeIndicator} /> : null}
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => handleTabPress('Map')}>
+      <TouchableOpacity onPress={() => { setActiveTab('Map'); setPath(tabPath); navigation.navigate('TabMap', { tabPath: tabPath }); }}>
         <Image
           source={require('../../assets/boutons/locator.png')}
           style={styles.tabImage}
         />
         <Text style={styles.tabText}>Map</Text>
-        {activeTab === 'Map' && <View style={styles.activeIndicator} />}
+        {activeTab === 'Map' ? <View style={styles.activeIndicator} /> : active === 'Map' ? <View style={styles.activeIndicator} /> : null}
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => handleTabPress('Moi')}>
+      <TouchableOpacity onPress={() => { setActiveTab('Moi'); setPath(tabPath); navigation.navigate(tabPathMoi, { tabPath: tabPath });}}>
         <Image
           source={require('../../assets/boutons/user.png')}
           style={styles.tabImage}
         />
         <Text style={styles.tabText}>Moi</Text>
-        {activeTab === 'Moi' && <View style={styles.activeIndicator} />}
+        {activeTab === 'Moi' && active === 'Moi' ? <View style={styles.activeIndicator} /> : tabPathMoi === 'TabMoi'  && activeTab === 'Moi' ? <View style={styles.activeIndicator} /> : null}
       </TouchableOpacity>
     </View>
   );
 };
 
 export default MenuBottom;
-
-
-// /* eslint-disable prettier/prettier */
-// /* eslint-disable react-native/no-inline-styles */
-// import React, {useState} from 'react';
-// import {View, Text, Image, TouchableOpacity} from 'react-native';
-// import Styles from '../../assets/style/Styles';
-
-// export const MenuBottom = ({navigation, route}) => {
-//   const [activeTab, setActiveTab] = useState(activeTab ?? 'ProfilMeRA'); // Onglet actif par défaut
-
-//   const handleTabPress = tabName => {
-//     setActiveTab(tabName);
-//     navigation.navigate(tabName, {activeTab: tabName});
-//   };
-
-//   if (!navigation) {
-//     return null;
-//   }
-
-//   return (
-//     <View
-//       style={{
-//         flexDirection: 'row',
-//         justifyContent: 'space-between',
-//         alignItems: 'center',
-//         paddingHorizontal: 20,
-//         paddingVertical: 20,
-//         width: '100%',
-//         height: 80,
-//         position: 'absolute',
-//         bottom: 0,
-//         backgroundColor: '#0019A7',
-//         borderRadius: 30,
-//       }}>
-//       <TouchableOpacity onPress={() => handleTabPress('ProfilMeRA')}>
-//         <Image
-//           source={require('../../assets/boutons/explorateur.png')}
-//           style={{width: 30, height: 30, alignSelf: 'center'}}
-//         />
-//         <Text
-//           style={{
-//             fontFamily: 'Comfortaa',
-//             fontWeight: '700',
-//             fontSize: 12,
-//             color: '#fff',
-//             textAlign: 'center',
-//           }}>
-//           Découvrir
-//         </Text>
-//         {activeTab === 'ProfilMeRA' && (
-//           <View
-//             style={{
-//               position: 'absolute',
-//               bottom: -10,
-//               alignSelf: 'center',
-//               width: 10,
-//               height: 10,
-//               borderRadius: 5,
-//               backgroundColor: '#FF84D7',
-//             }}
-//           />
-//         )}
-//       </TouchableOpacity>
-
-//       <TouchableOpacity
-//         onPress={() => {
-//           handleTabPress('Talk');
-//         }}>
-//         <Image
-//           source={require('../../assets/boutons/chat.png')}
-//           style={{width: 30, height: 30, alignSelf: 'center'}}
-//         />
-//         <Text
-//           style={{
-//             fontFamily: 'Comfortaa',
-//             fontWeight: '700',
-//             fontSize: 12,
-//             color: '#fff',
-//             textAlign: 'center',
-//           }}>
-//           Talk
-//         </Text>
-//         {activeTab === 'Talk' && (
-//           <View
-//             style={{
-//               position: 'absolute',
-//               bottom: -10,
-//               alignSelf: 'center',
-//               width: 10,
-//               height: 10,
-//               borderRadius: 5,
-//               backgroundColor: '#FF84D7',
-//             }}
-//           />
-//         )}
-//       </TouchableOpacity>
-
-//       <TouchableOpacity onPress={() => handleTabPress('Messages')}>
-//         <Image
-//           source={require('../../assets/boutons/email.png')}
-//           style={{width: 30, height: 30, alignSelf: 'center'}}
-//         />
-//         <Text
-//           style={{
-//             fontFamily: 'Comfortaa',
-//             fontWeight: '700',
-//             fontSize: 12,
-//             color: '#fff',
-//             textAlign: 'center',
-//           }}>
-//           Messages
-//         </Text>
-//         {activeTab === 'Messages' && (
-//           <View
-//             style={{
-//               position: 'absolute',
-//               bottom: -10,
-//               alignSelf: 'center',
-//               width: 10,
-//               height: 10,
-//               borderRadius: 5,
-//               backgroundColor: '#FF84D7',
-//             }}
-//           />
-//         )}
-//       </TouchableOpacity>
-
-//       <TouchableOpacity onPress={() => handleTabPress('Map')}>
-//         <Image
-//           source={require('../../assets/boutons/locator.png')}
-//           style={{width: 30, height: 30, alignSelf: 'center'}}
-//         />
-//         <Text
-//           style={{
-//             fontFamily: 'Comfortaa',
-//             fontWeight: '700',
-//             fontSize: 12,
-//             color: '#fff',
-//             textAlign: 'center',
-//           }}>
-//           Map
-//         </Text>
-//         {activeTab === 'Map' && (
-//           <View
-//             style={{
-//               position: 'absolute',
-//               bottom: -10,
-//               alignSelf: 'center',
-//               width: 10,
-//               height: 10,
-//               borderRadius: 5,
-//               backgroundColor: '#FF84D7',
-//             }}
-//           />
-//         )}
-//       </TouchableOpacity>
-
-//       <TouchableOpacity onPress={() => handleTabPress('Moi')}>
-//         <Image
-//           source={require('../../assets/boutons/user.png')}
-//           style={{width: 30, height: 30, alignSelf: 'center'}}
-//         />
-//         <Text
-//           style={{
-//             fontFamily: 'Comfortaa',
-//             fontWeight: '700',
-//             fontSize: 12,
-//             color: '#fff',
-//             textAlign: 'center',
-//           }}>
-//           Moi
-//         </Text>
-//         {activeTab === 'Moi' && (
-//           <View
-//             style={{
-//               position: 'absolute',
-//               bottom: -10,
-//               alignSelf: 'center',
-//               width: 10,
-//               height: 10,
-//               borderRadius: 5,
-//               backgroundColor: '#FF84D7',
-//             }}
-//           />
-//         )}
-//       </TouchableOpacity>
-//     </View>
-//   );
-// };
-
-// export default MenuBottom;

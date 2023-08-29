@@ -50,7 +50,7 @@ export const TalkVideoAccept = ({ navigation, route }) => {
               <Image style={{ top: 0, alignSelf: 'center', width: 45, height: 45 }} source={require('../../../assets/boutons/cut-mic.png')} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={{ height: 45, width: 45 }} onPress={() => navigation.navigate('ProfilMe')}>
+            <TouchableOpacity style={{ height: 45, width: 45 }} onPress={() => navigation.navigate('Tabs')}>
               <Image style={{ top: 0, alignSelf: 'center', width: 45, height: 45 }} source={require('../../../assets/boutons/decline-call.png')} />
             </TouchableOpacity>
 

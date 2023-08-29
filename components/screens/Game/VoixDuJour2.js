@@ -6,6 +6,7 @@ import {
   View,
   Text,
   Image,
+  TouchableOpacity,
   ImageBackground,
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -32,6 +33,12 @@ export const VoixDuJour2 = ({route, navigation}) => {
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
 
+  const [selectedButton, setSelectedButton] = useState();
+
+  function OnSelectedButton() {
+    selectedButton === 'Play' ? setSelectedButton(null) : setSelectedButton('Play');
+  }
+
   return (
     <View style={{flex: 1}}>
       <ImageBackground
@@ -40,15 +47,20 @@ export const VoixDuJour2 = ({route, navigation}) => {
           width: '100%',
           height: '100%',
         }}>
-        <Image
-          source={require('../../../assets/images/Group-58.png')}
-          style={{
-            width: 20,
-            height: 18,
-            left: 330,
-            top: 30,
-          }}
-        />
+        <TouchableOpacity onPress={() => { navigation.goBack(); }} style={{
+              left: 330,
+              top: 50,
+              width: 20,
+          }}>
+            <Image
+            source={require('../../../assets/images/Group-58.png')}
+            style={{
+              width: 20,
+              height: 20,
+              resizeMode:'contain',
+            }}
+          />
+        </TouchableOpacity>
         <View style={{Flex: 1, alignItems: 'center'}}>
           <Text
             style={{
@@ -58,7 +70,7 @@ export const VoixDuJour2 = ({route, navigation}) => {
               color: '#FFF',
               alignSelf: 'center',
               textAlign: 'center',
-              top: 40,
+              top: 50,
             }}>
             La voix du jour
           </Text>
@@ -70,7 +82,7 @@ export const VoixDuJour2 = ({route, navigation}) => {
               color: '#FFF',
               alignSelf: 'center',
               textAlign: 'center',
-              top: 75,
+              top: 100,
             }}>
             Envie d'en savoir plus sur{'\n'}Rachel ?
           </Text>
@@ -82,7 +94,7 @@ export const VoixDuJour2 = ({route, navigation}) => {
               color: '#FFF',
               alignSelf: 'center',
               textAlign: 'center',
-              top: 95,
+              top: 120,
             }}>
             Découvrez sa voix !
           </Text>
@@ -91,15 +103,17 @@ export const VoixDuJour2 = ({route, navigation}) => {
               justifyContent: 'space-around',
               flexDirection: 'row',
               alignItems: 'center',
-              top: 135,
+              top: 140,
             }}>
-            <Image
-              source={require('../../../assets/images/Play-P.png')}
+            <TouchableOpacity onPress={() => { OnSelectedButton(); }}>
+              <Image
+              source={selectedButton === 'Play' ? require('../../../assets/boutons/Stop-P.png') : require('../../../assets/boutons/Play-P.png')}
               style={{
                 width: 40,
                 height: 40,
               }}
             />
+            </TouchableOpacity>
             <Image
               source={require('../../../assets/images/Ondes-Sonores.png')}
               style={{
@@ -116,43 +130,60 @@ export const VoixDuJour2 = ({route, navigation}) => {
               }}
             />
           </View>
-          <Image
-            source={require('../../../assets/images/VoixRac.png')}
-            style={{
-              width: 237,
-              height: 237,
+          <View style={{
+              width: 238,
+              height: 238,
               top: 175,
+              borderRadius: 120,
+              backgroundColor: '#fff',
             }}
           />
+            <Image
+            source={require('../../../assets/images/VoixRac.png')}
+            style={{
+              bottom:63,
+              width: 237,
+              height: 237,
+            }}
+          />
+          </View>
+          
           <Text
             style={{
               fontSize: 20,
               fontFamily: 'Comfortaa',
               fontWeight: '700',
               color: '#FFF',
-              top: 175,
+              bottom: 50,
               alignSelf: 'center',
               textAlign: 'center',
             }}>
             Rachel
           </Text>
-          <Image
-            source={require('../../../assets/images/Bouton-Decouvrir.png')}
-            style={{
-              width: 331,
-              height: 56,
-              top: 200,
-            }}
-          />
-          <View
-            style={{
-              justifyContent: 'space-around',
-              flexDirection: 'row',
-              alignItems: 'center',
-              top: 220,
-            }}>
+        <TouchableOpacity onPress={() => { setSelectedButton('Continuer'); }} style={{ height: 56, width: '90%', bottom: 30, alignSelf:'center', }}>
             <Image
-              source={require('../../../assets/images/Rejouer.png')}
+              source={selectedButton === 'Continuer' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc.png')}
+              style={{
+                height: 56,
+                resizeMode: 'contain',
+                alignSelf:'center',
+              }}
+            />
+            <Text style={{bottom:45,color: selectedButton === 'Continuer' ? '#fff' : '#0019A7', textAlign: 'center', fontFamily: 'Comfortaa-Bold', fontSize: 18, fontStyle: 'normal', }}>Découvrir son profil </Text>
+          </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => { setSelectedButton('Rejouer'); navigation.nabigate('Voix du jour'); }}
+          style={{
+            justifyContent: 'space-around',
+            flexDirection: 'row',
+            alignItems: 'center',
+            alignSelf:'center',
+            width: 80,
+            bottom: 15,
+          }}>
+            <Image
+              source={selectedButton === 'Rejouer' ? require('../../../assets/boutons/Rejouer-B.png') : require('../../../assets/boutons/Rejouer.png')}
               style={{
                 width: 20,
                 height: 20,
@@ -163,13 +194,12 @@ export const VoixDuJour2 = ({route, navigation}) => {
                 fontSize: 18,
                 fontFamily: 'Comfortaa',
                 fontWeight: '400',
-                color: '#FFF',
+                color: selectedButton === 'Rejouer' ? '#0019A7' : '#FFF',
                 left: 20,
               }}>
               Rejouer
             </Text>
-          </View>
-        </View>
+          </TouchableOpacity>
       </ImageBackground>
     </View>
   );

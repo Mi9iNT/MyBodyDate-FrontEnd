@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import StyleAutorisationsNecessaires from '../../../assets/style/styleScreens/styleSettings/StyleParemetresConfident';
-import MenuSlideSettings from '../../composants/MenuSlideSettings';
+import MenuSlide from '../../composants/MenuSlide';
 import StyleParemetresConfident from '../../../assets/style/styleScreens/styleSettings/StyleParemetresConfident';
 
 export const ParametresConfident = ({navigation}) => {
@@ -39,7 +39,7 @@ export const ParametresConfident = ({navigation}) => {
     <ImageBackground
       style={StyleAutorisationsNecessaires.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings settingsNavigation={() => navigation.navigate('Securite et privee')} />
+      <MenuSlide settingsNavigation={'Securite et privee'} backButton={'Retour'} />
       <View style={{flex:6}}>
       <Text
         style={StyleAutorisationsNecessaires.title}>

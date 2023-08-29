@@ -37,6 +37,8 @@ export const ProfilMeRAfirst = ({route, navigation, imagePath}) => {
   const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
+  const tabPath = route.params?.tabPath ?? '';
+
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -76,7 +78,7 @@ export const ProfilMeRAfirst = ({route, navigation, imagePath}) => {
 
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
-      <MenuSlide imagePath={true} />
+      <MenuSlide imagePath={'Amour'} tabPath={'Amour'} />
       <ScrollView>
         <View>
           <Text

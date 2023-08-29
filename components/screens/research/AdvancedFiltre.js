@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import StyleAide from '../../../assets/style/styleScreens/styleSettings/StyleContactAndFAQ';
-import MenuSlideSettings from '../../composants/MenuSlideSettings';
+import MenuSlide from '../../composants/MenuSlide';
 
 export const AdvancedFiltre = ({navigation}) => {
   useEffect(() => {
@@ -37,9 +37,7 @@ export const AdvancedFiltre = ({navigation}) => {
         height: '100%',
       }}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings
-        settingsNavigation={() => navigation.navigate('Recherche')}
-      />
+      <MenuSlide settingsNavigation={'Recherche'} backButton={'Retour'} />
       <View style={{flex: 3}}>
         <Text
           style={{

@@ -11,7 +11,7 @@ import {
   Modal,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {MenuSlideSettings} from '../../composants/MenuSlideSettings';
+import {MenuSlide} from '../../composants/MenuSlide';
 import StyleEmplacement from '../../../assets/style/styleScreens/styleSettings/StyleEmplacement';
 
 export const Emplacement = ({navigation}) => {
@@ -28,9 +28,7 @@ export const Emplacement = ({navigation}) => {
     <ImageBackground
       style={StyleEmplacement.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings
-        settingsNavigation={() => navigation.navigate('Settings')}
-      />
+      <MenuSlide settingsNavigation={'Settings'} backButton={'Retour'} />
       <Text style={StyleEmplacement.title}>Emplacement</Text>
       <View style={StyleEmplacement.separator} />
       <View style={{flex: 5}}>

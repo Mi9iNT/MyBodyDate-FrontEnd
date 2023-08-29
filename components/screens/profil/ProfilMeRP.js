@@ -29,6 +29,7 @@ export const ProfilMeRP = ({route, navigation}) => {
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
   const imagePath = route.params?.imagePath ?? '';
+  const tabPath = route.params?.tabPath ?? '';
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -41,7 +42,7 @@ export const ProfilMeRP = ({route, navigation}) => {
 
   return (
     <View style={{flex: 1, backgroundColor: 'black'}}>
-      <MenuSlide imagePath={imagePath} />
+      <MenuSlide imagePath={'Professionnel-Clair'} tabPath={'Professionnel'} />
       <ScrollView style={{backgroundColor: 'black'}}>
         <View style={{justifyContent: 'center'}}>
           <ImageBackground

@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import StyleModeConnexion from '../../../assets/style/styleScreens/styleSettings/StyleModeConnexion';
 import PropTypes from 'prop-types';
-import MenuSlideSettings from '../../composants/MenuSlideSettings';
+import MenuSlide from '../../composants/MenuSlide';
 import ModeConnexionStyles from '../../../assets/style/styleScreens/styleSettings/StyleModeConnexion';
 
 export const ModeDeConnexion = ({navigation}) => {
@@ -35,7 +35,7 @@ export const ModeDeConnexion = ({navigation}) => {
       style={StyleModeConnexion.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
       <View style={{flex: 8}}>
-      <MenuSlideSettings settingsNavigation={() => navigation.navigate('Securite et privee')} />
+      <MenuSlide settingsNavigation={'Securite et privee'} backButton={'Retour'} />
       <Text
         style={StyleModeConnexion.title}>
         Mode de connexion

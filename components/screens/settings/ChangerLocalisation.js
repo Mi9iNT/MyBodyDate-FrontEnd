@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import StyleChangerLocalisation from '../../../assets/style/styleScreens/styleSettings/StyleChangerLocalisation';
-import MenuSlideSettings from '../../composants/MenuSlideSettings';
+import MenuSlide from '../../composants/MenuSlide';
 
 export const ChangerLocalisation = ({navigation}) => {
   // Masquer la barre de statut au montage de l'écran
@@ -33,7 +33,7 @@ export const ChangerLocalisation = ({navigation}) => {
     <ImageBackground
       style={StyleChangerLocalisation.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings settingsNavigation={() => navigation.navigate('Mode voyage')} />
+      <MenuSlide settingsNavigation={'Mode voyage'} backButton={'Retour'} />
       <View style={{flex:5}}>
       <Text
         style={StyleChangerLocalisation.title}>

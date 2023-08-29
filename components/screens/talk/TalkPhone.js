@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 import Styles from '../../../assets/style/Styles';
 import MenuSlide from '../../composants/MenuSlide';
 
-export const TalkPhone = ({ navigation, route }) => {
+export const TalkPhone = ({ navigation, route, imagePath }) => {
   // Masquer la barre de statut au montage de l'écran
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -23,8 +23,6 @@ export const TalkPhone = ({ navigation, route }) => {
       StatusBar.setHidden(false);
     };
   }, []);
-  const activeTab = route.params?.activeTab ?? '';
-  const imagePath = route.params?.imagePath ?? '';
 
   return (
     <View style={{backgroundColor:'#fff', height:'100%', width:'auto'}}>

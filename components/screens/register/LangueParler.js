@@ -141,7 +141,7 @@ export const LangueParler = ({route, navigation}) => {
       backgroundColor: 'transparent',
       borderRadius: 50,
       borderWidth: 2,
-      top: -120,
+      bottom: 120,
       alignItems: 'center',
       justifyContent: 'center',
       borderColor: '#cacaca',
@@ -176,7 +176,7 @@ export const LangueParler = ({route, navigation}) => {
         <View style={[Styles.ViewText, {top: 100}]}>
           <Text style={[Styles.textWhiteCenter]}>LANGUE PARLÉES ?</Text>
         </View>
-        <View style={[Styles.ViewInputRadioLang, {top: -140}]}>
+        <View style={[Styles.ViewInputRadioLang, {bottom: 140}]}>
           <View style={{flex: 2}}>
             <TouchableOpacity
               style={Styles.btnInputLang}
@@ -350,7 +350,7 @@ export const LangueParler = ({route, navigation}) => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{top: -100}}>
+        <View style={{bottom: 100}}>
           <Text style={[Styles.textWhite3, {left: 30,fontSize:12}]}>Choix multiples.</Text>
           <View style={[Styles.line]} />
         </View>
@@ -368,7 +368,7 @@ export const LangueParler = ({route, navigation}) => {
               source={require('../../../assets/images/arrow-down.png')}
             />
           </TouchableOpacity>
-          <Text style={[Styles.textWhiteCenter2, {top: -100}]}>
+          <Text style={[Styles.textWhiteCenter2, {bottom: 100}]}>
             Langue de votre appareil.
           </Text>
         </View>

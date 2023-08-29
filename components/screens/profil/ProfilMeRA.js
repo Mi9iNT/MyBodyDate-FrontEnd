@@ -16,7 +16,7 @@ import {MenuSlide} from '../../composants/MenuSlide';
 import {MenuBottom} from '../../composants/MenuBottom';
 import Styles from '../../../assets/style/Styles';
 
-export const ProfilMeRA = ({route, navigation}) => {
+export const ProfilMeRA = ({route, navigation, imagePath}) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -37,8 +37,6 @@ export const ProfilMeRA = ({route, navigation}) => {
   const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
-  // const imagePath = route.params?.imagePath ?? '';
-  const activeTab = route.params?.activeTab ?? '';
 
   const [boxPressed, setBoxPressed] = useState();
 
@@ -46,7 +44,7 @@ export const ProfilMeRA = ({route, navigation}) => {
     <ImageBackground
       style={Styles.bgGradient}
       source={require('../../../assets/images/MicrosoftTeams-image.png')}>
-      <MenuSlide imagePath={false} />
+      <MenuSlide imagePath={'Amour'} tabPath={'Amour'} />
       <View style={{flexDirection: 'row', marginBottom: 20}}>
         <View
           style={{
@@ -344,7 +342,7 @@ export const ProfilMeRA = ({route, navigation}) => {
           </TouchableOpacity>
         </ScrollView>
       </View>
-      <MenuBottom navigation={navigation} activeTab={activeTab} />
+      <MenuBottom navigation={navigation} tabPath={'Amour'} active={'Moi'} />
     </ImageBackground>
   );
 };

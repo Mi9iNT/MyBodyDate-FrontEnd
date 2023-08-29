@@ -2,17 +2,18 @@
 /* eslint-disable react-native/no-inline-styles */
 
 import React, { useState, useEffect, useRef } from 'react';
-import { StatusBar, View, Image, TouchableOpacity, Text, StyleSheet, PermissionsAndroid, Platform } from 'react-native';
+import { StatusBar, View, Image, TouchableOpacity, Text, ImageBackground, StyleSheet, PermissionsAndroid, Platform } from 'react-native';
 import { check, checkMultiple, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
 import PropTypes from 'prop-types';
 import MenuBottom from '../../composants/MenuBottom';
-import MenuSlideMap from '../../composants/MenuSlideMap';
+import MenuSlide from '../../composants/MenuSlide';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import customMarkerIcon from '../../../assets/boutons/marker-map.png';
 import customMarkerIconBlue from '../../../assets/boutons/marker-map-blue.png';
 import SliderMap from '../../composants/SliderMap';
 
-export const Map = ({ navigation, route }) => {
+export const Map = ({ navigation, route, imagePath }) => {
+  const tabPath = route.params?.tabPath ?? '';
   // Masquer la barre de statut au montage de l'écran
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -21,8 +22,6 @@ export const Map = ({ navigation, route }) => {
       StatusBar.setHidden(false);
     };
   }, []);
-
-  const activeTab = route.params?.activeTab ?? '';
 
   const [userLocation, setUserLocation] = useState({
     latitude: 48.8966739567463,
@@ -149,9 +148,9 @@ export const Map = ({ navigation, route }) => {
 
   const CustomMarker = () => {
     return (
-      <View style={styles.markerContainer}>
+      <View style={[styles.markerContainer]}>
         <TouchableOpacity
-          style={{ width: 50, height: 50, justifyContent: 'center', alignItems: 'center', zIndex: 1 }}
+          style={{ width: 50, height: 50, justifyContent: 'center', alignItems: 'center', zIndex: 1, }}
           onPress={() => setMarkerOpened(!markerOpened)}
         >
           <Image source={markerOpened ? customMarkerIconBlue : customMarkerIcon} style={{ top: 12, width: 50, height: 50 }} />
@@ -172,8 +171,8 @@ export const Map = ({ navigation, route }) => {
   );
 
   return (
-    <View style={{ backgroundColor: '#fff', height: '100%', width: '100%' }}>
-      <MenuSlideMap />
+    <ImageBackground source={require('../../../assets/images/bg-menuslide-map.png')} style={{ height: '100%', width: '100%', resizeMode:'contain' }}>
+      <MenuSlide imagePath={imagePath}/>
       <View>
         <View style={styles.container}>
           <MapView
@@ -231,8 +230,8 @@ export const Map = ({ navigation, route }) => {
           <RecenterButton onPress={centerMapOnUser} />
         </View>
       </View>
-      <MenuBottom navigation={navigation} activeTab={activeTab} />
-    </View>
+      <MenuBottom navigation={navigation} route={route} tabPath={tabPath} active={'Map'} />
+    </ImageBackground>
   );
 };
 

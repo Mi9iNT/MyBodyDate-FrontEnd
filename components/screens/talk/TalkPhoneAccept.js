@@ -17,7 +17,6 @@ import {
 import PropTypes from 'prop-types';
 import Styles from '../../../assets/style/Styles';
 import MenuSlide from '../../composants/MenuSlide';
-import MenuBottom from '../../composants/MenuBottom';
 
 export const TalkPhoneAccept = ({ navigation, route }) => {
   // Masquer la barre de statut au montage de l'écran
@@ -48,7 +47,7 @@ export const TalkPhoneAccept = ({ navigation, route }) => {
               <Image style={{ top: 0, alignSelf: 'center', width: 75, height: 75 }} source={require('../../../assets/boutons/cut-mic.png')} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={{ height: 75, width: 75 }} onPress={() => navigation.navigate('ProfilMe')}>
+            <TouchableOpacity style={{ height: 75, width: 75 }} onPress={() => navigation.navigate('Tabs')}>
               <Image style={{ top: 0, alignSelf: 'center', width: 75, height: 75 }} source={require('../../../assets/boutons/decline-call.png')} />
             </TouchableOpacity>
 

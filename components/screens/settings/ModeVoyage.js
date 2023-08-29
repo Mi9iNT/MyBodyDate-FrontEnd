@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import StyleModeVoyage from '../../../assets/style/styleScreens/styleSettings/StyleModeVoyage';
-import MenuSlideSettings from '../../composants/MenuSlideSettings';
+import MenuSlide from '../../composants/MenuSlide';
 
 export const ModeVoyage = ({navigation}) => {
   // Masquer la barre de statut au montage de l'écran
@@ -29,7 +29,7 @@ export const ModeVoyage = ({navigation}) => {
     <ImageBackground
       style={StyleModeVoyage.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings settingsNavigation={() => navigation.navigate('Settings')} />
+      <MenuSlide settingsNavigation={'Settings'} backButton={'Retour'} />
       <View style={{flex:7}}>
       <Text
         style={StyleModeVoyage.title}>

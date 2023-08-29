@@ -42,7 +42,7 @@ export const LinksLogIn = ({route, navigation}) => {
               style={[{top: 10, height: 56}]}
               onPress={() => {
                 setButtonPressed('Apple');
-                navigation.navigate('ProfilMeRA', {routeName: 'Se connecter'});
+                navigation.navigate('Tabs', {routeName: 'Se connecter'});
               }}
               accessibilityLabel="Connexion avec Apple">
               <Text
@@ -78,7 +78,7 @@ export const LinksLogIn = ({route, navigation}) => {
               style={[{top: 30, height: 56}]}
               onPress={() => {
                 setButtonPressed('Facebook');
-                navigation.navigate('ProfilMeRA', {routeName: 'Se connecter'});
+                navigation.navigate('Tabs', {routeName: 'Se connecter'});
               }}
               accessibilityLabel="Connexion avec Facebook">
               <Text
@@ -114,7 +114,7 @@ export const LinksLogIn = ({route, navigation}) => {
               style={[{top: 50, height: 56}]}
               onPress={() => {
                 setButtonPressed('Google');
-                navigation.navigate('ProfilMeRA', {routeName: 'Se connecter'});
+                navigation.navigate('Tabs', {routeName: 'Se connecter'});
               }}
               accessibilityLabel="Connexion avec Google">
               <Text

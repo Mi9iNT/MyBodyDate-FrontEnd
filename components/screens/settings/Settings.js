@@ -20,7 +20,7 @@ const commonTextStyles = {
   fontWeight: '700',
 };
 
-export const Settings = ({navigation}) => {
+export const Settings = ({navigation, backButton, imagePath}) => {
   // Masquer la barre de statut au montage de l'écran
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -87,7 +87,7 @@ export const Settings = ({navigation}) => {
       <ImageBackground
         style={settingsStyles.bgGradient}
         source={require('../../../assets/images/bg-parametres.png')}>
-        <MenuSlide />
+        <MenuSlide imagePath={imagePath}/>
         <View style={{flex: 11}}>
           <Text style={settingsStyles.title}>Paramètres</Text>
           <View style={settingsStyles.separator} />
@@ -131,10 +131,10 @@ export const Settings = ({navigation}) => {
             navigation.navigate('Home Next');
           }}>
             <Image
-              style={[settingsStyles.logoutButton, {color: buttonPressed === 'deconnexion' ? '#fff' : '#0019A7'}]}
+              style={[settingsStyles.logoutButton]}
               source={buttonPressed === 'deconnexion' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc-Border.png')}
             />
-            <Text style={settingsStyles.textLogoutButton}>Déconnexion</Text>
+            <Text style={[settingsStyles.textLogoutButton, {color: buttonPressed === 'deconnexion' ? '#fff' : '#0019A7'}]}>Déconnexion</Text>
           </TouchableOpacity>
 
           <TouchableOpacity

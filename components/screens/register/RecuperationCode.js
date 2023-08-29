@@ -124,7 +124,7 @@ export const RecuperationCode = ({route, navigation}) => {
   let selectedRoute;
   switch (routeChoice) {
     case 'Connexion mail':
-      selectedRoute = 'ProfilMeRA';
+      selectedRoute = 'Discover';
       break;
     case "S'inscrire par mail":
       selectedRoute = 'Confirmation compte';
@@ -133,10 +133,10 @@ export const RecuperationCode = ({route, navigation}) => {
       selectedRoute = 'Confirmation compte';
       break;
     case 'Se connecter':
-      selectedRoute = 'ProfilMeRA';
+      selectedRoute = 'Discover';
       break;
     case 'Connexion numero':
-      selectedRoute = 'ProfilMeRA';
+      selectedRoute = 'Discover';
       break;
     default:
       selectedRoute = 'Confirmation compte';

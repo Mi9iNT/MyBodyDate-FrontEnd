@@ -45,6 +45,7 @@ export const ProfilMeCAfirst = ({route, navigation, imagePath}) => {
   const [openModalAmi, setOpenModalAmi] = useState(false);
   const [openModalFilm, setOpenModalFilm] = useState(false);
   const [openModalSpotify, setOpenModalSpotify] = useState(false);
+  const tabPath = route.params?.tabPath ?? '';
 
   const [addProVisible, setAddProVisible] = useState([
     false,
@@ -70,7 +71,7 @@ export const ProfilMeCAfirst = ({route, navigation, imagePath}) => {
 
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
-      <MenuSlide imagePath={true} />
+      <MenuSlide imagePath={'Ami'} tabPath={'Ami'} />
       <ScrollView>
         <View>
           <Text

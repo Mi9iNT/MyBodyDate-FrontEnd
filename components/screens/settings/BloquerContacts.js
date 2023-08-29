@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import StyleBloquerContacts from '../../../assets/style/styleScreens/styleSettings/StyleBloquerContacts';
-import MenuSlideSettings from '../../composants/MenuSlideSettings';
+import MenuSlide from '../../composants/MenuSlide';
 
 export const BloquerContacts = ({ navigation }) => {
   // Masquer la barre de statut au montage de l'écran
@@ -106,7 +106,7 @@ export const BloquerContacts = ({ navigation }) => {
     <ImageBackground
       style={StyleBloquerContacts.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlideSettings settingsNavigation={() => navigation.navigate('Securite et privee')} />
+      <MenuSlide settingsNavigation={'Securite et privee'} backButton={'Retour'} />
       <Text
         style={StyleBloquerContacts.title}>
         Bloquer des contacts

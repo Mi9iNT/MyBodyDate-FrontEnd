@@ -2,16 +2,19 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
-import {View, Text, Image, ImageBackground} from 'react-native';
+import {View, Text, Image, ImageBackground, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
 import {MyComponent} from '../../composants/MyComponent';
 import {MenuBottom} from '../../composants/MenuBottom';
-import {More} from '../../composants/More/More';
+import {More} from '../../composants/more/More';
 import Styles from '../../../assets/style/Styles';
 import LinearGradient from 'react-native-linear-gradient';
 import Spotlight from '../../composants/Spotlight';
-export const Discover = ({route, navigation}) => {
+import PopUpMessage from '../../composants/popup/PopUpMessage';
+
+export const Discover = ({ route, navigation }) => {
+
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -32,8 +35,26 @@ export const Discover = ({route, navigation}) => {
   const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
-  const activeTab = route.params?.activeTab ?? '';
-  const imagePath = route.params?.imagePath ?? '';
+  const tabPath = route.params?.tabPath ?? '';
+  const imagePath = 'Amour';
+  const ptCommun = 11;
+  const partenaire = 'OpenBetween';
+  const txtPartenaire = 'Inscrite auprès d’un partenaire';
+
+  const [userOn, setUserOn] = useState(true);
+  const [quality, setQuality] = useState(true);
+  const [medaille, setMedaille] = useState(true);
+  const [buttonPressed, setButtonPressed] = useState('Play');
+
+  const handlePlay = () => {
+    setButtonPressed(buttonPressed === 'Stop' ? 'Play' : 'Stop');
+  };
+
+  const [barPressed, setBarPressed] = useState(1);
+
+  const handleBar = (index) => {
+      setBarPressed(index);
+  };
 
   return (
     <View
@@ -41,9 +62,9 @@ export const Discover = ({route, navigation}) => {
         width: '100%',
         height: '100%',
       }}>
-      <MenuSlide imagePath={imagePath} />
+      <MenuSlide imagePath={imagePath} tabPath={imagePath} />
       <ImageBackground
-        source={require('../../../assets/images/Rectangle-43.png')}
+        source={require('../../../assets/images/Rectangle-44.png')}
         style={{
           width: '100%',
           height: '100%',
@@ -53,20 +74,42 @@ export const Discover = ({route, navigation}) => {
           <Spotlight navigation={navigation} />
         </>
         <View style={{justifyContent: 'space-around', flexDirection: 'row'}}>
-          <View
+          <TouchableOpacity
+            onPress={() => { handleBar(1); }}
             style={{
-              width: 140,
+              width: 60,
               height: 4,
-              backgroundColor: 'white',
+              backgroundColor: barPressed === 1 ? '#D40000' : '#fff',
               marginVertical: 20,
               marginHorizontal: 8,
             }}
           />
-          <View
+          <TouchableOpacity
+            onPress={() => { handleBar(2); }}
             style={{
-              width: 140,
+              width: 60,
               height: 4,
-              backgroundColor: '#0019A7',
+              backgroundColor: barPressed === 2 ? '#D40000' : '#fff',
+              marginVertical: 20,
+              marginHorizontal: 8,
+            }}
+          />
+          <TouchableOpacity
+            onPress={() => { handleBar(3); }}
+            style={{
+              width: 60,
+              height: 4,
+              backgroundColor: barPressed === 3 ? '#D40000' : '#fff',
+              marginVertical: 20,
+              marginHorizontal: 8,
+            }}
+          />
+          <TouchableOpacity
+            onPress={() => { handleBar(4); }}
+            style={{
+              width: 60,
+              height: 4,
+              backgroundColor: barPressed === 4 ? '#D40000' : '#fff',
               marginVertical: 20,
               marginHorizontal: 8,
             }}
@@ -79,7 +122,11 @@ export const Discover = ({route, navigation}) => {
             marginRight: 300,
           }}>
           <Image
-            source={require('../../../assets/images/Ellipse-V33.png')}
+            source={
+              userOn
+                ? require('../../../assets/images/ico-on.png')
+                : require('../../../assets/images/ico-off.png')
+            }
             style={{
               top: 4,
               width: 9,
@@ -94,7 +141,7 @@ export const Discover = ({route, navigation}) => {
               color: '#0019A7',
               letterSpacing: 1,
             }}>
-            En ligne
+            {userOn ? 'En ligne' : 'Hors ligne'}
           </Text>
         </View>
         <View
@@ -123,25 +170,11 @@ export const Discover = ({route, navigation}) => {
           </Text>
         </View>
         <More />
-        <View
-          style={{
-            top: -30,
-            left: 25,
-          }}>
-          <Image
-            source={require('../../../assets/images/Rencontre-amoureuse-3.png')}
-            style={{
-              width: 346,
-              height: 50,
-              borderColor: '#0019A7',
-              borderRadius: 20,
-            }}
-          />
-        </View>
+        <PopUpMessage message={imagePath} ptCommun={ptCommun} txtPartenaire={txtPartenaire} navigation={navigation} />
         <View
           style={{
             position: 'absolute',
-            top: 480,
+            top: 460,
           }}>
           <View
             style={{
@@ -153,34 +186,37 @@ export const Discover = ({route, navigation}) => {
               style={{
                 fontSize: 48,
                 fontFamily: 'Comfortaa',
-                fontWeight: '700',
                 color: '#fff',
                 letterSpacing: 1,
               }}>
-              Kolia
+              Léa
             </Text>
-            <Image
-              source={require('../../../assets/images/quality-2.png')}
-              style={{
-                top: 24,
-                left: 20,
-                width: 30,
-                height: 30,
-              }}
-            />
-            <Image
-              source={require('../../../assets/images/Médaille.png')}
-              style={{
-                top: 24,
-                left: 40,
-                width: 30,
-                height: 44,
-              }}
-            />
+            {quality ? (
+              <Image
+                source={require('../../../assets/images/quality-2.png')}
+                style={{
+                  top: 24,
+                  left: 20,
+                  width: 30,
+                  height: 30,
+                }}
+              />
+            ) : null}
+            {medaille ? (
+              <Image
+                source={require('../../../assets/images/Médaille.png')}
+                style={{
+                  top: 24,
+                  left: 40,
+                  width: 30,
+                  height: 44,
+                }}
+              />
+            ) : null}
           </View>
           <View
             style={{
-              top: -10,
+              bottom: 10,
               left: 15,
             }}>
             <Text
@@ -191,7 +227,7 @@ export const Discover = ({route, navigation}) => {
                 color: '#fff',
                 letterSpacing: 1,
               }}>
-              45, Paris
+              27, Marseille
             </Text>
           </View>
           <View
@@ -213,25 +249,48 @@ export const Discover = ({route, navigation}) => {
               style={{
                 top: 5,
               }}>
-              <Image
-                source={require('../../../assets/images/Group-6.png')}
+              <TouchableOpacity
+                onPress={() => { handlePlay() }}
                 style={{
                   width: 40,
                   height: 40,
-                }}
-              />
+                }}>
+                <Image
+                  source={buttonPressed === 'Stop' ? require('../../../assets/boutons/Stop-P.png') : require('../../../assets/boutons/Play-P.png')}
+                  style={{
+                    top: 10,
+                    alignSelf: 'center',
+                  }}
+                />
+              </TouchableOpacity>
             </View>
           </View>
         </View>
         <View
           style={{
             position: 'absolute',
-            top: 350,
+            top: 300,
             left: 300,
           }}>
-          <View
+          {partenaire === 'OpenBetween' || partenaire === 'CheerFlakes' || partenaire === 'WineGap' || partenaire === 'GoPride' ? <Image
+          source={partenaire === 'OpenBetween' ? require('../../../assets/images/openBetween-cache.png') : partenaire === 'CheerFlakes' ? require('../../../assets/images/cheerflakes-cache.png') : partenaire === 'WineGap' ? require('../../../assets/images/winegap-cache.png') : partenaire === 'GoPride' ? require('../../../assets/images/gopride-cache.png') : require('../../../assets/images/gopride-cache.png')}
+          style={{
+            zIndex: 0,
+            top: 0,
+            right:20,
+            alignSelf:'flex-end',
+            width: 100,
+            height: 50,
+            resizeMode:'contain',
+          }}
+        />:null}
+          <TouchableOpacity
             style={{
+              backgroundColor:'red',
               top: 5,
+              width: 78,
+              height: 78,
+              borderRadius: 100,
             }}>
             <Image
               source={require('../../../assets/images/profil_user_community.png')}
@@ -240,22 +299,30 @@ export const Discover = ({route, navigation}) => {
                 height: 78,
               }}
             />
-          </View>
-          <View
+          </TouchableOpacity>
+          <TouchableOpacity
             style={{
+              backgroundColor:'red',
               top: 20,
+              width: 78,
+              height: 78,
+              borderRadius: 100,
             }}>
             <Image
               source={require('../../../assets/images/profil_coeur.png')}
               style={{
-                width: 77,
-                height: 77,
+                width: 78,
+                height: 78,
               }}
             />
-          </View>
+          </TouchableOpacity>
           <View
             style={{
+              backgroundColor: 'red',
               top: 35,
+              width: 78,
+              height: 78,
+              borderRadius: 100,
             }}>
             <Image
               source={require('../../../assets/images/profil_croix.png')}
@@ -266,7 +333,7 @@ export const Discover = ({route, navigation}) => {
             />
           </View>
         </View>
-        <MenuBottom navigation={navigation} activeTab={activeTab} />
+        <MenuBottom navigation={navigation} route={route} tabPath={'Amour'} active={'Discover'} />
       </ImageBackground>
     </View>
   );
