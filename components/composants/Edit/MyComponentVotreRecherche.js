@@ -65,14 +65,16 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
   <>
     <View
       style={{
+        alignSelf: 'center',
         alignItems: 'center',
-        top: 140,
+        top: 100,
         borderWidth: 1,
         borderColor: '#000',
         borderRadius: 25, // Adjust the border radius as needed
-        paddingBottom: 160, // Increase this value to move the bottom border down
+        paddingBottom: 195, // Increase this value to move the bottom border down
         marginLeft: 41,
         marginRight: 72,
+        left: 20,
       }}>
       <View
         style={{
@@ -108,9 +110,10 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               fontSize: 16,
               color: '#000',
               textAlign: 'center',
-              top: 20,
+              top: 10,
             }}>
-            /
+            Pas important
+
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -121,9 +124,9 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               fontSize: 16,
               color: '#000',
               textAlign: 'center',
-              top: 40,
+              top: 30,
             }}>
-            /
+            Moins de 10 000 €
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -134,9 +137,9 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               fontSize: 16,
               color: '#000',
               textAlign: 'center',
-              top: 60,
+              top: 50,
             }}>
-            /
+            10001 - 20000 €
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -147,9 +150,9 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               fontSize: 16,
               color: '#000',
               textAlign: 'center',
-              top: 80,
+              top: 70,
             }}>
-            /
+            20 000 € - 30 000 €
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -160,9 +163,9 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               fontSize: 16,
               color: '#000',
               textAlign: 'center',
-              top: 100,
+              top: 90,
             }}>
-            /
+            30001 - 40000 €
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -173,9 +176,9 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               fontSize: 16,
               color: '#000',
               textAlign: 'center',
-              top: 120,
+              top: 110,
             }}>
-            /
+            40001 - 50000 €
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -186,9 +189,48 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               fontSize: 16,
               color: '#000',
               textAlign: 'center',
-              top: 140,
+              top: 130,
             }}>
-            /
+            50001 - 60000 €
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text
+            style={{
+              fontFamily: 'Comfortaa',
+              fontWeight: '700',
+              fontSize: 16,
+              color: '#000',
+              textAlign: 'center',
+              top: 150,
+            }}>
+            60001 - 80000 €
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text
+            style={{
+              fontFamily: 'Comfortaa',
+              fontWeight: '700',
+              fontSize: 16,
+              color: '#000',
+              textAlign: 'center',
+              top: 170,
+            }}>
+            80 001 - 100 000 €
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text
+            style={{
+              fontFamily: 'Comfortaa',
+              fontWeight: '700',
+              fontSize: 16,
+              color: '#000',
+              textAlign: 'center',
+              top: 190,
+            }}>
+            Plus de 100 0001/
           </Text>
         </TouchableOpacity>
       </View>
@@ -200,7 +242,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
         fontSize: 12,
         color: '#000',
         left: 30,
-        top: 150,
+        top: 220,
       }}>
       Choix unique.
     </Text>

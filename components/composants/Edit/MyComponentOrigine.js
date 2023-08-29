@@ -81,7 +81,8 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               textAlign: 'center',
               top: 20,
             }}>
-            /
+            Asiatique
+
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -94,7 +95,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               textAlign: 'center',
               top: 40,
             }}>
-            /
+            Blanc/Caucasien.ne
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -107,7 +108,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               textAlign: 'center',
               top: 60,
             }}>
-            /
+            Indien.ne
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -120,7 +121,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               textAlign: 'center',
               top: 80,
             }}>
-            /
+            Latino/Hispanique
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -133,7 +134,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               textAlign: 'center',
               top: 100,
             }}>
-            Je ne sais pas trop
+            Noir.e/Africain.ne
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -146,7 +147,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               textAlign: 'center',
               top: 120,
             }}>
-            /
+            Originaire du Moyen Orient
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -159,7 +160,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               textAlign: 'center',
               top: 140,
             }}>
-            /
+            Métis.se
           </Text>
         </TouchableOpacity>
       </View>

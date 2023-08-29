@@ -85,6 +85,7 @@ export const Statut = ({visibleStatut, closeModalStatut}) => {
                 fontSize: 20,
                 color: '#000',
                 top: 50,
+                alignSelf: 'center',
               }}>
               Statut
             </Text>

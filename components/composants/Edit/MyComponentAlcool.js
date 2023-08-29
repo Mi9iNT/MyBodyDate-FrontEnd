@@ -123,19 +123,6 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
             Jamais
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '700',
-              fontSize: 16,
-              color: '#0019A7',
-              textAlign: 'center',
-              top: 100,
-            }}>
-            J'ai arrêté
-          </Text>
-        </TouchableOpacity>
       </View>
     </View>
       <Text

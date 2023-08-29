@@ -81,7 +81,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               textAlign: 'center',
               top: 20,
             }}>
-            Souvent
+            A l'occasion
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -94,7 +94,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               textAlign: 'center',
               top: 40,
             }}>
-            Parfois
+            Régulièrement
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -107,7 +107,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               textAlign: 'center',
               top: 60,
             }}>
-            Très peu
+            Rarement
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>

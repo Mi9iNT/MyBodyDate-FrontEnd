@@ -76,6 +76,7 @@ export const Offre = ({visibleOffre, closeModalOffre}) => {
                 height: 70,
                 top: 30,
                 alignSelf: 'center',
+                alignItems: 'center',
               }}
             />
             <Text

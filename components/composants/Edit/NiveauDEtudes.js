@@ -107,6 +107,7 @@ export const NiveauDEtudes = ({visible, closeModal}) => {
                     width: 78,
                     height: 84,
                     right: 15,
+                    top: 30,
                   }}
                 />
               </View>

@@ -85,7 +85,7 @@ export const Langue = ({visibleLangue, closeModalLangue}) => {
             fontWeight: '700',
             fontSize: 20,
             color: '#000',
-            top: 50,
+            top: 20,
           }}>
           Je parle couramment..
         </Text>
@@ -97,7 +97,7 @@ export const Langue = ({visibleLangue, closeModalLangue}) => {
             fontWeight: '700',
             fontSize: 14,
             color: '#000',
-            top: 80,
+            top: 25,
             left: 30,
           }}>
           Sélectionnez vos langues parlées.
