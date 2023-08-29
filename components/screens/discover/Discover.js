@@ -48,7 +48,6 @@ export const Discover = ({ route, navigation }) => {
 
   const handlePlay = () => {
     setButtonPressed(buttonPressed === 'Stop' ? 'Play' : 'Stop');
-    console.log(buttonPressed);
   };
 
   const [barPressed, setBarPressed] = useState(1);

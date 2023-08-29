@@ -51,7 +51,6 @@ export const DiscoverRP = ({route, navigation}) => {
 
   const handlePlay = () => {
     setButtonPressed(buttonPressed === 'Stop' ? 'Play' : 'Stop');
-    console.log(buttonPressed);
   };
 
   const [barPressed, setBarPressed] = useState('Bleu');
