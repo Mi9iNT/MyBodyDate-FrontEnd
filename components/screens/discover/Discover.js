@@ -11,6 +11,7 @@ import {More} from '../../composants/more/More';
 import Styles from '../../../assets/style/Styles';
 import LinearGradient from 'react-native-linear-gradient';
 import Spotlight from '../../composants/Spotlight';
+import PopUpMessage from '../../composants/popup/PopUpMessage';
 
 export const Discover = ({ route, navigation }) => {
 
@@ -36,6 +37,25 @@ export const Discover = ({ route, navigation }) => {
   const userVoice = route.params?.userVoice ?? '';
   const tabPath = route.params?.tabPath ?? '';
   const imagePath = 'Amour';
+  const ptCommun = 11;
+  const partenaire = 'OpenBetween';
+  const txtPartenaire = 'Inscrite auprès d’un partenaire';
+
+  const [userOn, setUserOn] = useState(true);
+  const [quality, setQuality] = useState(true);
+  const [medaille, setMedaille] = useState(true);
+  const [buttonPressed, setButtonPressed] = useState('Play');
+
+  const handlePlay = () => {
+    setButtonPressed(buttonPressed === 'Stop' ? 'Play' : 'Stop');
+    console.log(buttonPressed);
+  };
+
+  const [barPressed, setBarPressed] = useState(1);
+
+  const handleBar = (index) => {
+      setBarPressed(index);
+  };
 
   return (
     <View
@@ -43,9 +63,9 @@ export const Discover = ({ route, navigation }) => {
         width: '100%',
         height: '100%',
       }}>
-      <MenuSlide imagePath={imagePath} tabPath={'Amour'} />
+      <MenuSlide imagePath={imagePath} tabPath={imagePath} />
       <ImageBackground
-        source={require('../../../assets/images/Rectangle-43.png')}
+        source={require('../../../assets/images/Rectangle-44.png')}
         style={{
           width: '100%',
           height: '100%',
@@ -56,19 +76,41 @@ export const Discover = ({ route, navigation }) => {
         </>
         <View style={{justifyContent: 'space-around', flexDirection: 'row'}}>
           <TouchableOpacity
+            onPress={() => { handleBar(1); }}
             style={{
-              width: 140,
+              width: 60,
               height: 4,
-              backgroundColor: 'white',
+              backgroundColor: barPressed === 1 ? '#D40000' : '#fff',
               marginVertical: 20,
               marginHorizontal: 8,
             }}
           />
           <TouchableOpacity
+            onPress={() => { handleBar(2); }}
             style={{
-              width: 140,
+              width: 60,
               height: 4,
-              backgroundColor: '#0019A7',
+              backgroundColor: barPressed === 2 ? '#D40000' : '#fff',
+              marginVertical: 20,
+              marginHorizontal: 8,
+            }}
+          />
+          <TouchableOpacity
+            onPress={() => { handleBar(3); }}
+            style={{
+              width: 60,
+              height: 4,
+              backgroundColor: barPressed === 3 ? '#D40000' : '#fff',
+              marginVertical: 20,
+              marginHorizontal: 8,
+            }}
+          />
+          <TouchableOpacity
+            onPress={() => { handleBar(4); }}
+            style={{
+              width: 60,
+              height: 4,
+              backgroundColor: barPressed === 4 ? '#D40000' : '#fff',
               marginVertical: 20,
               marginHorizontal: 8,
             }}
@@ -81,7 +123,11 @@ export const Discover = ({ route, navigation }) => {
             marginRight: 300,
           }}>
           <Image
-            source={require('../../../assets/images/Ellipse-V33.png')}
+            source={
+              userOn
+                ? require('../../../assets/images/ico-on.png')
+                : require('../../../assets/images/ico-off.png')
+            }
             style={{
               top: 4,
               width: 9,
@@ -96,7 +142,7 @@ export const Discover = ({ route, navigation }) => {
               color: '#0019A7',
               letterSpacing: 1,
             }}>
-            En ligne
+            {userOn ? 'En ligne' : 'Hors ligne'}
           </Text>
         </View>
         <View
@@ -125,25 +171,11 @@ export const Discover = ({ route, navigation }) => {
           </Text>
         </View>
         <More />
-        <View
-          style={{
-            top: -30,
-            left: 25,
-          }}>
-          <Image
-            source={require('../../../assets/images/Rencontre-amoureuse-3.png')}
-            style={{
-              width: 346,
-              height: 50,
-              borderColor: '#0019A7',
-              borderRadius: 20,
-            }}
-          />
-        </View>
+        <PopUpMessage message={imagePath} ptCommun={ptCommun} txtPartenaire={txtPartenaire} navigation={navigation} />
         <View
           style={{
             position: 'absolute',
-            top: 480,
+            top: 460,
           }}>
           <View
             style={{
@@ -155,34 +187,37 @@ export const Discover = ({ route, navigation }) => {
               style={{
                 fontSize: 48,
                 fontFamily: 'Comfortaa',
-                fontWeight: '700',
                 color: '#fff',
                 letterSpacing: 1,
               }}>
-              Kolia
+              Léa
             </Text>
-            <Image
-              source={require('../../../assets/images/quality-2.png')}
-              style={{
-                top: 24,
-                left: 20,
-                width: 30,
-                height: 30,
-              }}
-            />
-            <Image
-              source={require('../../../assets/images/Médaille.png')}
-              style={{
-                top: 24,
-                left: 40,
-                width: 30,
-                height: 44,
-              }}
-            />
+            {quality ? (
+              <Image
+                source={require('../../../assets/images/quality-2.png')}
+                style={{
+                  top: 24,
+                  left: 20,
+                  width: 30,
+                  height: 30,
+                }}
+              />
+            ) : null}
+            {medaille ? (
+              <Image
+                source={require('../../../assets/images/Médaille.png')}
+                style={{
+                  top: 24,
+                  left: 40,
+                  width: 30,
+                  height: 44,
+                }}
+              />
+            ) : null}
           </View>
           <View
             style={{
-              top: -10,
+              bottom: 10,
               left: 15,
             }}>
             <Text
@@ -193,7 +228,7 @@ export const Discover = ({ route, navigation }) => {
                 color: '#fff',
                 letterSpacing: 1,
               }}>
-              45, Paris
+              27, Marseille
             </Text>
           </View>
           <View
@@ -215,16 +250,34 @@ export const Discover = ({ route, navigation }) => {
               style={{
                 top: 5,
               }}>
-              <Image
-                source={require('../../../assets/images/Group-6.png')}
+              <TouchableOpacity
+                onPress={() => { handlePlay() }}
                 style={{
                   width: 40,
                   height: 40,
-                }}
-              />
+                }}>
+                <Image
+                  source={buttonPressed === 'Stop' ? require('../../../assets/boutons/Stop-P.png') : require('../../../assets/boutons/Play-P.png')}
+                  style={{
+                    top: 10,
+                    alignSelf: 'center',
+                  }}
+                />
+              </TouchableOpacity>
             </View>
           </View>
         </View>
+        {partenaire === 'OpenBetween' || partenaire === 'CheerFlakes' || partenaire === 'WineGap' || partenaire === 'GoPride' ? <Image
+          source={partenaire === 'OpenBetween' ? require('../../../assets/images/openBetween-cache.png') : partenaire === 'CheerFlakes' ? require('../../../assets/images/cheerflakes-cache.png') : partenaire === 'WineGap' ? require('../../../assets/images/winegap-cache.png') : partenaire === 'GoPride' ? require('../../../assets/images/gopride-cache.png') : require('../../../assets/images/gopride-cache.png')}
+          style={{
+            bottom: 70,
+            right:20,
+            alignSelf:'flex-end',
+            width: 100,
+            height: 50,
+            resizeMode:'contain',
+          }}
+        />:null}
         <View
           style={{
             position: 'absolute',

@@ -6,6 +6,7 @@ import {
   View,
   Text,
   Image,
+  TouchableOpacity,
   ImageBackground,
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -16,8 +17,9 @@ import {More} from '../../composants/more/More';
 import Styles from '../../../assets/style/Styles';
 import LinearGradient from 'react-native-linear-gradient';
 import Spotlight from '../../composants/Spotlight';
+import PopUpMessage from '../../composants/popup/PopUpMessage';
 
-export const DiscoverRP = ({route, navigation, imagePath}) => {
+export const DiscoverRP = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -39,13 +41,32 @@ export const DiscoverRP = ({route, navigation, imagePath}) => {
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
 
+  const imagePath = 'Professionnel';
+  const ptCommun = 5;
+
+  const [userOn, setUserOn] = useState(true);
+  const [quality, setQuality] = useState(true);
+  const [medaille, setMedaille] = useState(false);
+  const [buttonPressed, setButtonPressed] = useState('Play');
+
+  const handlePlay = () => {
+    setButtonPressed(buttonPressed === 'Stop' ? 'Play' : 'Stop');
+    console.log(buttonPressed);
+  };
+
+  const [barPressed, setBarPressed] = useState('Bleu');
+
+  const handleBar = () => {
+    setBarPressed(barPressed === 'Bleu' ? 'Blanc' : 'Bleu');
+  };
+
   return (
     <View
       style={{
         width: '100%',
         height: '100%',
       }}>
-      <MenuSlide imagePath={'Professionnel'} tabPath={'Professionnel'} />
+      <MenuSlide imagePath={imagePath} tabPath={imagePath} />
       <ImageBackground
         source={require('../../../assets/images/BackLisa.png')}
         style={{
@@ -54,20 +75,22 @@ export const DiscoverRP = ({route, navigation, imagePath}) => {
         }}>
           <Spotlight />
         <View style={{justifyContent: 'space-around', flexDirection: 'row'}}>
-          <View
+          <TouchableOpacity
+            onPress={() => { handleBar(); }}
             style={{
               width: 140,
               height: 4,
-              backgroundColor: 'white',
+              backgroundColor: barPressed === 'Bleu' ? '#fff' : '#0019A7',
               marginVertical: 20,
               marginHorizontal: 8,
             }}
           />
-          <View
+          <TouchableOpacity
+            onPress={() => { handleBar(); }}
             style={{
               width: 140,
               height: 4,
-              backgroundColor: '#0019A7',
+              backgroundColor: barPressed === 'Bleu' ? '#0019A7' : '#fff',
               marginVertical: 20,
               marginHorizontal: 8,
             }}
@@ -80,7 +103,11 @@ export const DiscoverRP = ({route, navigation, imagePath}) => {
             marginRight: 300,
           }}>
           <Image
-            source={require('../../../assets/images/Ellipse-V33.png')}
+            source={
+              userOn
+                ? require('../../../assets/images/ico-on.png')
+                : require('../../../assets/images/ico-off.png')
+            }
             style={{
               top: 4,
               width: 9,
@@ -95,7 +122,7 @@ export const DiscoverRP = ({route, navigation, imagePath}) => {
               color: '#0019A7',
               letterSpacing: 1,
             }}>
-            En ligne
+            {userOn ? 'En ligne' : 'Hors ligne'}
           </Text>
         </View>
         <View
@@ -124,21 +151,7 @@ export const DiscoverRP = ({route, navigation, imagePath}) => {
           </Text>
         </View>
           <More />
-        <View
-          style={{
-            top: -30,
-            left: 25,
-          }}>
-          <Image
-            source={require('../../../assets/images/VousEtes---RP.png')}
-            style={{
-              width: 351,
-              height: 69,
-              borderColor: '#0019A7',
-              borderRadius: 20,
-            }}
-          />
-        </View>
+         <PopUpMessage message={imagePath} ptCommun={ptCommun} navigation={navigation} />
         <View
           style={{
             position: 'absolute',
@@ -200,24 +213,24 @@ export const DiscoverRP = ({route, navigation, imagePath}) => {
               }}>
               Croisé plusieurs fois
             </Text>
-            <View
+             <View
               style={{
                 top: 5,
               }}>
-              <ImageBackground
-                source={require('../../../assets/images/Fond.png')}
+              <TouchableOpacity
+                onPress={() => { handlePlay() }}
                 style={{
                   width: 40,
                   height: 40,
                 }}>
                 <Image
-                  source={require('../../../assets/images/Polygon2.png')}
+                  source={buttonPressed === 'Stop' ? require('../../../assets/boutons/Stop-P.png') : require('../../../assets/boutons/Play-P.png')}
                   style={{
                     top: 10,
                     alignSelf: 'center',
                   }}
                 />
-              </ImageBackground>
+              </TouchableOpacity>
             </View>
           </View>
         </View>

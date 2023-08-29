@@ -107,7 +107,7 @@ export const VoixDuJour2 = ({route, navigation}) => {
             }}>
             <TouchableOpacity onPress={() => { OnSelectedButton(); }}>
               <Image
-              source={selectedButton === 'Play' ? require('../../../assets/boutons/Play-P-B.png') : require('../../../assets/boutons/Play-P.png')}
+              source={selectedButton === 'Play' ? require('../../../assets/boutons/Stop-P.png') : require('../../../assets/boutons/Play-P.png')}
               style={{
                 width: 40,
                 height: 40,

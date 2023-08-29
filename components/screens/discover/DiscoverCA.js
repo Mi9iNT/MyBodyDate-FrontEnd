@@ -1,7 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
-import {View, Text, Image, ImageBackground} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ImageBackground,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
 import {MyComponent} from '../../composants/MyComponent';
@@ -10,6 +16,7 @@ import {More} from '../../composants/more/More';
 import Styles from '../../../assets/style/Styles';
 import LinearGradient from 'react-native-linear-gradient';
 import Spotlight from '../../composants/Spotlight';
+import PopUpMessage from '../../composants/popup/PopUpMessage';
 
 export const DiscoverCA = ({route, navigation, imagePath}) => {
   const routeChoice = route.params?.routeName ?? '';
@@ -33,6 +40,24 @@ export const DiscoverCA = ({route, navigation, imagePath}) => {
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
 
+  const message = 'Ami';
+  const ptCommun = 2;
+
+  const [userOn, setUserOn] = useState(false);
+  const [quality, setQuality] = useState(true);
+  const [medaille, setMedaille] = useState(false);
+  const [buttonPressed, setButtonPressed] = useState('Play');
+
+  const handlePlay = () => {
+    setButtonPressed(buttonPressed === 'Stop' ? 'Play' : 'Stop');
+  };
+
+  const [barPressed, setBarPressed] = useState('Bleu');
+
+  const handleBar = () => {
+    setBarPressed(barPressed === 'Bleu' ? 'Blanc' : 'Bleu');
+  };
+
   return (
     <View
       style={{
@@ -48,20 +73,26 @@ export const DiscoverCA = ({route, navigation, imagePath}) => {
         }}>
         <Spotlight />
         <View style={{justifyContent: 'space-around', flexDirection: 'row'}}>
-          <View
+          <TouchableOpacity
+            onPress={() => {
+              handleBar();
+            }}
             style={{
               width: 140,
               height: 4,
-              backgroundColor: 'white',
+              backgroundColor: barPressed === 'Bleu' ? '#fff' : '#0019A7',
               marginVertical: 20,
               marginHorizontal: 8,
             }}
           />
-          <View
+          <TouchableOpacity
+            onPress={() => {
+              handleBar();
+            }}
             style={{
               width: 140,
               height: 4,
-              backgroundColor: '#0019A7',
+              backgroundColor: barPressed === 'Bleu' ? '#0019A7' : '#fff',
               marginVertical: 20,
               marginHorizontal: 8,
             }}
@@ -74,7 +105,11 @@ export const DiscoverCA = ({route, navigation, imagePath}) => {
             marginRight: 300,
           }}>
           <Image
-            source={require('../../../assets/images/Ellipse-V33.png')}
+            source={
+              userOn
+                ? require('../../../assets/images/ico-on.png')
+                : require('../../../assets/images/ico-off.png')
+            }
             style={{
               top: 4,
               width: 9,
@@ -89,7 +124,7 @@ export const DiscoverCA = ({route, navigation, imagePath}) => {
               color: '#0019A7',
               letterSpacing: 1,
             }}>
-            En ligne
+            {userOn ? 'En ligne' : 'Hors ligne'}
           </Text>
         </View>
         <View
@@ -118,25 +153,11 @@ export const DiscoverCA = ({route, navigation, imagePath}) => {
           </Text>
         </View>
         <More />
-        <View
-          style={{
-            bottom: 30,
-            left: 25,
-          }}>
-          <Image
-            source={require('../../../assets/images/VousEtes---.png')}
-            style={{
-              width: 346,
-              height: 78,
-              borderColor: '#0019A7',
-              borderRadius: 20,
-            }}
-          />
-        </View>
+        <PopUpMessage message={message} ptCommun={ptCommun} navigation={navigation} />
         <View
           style={{
             position: 'absolute',
-            top: 480,
+            top: 470,
           }}>
           <View
             style={{
@@ -154,15 +175,28 @@ export const DiscoverCA = ({route, navigation, imagePath}) => {
               }}>
               Julie
             </Text>
-            <Image
-              source={require('../../../assets/images/quality-2.png')}
-              style={{
-                top: 24,
-                left: 20,
-                width: 30,
-                height: 30,
-              }}
-            />
+            {quality ? (
+              <Image
+                source={require('../../../assets/images/quality-2.png')}
+                style={{
+                  top: 24,
+                  left: 20,
+                  width: 30,
+                  height: 30,
+                }}
+              />
+            ) : null}
+            {medaille ? (
+              <Image
+                source={require('../../../assets/images/Médaille.png')}
+                style={{
+                  top: 24,
+                  left: 40,
+                  width: 30,
+                  height: 44,
+                }}
+              />
+            ) : null}
           </View>
           <View
             style={{
@@ -182,7 +216,6 @@ export const DiscoverCA = ({route, navigation, imagePath}) => {
           </View>
           <View
             style={{
-              top: 5,
               left: 15,
             }}>
             <Text
@@ -199,20 +232,27 @@ export const DiscoverCA = ({route, navigation, imagePath}) => {
               style={{
                 top: 5,
               }}>
-              <ImageBackground
-                source={require('../../../assets/images/Fond.png')}
+              <TouchableOpacity
+                onPress={() => {
+                  handlePlay();
+                }}
                 style={{
-                  width: 40,
-                  height: 40,
+                  left: 20,
+                  width: 10,
+                  height: 10,
                 }}>
                 <Image
-                  source={require('../../../assets/images/Polygon2.png')}
+                  source={
+                    buttonPressed === 'Stop'
+                      ? require('../../../assets/boutons/Stop-P.png')
+                      : require('../../../assets/boutons/Play-P.png')
+                  }
                   style={{
                     top: 10,
                     alignSelf: 'center',
                   }}
                 />
-              </ImageBackground>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -222,9 +262,13 @@ export const DiscoverCA = ({route, navigation, imagePath}) => {
             top: 350,
             left: 300,
           }}>
-          <View
+          <TouchableOpacity
             style={{
               top: 5,
+              width: 78,
+              height: 78,
+              borderRadius: 100,
+              backgroundColor: 'red',
             }}>
             <Image
               source={require('../../../assets/images/Oeil.png')}
@@ -233,10 +277,14 @@ export const DiscoverCA = ({route, navigation, imagePath}) => {
                 height: 78,
               }}
             />
-          </View>
-          <View
+          </TouchableOpacity>
+          <TouchableOpacity
             style={{
               top: 20,
+              width: 78,
+              height: 78,
+              borderRadius: 100,
+              backgroundColor: 'red',
             }}>
             <Image
               source={require('../../../assets/images/Pouce-Disc.png')}
@@ -245,10 +293,14 @@ export const DiscoverCA = ({route, navigation, imagePath}) => {
                 height: 77,
               }}
             />
-          </View>
-          <View
+          </TouchableOpacity>
+          <TouchableOpacity
             style={{
               top: 35,
+              width: 78,
+              height: 78,
+              borderRadius: 100,
+              backgroundColor: 'red',
             }}>
             <Image
               source={require('../../../assets/images/profil_croix.png')}
@@ -257,7 +309,7 @@ export const DiscoverCA = ({route, navigation, imagePath}) => {
                 height: 78,
               }}
             />
-          </View>
+          </TouchableOpacity>
         </View>
       </ImageBackground>
       <MenuBottom navigation={navigation} tabPath={'Ami'} active={'Discover'} />
