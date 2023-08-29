@@ -267,11 +267,17 @@ export const Discover = ({ route, navigation }) => {
             </View>
           </View>
         </View>
-        {partenaire === 'OpenBetween' || partenaire === 'CheerFlakes' || partenaire === 'WineGap' || partenaire === 'GoPride' ? <Image
+        <View
+          style={{
+            position: 'absolute',
+            top: 300,
+            left: 300,
+          }}>
+          {partenaire === 'OpenBetween' || partenaire === 'CheerFlakes' || partenaire === 'WineGap' || partenaire === 'GoPride' ? <Image
           source={partenaire === 'OpenBetween' ? require('../../../assets/images/openBetween-cache.png') : partenaire === 'CheerFlakes' ? require('../../../assets/images/cheerflakes-cache.png') : partenaire === 'WineGap' ? require('../../../assets/images/winegap-cache.png') : partenaire === 'GoPride' ? require('../../../assets/images/gopride-cache.png') : require('../../../assets/images/gopride-cache.png')}
           style={{
             zIndex: 0,
-            top: 30,
+            top: 0,
             right:20,
             alignSelf:'flex-end',
             width: 100,
@@ -279,12 +285,6 @@ export const Discover = ({ route, navigation }) => {
             resizeMode:'contain',
           }}
         />:null}
-        <View
-          style={{
-            position: 'absolute',
-            top: 350,
-            left: 300,
-          }}>
           <TouchableOpacity
             style={{
               backgroundColor:'red',

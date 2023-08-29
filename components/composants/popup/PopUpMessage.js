@@ -84,7 +84,7 @@ const PopUpMessage = ({message, ptCommun, txtPartenaire, navigation}) => {
               borderColor: '#0019A7',
               borderRadius: 20,
               borderWidth: 2,
-              top: -25,
+              top: 0,
               left: 25,
             }}>
             {txtPartenaire && (
