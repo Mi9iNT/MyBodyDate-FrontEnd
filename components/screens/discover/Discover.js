@@ -269,14 +269,14 @@ export const Discover = ({ route, navigation }) => {
         <View
           style={{
             position: 'absolute',
-            top: 300,
+            top: medaille ? 240 : 320,
             left: 300,
           }}>
           {partenaire === 'OpenBetween' || partenaire === 'CheerFlakes' || partenaire === 'WineGap' || partenaire === 'GoPride' ? <Image
           source={partenaire === 'OpenBetween' ? require('../../../assets/images/openBetween-cache.png') : partenaire === 'CheerFlakes' ? require('../../../assets/images/cheerflakes-cache.png') : partenaire === 'WineGap' ? require('../../../assets/images/winegap-cache.png') : partenaire === 'GoPride' ? require('../../../assets/images/gopride-cache.png') : require('../../../assets/images/gopride-cache.png')}
           style={{
             zIndex: 0,
-            top: 0,
+            bottom: medaille ? 20 : 20,
             right:20,
             alignSelf:'flex-end',
             width: 100,
@@ -287,7 +287,7 @@ export const Discover = ({ route, navigation }) => {
           <TouchableOpacity
             style={{
               backgroundColor:'red',
-              top: 5,
+              bottom: 15,
               width: 78,
               height: 78,
               borderRadius: 100,
@@ -303,7 +303,7 @@ export const Discover = ({ route, navigation }) => {
           <TouchableOpacity
             style={{
               backgroundColor:'red',
-              top: 20,
+              top: 5,
               width: 78,
               height: 78,
               borderRadius: 100,
@@ -316,10 +316,10 @@ export const Discover = ({ route, navigation }) => {
               }}
             />
           </TouchableOpacity>
-          <View
+          <TouchableOpacity
             style={{
               backgroundColor: 'red',
-              top: 35,
+              top: 20,
               width: 78,
               height: 78,
               borderRadius: 100,
@@ -331,7 +331,23 @@ export const Discover = ({ route, navigation }) => {
                 height: 78,
               }}
             />
-          </View>
+          </TouchableOpacity>
+          {medaille ?<TouchableOpacity
+            style={{
+              backgroundColor: 'red',
+              top: 35,
+              width: 78,
+              height: 78,
+              borderRadius: 100,
+            }}>
+            <Image
+              source={require('../../../assets/boutons/back.png')}
+              style={{
+                width: 78,
+                height: 78,
+              }}
+            />
+          </TouchableOpacity>:null}
         </View>
         <MenuBottom navigation={navigation} route={route} tabPath={'Amour'} active={'Discover'} />
       </ImageBackground>
