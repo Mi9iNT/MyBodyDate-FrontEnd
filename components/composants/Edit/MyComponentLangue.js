@@ -66,13 +66,14 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
     <View
       style={{
         alignItems: 'center',
-        top: 140,
+        top: 30,
         borderWidth: 1,
         borderColor: '#000',
         borderRadius: 25, // Adjust the border radius as needed
-        paddingBottom: 160, // Increase this value to move the bottom border down
+        paddingBottom: 220, // Increase this value to move the bottom border down
         marginLeft: 41,
         marginRight: 72,
+        left:20,
       }}>
       <View
         style={{
@@ -108,9 +109,9 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               fontSize: 16,
               color: '#000',
               textAlign: 'center',
-              top: 20,
+              top: 10,
             }}>
-            /
+            Français
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -121,9 +122,9 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               fontSize: 16,
               color: '#000',
               textAlign: 'center',
-              top: 40,
+              top: 30,
             }}>
-            /
+            Espagnol
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -134,9 +135,9 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               fontSize: 16,
               color: '#000',
               textAlign: 'center',
-              top: 60,
+              top: 50,
             }}>
-            /
+            Néerlandais
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -147,9 +148,9 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               fontSize: 16,
               color: '#000',
               textAlign: 'center',
-              top: 80,
+              top: 70,
             }}>
-            /
+            Portugais
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -160,9 +161,9 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               fontSize: 16,
               color: '#000',
               textAlign: 'center',
-              top: 100,
+              top: 90,
             }}>
-            /
+            Polonais
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -173,9 +174,9 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               fontSize: 16,
               color: '#000',
               textAlign: 'center',
-              top: 120,
+              top: 110,
             }}>
-            /
+            Chinois
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -186,9 +187,74 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               fontSize: 16,
               color: '#000',
               textAlign: 'center',
-              top: 140,
+              top: 130,
             }}>
-            /
+            Anglais
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text
+            style={{
+              fontFamily: 'Comfortaa',
+              fontWeight: '700',
+              fontSize: 16,
+              color: '#000',
+              textAlign: 'center',
+              top: 150,
+            }}>
+            Allemand
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text
+            style={{
+              fontFamily: 'Comfortaa',
+              fontWeight: '700',
+              fontSize: 16,
+              color: '#000',
+              textAlign: 'center',
+              top: 170,
+            }}>
+            Italien
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text
+            style={{
+              fontFamily: 'Comfortaa',
+              fontWeight: '700',
+              fontSize: 16,
+              color: '#000',
+              textAlign: 'center',
+              top: 190,
+            }}>
+            Arabe
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text
+            style={{
+              fontFamily: 'Comfortaa',
+              fontWeight: '700',
+              fontSize: 16,
+              color: '#000',
+              textAlign: 'center',
+              top: 210,
+            }}>
+            Grec
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text
+            style={{
+              fontFamily: 'Comfortaa',
+              fontWeight: '700',
+              fontSize: 16,
+              color: '#000',
+              textAlign: 'center',
+              top: 220,
+            }}>
+            Japonnais
           </Text>
         </TouchableOpacity>
       </View>

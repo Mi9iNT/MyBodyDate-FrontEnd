@@ -50,7 +50,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
         borderWidth: 1,
         borderColor: '#0019A7',
         borderRadius: 25, // Adjust the border radius as needed
-        paddingBottom: 170, // Increase this value to move the bottom border down
+        paddingBottom: 130, // Increase this value to move the bottom border down
         marginLeft: 40,
         marginRight: 75,
       }}>
@@ -80,7 +80,8 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               textAlign: 'center',
               top: 20,
             }}>
-            /
+            Elancé.e
+
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -93,7 +94,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               textAlign: 'center',
               top: 40,
             }}>
-            /
+            Mince
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -106,7 +107,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               textAlign: 'center',
               top: 60,
             }}>
-            /
+            Sportif.ve
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -119,7 +120,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               textAlign: 'center',
               top: 80,
             }}>
-            /
+            Corpulence Moyenne
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -132,33 +133,7 @@ const DefaultCode2 = ({setShowDefaultCode2}) => (
               textAlign: 'center',
               top: 100,
             }}>
-            Je ne sais pas trop
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '700',
-              fontSize: 16,
-              color: '#0019A7',
-              textAlign: 'center',
-              top: 120,
-            }}>
-            /
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '700',
-              fontSize: 16,
-              color: '#0019A7',
-              textAlign: 'center',
-              top: 140,
-            }}>
-            /
+            Rond.e
           </Text>
         </TouchableOpacity>
       </View>

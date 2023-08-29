@@ -76,7 +76,7 @@ export const Alcool = ({visibleAlcool, closeModalAlcool}) => {
             width: 84,
             height: 84,
             left: 150,
-            top: 10,
+            top: 30,
           }}
         />
         <Text
@@ -85,7 +85,7 @@ export const Alcool = ({visibleAlcool, closeModalAlcool}) => {
             fontWeight: '700',
             fontSize: 20,
             color: '#0019A7',
-            top: 80,
+            top: 110,
             textAlign: 'center',
             left: 80,
           }}>
@@ -99,7 +99,7 @@ export const Alcool = ({visibleAlcool, closeModalAlcool}) => {
             fontWeight: '700',
             fontSize: 14,
             color: '#0019A7',
-            top: 80,
+            top: 110,
             left: 30,
           }}>
           Sélectionnez vos habitudes de{'\n'}consommation d'alcool.

@@ -106,7 +106,7 @@ export const Activite = ({visibleActivite, closeModalActivite}) => {
           style={{
             width: 78,
             height: 84,
-            top: 15,
+            top: 30,
             alignSelf: 'center',
           }}
         />
@@ -116,7 +116,7 @@ export const Activite = ({visibleActivite, closeModalActivite}) => {
             fontWeight: '700',
             fontSize: 20,
             color: '#9424FA',
-            top: 20,
+            top: 30,
           }}>
           Mon activité favorite...
         </Text>
@@ -128,7 +128,7 @@ export const Activite = ({visibleActivite, closeModalActivite}) => {
             fontWeight: '700',
             fontSize: 14,
             color: '#9424FA',
-            top: 35,
+            top: 45,
             left: 40,
           }}>
           Sélectionnez vos passe temps favoris.

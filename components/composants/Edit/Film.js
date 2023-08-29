@@ -107,7 +107,7 @@ export const Film = ({visibleFilm, closeModalFilm}) => {
           style={{
             width: 82,
             height: 84,
-            top: 15,
+            top: 30,
             alignItems: 'center',
             alignSelf: 'center',
           }}
@@ -118,7 +118,7 @@ export const Film = ({visibleFilm, closeModalFilm}) => {
             fontWeight: '700',
             fontSize: 20,
             color: '#9424FA',
-            top: 20,
+            top: 30,
           }}>
           Les films que je ne me lasse{'\n'}pas de revoir...
         </Text>
@@ -130,7 +130,7 @@ export const Film = ({visibleFilm, closeModalFilm}) => {
             fontWeight: '700',
             fontSize: 14,
             color: '#9424FA',
-            top: 35,
+            top: 45,
             left: 30,
           }}>
           Sélectionnez vos passe temps favoris.

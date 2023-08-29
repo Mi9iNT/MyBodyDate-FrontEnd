@@ -106,7 +106,7 @@ export const MaCuisine = ({visibleMaCuisine, closeModalMaCuisine}) => {
           style={{
             width: 82,
             height: 84,
-            top: 15,
+            top: 30,
             alignItems: 'center',
             alignSelf: 'center',
           }}
@@ -117,7 +117,7 @@ export const MaCuisine = ({visibleMaCuisine, closeModalMaCuisine}) => {
             fontWeight: '700',
             fontSize: 20,
             color: '#9424FA',
-            top: 20,
+            top: 30,
           }}>
           Ma cuisine favorite...
         </Text>
@@ -129,7 +129,7 @@ export const MaCuisine = ({visibleMaCuisine, closeModalMaCuisine}) => {
             fontWeight: '700',
             fontSize: 14,
             color: '#9424FA',
-            top: 35,
+            top: 45,
             left: 40,
           }}>
           Sélectionnez vos cuisines favorites.

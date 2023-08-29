@@ -83,7 +83,7 @@ export const Ami = ({visibleAmi, closeModalAmi}) => {
                 width: 82,
                 height: 84,
                 left: 160,
-                top: 20,
+                top: 30,
               }}
             />
             <Text

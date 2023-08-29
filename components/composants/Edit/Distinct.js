@@ -3,7 +3,15 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
-import {View, Text, Image, ImageBackground, TextInput, TouchableOpacity, Modal} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  TextInput,
+  TouchableOpacity,
+  Modal,
+} from 'react-native';
 import {MyComponentDistinct} from './MyComponentDistinct';
 
 export const Distinct = ({visibleDistinct, closeModalDistinct}) => {
@@ -69,90 +77,91 @@ export const Distinct = ({visibleDistinct, closeModalDistinct}) => {
             style={{
               alignSelf: 'center',
             }}>
-        <Image
-          source={require('../../../assets/images/Distinct.png')}
-          style={{
-            width: 70,
-            height: 70,
-            top: 30,
-            alignSelf: 'center',
-          }}
-        />
-        <Text
-          style={{
-            fontFamily: 'Gilroy',
-            fontWeight: '700',
-            fontSize: 20,
-            color: '#000',
-            top: 50,
-            textAlign: 'center',
-            alignSelf: 'center',
-          }}>
-          Mes distinctions
-        </Text>
-      </View>
-      <View>
-        <Text
-          style={{
-            fontFamily: 'Gilroy',
-            fontWeight: '700',
-            fontSize: 14,
-            color: '#000',
-            top: 80,
-            left: 30,
-          }}>
-          Entrez vos distinctions
-        </Text>
-        </View>
-        <View style={{alignSelf: 'center'}}>
-        <ImageBackground
-          source={require('../../../assets/images/RectangleRP.png')}
-          style={{
-            width: 354,
-            height: 40,
-            top: 150,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              left: 10,
-            }}>
             <Image
-              source={require('../../../assets/images/Loupe-B-RP.png')}
+              source={require('../../../assets/images/Distinct.png')}
               style={{
-                width: 20,
-                height: 20,
-              }}
-            />
-            <TextInput
-              style={{
-                fontSize: 14,
-                fontFamily: 'Comfortaa',
-                fontWeight: '700',
-                color: '#6D6966',
-                padding: 5,
+                width: 70,
+                height: 70,
+                top: 30,
                 left: 10,
+                alignSelf: 'center',
               }}
-              defaultValue="Recherchez une distinction"
-              // Vous pouvez ajouter des gestionnaires d'événements ici pour gérer les changements de texte, etc.
             />
+            <Text
+              style={{
+                fontFamily: 'Gilroy',
+                fontWeight: '700',
+                fontSize: 20,
+                color: '#000',
+                top: 50,
+                textAlign: 'center',
+                alignSelf: 'center',
+              }}>
+              Mes distinctions
+            </Text>
           </View>
-        </ImageBackground>
-      </View>
-      <Text
-        style={{
-          fontFamily: 'Comfortaa',
-          fontWeight: '700',
-          fontSize: 12,
-          color: '#000',
-          left: 30,
-          top: 450,
-        }}>
-        Choix multiples.
-      </Text>
-    </View>
+          <View>
+            <Text
+              style={{
+                fontFamily: 'Gilroy',
+                fontWeight: '700',
+                fontSize: 14,
+                color: '#000',
+                top: 80,
+                left: 30,
+              }}>
+              Entrez vos distinctions
+            </Text>
+          </View>
+          <View style={{alignSelf: 'center'}}>
+            <ImageBackground
+              source={require('../../../assets/images/RectangleRP.png')}
+              style={{
+                width: 354,
+                height: 40,
+                top: 150,
+              }}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  left: 10,
+                }}>
+                <Image
+                  source={require('../../../assets/images/Loupe-B-RP.png')}
+                  style={{
+                    width: 20,
+                    height: 20,
+                  }}
+                />
+                <TextInput
+                  style={{
+                    fontSize: 14,
+                    fontFamily: 'Comfortaa',
+                    fontWeight: '700',
+                    color: '#6D6966',
+                    padding: 5,
+                    left: 10,
+                  }}
+                  defaultValue="Recherchez une distinction"
+                  // Vous pouvez ajouter des gestionnaires d'événements ici pour gérer les changements de texte, etc.
+                />
+              </View>
+            </ImageBackground>
+          </View>
+          <Text
+            style={{
+              fontFamily: 'Comfortaa',
+              fontWeight: '700',
+              fontSize: 12,
+              color: '#000',
+              left: 30,
+              top: 450,
+            }}>
+            Choix multiples.
+          </Text>
         </View>
+      </View>
     </Modal>
   );
 };

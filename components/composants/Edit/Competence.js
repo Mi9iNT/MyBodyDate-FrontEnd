@@ -149,8 +149,8 @@ export const Competence = ({visibleCompetence, closeModalCompetence}) => {
         <ImageBackground
           source={require('../../../assets/images/LeaderRP.png')}
           style={{
-            width: 146,
-            height: 42,
+            width: 152,
+            height: 44,
           }}>
           <View
             style={{
@@ -173,8 +173,8 @@ export const Competence = ({visibleCompetence, closeModalCompetence}) => {
         <ImageBackground
           source={require('../../../assets/images/EcouteRP.png')}
           style={{
-            width: 176,
-            height: 42,
+            width: 150,
+            height: 36,
             right:20,
           }}
         />

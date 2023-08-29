@@ -411,6 +411,7 @@ export const ProfilMeRAfirst = ({route, navigation, imagePath}) => {
                 style={{
                   width: 50, // '50%' de la largeur du parent
                   height: 50, // '50%' de la hauteur du parent
+                  right: 5,
                 }}
               />
               <Text
