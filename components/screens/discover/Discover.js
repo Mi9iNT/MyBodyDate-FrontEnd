@@ -270,7 +270,8 @@ export const Discover = ({ route, navigation }) => {
         {partenaire === 'OpenBetween' || partenaire === 'CheerFlakes' || partenaire === 'WineGap' || partenaire === 'GoPride' ? <Image
           source={partenaire === 'OpenBetween' ? require('../../../assets/images/openBetween-cache.png') : partenaire === 'CheerFlakes' ? require('../../../assets/images/cheerflakes-cache.png') : partenaire === 'WineGap' ? require('../../../assets/images/winegap-cache.png') : partenaire === 'GoPride' ? require('../../../assets/images/gopride-cache.png') : require('../../../assets/images/gopride-cache.png')}
           style={{
-            bottom: 70,
+            zIndex: 0,
+            top: 30,
             right:20,
             alignSelf:'flex-end',
             width: 100,

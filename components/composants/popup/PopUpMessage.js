@@ -36,6 +36,7 @@ const PopUpMessage = ({message, ptCommun, txtPartenaire, navigation}) => {
       {popUp ? (
         <View
           style={{
+            zIndex: 1,
             width: 346,
             minHeight: 50,
             padding: 10,
@@ -74,7 +75,8 @@ const PopUpMessage = ({message, ptCommun, txtPartenaire, navigation}) => {
       ) : message === 'Amour' ? (
         <>
           <TouchableOpacity
-            style={{
+            style={{  
+              position:'absolute',  
               width: 346,
               minHeight: 50,
               padding: 10,
@@ -82,7 +84,7 @@ const PopUpMessage = ({message, ptCommun, txtPartenaire, navigation}) => {
               borderColor: '#0019A7',
               borderRadius: 20,
               borderWidth: 2,
-              bottom: 30,
+              top: -25,
               left: 25,
             }}>
             {txtPartenaire && (
@@ -103,7 +105,8 @@ const PopUpMessage = ({message, ptCommun, txtPartenaire, navigation}) => {
               navigation.navigate('DiscoverBio');
             }}
             style={{
-              top:100,
+              position:'absolute',
+              top:150,
               width: 196,
               minHeight: 50,
               padding: 10,
