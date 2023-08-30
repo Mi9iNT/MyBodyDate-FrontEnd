@@ -293,46 +293,47 @@ export const Discover = ({route, navigation}) => {
         <View
           style={{
             position: 'absolute',
-            top: 300,
+            top: medaille ? 240 : 320,
             left: 300,
           }}>
-          {partenaire === 'OpenBetween' ||
-          partenaire === 'CheerFlakes' ||
-          partenaire === 'WineGap' ||
-          partenaire === 'GoPride' ? (
-            <Image
-              source={
-                partenaire === 'OpenBetween'
-                  ? require('../../../assets/images/openBetween-cache.png')
-                  : partenaire === 'CheerFlakes'
-                  ? require('../../../assets/images/cheerflakes-cache.png')
-                  : partenaire === 'WineGap'
-                  ? require('../../../assets/images/winegap-cache.png')
-                  : partenaire === 'GoPride'
-                  ? require('../../../assets/images/gopride-cache.png')
-                  : require('../../../assets/images/gopride-cache.png')
-              }
-              style={{
-                zIndex: 0,
-                top: 0,
-                right: 20,
-                alignSelf: 'flex-end',
-                width: 100,
-                height: 50,
-                resizeMode: 'contain',
-              }}
-            />
-          ) : null}
+          {partenaire === 'OpenBetween' || partenaire === 'CheerFlakes' || partenaire === 'WineGap' || partenaire === 'GoPride' ? <Image
+          source={partenaire === 'OpenBetween' ? require('../../../assets/images/openBetween-cache.png') : partenaire === 'CheerFlakes' ? require('../../../assets/images/cheerflakes-cache.png') : partenaire === 'WineGap' ? require('../../../assets/images/winegap-cache.png') : partenaire === 'GoPride' ? require('../../../assets/images/gopride-cache.png') : require('../../../assets/images/gopride-cache.png')}
+          style={{
+            zIndex: 0,
+            bottom: medaille ? 20 : 20,
+            right:20,
+            alignSelf:'flex-end',
+            width: 100,
+            height: 50,
+            resizeMode:'contain',
+          }}
+        />:null}
           <TouchableOpacity
             style={{
-              backgroundColor: 'red',
-              top: 5,
+              backgroundColor:'red',
+              bottom: 15,
               width: 78,
               height: 78,
               borderRadius: 100,
             }}>
             <Image
               source={require('../../../assets/images/profil_user_community.png')}
+              style={{
+                width: 78,
+                height: 78,
+              }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              backgroundColor:'red',
+              top: 5,
+              width: 78,
+              height: 78,
+              borderRadius: 100,
+            }}>
+            <Image
+              source={require('../../../assets/images/profil_coeur.png')}
               style={{
                 width: 78,
                 height: 78,
@@ -348,14 +349,14 @@ export const Discover = ({route, navigation}) => {
               borderRadius: 100,
             }}>
             <Image
-              source={require('../../../assets/images/profil_coeur.png')}
+              source={require('../../../assets/images/profil_croix.png')}
               style={{
                 width: 78,
                 height: 78,
               }}
             />
           </TouchableOpacity>
-          <View
+          {medaille ?<TouchableOpacity
             style={{
               backgroundColor: 'red',
               top: 35,
@@ -364,13 +365,13 @@ export const Discover = ({route, navigation}) => {
               borderRadius: 100,
             }}>
             <Image
-              source={require('../../../assets/images/profil_croix.png')}
+              source={require('../../../assets/boutons/back.png')}
               style={{
                 width: 78,
                 height: 78,
               }}
             />
-          </View>
+          </TouchableOpacity>:null}
         </View>
         <MenuBottom
           navigation={navigation}
