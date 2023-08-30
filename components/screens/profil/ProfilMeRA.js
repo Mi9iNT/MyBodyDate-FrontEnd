@@ -207,30 +207,33 @@ export const ProfilMeRA = ({route, navigation, imagePath}) => {
         </View>
       </TouchableOpacity>
       <View style={{bottom: 80}}>
-      <ScrollView
-          style={{
-            width: '100%',
-            height: 350,
+        <TouchableOpacity
+          onPress={() => {
+            setBoxPressed('1');
+            navigation.navigate('Pulse spotlight');
           }}
-          contentContainerStyle={{paddingBottom: 20}}>
-          <TouchableOpacity
-            onPress={() => {
-              setBoxPressed('1');
-              navigation.navigate('Pulse spotlight');
-            }}
-            accessibilityLabel="Propulsez vos échanges"
+          accessibilityLabel="Propulsez vos échanges"
+          style={{
+            flexDirection: 'column',
+            alignSelf: 'center',
+            justifyContent: 'space-between',
+            width: 300,
+            height: 151,
+            right: 30,
+            borderRadius: 30,
+            borderWidth: 1,
+            borderColor: '#0019A7',
+            padding: 5,
+            marginBottom: 20,
+            backgroundColor: boxPressed === '1' ? '#0019A7' : '#fff',
+          }}>
+          <View
             style={{
-              flexDirection: 'column',
+              justifyContent: 'space-around',
+              flexDirection: 'row',
               alignSelf: 'center',
-              justifyContent: 'space-between',
-              width: 280,
-              height: 124,
-              borderRadius: 30,
-              borderWidth: 1,
-              borderColor: '#0019A7',
-              padding: 5,
-              marginBottom: 20,
-              backgroundColor: boxPressed === '1' ? '#0019A7' : '#fff',
+              alignItems: 'center',
+              top: 20,
             }}>
             <Text
               style={{
@@ -240,107 +243,79 @@ export const ProfilMeRA = ({route, navigation, imagePath}) => {
                 fontSize: 20,
                 fontStyle: 'normal',
                 fontWeight: 700,
+                right: 5,
               }}>
-              Propulsez vos échanges
+              My Body Date
             </Text>
             <Text
               style={{
                 color: boxPressed === '1' ? '#fff' : '#0019A7',
                 textAlign: 'center',
-                fontFamily: 'Comfortaa',
-                fontSize: 15,
-                fontStyle: 'normal',
-                fontWeight: 700,
-              }}>
-              Propulsez votre profil en le mettant en avant grâce au Pulse
-              Spolight
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              setBoxPressed('2');
-              navigation.navigate('Pulse profil');
-            }}
-            accessibilityLabel="Faites-vous remarquer"
-            style={{
-              flexDirection: 'column',
-              alignSelf: 'center',
-              justifyContent: 'space-between',
-              width: 358,
-              height: 151,
-              borderRadius: 30,
-              borderWidth: 1,
-              borderColor: '#0019A7',
-              padding: 30,
-              marginBottom: 20,
-              backgroundColor: boxPressed === '2' ? '#0019A7' : '#fff',
-            }}>
-            <Text
-              style={{
-                color: '#FF84D7',
-                textAlign: 'center',
                 fontFamily: 'Gilroy',
                 fontSize: 20,
                 fontStyle: 'normal',
                 fontWeight: 700,
+                left: 5,
               }}>
-              Faites-vous remarquer
+              Premium
             </Text>
-            <Text
-              style={{
-                color: boxPressed === '2' ? '#fff' : '#0019A7',
-                textAlign: 'center',
-                fontFamily: 'Comfortaa',
-                fontSize: 15,
-                fontStyle: 'normal',
-                fontWeight: 700,
-              }}>
-              Multipliez vos contacts en un clin d'oeil avec le Pulse Profil
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              setBoxPressed('3');
-              navigation.navigate('Pulse recherche');
-            }}
-            accessibilityLabel="Éclipsez-vous des regards"
+          </View>
+          <Text
             style={{
-              flexDirection: 'column',
-              alignSelf: 'center',
-              justifyContent: 'space-between',
-              width: 358,
-              height: 151,
-              borderRadius: 30,
-              borderWidth: 1,
-              borderColor: '#0019A7',
-              padding: 30,
-              marginBottom: 20,
-              backgroundColor: boxPressed === '3' ? '#0019A7' : '#fff',
+              color: boxPressed === '1' ? '#fff' : '#0019A7',
+              textAlign: 'center',
+              fontFamily: 'Comfortaa',
+              fontSize: 15,
+              fontStyle: 'normal',
+              fontWeight: 700,
+              bottom: 30,
             }}>
-            <Text
-              style={{
-                color: '#FF84D7',
-                textAlign: 'center',
-                fontFamily: 'Gilroy',
-                fontSize: 20,
-                fontStyle: 'normal',
-                fontWeight: 700,
-              }}>
-              Éclipsez-vous des regards
-            </Text>
-            <Text
-              style={{
-                color: boxPressed === '3' ? '#fff' : '#0019A7',
-                textAlign: 'center',
-                fontFamily: 'Comfortaa',
-                fontSize: 15,
-                fontStyle: 'normal',
-                fontWeight: 700,
-              }}>
-              Éclipsez-vous des regards sur commande.
-            </Text>
-          </TouchableOpacity>
-        </ScrollView>
+            Un coup de coeur n'attend pas.{'\n'}Vibrez en illimité !
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            setBoxPressed('2');
+            navigation.navigate('Pulse profil');
+          }}
+          accessibilityLabel="Faites-vous remarquer"
+          style={{
+            flexDirection: 'column',
+            alignSelf: 'center',
+            justifyContent: 'space-between',
+            width: 300,
+            height: 151,
+            right: 30,
+            borderRadius: 30,
+            borderWidth: 1,
+            borderColor: '#0019A7',
+            padding: 30,
+            marginBottom: 20,
+            backgroundColor: boxPressed === '2' ? '#0019A7' : '#fff',
+          }}>
+          <Text
+            style={{
+              color: '#FF84D7',
+              textAlign: 'center',
+              fontFamily: 'Gilroy',
+              fontSize: 20,
+              fontStyle: 'normal',
+              fontWeight: 700,
+            }}>
+            Profil à succès
+          </Text>
+          <Text
+            style={{
+              color: boxPressed === '2' ? '#fff' : '#0019A7',
+              textAlign: 'center',
+              fontFamily: 'Comfortaa',
+              fontSize: 15,
+              fontStyle: 'normal',
+              fontWeight: 700,
+            }}>
+            Mettez votre profil en avant. Décrochez plus de visiteurs !
+          </Text>
+        </TouchableOpacity>
       </View>
       <MenuBottom navigation={navigation} tabPath={'Amour'} active={'Moi'} />
     </ImageBackground>

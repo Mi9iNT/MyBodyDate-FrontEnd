@@ -2,7 +2,13 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
-import {View, Text, Image, ImageBackground, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
 import {MyComponent} from '../../composants/MyComponent';
@@ -13,8 +19,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Spotlight from '../../composants/Spotlight';
 import PopUpMessage from '../../composants/popup/PopUpMessage';
 
-export const Discover = ({ route, navigation }) => {
-
+export const Discover = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -52,8 +57,8 @@ export const Discover = ({ route, navigation }) => {
 
   const [barPressed, setBarPressed] = useState(1);
 
-  const handleBar = (index) => {
-      setBarPressed(index);
+  const handleBar = index => {
+    setBarPressed(index);
   };
 
   return (
@@ -75,7 +80,9 @@ export const Discover = ({ route, navigation }) => {
         </>
         <View style={{justifyContent: 'space-around', flexDirection: 'row'}}>
           <TouchableOpacity
-            onPress={() => { handleBar(1); }}
+            onPress={() => {
+              handleBar(1);
+            }}
             style={{
               width: 60,
               height: 4,
@@ -85,7 +92,9 @@ export const Discover = ({ route, navigation }) => {
             }}
           />
           <TouchableOpacity
-            onPress={() => { handleBar(2); }}
+            onPress={() => {
+              handleBar(2);
+            }}
             style={{
               width: 60,
               height: 4,
@@ -95,7 +104,9 @@ export const Discover = ({ route, navigation }) => {
             }}
           />
           <TouchableOpacity
-            onPress={() => { handleBar(3); }}
+            onPress={() => {
+              handleBar(3);
+            }}
             style={{
               width: 60,
               height: 4,
@@ -105,7 +116,9 @@ export const Discover = ({ route, navigation }) => {
             }}
           />
           <TouchableOpacity
-            onPress={() => { handleBar(4); }}
+            onPress={() => {
+              handleBar(4);
+            }}
             style={{
               width: 60,
               height: 4,
@@ -170,7 +183,12 @@ export const Discover = ({ route, navigation }) => {
           </Text>
         </View>
         <More />
-        <PopUpMessage message={imagePath} ptCommun={ptCommun} txtPartenaire={txtPartenaire} navigation={navigation} />
+        <PopUpMessage
+          message={imagePath}
+          ptCommun={ptCommun}
+          txtPartenaire={txtPartenaire}
+          navigation={navigation}
+        />
         <View
           style={{
             position: 'absolute',
@@ -250,13 +268,19 @@ export const Discover = ({ route, navigation }) => {
                 top: 5,
               }}>
               <TouchableOpacity
-                onPress={() => { handlePlay() }}
+                onPress={() => {
+                  handlePlay();
+                }}
                 style={{
                   width: 40,
                   height: 40,
                 }}>
                 <Image
-                  source={buttonPressed === 'Stop' ? require('../../../assets/boutons/Stop-P.png') : require('../../../assets/boutons/Play-P.png')}
+                  source={
+                    buttonPressed === 'Stop'
+                      ? require('../../../assets/boutons/Stop-P.png')
+                      : require('../../../assets/boutons/Play-P.png')
+                  }
                   style={{
                     top: 10,
                     alignSelf: 'center',
@@ -272,21 +296,36 @@ export const Discover = ({ route, navigation }) => {
             top: 300,
             left: 300,
           }}>
-          {partenaire === 'OpenBetween' || partenaire === 'CheerFlakes' || partenaire === 'WineGap' || partenaire === 'GoPride' ? <Image
-          source={partenaire === 'OpenBetween' ? require('../../../assets/images/openBetween-cache.png') : partenaire === 'CheerFlakes' ? require('../../../assets/images/cheerflakes-cache.png') : partenaire === 'WineGap' ? require('../../../assets/images/winegap-cache.png') : partenaire === 'GoPride' ? require('../../../assets/images/gopride-cache.png') : require('../../../assets/images/gopride-cache.png')}
-          style={{
-            zIndex: 0,
-            top: 0,
-            right:20,
-            alignSelf:'flex-end',
-            width: 100,
-            height: 50,
-            resizeMode:'contain',
-          }}
-        />:null}
+          {partenaire === 'OpenBetween' ||
+          partenaire === 'CheerFlakes' ||
+          partenaire === 'WineGap' ||
+          partenaire === 'GoPride' ? (
+            <Image
+              source={
+                partenaire === 'OpenBetween'
+                  ? require('../../../assets/images/openBetween-cache.png')
+                  : partenaire === 'CheerFlakes'
+                  ? require('../../../assets/images/cheerflakes-cache.png')
+                  : partenaire === 'WineGap'
+                  ? require('../../../assets/images/winegap-cache.png')
+                  : partenaire === 'GoPride'
+                  ? require('../../../assets/images/gopride-cache.png')
+                  : require('../../../assets/images/gopride-cache.png')
+              }
+              style={{
+                zIndex: 0,
+                top: 0,
+                right: 20,
+                alignSelf: 'flex-end',
+                width: 100,
+                height: 50,
+                resizeMode: 'contain',
+              }}
+            />
+          ) : null}
           <TouchableOpacity
             style={{
-              backgroundColor:'red',
+              backgroundColor: 'red',
               top: 5,
               width: 78,
               height: 78,
@@ -302,7 +341,7 @@ export const Discover = ({ route, navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={{
-              backgroundColor:'red',
+              backgroundColor: 'red',
               top: 20,
               width: 78,
               height: 78,
@@ -333,7 +372,12 @@ export const Discover = ({ route, navigation }) => {
             />
           </View>
         </View>
-        <MenuBottom navigation={navigation} route={route} tabPath={'Amour'} active={'Discover'} />
+        <MenuBottom
+          navigation={navigation}
+          route={route}
+          tabPath={'Amour'}
+          active={'Discover'}
+        />
       </ImageBackground>
     </View>
   );
