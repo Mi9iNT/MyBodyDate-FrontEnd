@@ -301,6 +301,7 @@ export const Discover = ({ route, navigation }) => {
             />
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={() => { navigation.navigate('CestMatch'); }}
             style={{
               backgroundColor:'red',
               top: 5,
