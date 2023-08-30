@@ -57,6 +57,7 @@ import {Discover} from './components/screens/discover/Discover';
 import {DiscoverCA} from './components/screens/discover/DiscoverCA';
 import {DiscoverRP} from './components/screens/discover/DiscoverRP';
 import {DiscoverBio} from './components/screens/discover/DiscoverBio';
+import {CestMatch} from './components/screens/discover/CestMatch';
 import {Notifications} from './components/screens/Notifications';
 import {Settings} from './components/screens/settings/Settings';
 import {NotificationsSettings} from './components/screens/settings/NotificationsSettings';
@@ -222,6 +223,7 @@ function HomeNavigator() {
       <HomeStack.Screen name="DiscoverCA" component={DiscoverCA} options={{ headerShown: false }} />
       <HomeStack.Screen name="DiscoverRP" component={DiscoverRP} options={{ headerShown: false }} />
       <HomeStack.Screen name="DiscoverBio" component={DiscoverBio} options={{ headerShown: false }} />
+      <HomeStack.Screen name="CestMatch" component={CestMatch} options={{ headerShown: false }} />
       {/* Profil */}
       <HomeStack.Screen name="ProfilMeRP" component={ProfilMeRP} options={{ headerShown: false }} />
       <HomeStack.Screen name="ProfilMeRPfirst" component={ProfilMeRPfirst} options={{ headerShown: false }} />

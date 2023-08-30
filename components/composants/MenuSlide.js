@@ -6,7 +6,7 @@ import { View, Text, Image, TouchableOpacity, Modal } from 'react-native';
 import Styles from '../../assets/style/Styles';
 import { useNavigation } from '@react-navigation/native';
 
-export const MenuSlide = ({route, icoPushChange, backButton, settingsNavigation, imagePath, tabPath}) => {
+export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation, imagePath, tabPath }) => {
   const navigation = useNavigation();
 
   // Constantes concernant la Modal du Menu Slide
@@ -30,7 +30,7 @@ export const MenuSlide = ({route, icoPushChange, backButton, settingsNavigation,
     const link1 = 'Voix du jour';
     const link2 = 'Carte magique';
     const randomIndex = Math.floor(Math.random() * 2);
-    return randomIndex === 0 ?  navigation.navigate(link1) :  navigation.navigate(link2);
+    return randomIndex === 0 ? navigation.navigate(link1) : navigation.navigate(link2);
   };
 
 
@@ -47,80 +47,109 @@ export const MenuSlide = ({route, icoPushChange, backButton, settingsNavigation,
       }}>
       {backButton === 'Retour' ?
         <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: 165,
-        }}>
-        <TouchableOpacity
-          accessibilityLabel="Accueil"
-          onPress={() => settingsNavigation ? navigation.navigate(settingsNavigation) : navigation.navigate(tabPathDiscover, {tabPath:tabPath})}>
-          <Image
-            source={require('../../assets/images/retour_flèche_bleu.png')}
-            style={{ width: 10, height: 20 }}
-          />
-        </TouchableOpacity>
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: 165,
+          }}>
+          <TouchableOpacity
+            accessibilityLabel="Accueil"
+            onPress={() => settingsNavigation ? navigation.navigate(settingsNavigation) : navigation.navigate(tabPathDiscover, { tabPath: tabPath })}>
+            <Image
+              source={require('../../assets/images/retour_flèche_bleu.png')}
+              style={{ width: 10, height: 20 }}
+            />
+          </TouchableOpacity>
         </View>
-        : backButton === 'Retour profil' ?
+      : backButton === 'Retour profil' ?
+        <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: 125,
+            }}>
+            <TouchableOpacity
+              accessibilityLabel="Accueil"
+              onPress={() => navigation.navigate(tabPathDiscover, { tabPath: tabPath })}>
+              <Image
+                source={imagePath === 'Professionnel' ? require('../../assets/images/retour_flèche_noir.png') : imagePath === 'Professionnel-Clair' ? require('../../assets/images/retour_flèche_blanc.png') : require('../../assets/images/retour_flèche_bleu.png')}
+                style={{ width: 10, height: 20 }}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              accessibilityLabel="Accueil"
+              onPress={() => navigation.navigate(tabPathDiscover, { tabPath: tabPath })}>
+              <Text
+                style={{
+                  fontFamily: 'Comfortaa',
+                  fontWeight: '700',
+                  fontSize: 18,
+                  color: '#0019A7',
+                }}>
+                {backButton}
+              </Text>
+            </TouchableOpacity>
+        </View>
+      : backButton === 'Retour profil pro' ?
         <View
           style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: 125,
-        }}>
-        <TouchableOpacity
-          accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate(tabPathDiscover, {tabPath:tabPath})}>
-          <Image
-            source={imagePath === 'Professionnel' ? require('../../assets/images/retour_flèche_noir.png') : imagePath === 'Professionnel-Clair' ? require('../../assets/images/retour_flèche_blanc.png') : require('../../assets/images/retour_flèche_bleu.png')}
-            style={{ width: 10, height: 20 }}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate(tabPathDiscover, {tabPath:tabPath})}>
-          <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '700',
-              fontSize: 18,
-              color: '#0019A7',
-            }}>
-            {backButton}
-          </Text>
-        </TouchableOpacity>
+            width: 155,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}>
+          <TouchableOpacity
+            accessibilityLabel="Accueil"
+            onPress={() => navigation.navigate(tabPathDiscover, { tabPath: tabPath }, { tabPath: 'Professionnel' })}>
+            <Image
+              source={imagePath === 'Professionnel' ? require('../../assets/images/retour_flèche_noir.png') : imagePath === 'Professionnel-Clair' ? require('../../assets/images/retour_flèche_blanc.png') : require('../../assets/images/retour_flèche_bleu.png')}
+              style={{ width: 10, height: 20 }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            accessibilityLabel="Retour profil pro"
+            onPress={() => navigation.navigate(tabPathDiscover, { tabPath: tabPath }, { tabPath: 'Professionnel' })}>
+            <Text
+              style={{
+                fontFamily: 'Comfortaa',
+                fontWeight: '700',
+                fontSize: 18,
+                color: imagePath === 'Professionnel' ? '#000' : imagePath === 'Professionnel-Clair' ? '#fff' : '#0019A7',
+              }}>
+              Retour Profil Pro
+            </Text>
+          </TouchableOpacity>
         </View>
-        : backButton === 'Retour profil pro' ?
+      : backButton === 'Back' ?
         <View
           style={{
-          width:155,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}>
-        <TouchableOpacity
-          accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate(tabPathDiscover, {tabPath:tabPath}, { tabPath: 'Professionnel' })}>
-          <Image
-             source={imagePath === 'Professionnel' ? require('../../assets/images/retour_flèche_noir.png') : imagePath === 'Professionnel-Clair' ? require('../../assets/images/retour_flèche_blanc.png') : require('../../assets/images/retour_flèche_bleu.png')}
-            style={{ width: 10, height: 20 }}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          accessibilityLabel="Retour profil pro"
-          onPress={() => navigation.navigate(tabPathDiscover, {tabPath:tabPath}, { tabPath: 'Professionnel' })}>
-          <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '700',
-              fontSize: 18,
-              color: imagePath === 'Professionnel' ? '#000' : imagePath === 'Professionnel-Clair' ? '#fff' : '#0019A7',
-            }}>
-            Retour Profil Pro
-          </Text>
-        </TouchableOpacity>
+            flexDirection: 'row',
+            justifyContent:'space-between',
+            alignItems: 'center',
+            width:100,
+          }}>
+          <TouchableOpacity
+            accessibilityLabel="Accueil"
+            onPress={() => navigation.navigate(tabPathDiscover, { tabPath: tabPath })}>
+            <Image
+              source={imagePath === 'Professionnel' ? require('../../assets/images/retour_flèche_noir.png') : imagePath === 'Professionnel-Clair' ? require('../../assets/images/retour_flèche_blanc.png') : require('../../assets/images/retour_flèche_bleu.png')}
+              style={{ width: 10, height: 20 }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            accessibilityLabel="Accueil"
+            onPress={() => navigation.navigate(tabPathDiscover, { tabPath: tabPath })}>
+            <Text
+              style={{
+                fontFamily: 'Comfortaa-Bold',
+                fontSize: 18,
+                color: imagePath === 'Professionnel' ? '#000' : imagePath === 'Professionnel-Clair' ? '#fff' : '#0019A7',
+              }}>
+              Retour
+            </Text>
+          </TouchableOpacity>
         </View>
         :
         <View
@@ -204,7 +233,7 @@ export const MenuSlide = ({route, icoPushChange, backButton, settingsNavigation,
             }}>
             <View style={{top: 20, flexDirection: 'column', justifyContent: 'space-around'}}>
 
-              <View style={{left:60, height:'22%', width:'66%', flexDirection:'column', justifyContent: 'space-between',}}>
+              <View style={{left:60, height:'22%', width:'66%', flexDirection:'column', justifyContent: 'space-between'}}>
 
              {/* Jeux */}
               <TouchableOpacity
@@ -282,7 +311,7 @@ export const MenuSlide = ({route, icoPushChange, backButton, settingsNavigation,
                   alignItems:'center',
                 }}
                 accessibilityLabel="Paramètres"
-                  onPress={() => { setModalVisible(false); navigation.navigate('SettingsStack', {imagePath: imagePath})}}>
+                  onPress={() => { setModalVisible(false); navigation.navigate('SettingsStack', {imagePath: imagePath});}}>
                 <Text
                   style={{
                     fontSize: 20,
@@ -306,8 +335,8 @@ export const MenuSlide = ({route, icoPushChange, backButton, settingsNavigation,
             </View>
 
             <View style={{marginVertical: 15, height:1, width:215, backgroundColor:'#0019A7', alignSelf:'center'}} />
-            <Text style={{left: 40, color: '#0019A7',fontFamily: 'Gilroy-Bold',fontSize: 20,fontStyle: 'normal',fontWeight: 700, }}>Choisir un mode</Text>
-            <View style={{top: 20, width: 292, height: 350, justifyContent:'space-between', flexDirection:'column',}}>
+            <Text style={{left: 40, color: '#0019A7',fontFamily: 'Gilroy-Bold',fontSize: 20,fontStyle: 'normal',fontWeight: 700 }}>Choisir un mode</Text>
+            <View style={{top: 20, width: 292, height: 350, justifyContent:'space-between', flexDirection:'column'}}>
                {/* Professionnel */}
             <TouchableOpacity
               style={{
@@ -356,7 +385,7 @@ export const MenuSlide = ({route, icoPushChange, backButton, settingsNavigation,
                   Trouvez des contacts qui vous font évoluer.
                 </Text>
                 </View>
-                
+
             </TouchableOpacity>
               <View style={{marginVertical: 10, height:1, width:215, backgroundColor:'#0019A7', alignSelf:'center'}} />
             {/* Cercle d'ami */}
@@ -466,7 +495,7 @@ export const MenuSlide = ({route, icoPushChange, backButton, settingsNavigation,
                   Un coup de coeur n'attend pas.
                 </Text>
                 </View>
-                
+
             </TouchableOpacity>
             </View>
 
