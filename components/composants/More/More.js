@@ -51,7 +51,7 @@ export const More = () => {
   };
 
   return (
-    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+    <View style={{position:'absolute', top:195,flexDirection: 'row', alignItems: 'center'}}>
       {/* Modal */}
       <Modal
         animationType="slide"
