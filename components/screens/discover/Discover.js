@@ -2,24 +2,42 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, Image, ImageBackground, TouchableOpacity, PanResponder, Animated} from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
-import {MyComponent} from '../../composants/MyComponent';
 import {MenuBottom} from '../../composants/MenuBottom';
 import {More} from '../../composants/more/More';
-import Styles from '../../../assets/style/Styles';
-import LinearGradient from 'react-native-linear-gradient';
 import Spotlight from '../../composants/Spotlight';
 import PopUpMessage from '../../composants/popup/PopUpMessage';
 
-export const Discover = ({route, navigation}) => {
+const CustomSwipe = ({ children }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const panResponder = PanResponder.create({
+    onMoveShouldSetPanResponderCapture: (_, gestureState) => {
+      return Math.abs(gestureState.dx) > 20;
+    },
+    onPanResponderRelease: (_, gestureState) => {
+      // Empêcher le dépassement des limites d'index
+      if (gestureState.dx > 0 && currentIndex > 0) {
+        // Balayage vers la droite
+        setCurrentIndex(currentIndex - 1);
+      } else if (gestureState.dx < 0 && currentIndex < children.length - 1) {
+        // Balayage vers la gauche
+        setCurrentIndex(currentIndex + 1);
+      }
+    },
+  });
+
+  return (
+    <View {...panResponder.panHandlers}>
+      {children[currentIndex]}
+    </View>
+  );
+};
+
+
+export const Discover = ({ route, navigation }) => {
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -55,21 +73,35 @@ export const Discover = ({route, navigation}) => {
     setButtonPressed(buttonPressed === 'Stop' ? 'Play' : 'Stop');
   };
 
-  const [barPressed, setBarPressed] = useState(1);
+  const users = [
+    { id: 1, name: 'Léa', image: require('../../../assets/images/Rectangle-44.png'), age: 25, location: 'Marseille', on: true, quality: true, medaille: true, partenaire:'OpenBetween', distance: 7, ptCommun: 11 },
+    { id: 2, name: 'Kolia', image: require('../../../assets/images/Rectangle-43.png'), age: 45, location: 'Paris', on: true, quality: true, medaille: true, partenaire: false, distance: 5, ptCommun: 3 },
+    { id: 3, name: 'Julie', image: require('../../../assets/images/BackJulie.png'), age: 41, location: 'Paris', on: true, quality: true, medaille: false, partenaire: false, distance: 15, ptCommun: 5 },
+    { id: 4, name: 'Lisa', image: require('../../../assets/images/BackLisa.png'), age: 28, location: 'Lyon', on: true, quality: true, medaille: false, partenaire:false, distance: 15, ptCommun: 2 },
+  ];
 
-  const handleBar = index => {
-    setBarPressed(index);
-  };
+
+  // const [currentIndex, setCurrentIndex] = useState(0);
+
+  const [paginationColors, setPaginationColors] = useState(
+    users.map((_, index) => ({
+      active: '#D40000',
+      inactive: '#fff',
+    }))
+  );
 
   return (
-    <View
-      style={{
-        width: '100%',
-        height: '100%',
-      }}>
+    <CustomSwipe>
+      {users.map((user, index) => (
+        <View
+          key={user.id}
+          style={{
+            width: '100%',
+            height: '100%',
+          }}>
       <MenuSlide imagePath={imagePath} tabPath={imagePath} />
       <ImageBackground
-        source={require('../../../assets/images/Rectangle-44.png')}
+        source={user.image}
         style={{
           width: '100%',
           height: '100%',
@@ -78,56 +110,22 @@ export const Discover = ({route, navigation}) => {
         <>
           <Spotlight navigation={navigation} />
         </>
-        <View style={{justifyContent: 'space-around', flexDirection: 'row'}}>
-          <TouchableOpacity
-            onPress={() => {
-              handleBar(1);
-            }}
-            style={{
-              width: 60,
-              height: 4,
-              backgroundColor: barPressed === 1 ? '#D40000' : '#fff',
-              marginVertical: 20,
-              marginHorizontal: 8,
-            }}
-          />
-          <TouchableOpacity
-            onPress={() => {
-              handleBar(2);
-            }}
-            style={{
-              width: 60,
-              height: 4,
-              backgroundColor: barPressed === 2 ? '#D40000' : '#fff',
-              marginVertical: 20,
-              marginHorizontal: 8,
-            }}
-          />
-          <TouchableOpacity
-            onPress={() => {
-              handleBar(3);
-            }}
-            style={{
-              width: 60,
-              height: 4,
-              backgroundColor: barPressed === 3 ? '#D40000' : '#fff',
-              marginVertical: 20,
-              marginHorizontal: 8,
-            }}
-          />
-          <TouchableOpacity
-            onPress={() => {
-              handleBar(4);
-            }}
-            style={{
-              width: 60,
-              height: 4,
-              backgroundColor: barPressed === 4 ? '#D40000' : '#fff',
-              marginVertical: 20,
-              marginHorizontal: 8,
-            }}
-          />
-        </View>
+
+       <View style={{ justifyContent: 'space-around', flexDirection: 'row' }}>
+            {paginationColors.map((colors, viewIndex) => (
+              <View
+                key={viewIndex}
+                onPress={() => {}}
+                style={{
+                  width: 60,
+                  height: 4,
+                  backgroundColor: viewIndex === index ? colors.active : colors.inactive,
+                  marginVertical: 20,
+                  marginHorizontal: 8,
+                }}
+              />
+            ))}
+      </View>
         <View
           style={{
             justifyContent: 'space-around',
@@ -136,7 +134,7 @@ export const Discover = ({route, navigation}) => {
           }}>
           <Image
             source={
-              userOn
+              user.on
                 ? require('../../../assets/images/ico-on.png')
                 : require('../../../assets/images/ico-off.png')
             }
@@ -154,7 +152,7 @@ export const Discover = ({route, navigation}) => {
               color: '#0019A7',
               letterSpacing: 1,
             }}>
-            {userOn ? 'En ligne' : 'Hors ligne'}
+            {user.on ? 'En ligne' : 'Hors ligne'}
           </Text>
         </View>
         <View
@@ -179,16 +177,11 @@ export const Discover = ({route, navigation}) => {
               color: '#0019A7',
               letterSpacing: 1,
             }}>
-            A 5km
+                À {user.distance}km
           </Text>
         </View>
         <More />
-        <PopUpMessage
-          message={imagePath}
-          ptCommun={ptCommun}
-          txtPartenaire={txtPartenaire}
-          navigation={navigation}
-        />
+        <PopUpMessage message={imagePath} ptCommun={user.ptCommun} txtPartenaire={txtPartenaire} navigation={navigation} />
         <View
           style={{
             position: 'absolute',
@@ -207,9 +200,9 @@ export const Discover = ({route, navigation}) => {
                 color: '#fff',
                 letterSpacing: 1,
               }}>
-              Léa
+              {user.name}
             </Text>
-            {quality ? (
+            {user.quality ? (
               <Image
                 source={require('../../../assets/images/quality-2.png')}
                 style={{
@@ -220,7 +213,7 @@ export const Discover = ({route, navigation}) => {
                 }}
               />
             ) : null}
-            {medaille ? (
+            {user.medaille ? (
               <Image
                 source={require('../../../assets/images/Médaille.png')}
                 style={{
@@ -245,7 +238,7 @@ export const Discover = ({route, navigation}) => {
                 color: '#fff',
                 letterSpacing: 1,
               }}>
-              27, Marseille
+              {user.age}, {user.location}
             </Text>
           </View>
           <View
@@ -293,36 +286,21 @@ export const Discover = ({route, navigation}) => {
         <View
           style={{
             position: 'absolute',
-            top: medaille ? 240 : 320,
+            top: user.partenaire ? 240 : !user.medaille ? 360 : 280,
             left: 300,
           }}>
-          {partenaire === 'OpenBetween' ||
-          partenaire === 'CheerFlakes' ||
-          partenaire === 'WineGap' ||
-          partenaire === 'GoPride' ? (
-            <Image
-              source={
-                partenaire === 'OpenBetween'
-                  ? require('../../../assets/images/openBetween-cache.png')
-                  : partenaire === 'CheerFlakes'
-                  ? require('../../../assets/images/cheerflakes-cache.png')
-                  : partenaire === 'WineGap'
-                  ? require('../../../assets/images/winegap-cache.png')
-                  : partenaire === 'GoPride'
-                  ? require('../../../assets/images/gopride-cache.png')
-                  : require('../../../assets/images/gopride-cache.png')
-              }
-              style={{
-                zIndex: 0,
-                bottom: medaille ? 20 : 20,
-                right: 20,
-                alignSelf: 'flex-end',
-                width: 100,
-                height: 50,
-                resizeMode: 'contain',
-              }}
-            />
-          ) : null}
+          {user.partenaire === 'OpenBetween' || user.partenaire === 'CheerFlakes' || user.partenaire === 'WineGap' || user.partenaire === 'GoPride' ? <Image
+          source={user.partenaire === 'OpenBetween' ? require('../../../assets/images/openBetween-cache.png') : user.partenaire === 'CheerFlakes' ? require('../../../assets/images/cheerflakes-cache.png') : user.partenaire === 'WineGap' ? require('../../../assets/images/winegap-cache.png') : user.partenaire === 'GoPride' ? require('../../../assets/images/gopride-cache.png') : require('../../../assets/images/gopride-cache.png')}
+          style={{
+            zIndex: 0,
+            bottom: 20,
+            right:20,
+            alignSelf:'flex-end',
+            width: 100,
+            height: 50,
+            resizeMode:'contain',
+          }}
+        />:null}
           <TouchableOpacity
             style={{
               backgroundColor: 'red',
@@ -340,6 +318,7 @@ export const Discover = ({route, navigation}) => {
             />
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={() => { navigation.navigate('CestMatch'); }}
             style={{
               backgroundColor: 'red',
               top: 5,
@@ -371,8 +350,17 @@ export const Discover = ({route, navigation}) => {
               }}
             />
           </TouchableOpacity>
-          {medaille ? (
+          {user.medaille ?
             <TouchableOpacity
+            style={{
+              backgroundColor: 'red',
+              top: 35,
+              width: 78,
+              height: 78,
+              borderRadius: 100,
+            }}>
+            <Image
+              source={require('../../../assets/boutons/back.png')}
               style={{
                 backgroundColor: 'red',
                 top: 35,
@@ -397,7 +385,9 @@ export const Discover = ({route, navigation}) => {
           active={'Discover'}
         />
       </ImageBackground>
-    </View>
+      </View>
+      ))}
+    </CustomSwipe>
   );
 };
 

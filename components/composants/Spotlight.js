@@ -18,7 +18,7 @@ const Spotlight = ({navigation, route}) => {
     {
       id: '1',
       name: 'Évènement',
-      avatar: require('../../assets/images/Ellipse-99.png'),
+      avatar: require('../../assets/boutons/ico-event.png'),
       screen: 'Evenements',
     },
     {
