@@ -53,8 +53,6 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
   const [openModalDistinct, setOpenModalDistinct] = useState(false);
   const [openModalCompetence, setOpenModalCompetence] = useState(false);
   const [openModalLinkedIn, setOpenModalLinkedIn] = useState(false);
-  const [openModalAlcool, setOpenModalAlcool] = useState(false);
-  const [openModalSport, setOpenModalSport] = useState(false);
 
   const [addProVisible, setAddProVisible] = useState([
     false,
@@ -327,8 +325,7 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                 }}>
                 Publier une offre
               </Text>
-              <View
-                style={{width: 35, height: 35, left: 142}}>
+              <View style={{width: 35, height: 35, left: 142}}>
                 <Image
                   source={
                     addProVisible[2]
@@ -337,7 +334,7 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                   }
                 />
               </View>
-              </TouchableOpacity>
+            </TouchableOpacity>
             <Langue
               visibleLangue={openModalLangue}
               closeModalLangue={() => setOpenModalLangue(false)} // Assurez-vous de définir correctement cette fonction
@@ -365,8 +362,7 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                 }}>
                 Je parle courament
               </Text>
-              <View
-                style={{width: 35, height: 35, left: 123}}>
+              <View style={{width: 35, height: 35, left: 123}}>
                 <Image
                   source={
                     addProVisible[3]
@@ -375,7 +371,7 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                   }
                 />
               </View>
-              </TouchableOpacity>
+            </TouchableOpacity>
             <Distinct
               visibleDistinct={openModalDistinct}
               closeModalDistinct={() => setOpenModalDistinct(false)} // Assurez-vous de définir correctement cette fonction
@@ -403,8 +399,7 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                 }}>
                 Mes distinctions
               </Text>
-              <View
-                style={{width: 35, height: 35, left: 142}}>
+              <View style={{width: 35, height: 35, left: 142}}>
                 <Image
                   source={
                     addProVisible[4]
@@ -413,7 +408,7 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                   }
                 />
               </View>
-              </TouchableOpacity>
+            </TouchableOpacity>
             <Competence
               visibleCompetence={openModalCompetence}
               closeModalCompetence={() => setOpenModalCompetence(false)} // Assurez-vous de définir correctement cette fonction
@@ -441,8 +436,7 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                 }}>
                 Mes compétences
               </Text>
-              <View
-                style={{width: 35, height: 35, left: 131}}>
+              <View style={{width: 35, height: 35, left: 131}}>
                 <Image
                   source={
                     addProVisible[5]
@@ -451,7 +445,7 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                   }
                 />
               </View>
-              </TouchableOpacity>
+            </TouchableOpacity>
             <LinkedIn
               visibleLinkedIn={openModalLinkedIn}
               closeModalLinkedIn={() => setOpenModalLinkedIn(false)} // Assurez-vous de définir correctement cette fonction
@@ -479,8 +473,7 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                 }}>
                 Url LinkedIn
               </Text>
-              <View
-                style={{width: 35, height: 35, left: 180}}>
+              <View style={{width: 35, height: 35, left: 180}}>
                 <Image
                   source={
                     addProVisible[6]
@@ -489,7 +482,7 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
                   }
                 />
               </View>
-              </TouchableOpacity>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
