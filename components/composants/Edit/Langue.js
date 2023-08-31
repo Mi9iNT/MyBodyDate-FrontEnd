@@ -69,41 +69,41 @@ export const Langue = ({visibleLangue, closeModalLangue}) => {
             style={{
               alignSelf: 'center',
             }}>
-        <Image
-          source={require('../../../assets/images/LangueRP.png')}
-          style={{
-            width: 84,
-            height: 84,
-            top: 30,
-            alignItems: 'center',
-            alignSelf: 'center',
-          }}
-        />
-        <Text
-          style={{
-            fontFamily: 'Gilroy',
-            fontWeight: '700',
-            fontSize: 20,
-            color: '#000',
-            top: 20,
-          }}>
-          Je parle couramment..
-        </Text>
-      </View>
-      <View>
-        <Text
-          style={{
-            fontFamily: 'Gilroy',
-            fontWeight: '700',
-            fontSize: 14,
-            color: '#000',
-            top: 25,
-            left: 30,
-          }}>
-          Sélectionnez vos langues parlées.
-        </Text>
-      </View>
-      <MyComponentLangue />
+            <Image
+              source={require('../../../assets/images/LangueRP.png')}
+              style={{
+                width: 84,
+                height: 84,
+                top: 30,
+                alignItems: 'center',
+                alignSelf: 'center',
+              }}
+            />
+            <Text
+              style={{
+                fontFamily: 'Gilroy',
+                fontWeight: '700',
+                fontSize: 20,
+                color: '#000',
+                top: 20,
+              }}>
+              Je parle couramment..
+            </Text>
+          </View>
+          <View>
+            <Text
+              style={{
+                fontFamily: 'Gilroy',
+                fontWeight: '700',
+                fontSize: 14,
+                color: '#000',
+                top: 25,
+                left: 30,
+              }}>
+              Sélectionnez vos langues parlées.
+            </Text>
+          </View>
+          <MyComponentLangue />
         </View>
       </View>
     </Modal>
