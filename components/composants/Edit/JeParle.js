@@ -4,6 +4,7 @@
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image, TouchableOpacity, Modal} from 'react-native';
+import {MyComponentJeParle} from './MyComponentJeParle';
 
 export const JeParle = ({visibleJeParle, closeModalJeParle}) => {
   const [modalJeParlelVisible, setModalJeParlelVisible] = useState(false);
@@ -22,12 +23,8 @@ export const JeParle = ({visibleJeParle, closeModalJeParle}) => {
     setAddProVisible(newArray);
   };
 
-  useEffect(() => {
-    StatusBar.setHidden(true);
-    return () => {
-      StatusBar.setHidden(false);
-    };
-  }, []);
+
+
 
   return (
     <Modal
@@ -82,7 +79,7 @@ export const JeParle = ({visibleJeParle, closeModalJeParle}) => {
                 fontWeight: '700',
                 fontSize: 20,
                 color: '#9424FA',
-                top: 50,
+                top: 20,
               }}>
               Je parle couramment...
             </Text>
@@ -94,32 +91,13 @@ export const JeParle = ({visibleJeParle, closeModalJeParle}) => {
                 fontWeight: '700',
                 fontSize: 14,
                 color: '#9424FA',
-                top: 80,
+                top: 25,
                 left: 30,
               }}>
               Sélectionnez vos langues parlées.
             </Text>
           </View>
-          <Image
-            source={require('../../../assets/images/Francais.png')}
-            style={{
-              width: 308,
-              height: 51,
-              left: 50,
-              top: 140,
-            }}
-          />
-          <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '700',
-              fontSize: 12,
-              color: '#9424FA',
-              left: 20,
-              top: 400,
-            }}>
-            Choix multiples.
-          </Text>
+          <MyComponentJeParle />
         </View>
       </View>
     </Modal>

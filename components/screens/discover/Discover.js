@@ -10,7 +10,6 @@ import {More} from '../../composants/more/More';
 import Spotlight from '../../composants/Spotlight';
 import PopUpMessage from '../../composants/popup/PopUpMessage';
 
-
 const CustomSwipe = ({ children, users }) => {
 
   const { width, height } = Dimensions.get('window');
@@ -49,6 +48,7 @@ const CustomSwipe = ({ children, users }) => {
   };
 
   //Changement d'utilisateur
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const medailleValues = users.map(user => ({
@@ -148,7 +148,6 @@ const CustomSwipe = ({ children, users }) => {
 
 
 export const Discover = ({ route, navigation }) => {
-
   const routeChoice = route.params?.routeName ?? '';
   const consentement = route.params?.userConsent ?? '';
   const loveCoach = route.params?.loveCoach ?? '';
@@ -187,6 +186,7 @@ export const Discover = ({ route, navigation }) => {
     { id: 4, name: 'Lisa', image: require('../../../assets/images/BackLisa.png'), age: 28, location: 'Lyon', on: true, quality: true, medaille: false, partenaire:false, distance: 15, ptCommun: 2 },
   ];
 
+
   // const [currentIndex, setCurrentIndex] = useState(0);
 
   const [paginationColors, setPaginationColors] = useState(
@@ -224,6 +224,7 @@ export const Discover = ({ route, navigation }) => {
         <>
           <Spotlight navigation={navigation} />
         </>
+
        <View style={{ justifyContent: 'space-around', flexDirection: 'row' }}>
             {paginationColors.map((colors, viewIndex) => (
               <View
@@ -380,7 +381,11 @@ export const Discover = ({ route, navigation }) => {
                   height: 40,
                 }}>
                 <Image
-                  source={buttonPressed === 'Stop' ? require('../../../assets/boutons/Stop-P.png') : require('../../../assets/boutons/Play-P.png')}
+                  source={
+                    buttonPressed === 'Stop'
+                      ? require('../../../assets/boutons/Stop-P.png')
+                      : require('../../../assets/boutons/Play-P.png')
+                  }
                   style={{
                     top: 10,
                     alignSelf: 'center',
@@ -410,7 +415,7 @@ export const Discover = ({ route, navigation }) => {
         /> : null}
           <TouchableOpacity
             style={{
-              backgroundColor:'red',
+              backgroundColor: 'red',
               bottom: 15,
               width: 78,
               height: 78,
@@ -427,7 +432,7 @@ export const Discover = ({ route, navigation }) => {
           <TouchableOpacity
             onPress={() => { navigation.navigate('CestMatch'); }}
             style={{
-              backgroundColor:'red',
+              backgroundColor: 'red',
               top: 5,
               width: 78,
               height: 78,
@@ -462,6 +467,7 @@ export const Discover = ({ route, navigation }) => {
             }}
             /> : null}
         </View>
+
       </ImageBackground>
          </View>
        ))}
