@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
-import {View, Text, Image, ImageBackground, TouchableOpacity, PanResponder, Animated} from 'react-native';
+import React, {useState, useRef} from 'react';
+import { View, Text, Image, ImageBackground, TouchableOpacity, Animated, Dimensions, PanResponder } from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
 import {MenuBottom} from '../../composants/MenuBottom';
@@ -11,31 +11,140 @@ import Spotlight from '../../composants/Spotlight';
 import PopUpMessage from '../../composants/popup/PopUpMessage';
 
 
-const CustomSwipe = ({ children }) => {
+const CustomSwipe = ({ children, users }) => {
+
+  const { width, height } = Dimensions.get('window');
+  // Animation
+  const position = new Animated.ValueXY({ x: 0, y: 0 });
+  const rotateZ = position.y.interpolate({
+    inputRange: [0, 10],
+    outputRange: ['0deg', '5deg'],
+  });
+  const perspective = position.x.interpolate({
+    inputRange: [0, 0],
+    outputRange: [1000, 20],
+  });
+  const [animation, setAnimation] = useState(animation);
+  const animLast = () => {
+    Animated.spring(position, {
+      toValue: { x: 160, y: 10 },
+      duration: 0.1,
+      useNativeDriver: true,
+    }).start(() => {
+      handleSwipeLast(currentIndex);
+      position.setValue({ x: 0, y: 0 });
+    });
+    setAnimation('Back');
+  };
+  const animNext = () => {
+    Animated.spring(position, {
+      toValue: { x: -160, y: -10 },
+      duration: 0.1,
+      useNativeDriver: true,
+    }).start(() => {
+      handleSwipeNext(currentIndex);
+      position.setValue({ x: 0, y: 0 });
+    });
+    setAnimation('Next');
+  };
+
+  //Changement d'utilisateur
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const medailleValues = users.map(user => ({
+  id: user.id,
+  medaille: user.medaille,
+  partenaire: user.partenaire,
+}));
+
+  const handleSwipeNext = (index) => {
+    if (index < users.length - 1) {
+      setCurrentIndex(index + 1);
+    }
+  };
+
+  const handleSwipeLast = (index) => {
+    if (index > 0) {
+      setCurrentIndex(index - 1);
+    }
+  };
 
   const panResponder = PanResponder.create({
     onMoveShouldSetPanResponderCapture: (_, gestureState) => {
       return Math.abs(gestureState.dx) > 20;
     },
     onPanResponderRelease: (_, gestureState) => {
-      // Empêcher le dépassement des limites d'index
       if (gestureState.dx > 0 && currentIndex > 0) {
-        // Balayage vers la droite
-        setCurrentIndex(currentIndex - 1);
+        animLast(currentIndex);
       } else if (gestureState.dx < 0 && currentIndex < children.length - 1) {
-        // Balayage vers la gauche
-        setCurrentIndex(currentIndex + 1);
+        animNext(currentIndex);
       }
     },
   });
 
+
   return (
-    <View {...panResponder.panHandlers}>
+    <ImageBackground source={require('../../../assets/images/Background.png')} style={{ width: width ,height: height, resizeMode:'contain'}}>
+      <Animated.View
+      style={{
+        flex: 1,
+        height: '100%',
+        width: '100%',
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        transform: [
+          { translateX: position.x },
+          { translateY: position.y },
+          { perspective: perspective },
+          { rotateZ: rotateZ },
+        ],
+      }}>
+      <View {...panResponder.panHandlers}>
       {children[currentIndex]}
-    </View>
+      <View style={{flexDirection:'column', position:'absolute', width:78, alignItems:'center', alignSelf:'flex-end', justifyContent:'space-between', backgroundColor:'transparent', right:14.6, top: medailleValues[currentIndex].partenaire ? 534.5 : !medailleValues[currentIndex].medaille ? 607 : 524, height: medailleValues[currentIndex].partenaire ? 173.4 : !medailleValues[currentIndex].medaille ? 0 : 173.4,}}>
+        <TouchableOpacity
+              onPress={() => { animNext(); }}
+          style={{
+              backgroundColor: 'red',
+              alignSelf: 'flex-end',
+              width: 78,
+              height: 78,
+              borderRadius: 100,
+            }}>
+            <Image
+              source={require('../../../assets/images/profil_croix.png')}
+              style={{
+                width: 78,
+                height: 78,
+              }}
+            />
+        </TouchableOpacity>
+        {medailleValues[currentIndex].medaille ?
+        <TouchableOpacity
+            onPress={() => { animLast(); }}
+            style={{
+              backgroundColor: 'red',
+              width: 78,
+              height: 78,
+              borderRadius: 100,
+            }}>
+            <Image
+              source={require('../../../assets/boutons/back.png')}
+              style={{
+                width: 78,
+                height: 78,
+              }}
+            />
+        </TouchableOpacity> : null}
+      </View>
+      </View>
+    </Animated.View>
+    </ImageBackground>
+    
   );
 };
+
 
 
 export const Discover = ({ route, navigation }) => {
@@ -61,14 +170,10 @@ export const Discover = ({ route, navigation }) => {
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
   const tabPath = route.params?.tabPath ?? '';
+
   const imagePath = 'Amour';
-  const ptCommun = 11;
-  const partenaire = 'OpenBetween';
   const txtPartenaire = 'Inscrite auprès d’un partenaire';
 
-  const [userOn, setUserOn] = useState(true);
-  const [quality, setQuality] = useState(true);
-  const [medaille, setMedaille] = useState(true);
   const [buttonPressed, setButtonPressed] = useState('Play');
 
   const handlePlay = () => {
@@ -91,16 +196,24 @@ export const Discover = ({ route, navigation }) => {
     }))
   );
 
+// const handleSwipeNext = (index) => {
+//   if (index < users.length - 1) {
+//     index = index + 1;
+//     // console.log(index);
+//   }
+// };
+
   return (
-    <CustomSwipe>
-      {users.map((user, index) => (
+    <View style={{ width: '100%' ,height: '100%', backgroundColor:'#fff' }}>
+      <CustomSwipe users={users}>
+       {users.map((user, index) => (
         <View
           key={user.id}
           style={{
             width: '100%',
             height: '100%',
           }}>
-      <MenuSlide imagePath={imagePath} tabPath={imagePath} />
+      <MenuSlide imagePath={imagePath} tabPath={imagePath} backgroundColor={'white'} />
       <ImageBackground
         source={user.image}
         style={{
@@ -261,7 +374,7 @@ export const Discover = ({ route, navigation }) => {
                 top: 5,
               }}>
               <TouchableOpacity
-                onPress={() => { handlePlay() }}
+                onPress={() => { handlePlay(); }}
                 style={{
                   width: 40,
                   height: 40,
@@ -294,7 +407,7 @@ export const Discover = ({ route, navigation }) => {
             height: 50,
             resizeMode:'contain',
           }}
-        />:null}
+        /> : null}
           <TouchableOpacity
             style={{
               backgroundColor:'red',
@@ -328,45 +441,33 @@ export const Discover = ({ route, navigation }) => {
               }}
             />
           </TouchableOpacity>
-          <TouchableOpacity
+          <View
             style={{
-              backgroundColor: 'red',
+              backgroundColor: 'transparent',
               top: 20,
               width: 78,
               height: 78,
               borderRadius: 100,
             }}>
-            <Image
-              source={require('../../../assets/images/profil_croix.png')}
-              style={{
-                width: 78,
-                height: 78,
-              }}
-            />
-          </TouchableOpacity>
+            <></>
+          </View>
           {user.medaille ?
-            <TouchableOpacity
+            <View
             style={{
-              backgroundColor: 'red',
+              backgroundColor: 'transparent',
               top: 35,
               width: 78,
               height: 78,
               borderRadius: 100,
-            }}>
-            <Image
-              source={require('../../../assets/boutons/back.png')}
-              style={{
-                width: 78,
-                height: 78,
-              }}
-            />
-          </TouchableOpacity>:null}
+            }}
+            /> : null}
         </View>
-        <MenuBottom navigation={navigation} route={route} tabPath={'Amour'} active={'Discover'} />
       </ImageBackground>
-      </View>
-      ))}
-    </CustomSwipe>
+         </View>
+       ))}
+      </CustomSwipe>
+      <MenuBottom navigation={navigation} route={route} tabPath={'Amour'} active={'Discover'} />
+    </View>
   );
 };
 

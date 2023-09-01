@@ -6,7 +6,7 @@ import { View, Text, Image, TouchableOpacity, Modal } from 'react-native';
 import Styles from '../../assets/style/Styles';
 import { useNavigation } from '@react-navigation/native';
 
-export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation, imagePath, tabPath }) => {
+export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation, imagePath, tabPath, backgroundColor }) => {
   const navigation = useNavigation();
 
   // Constantes concernant la Modal du Menu Slide
@@ -32,7 +32,7 @@ export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation
     const randomIndex = Math.floor(Math.random() * 2);
     return randomIndex === 0 ? navigation.navigate(link1) : navigation.navigate(link2);
   };
-
+  console.log(backgroundColor);
 
   const [linkSelected, setLinkSelected] = useState();
   // console.log(tabPath);
@@ -44,6 +44,7 @@ export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation
         alignItems: 'center',
         paddingHorizontal: 20,
         paddingVertical: 20,
+        backgroundColor:backgroundColor ? 'white' : 'transparent',
       }}>
       {backButton === 'Retour' ?
         <View

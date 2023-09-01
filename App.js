@@ -127,7 +127,7 @@ import {TalkChat} from './components/screens/talk/TalkChat';
 import {TalkPhone} from './components/screens/talk/TalkPhone';
 import {TalkPhoneAccept} from './components/screens/talk/TalkPhoneAccept';
 import {TalkVideo} from './components/screens/talk/TalkVideo';
-import {TalkVideoAccept} from './components/screens/talk/TalkVideoAccept';
+import { TalkVideoAccept } from './components/screens/talk/TalkVideoAccept';
 
 const Stack = createNativeStackNavigator();
 const MainStack = createNativeStackNavigator();
@@ -183,6 +183,7 @@ function HomeNavigator() {
       <HomeStack.Screen name="SettingsStack" component={SettingsStackScreen} options={{ headerShown: false }} />
       <HomeStack.Screen name="Home Next" component={HomeStackNext} options={{ headerShown: false }} />
       <HomeStack.Screen name="Bienvenue" component={Bienvenue} options={{ headerShown: false }} />
+      <HomeStack.Screen name="Test" component={ScreenTest} options={{ headerShown: false }} />
       <HomeStack.Screen name="Création et Développement" component={Creation} options={{ headerShown: false }} />
       <HomeStack.Screen name="Love Coach" component={LoveCoach} options={{ headerShown: false }} />
       <HomeStack.Screen name="Liens d'inscription" component={LinksSignIn} options={{ headerShown: false }} />
@@ -307,7 +308,7 @@ function MainNavigator() {
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen name="Home" component={HomeStack} options={{ headerShown: false }} />
-      <Stack.Screen name="Home Next" component={ScreenTest} options={{ headerShown: false }} />
+      <Stack.Screen name="Home Next" component={HomeStackNext} options={{ headerShown: false }} />
       <Stack.Screen name="Bienvenue" component={Bienvenue} options={{ headerShown: false }} />
       <Stack.Screen name="Tabs" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Home" component={HomeNavigator} options={{headerShown: false}} />
@@ -315,7 +316,6 @@ function MainNavigator() {
       {/* <Stack.Screen name="ProfilMe" component={HomeTabs} options={{headerShown: false}} /> */}
       {/* <Stack.Screen name="Messages" component={HomeTabs} options={{headerShown: false}} /> */}
       {/* <Stack.Screen name="Map" component={HomeTabs} options={{headerShown: false}} /> */}
-      {/* <Stack.Screen name="Moi" component={HomeTabs} options={{headerShown: false}} /> */}
     </Stack.Navigator>
   );
 }

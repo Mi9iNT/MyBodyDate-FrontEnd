@@ -1,55 +1,77 @@
-import React, { useRef, useEffect } from 'react';
-import { Animated, Text, View } from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import { Text, View, Animated, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
-const FadeInView = (props) => {
-  const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
-
-  useEffect(() => {
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 10000,
+export const ScreenTest = ({ navigation }) => {
+  const position = new Animated.ValueXY({ x: 0, y: 0 });
+  const rotateX = position.x.interpolate({
+    inputRange: [0, 10],
+    outputRange: ['0deg', '0deg'],
+  });
+  const rotateZ = position.y.interpolate({
+    inputRange: [0, 10],
+    outputRange: ['0deg', '5deg'],
+  });
+  const perspective = position.x.interpolate({
+    inputRange: [0, 0],
+    outputRange: [800, 10],
+  });
+  const [animation, setAnimation] = useState(animation ?? false);
+  const anim = () => {
+    setAnimation(true);
+    Animated.spring(position, {
+      toValue: { x: -150, y: -40 },
+      duration: 100,
+      speed: 0.1,
+      bounciness: 2,
       useNativeDriver: true,
-    }).start();
-  }, [fadeAnim]);
+    }).start(() => {
+      // L'animation est terminée, vous pouvez réinitialiser la valeur animée ici si nécessaire.
+      // Vous pouvez également effectuer d'autres actions après la fin de l'animation.
+      console.log('Animation terminée');
+      position.setValue({ x: 0, y: 0 });
+      
+    });
+  };
 
   return (
+    <View style={{
+      flex: 1,
+      height: '100%',
+      width: '100%',
+      backgroundColor: animation ? 'red' : 'green',
+    }}>
     <Animated.View
       style={{
-        ...props.style,
-        opacity: fadeAnim,
-      }}
-    >
-      {props.children}
-    </Animated.View>
-  );
-};
-
-FadeInView.propTypes = {
-  style: PropTypes.object.isRequired,
-  children: PropTypes.node.isRequired,
-};
-
-export const ScreenTest = ({ navigation }) => {
-  return (
-    <View
-      style={{
         flex: 1,
+        height: '100%',
+        width: '100%',
+        alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-      }}
-    >
-      <FadeInView
-        style={{
-          width: 250,
-          height: 50,
-          backgroundColor: 'powderblue',
+        backgroundColor: 'green',
+        transform: [
+          { translateX: position.x },
+          { translateY: position.y },
+          { perspective: perspective },
+          { rotateX: rotateX },
+          { rotateZ: rotateZ },
+        ],
+      }}>
+      <TouchableOpacity
+        onPress={() => {
+          anim();
         }}
-      >
-        <Text style={{ fontSize: 28, textAlign: 'center', margin: 10 }}>
-          Fading in
-        </Text>
-      </FadeInView>
+        style={{
+          height: 100,
+          width: 100,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: 'red',
+        }}>
+        <Text>Bouge</Text>
+      </TouchableOpacity>
+      </Animated.View>
     </View>
   );
 };
@@ -57,55 +79,3 @@ export const ScreenTest = ({ navigation }) => {
 ScreenTest.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
-
-
-// import React, {useRef, useEffect} from 'react';
-// import {Animated, Text, View} from 'react-native';
-
-// const FadeInView = props => {
-//   const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
-
-//   useEffect(() => {
-//     Animated.timing(fadeAnim, {
-//       toValue: 1,
-//       duration: 10000,
-//       useNativeDriver: true,
-//     }).start();
-//   }, [fadeAnim]);
-
-//   return (
-//       <Animated.View // Special animatable View
-//       style={{
-//         ...props.style,
-//         opacity: fadeAnim, // Bind opacity to animated value
-//       }}>
-//       {props.children}
-//     </Animated.View>
-//   );
-// };
-
-// // You can then use your `FadeInView` in place of a `View` in your components:
-
-// /* Screen 2 */
-    
-// export const ScreenTest = ({ navigation }) => {
-//   return (
-//     <View
-//       style={{
-//         flex: 1,
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//       }}>
-//       <FadeInView
-//         style={{
-//           width: 250,
-//           height: 50,
-//           backgroundColor: 'powderblue',
-//         }}>
-//         <Text style={{fontSize: 28, textAlign: 'center', margin: 10}}>
-//           Fading in
-//         </Text>
-//       </FadeInView>
-//     </View>
-//   );
-// };
