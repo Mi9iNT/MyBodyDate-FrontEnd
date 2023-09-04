@@ -89,7 +89,10 @@ export const AppsAffinitaires = ({route, navigation}) => {
           justifyContent: 'space-around',
         }}>
         <TouchableOpacity
-            onPress={() => { setContentPressed('WineGap'); navigation.navigate('Apps Affinitaires2'); }}
+            onPress={() => {
+              setContentPressed('WineGap'); navigation.navigate('Apps Affinitaires2', {
+                routeAffinite: "WineGap",
+              }); }}
           style={{
             width:'45%',
             height: 90,
@@ -106,7 +109,9 @@ export const AppsAffinitaires = ({route, navigation}) => {
         <Image source={require('../../../assets/images/winegap-card.png')} style={{width:110, resizeMode:'contain' }} />
         </TouchableOpacity>
         <TouchableOpacity
-            onPress={() => { setContentPressed('CheerFlakes'); navigation.navigate('Apps Affinitaires2'); }}
+            onPress={() => { setContentPressed('CheerFlakes'); navigation.navigate('Apps Affinitaires2', {
+                routeAffinite: "CheerFlakes",
+              }); }}
           style={{
             width:'45%',
             height: 90,
@@ -131,7 +136,9 @@ export const AppsAffinitaires = ({route, navigation}) => {
           justifyContent: 'space-around',
         }}>
       <TouchableOpacity
-            onPress={() => { setContentPressed('OpenBetween'); navigation.navigate('Apps Affinitaires2'); }}
+            onPress={() => { setContentPressed('OpenBetween'); navigation.navigate('Apps Affinitaires2', {
+                routeAffinite: "OpenBetween",
+              }); }}
         style={{
           width:'45%',
           height: 90,
@@ -148,7 +155,9 @@ export const AppsAffinitaires = ({route, navigation}) => {
         <Image source={require('../../../assets/images/openbetween-card.png')} style={{width:110, resizeMode:'contain' }} />
       </TouchableOpacity>
       <TouchableOpacity
-            onPress={() => { setContentPressed('GoPride'); navigation.navigate('Apps Affinitaires2'); }}
+            onPress={() => { setContentPressed('GoPride'); navigation.navigate('Apps Affinitaires2', {
+                routeAffinite: "GoPride",
+              }); }}
         style={{
           width:'45%',
           height: 90,
