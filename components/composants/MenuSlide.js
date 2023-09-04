@@ -57,7 +57,7 @@ export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation
           }}>
           <TouchableOpacity
             accessibilityLabel="Accueil"
-            onPress={() => settingsNavigation ? navigation.navigate(settingsNavigation) : navigation.navigate(tabPathDiscover, { tabPath: tabPath })}>
+            onPress={() => settingsNavigation ? navigation.navigate(settingsNavigation) : navigation.goBack() }>
             <Image
               source={require('../../assets/images/retour_flèche_bleu.png')}
               style={{ width: 10, height: 20 }}
@@ -133,16 +133,16 @@ export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation
             width:100,
           }}>
           <TouchableOpacity
-            accessibilityLabel="Accueil"
-            onPress={() => navigation.navigate(tabPathDiscover, { tabPath: tabPath })}>
+            accessibilityLabel="Retour"
+            onPress={() => navigation.goBack()}>
             <Image
               source={imagePath === 'Professionnel' ? require('../../assets/images/retour_flèche_noir.png') : imagePath === 'Professionnel-Clair' ? require('../../assets/images/retour_flèche_blanc.png') : require('../../assets/images/retour_flèche_bleu.png')}
               style={{ width: 10, height: 20 }}
             />
           </TouchableOpacity>
           <TouchableOpacity
-            accessibilityLabel="Accueil"
-            onPress={() => navigation.navigate(tabPathDiscover, { tabPath: tabPath })}>
+            accessibilityLabel="Retour"
+            onPress={() => navigation.goBack()}>
             <Text
               style={{
                 fontFamily: 'Comfortaa-Bold',
@@ -281,7 +281,7 @@ export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation
                   alignItems:'center',
                 }}
                 accessibilityLabel="Apps Affinitaires"
-                  onPress={() => { setModalVisible(false); }}>
+                  onPress={() => { setModalVisible(false); navigation.navigate('Apps Affinitaires'); }}>
                 <Text
                   style={{
                     fontSize: 20,

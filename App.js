@@ -122,12 +122,17 @@ import {VoixDuJour2} from './components/screens/game/VoixDuJour2';
 import {CarteBriseGlace} from './components/screens/game/CarteBriseGlace';
 import {CarteMagique} from './components/screens/game/CarteMagique';
 
+// Apps Affinitaires
+import {AppsAffinitaires} from './components/screens/appsAffinitaires/AppsAffinitaires';
+import {AppsAffinitaires2} from './components/screens/appsAffinitaires/AppsAffinitaires2';
+
+
 import {Talk} from './components/screens/talk/Talk';
 import {TalkChat} from './components/screens/talk/TalkChat';
 import {TalkPhone} from './components/screens/talk/TalkPhone';
 import {TalkPhoneAccept} from './components/screens/talk/TalkPhoneAccept';
 import {TalkVideo} from './components/screens/talk/TalkVideo';
-import { TalkVideoAccept } from './components/screens/talk/TalkVideoAccept';
+import {TalkVideoAccept} from './components/screens/talk/TalkVideoAccept';
 
 const Stack = createNativeStackNavigator();
 const MainStack = createNativeStackNavigator();
@@ -420,6 +425,17 @@ function HomeNavigator() {
       <Stack.Screen
         name="Carte magique"
         component={CarteMagique}
+        options={{headerShown: false}}
+      />
+      {/* Apps Affinitires */}
+      <Stack.Screen
+        name="Apps Affinitaires"
+        component={AppsAffinitaires}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Apps Affinitaires2"
+        component={AppsAffinitaires2}
         options={{headerShown: false}}
       />
       {/* Talk */}
