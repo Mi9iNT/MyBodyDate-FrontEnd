@@ -3,14 +3,17 @@ import React, {useState, useEffect} from 'react';
 
 const PopUpMessage = ({message, ptCommun, txtPartenaire, navigation}) => {
   const [popUp, setPopUp] = useState(true);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setPopUp(false);
-    }, 8000); // 8 secondes
 
-    return () => {
-      clearTimeout(timer);
-    };
+  useEffect(() => {
+    if (popUp === true) {
+      const timer = setTimeout(() => {
+        setPopUp(false);
+      }, 8000); // 8 secondes
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
   }, []);
 
   let txt1 = '';
@@ -44,7 +47,7 @@ const PopUpMessage = ({message, ptCommun, txtPartenaire, navigation}) => {
             borderColor: '#0019A7',
             borderRadius: 20,
             borderWidth: 2,
-            bottom: 30,
+            bottom: 10,
             left: 25,
           }}>
           {txt1 && (
@@ -75,8 +78,8 @@ const PopUpMessage = ({message, ptCommun, txtPartenaire, navigation}) => {
       ) : message === 'Amour' ? (
         <>
           <TouchableOpacity
-            style={{  
-              position:'absolute',  
+            style={{
+              position: 'absolute',
               width: 346,
               minHeight: 50,
               padding: 10,
@@ -84,7 +87,7 @@ const PopUpMessage = ({message, ptCommun, txtPartenaire, navigation}) => {
               borderColor: '#0019A7',
               borderRadius: 20,
               borderWidth: 2,
-              top: 0,
+              top: 20,
               left: 25,
             }}>
             {txtPartenaire && (
@@ -105,8 +108,8 @@ const PopUpMessage = ({message, ptCommun, txtPartenaire, navigation}) => {
               navigation.navigate('DiscoverBio');
             }}
             style={{
-              position:'absolute',
-              top:150,
+              position: 'absolute',
+              top: 200,
               width: 196,
               minHeight: 50,
               padding: 10,
@@ -144,7 +147,7 @@ const PopUpMessage = ({message, ptCommun, txtPartenaire, navigation}) => {
             borderColor: '#0019A7',
             borderRadius: 20,
             borderWidth: 2,
-            bottom: 30,
+            top: 30,
             left: 25,
           }}>
           {txtPointsCommuns && (

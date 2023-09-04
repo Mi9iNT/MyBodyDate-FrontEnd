@@ -125,6 +125,7 @@ const Spotlight = ({navigation, route}) => {
                 width: 100,
                 justifyContent: 'space-between',
                 alignSelf: 'center',
+                backgroundColor: 'transparent',
               }}>
               <Text
                 style={{
@@ -184,38 +185,48 @@ const Spotlight = ({navigation, route}) => {
           </View>
         </ImageBackground>
       ) : (
-        <TouchableOpacity
-          onPress={() =>
-            userPrenium === false ? setUserPrenium(true) : setUserPrenium(false)
-          }
+        <View
           style={{
-            flexDirection: 'row',
             width: '100%',
+            height: 40,
             justifyContent: 'center',
             alignSelf: 'center',
             backgroundColor: 'white',
           }}>
-          <Text
+          <TouchableOpacity
+            onPress={() =>
+              userPrenium === false
+                ? setUserPrenium(true)
+                : setUserPrenium(false)
+            }
             style={{
-              fontSize: 13,
-              fontFamily: 'Comfortaa',
-              fontWeight: '700',
-              color: '#0019A7',
-              letterSpacing: 1,
-              marginRight: 10,
+              flexDirection: 'row',
+              width: 100,
+              justifyContent: 'center',
+              alignSelf: 'center',
             }}>
-            Spotlight
-          </Text>
-          <Image
-            source={require('../../assets/images/flèche-B.png')}
-            style={{
-              width: 13,
-              height: 16,
-              resizeMode: 'contain',
-              transform: [{rotate: '-90deg'}],
-            }}
-          />
-        </TouchableOpacity>
+            <Text
+              style={{
+                fontSize: 13,
+                fontFamily: 'Comfortaa',
+                fontWeight: '700',
+                color: '#0019A7',
+                letterSpacing: 1,
+                marginRight: 10,
+              }}>
+              Spotlight
+            </Text>
+            <Image
+              source={require('../../assets/images/flèche-B.png')}
+              style={{
+                width: 13,
+                height: 16,
+                resizeMode: 'contain',
+                transform: [{rotate: '-90deg'}],
+              }}
+            />
+          </TouchableOpacity>
+        </View>
       )}
     </>
   );
