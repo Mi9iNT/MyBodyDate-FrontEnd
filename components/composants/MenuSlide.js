@@ -280,7 +280,7 @@ export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation
                   alignItems:'center',
                 }}
                 accessibilityLabel="Apps Affinitaires"
-                  onPress={() => { setModalVisible(false); }}>
+                  onPress={() => { setModalVisible(false); navigation.navigate('Apps Affinitaires'); }}>
                 <Text
                   style={{
                     fontSize: 20,
