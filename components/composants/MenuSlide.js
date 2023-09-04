@@ -44,6 +44,7 @@ export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation
         alignItems: 'center',
         paddingHorizontal: 20,
         paddingVertical: 20,
+        width:'100%',
         backgroundColor:backgroundColor ? 'white' : 'transparent',
       }}>
       {backButton === 'Retour' ?
