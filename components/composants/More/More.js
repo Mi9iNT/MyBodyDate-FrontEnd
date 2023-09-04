@@ -16,7 +16,7 @@ import {MoreBloquerUser} from './MoreBloquerUser';
 import {MoreListeBloquees} from './MoreListeBloquees';
 import {MoreSingalement} from './MoreSingalement';
 
-export const More = () => {
+export const More = ({userName}) => {
   const navigation = useNavigation();
 
   const profileId = 'ID_DU_PROFIL_A_COPIER'; // à remplacer par la valeur réelle de l'ID Clipboard n'est plus maintenu
@@ -41,7 +41,7 @@ export const More = () => {
 
   const [linkModal, setLinkModal] = useState('Default');
 
-  const [userPrenom, setUserPrenom] = useState('Kolia');
+  const [userPrenom, setUserPrenom] = useState(userName);
 
   const [copyMessageVisible, setCopyMessageVisible] = useState(false);
   const [copyMessage, setCopyMessage] = useState('');
