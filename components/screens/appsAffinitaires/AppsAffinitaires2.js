@@ -17,6 +17,7 @@ import { CheerFlakes } from '../../composants/composants-appsAffinitaires/CheerF
 import { OpenBetween } from '../../composants/composants-appsAffinitaires/OpenBetween';
 import { WineGap } from '../../composants/composants-appsAffinitaires/WineGap';
 import { GoPride } from '../../composants/composants-appsAffinitaires/GoPride';
+import { MyBodyDate } from '../../composants/composants-appsAffinitaires/MyBodyDate';
 
 export const AppsAffinitaires2 = ({route, navigation}) => {
 
@@ -40,13 +41,15 @@ export const AppsAffinitaires2 = ({route, navigation}) => {
       }}>
       <MenuSlide imagePath={imagePath} backgroundColor={'white'} backButton={'Back'} />
       {routeAffinite === 'WineGap' ?
-        <WineGap navigation={navigation}/>
+        <WineGap navigation={navigation} background={'1'} />
         : routeAffinite === 'GoPride' ?
-          <GoPride navigation={navigation}/>
+          <GoPride navigation={navigation}  background={'1'}/>
         : routeAffinite === 'CheerFlakes' ?
-          <CheerFlakes navigation={navigation}/>
+          <CheerFlakes navigation={navigation}  background={'1'}/>
         : routeAffinite === 'OpenBetween' ?
-          <OpenBetween navigation={navigation}/>
+          <OpenBetween navigation={navigation}  background={'1'} />
+        : routeAffinite === 'MyBodyDate' ?
+          <MyBodyDate navigation={navigation}/>
         : null
       }
     </View>

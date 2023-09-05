@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
 import MenuSlide from '../../composants/MenuSlide';
 import {MenuBottom} from '../../composants/MenuBottom';
@@ -39,6 +40,7 @@ export const AppsAffinitaires = ({route, navigation}) => {
   const imagePath = route.params?.imagePath ?? '';
 
   const [contentPressed, setContentPressed] = useState();
+  console.log(contentPressed);
 
   return (
     <ImageBackground
@@ -99,14 +101,14 @@ export const AppsAffinitaires = ({route, navigation}) => {
             borderRadius: 30,
             borderWidth: contentPressed === 'WineGap' ? 5 : 2,
             borderColor: '#882b1d',
-            backgroundColor: contentPressed === 'WineGap' ? '#0019A7' : '#fff',
+            backgroundColor: contentPressed === 'WineGap' ? 'rgba(120, 75, 50, 0.5)' : 'rgba(247, 202, 178, 0.8)',
             alignSelf:'center',
             alignItems: 'center',
             justifyContent: 'space-around',
             flexDirection: 'row',
             elevation: 10,
-          }}>
-        <Image source={require('../../../assets/images/winegap-card.png')} style={{width:110, resizeMode:'contain' }} />
+            }}>
+              <Image source={require('../../../assets/images/winegap-card.png')} style={{width:110, resizeMode:'contain' }} />
         </TouchableOpacity>
         <TouchableOpacity
             onPress={() => { setContentPressed('CheerFlakes'); navigation.navigate('Apps Affinitaires2', {
@@ -118,14 +120,14 @@ export const AppsAffinitaires = ({route, navigation}) => {
             borderRadius: 30,
             borderWidth: contentPressed === 'CheerFlakes' ? 5 : 2,
             borderColor: '#fff',
-            backgroundColor: contentPressed === 'CheerFlakes' ? '#0019A7' : '#000',
+            backgroundColor: contentPressed === 'CheerFlakes' ? 'rgba(132, 36, 22, 0.85)' : 'rgba(69, 192, 223, 0.8)',
             alignSelf:'center',
             alignItems: 'center',
             justifyContent: 'space-around',
             flexDirection: 'row',
             elevation: 10,
-          }}>
-          <Image source={require('../../../assets/images/cheerflakes-card.png')} style={{width:110, resizeMode:'contain' }} />
+            }}>
+                <Image source={require('../../../assets/images/cheerflakes-card.png')} style={{width:110, resizeMode:'contain' }} />
         </TouchableOpacity>
       </View>
       <View style={{
@@ -145,7 +147,7 @@ export const AppsAffinitaires = ({route, navigation}) => {
           borderRadius: 30,
           borderWidth: contentPressed === 'OpenBetween' ? 5 : 2,
           borderColor: '#c43555',
-          backgroundColor: contentPressed === 'OpenBetween' ? '#0019A7' : '#fff',
+          backgroundColor: contentPressed === 'OpenBetween' ? 'rgba(196, 53, 87, 0.4)' : 'rgba(0, 0, 0, 0.76)',
           alignSelf:'center',
           alignItems: 'center',
           justifyContent: 'space-around',
@@ -164,7 +166,7 @@ export const AppsAffinitaires = ({route, navigation}) => {
           borderRadius: 30,
           borderWidth: contentPressed === 'GoPride' ? 5 : 2,
           borderColor: '#db6238',
-          backgroundColor: contentPressed === 'GoPride' ? '#0019A7' : '#fff',
+          backgroundColor: contentPressed === 'GoPride' ? 'rgba(219, 98, 56, 0.85)' : 'rgba(132, 36, 22, 0.8)',
           alignSelf:'center',
           alignItems: 'center',
           justifyContent: 'space-around',
