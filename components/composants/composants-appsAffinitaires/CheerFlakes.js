@@ -10,11 +10,12 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
 import MenuSlide from '../MenuSlide';
 import {MenuBottom} from '../MenuBottom';
 
-export const CheerFlakes = ({navigation}) => {
+export const CheerFlakes = ({navigation, background}) => {
 
 
   const [radioValue, setRadioValue] = useState(false);
@@ -25,7 +26,12 @@ export const CheerFlakes = ({navigation}) => {
 
   return (
     <ImageBackground source={require('../../../assets/images/bg-cheerflakes.png')} style={{ width: '100%', height: '100%', resizeMode: 'contain' }} >
-      <View style={{ backgroundColor: 'rgba(69, 192, 223, 0.6)', width:'100%', height:'100%'}}>
+      <LinearGradient
+        start={{ x: -0.2, y: -0.15 }} end={{ x: -0.8, y: 0.60 }}
+        colors={background === '1' ?
+          ['rgba(69, 192, 223, 0.8)', 'rgba(69, 192, 223, 0.75)', 'rgba(132, 36, 22, 0.85)']
+          : ['rgba(251, 129, 211, 0.6)', 'rgba(113, 48, 180, 0.7)', 'rgba(8, 33, 170, 0.8)']}
+          style={{ width: '100%', height: '100%' }}>
       <Image source={require('../../../assets/images/cheerflakes-card.png')} style={{ position: 'absolute', top: 50, width: 215, height: 95, alignSelf: 'center', resizeMode: 'cover', zIndex: 1 }} />
       <Text style={{ top: 200, left:30, color: '#fff', fontFamily: 'Gilory-Bold', textAlign: 'left', fontSize: 48, fontStyle: 'normal', fontWeight:700 }}>CheerFlakes</Text>
       <View
@@ -82,7 +88,7 @@ export const CheerFlakes = ({navigation}) => {
             </TouchableOpacity>
         </ScrollView>
         </View>
-      </View>
+      </LinearGradient>
 
     </ImageBackground>
   );
