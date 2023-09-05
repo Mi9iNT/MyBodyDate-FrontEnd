@@ -40,7 +40,6 @@ export const AppsAffinitaires = ({route, navigation}) => {
   const imagePath = route.params?.imagePath ?? '';
 
   const [contentPressed, setContentPressed] = useState();
-  console.log(contentPressed);
 
   return (
     <ImageBackground
@@ -51,11 +50,11 @@ export const AppsAffinitaires = ({route, navigation}) => {
         }}>
       <MenuSlide imagePath={imagePath} backgroundColor={'white'} />
       <Text style={{ top: 50, color: '#fff', fontFamily: 'Comfortaa-Bold', textAlign: 'center', fontSize: 29, fontStyle: 'normal' }}>Apps affinitaires</Text>
-       <Text style={[{top: 80, width:'80%', color: '#FFF',alignSelf:'center', fontFamily: 'Comfortaa',fontSize: 18,fontStyle: 'normal',fontWeight: 700 }]}>
+       <Text style={[{top: 130, width:'80%', color: '#FFF',alignSelf:'center', fontFamily: 'Comfortaa',fontSize: 18,fontStyle: 'normal',fontWeight: 700 }]}>
         Grâce au profil multipliés, vous bénéficiez gratuitement d’une
         visibilité de votre profil auprès de votre communauté d’affinité :
       </Text>
-      <View style={{top:100, flexDirection: 'column', width:'80%',height:120, justifyContent:'space-between', alignSelf:'center' }}>
+      <View style={{top:150, flexDirection: 'column', width:'80%',height:120, justifyContent:'space-between', alignSelf:'center' }}>
       <View style={{ flexDirection: 'row' }}>
          <Text style={[{color: '#FFF', alignSelf: 'center', fontFamily: 'Comfortaa', fontSize: 15, fontStyle: 'normal', fontWeight: 700 }]}>Parent célibataire</Text>
         <Text style={[{color: '#0019A7',left:10,alignSelf:'center', fontFamily: 'Gilory-Bold',fontSize: 18,fontStyle: 'normal',fontWeight: 700 }]}>CheerFlakes,</Text>
@@ -76,7 +75,7 @@ export const AppsAffinitaires = ({route, navigation}) => {
 
 
       <View style={{
-        top: 130,
+        top: 180,
         width: '100%',
         height: '30%',
         alignSelf: 'center',
@@ -93,13 +92,13 @@ export const AppsAffinitaires = ({route, navigation}) => {
         <TouchableOpacity
             onPress={() => {
               setContentPressed('WineGap'); navigation.navigate('Apps Affinitaires2', {
-                routeAffinite: "WineGap",
+                routeAffinite: "WineGap", menu: true,
               }); }}
           style={{
             width:'45%',
             height: 90,
             borderRadius: 30,
-            borderWidth: contentPressed === 'WineGap' ? 5 : 2,
+            borderWidth: contentPressed === 'WineGap' ? 3 : 1,
             borderColor: '#882b1d',
             backgroundColor: contentPressed === 'WineGap' ? 'rgba(120, 75, 50, 0.5)' : 'rgba(247, 202, 178, 0.8)',
             alignSelf:'center',
@@ -112,13 +111,13 @@ export const AppsAffinitaires = ({route, navigation}) => {
         </TouchableOpacity>
         <TouchableOpacity
             onPress={() => { setContentPressed('CheerFlakes'); navigation.navigate('Apps Affinitaires2', {
-                routeAffinite: "CheerFlakes",
+                routeAffinite: "CheerFlakes", menu: true,
               }); }}
           style={{
             width:'45%',
             height: 90,
             borderRadius: 30,
-            borderWidth: contentPressed === 'CheerFlakes' ? 5 : 2,
+            borderWidth: contentPressed === 'CheerFlakes' ? 3 : 1,
             borderColor: '#fff',
             backgroundColor: contentPressed === 'CheerFlakes' ? 'rgba(132, 36, 22, 0.85)' : 'rgba(69, 192, 223, 0.8)',
             alignSelf:'center',
@@ -139,13 +138,13 @@ export const AppsAffinitaires = ({route, navigation}) => {
         }}>
       <TouchableOpacity
             onPress={() => { setContentPressed('OpenBetween'); navigation.navigate('Apps Affinitaires2', {
-                routeAffinite: "OpenBetween",
+                routeAffinite: "OpenBetween", menu: true,
               }); }}
         style={{
           width:'45%',
           height: 90,
           borderRadius: 30,
-          borderWidth: contentPressed === 'OpenBetween' ? 5 : 2,
+          borderWidth: contentPressed === 'OpenBetween' ? 3 : 1,
           borderColor: '#c43555',
           backgroundColor: contentPressed === 'OpenBetween' ? 'rgba(196, 53, 87, 0.4)' : 'rgba(0, 0, 0, 0.76)',
           alignSelf:'center',
@@ -158,15 +157,15 @@ export const AppsAffinitaires = ({route, navigation}) => {
       </TouchableOpacity>
       <TouchableOpacity
             onPress={() => { setContentPressed('GoPride'); navigation.navigate('Apps Affinitaires2', {
-                routeAffinite: "GoPride",
+                routeAffinite: "GoPride", menu: true,
               }); }}
         style={{
           width:'45%',
           height: 90,
           borderRadius: 30,
-          borderWidth: contentPressed === 'GoPride' ? 5 : 2,
-          borderColor: '#db6238',
-          backgroundColor: contentPressed === 'GoPride' ? 'rgba(219, 98, 56, 0.85)' : 'rgba(132, 36, 22, 0.8)',
+          borderWidth: contentPressed === 'GoPride' ? 3 : 1,
+          borderColor:  contentPressed === 'GoPride' ? 'rgba(132, 36, 22, 1)' : '#db6238',
+          backgroundColor: contentPressed === 'GoPride' ? 'rgba(219, 98, 56, 0.65)' : 'rgba(132, 36, 22, 0.8)',
           alignSelf:'center',
           alignItems: 'center',
           justifyContent: 'space-around',
@@ -176,7 +175,6 @@ export const AppsAffinitaires = ({route, navigation}) => {
       </TouchableOpacity>
       </View>
     </View>
-      <MenuBottom navigation={navigation} activeTab={activeTab} />
     </ImageBackground>
   );
 };

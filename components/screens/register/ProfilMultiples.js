@@ -113,39 +113,79 @@ export const ProfilMultiples = ({route, navigation}) => {
               alignSelf: 'center',
               marginBottom: 20,
             }}>
-            <Image
-              style={[{top: 120, width: 113, height: 57, resizeMode: 'cover'}]}
-              source={require('../../../assets/images/cheerflakes-thumb.png')}
-            />
-            <Image
-              style={[{top: 120, width: 113, height: 57, resizeMode: 'cover'}]}
-              source={require('../../../assets/images/winegap-thmb.png')}
-            />
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Apps Affinitaires2', {
+                  routeAffinite: 'CheerFlakes',
+                  menu: false,
+                });
+              }}>
+              <Image
+                style={[
+                  {top: 120, width: 113, height: 57, resizeMode: 'cover'},
+                ]}
+                source={require('../../../assets/images/cheerflakes-thumb.png')}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Apps Affinitaires2', {
+                  routeAffinite: 'WineGap',
+                  menu: false,
+                });
+              }}>
+              <Image
+                style={[
+                  {top: 120, width: 113, height: 57, resizeMode: 'cover'},
+                ]}
+                source={require('../../../assets/images/winegap-thmb.png')}
+              />
+            </TouchableOpacity>
           </View>
           <View style={{flexDirection: 'row', gap: 20, alignSelf: 'center'}}>
-            <Image
-              style={[{top: 120, width: 113, height: 57, resizeMode: 'cover'}]}
-              source={require('../../../assets/images/gopride-thumb.png')}
-            />
-            <Image
-              style={[{top: 120, width: 113, height: 57, resizeMode: 'cover'}]}
-              source={require('../../../assets/images/openbetween-thumb.png')}
-            />
-          </View>
-          <TouchableOpacity onPress={() => handleRadioChange(!radioValue)}>
-            <View style={[Styles.radioInputContainerTwo, {top: 120}]}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Apps Affinitaires2', {
+                  routeAffinite: 'GoPride',
+                  menu: false,
+                });
+              }}>
               <Image
-                source={
-                  radioValue
-                    ? require('../../../assets/images/radio_selected.png')
-                    : require('../../../assets/images/radio_unselected.png')
-                }
-                style={{width: 20, height: 20}}
+                style={[
+                  {top: 120, width: 113, height: 57, resizeMode: 'cover'},
+                ]}
+                source={require('../../../assets/images/gopride-thumb.png')}
               />
-              <Text style={[Styles.TextInputTwo]}>
-                J’accepte le multi-profil GRATUIT.
-              </Text>
-            </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Apps Affinitaires2', {
+                  routeAffinite: 'OpenBetween',
+                  menu: false,
+                });
+              }}>
+              <Image
+                style={[
+                  {top: 120, width: 113, height: 57, resizeMode: 'cover'},
+                ]}
+                source={require('../../../assets/images/openbetween-thumb.png')}
+              />
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity
+            style={[Styles.radioInputContainerTwo, {top: 120}]}
+            onPress={() => handleRadioChange(!radioValue)}>
+            <Image
+              source={
+                radioValue
+                  ? require('../../../assets/images/radio_selected.png')
+                  : require('../../../assets/images/radio_unselected.png')
+              }
+              style={{width: 20, height: 20}}
+            />
+            <Text style={[Styles.TextInputTwo]}>
+              J’accepte le multi-profil GRATUIT.
+            </Text>
           </TouchableOpacity>
           <Text
             style={[
