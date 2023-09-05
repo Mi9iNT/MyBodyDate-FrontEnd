@@ -13,10 +13,10 @@ import {
 import PropTypes from 'prop-types';
 import MenuSlide from '../../composants/MenuSlide';
 import {MenuBottom} from '../../composants/MenuBottom';
-import { CheerFlakes } from './CheerFlakes';
-import { OpenBetween } from './OpenBetween';
-import { WineGap } from './WineGap';
-import { GoPride } from './GoPride';
+import { CheerFlakes } from '../../composants/composants-appsAffinitaires/CheerFlakes';
+import { OpenBetween } from '../../composants/composants-appsAffinitaires/OpenBetween';
+import { WineGap } from '../../composants/composants-appsAffinitaires/WineGap';
+import { GoPride } from '../../composants/composants-appsAffinitaires/GoPride';
 
 export const AppsAffinitaires2 = ({route, navigation}) => {
 

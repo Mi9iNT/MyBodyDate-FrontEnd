@@ -11,8 +11,8 @@ import {
   ScrollView,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import MenuSlide from '../../composants/MenuSlide';
-import {MenuBottom} from '../../composants/MenuBottom';
+import MenuSlide from '../MenuSlide';
+import {MenuBottom} from '../MenuBottom';
 
 export const CheerFlakes = ({navigation}) => {
 
