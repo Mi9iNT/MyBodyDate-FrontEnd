@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import {BtnNext} from '../../composants/BtnNext';
 import Styles from '../../../assets/style/Styles';
 
 export const Ville = ({route, navigation}) => {
@@ -59,8 +60,16 @@ export const Ville = ({route, navigation}) => {
             Faites des rencontres locales.
           </Text>
         </SafeAreaView>
+        <BtnNext
+          route={route}
+          navigation={navigation}
+          navigateTo={'Accès Position'}
+          txt={'Continuer'}
+          background={'white'}
+          top={280}
+        />
 
-        <View style={[Styles.ViewBtn2, {top: 280}]}>
+        {/* <View style={[Styles.ViewBtn2, {top: 280}]}>
           <TouchableOpacity
             style={Styles.btn}
             onPress={() => {
@@ -103,7 +112,7 @@ export const Ville = ({route, navigation}) => {
               }
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ImageBackground>
     </View>
   );

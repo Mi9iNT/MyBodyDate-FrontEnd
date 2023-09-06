@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
+import { BtnNext } from '../../composants/BtnNext';
 
 export const Situation = ({route, navigation}) => {
   // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
@@ -211,8 +212,15 @@ export const Situation = ({route, navigation}) => {
             Choix unique.
           </Text>
         </View>
-
-        <View style={[Styles.ViewBtn2, {top: 120}]}>
+        <BtnNext
+          route={route}
+          navigation={navigation}
+          navigateTo={'Orientation'}
+          txt={'Continuer'}
+          background={'white'}
+          top={140}
+        />
+        {/* <View style={[Styles.ViewBtn2, {top: 120}]}>
           <TouchableOpacity
             style={Styles.btn}
             onPress={() => {
@@ -247,7 +255,7 @@ export const Situation = ({route, navigation}) => {
               source={buttonPressed === 'Continuer' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc.png')}
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ImageBackground>
     </View>
   );

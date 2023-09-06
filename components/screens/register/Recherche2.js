@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
+import { BtnNext } from '../../composants/BtnNext';
 
 export const Recherche2 = ({route, navigation}) => {
   const {
@@ -60,7 +61,8 @@ export const Recherche2 = ({route, navigation}) => {
             style={[
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -89,7 +91,8 @@ export const Recherche2 = ({route, navigation}) => {
              Styles.mt10,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -118,7 +121,8 @@ export const Recherche2 = ({route, navigation}) => {
              Styles.mt10,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -147,7 +151,8 @@ export const Recherche2 = ({route, navigation}) => {
              Styles.mt10,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -176,7 +181,8 @@ export const Recherche2 = ({route, navigation}) => {
              Styles.mt10,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -205,7 +211,8 @@ export const Recherche2 = ({route, navigation}) => {
              Styles.mt10,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -236,7 +243,8 @@ export const Recherche2 = ({route, navigation}) => {
              Styles.mt10,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -265,8 +273,15 @@ export const Recherche2 = ({route, navigation}) => {
         <View style={{top: 280, left: 40}}>
           <Text style={[Styles.textWhite2, {fontSize:12}]}>Choix multiple.</Text>
         </View>
-
-        <View style={[Styles.ViewBtn2, {top: 100}]}>
+        <BtnNext
+          route={route}
+          navigation={navigation}
+          navigateTo={'Affinite'}
+          txt={'Continuer'}
+          background={'white'}
+          top={120}
+        />
+        {/* <View style={[Styles.ViewBtn2, {top: 100}]}>
           <TouchableOpacity
             style={Styles.btn}
             onPress={() => {
@@ -305,7 +320,7 @@ export const Recherche2 = ({route, navigation}) => {
               source={buttonPressed === 'Continuer' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc.png')}
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ImageBackground>
     </View>
   );

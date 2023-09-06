@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
+import { BtnNext } from '../../composants/BtnNext';
 
 export const RythmeDeVie1 = ({route, navigation}) => {
   // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
@@ -79,7 +80,8 @@ export const RythmeDeVie1 = ({route, navigation}) => {
               Styles.mt20,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -108,7 +110,8 @@ export const RythmeDeVie1 = ({route, navigation}) => {
               Styles.mt20,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -137,8 +140,15 @@ export const RythmeDeVie1 = ({route, navigation}) => {
         <View style={{top: 280, left: 40}}>
           <Text style={[Styles.textWhite2, {fontSize: 12}]}>Choix unique.</Text>
         </View>
-
-        <View style={[Styles.ViewBtn2, {top: 140}]}>
+        <BtnNext
+          route={route}
+          navigation={navigation}
+          navigateTo={'Rythme2'}
+          txt={'Continuer'}
+          background={'white'}
+          top={160}
+        />
+        {/* <View style={[Styles.ViewBtn2, {top: 140}]}>
           <TouchableOpacity
             style={Styles.btn}
             onPress={() => {
@@ -190,7 +200,7 @@ export const RythmeDeVie1 = ({route, navigation}) => {
               }
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ImageBackground>
     </View>
   );
