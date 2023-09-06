@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
+import { BtnNext } from '../../composants/BtnNext';
 
 export const Objectifs = ({route, navigation}) => {
   const {
@@ -63,7 +64,8 @@ export const Objectifs = ({route, navigation}) => {
               Styles.mt20,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -93,7 +95,8 @@ export const Objectifs = ({route, navigation}) => {
               Styles.mt20,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -123,7 +126,8 @@ export const Objectifs = ({route, navigation}) => {
               Styles.mt20,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -161,8 +165,15 @@ export const Objectifs = ({route, navigation}) => {
             Choix multiple.
           </Text>
         </View>
-
-        <View style={[Styles.ViewBtn2, {top: 120}]}>
+        <BtnNext
+          route={route}
+          navigation={navigation}
+          navigateTo={'Affinite'}
+          txt={'Continuer'}
+          background={'white'}
+          top={160}
+        />
+        {/* <View style={[Styles.ViewBtn2, {top: 120}]}>
           <TouchableOpacity
             style={Styles.btn}
             onPress={() => {
@@ -212,7 +223,7 @@ export const Objectifs = ({route, navigation}) => {
               }
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ImageBackground>
     </View>
   );

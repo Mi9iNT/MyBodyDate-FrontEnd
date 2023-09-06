@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Styles from '../../../assets/style/Styles';
+import { BtnNext } from '../../composants/BtnNext';
 
 export const Prenom = ({route, navigation}) => {
   // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
@@ -465,6 +466,14 @@ export const Prenom = ({route, navigation}) => {
             </View>
           </View>
         </Modal>
+        {/* <BtnNext
+          route={route}
+          navigation={navigation}
+          navigateTo={'Date de naissance'}
+          txt={'Continuer'}
+          background={'white'}
+          top={100}
+        /> */}
       </ImageBackground>
     </View>
   );

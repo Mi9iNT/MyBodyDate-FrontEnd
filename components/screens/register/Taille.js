@@ -9,6 +9,7 @@ import {
   FlatList,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
+import { BtnNext } from '../../composants/BtnNext';
 
 export const Taille = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
@@ -81,11 +82,11 @@ export const Taille = ({route, navigation}) => {
         source={require('../../../assets/images/Background.png')}>
         <View style={{flex: 5}}>
           <View style={[Styles.ViewText]}>
-            <Text style={[Styles.textTitleWhite3, {top: 100}]}>
+            <Text style={[Styles.textTitleWhite3, {top: 150}]}>
               VOTRE TAILLE ?
             </Text>
           </View>
-          <View style={{flexDirection: 'row',height:130, width:'80%',justifyContent:'center',alignSelf:'center',alignItems:'center',bottom:250,}}>
+          <View style={{flexDirection: 'row',height:140, width:'80%',justifyContent:'center',alignSelf:'center',alignItems:'center',top:100,}}>
             <SafeAreaView style={[{top: 0, justifyContent:'center',}]}>
               <FlatList
                 ref={scrollViewRef}
@@ -98,7 +99,7 @@ export const Taille = ({route, navigation}) => {
                 keyExtractor={item => item.index.toString()}
               />
             </SafeAreaView>
-            <View style={{flexDirection: 'column', height:130, left:20,alignItems:'center',}}>
+            <View style={{flexDirection: 'column', height:130, top:5, left:20,alignItems:'center',}}>
               <TouchableOpacity
                 style={{
                   top:10,
@@ -132,8 +133,16 @@ export const Taille = ({route, navigation}) => {
               </TouchableOpacity>
             </View>
           </View>
+          <BtnNext
+            route={route}
+            navigation={navigation}
+            navigateTo={'Langue parler'}
+            txt={'Continuer'}
+            background={'white'}
+            top={400}
+          />
         </View>
-        <View style={[{flex: 1}]}>
+        {/* <View style={[{flex: 1}]}>
           <TouchableOpacity
             style={Styles.btn}
             onPress={() => {
@@ -180,7 +189,7 @@ export const Taille = ({route, navigation}) => {
               }
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ImageBackground>
     </View>
   );

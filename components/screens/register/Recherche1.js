@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Styles from '../../../assets/style/Styles';
+import { BtnNext } from '../../composants/BtnNext';
 
 export const Recherche1 = ({route, navigation}) => {
   const [recherche1, setState] = useState('');
@@ -61,7 +62,8 @@ export const Recherche1 = ({route, navigation}) => {
               Styles.mt20,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -88,7 +90,8 @@ export const Recherche1 = ({route, navigation}) => {
               Styles.mt20,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -115,7 +118,8 @@ export const Recherche1 = ({route, navigation}) => {
               Styles.mt20,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -144,8 +148,15 @@ export const Recherche1 = ({route, navigation}) => {
         <View style={{top: 280, left: 40}}>
           <Text style={[Styles.textWhite2, {fontSize: 12}]}>Choix unique.</Text>
         </View>
-
-        <View style={[Styles.ViewBtn2, {top: 140}]}>
+        <BtnNext
+          route={route}
+          navigation={navigation}
+          navigateTo={'Recherche2'}
+          txt={'Continuer'}
+          background={'white'}
+          top={160}
+        />
+        {/* <View style={[Styles.ViewBtn2, {top: 140}]}>
           <TouchableOpacity
             style={Styles.btn}
             onPress={() => {
@@ -174,7 +185,9 @@ export const Recherche1 = ({route, navigation}) => {
             <Image
               style={[
                 {
-                  height: 56,
+                  
+                maxHeight: 70,
+                padding: 10,
                   resizeMode: 'contain',
                   alignSelf: 'center',
                 },
@@ -186,7 +199,7 @@ export const Recherche1 = ({route, navigation}) => {
               }
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ImageBackground>
     </View>
   );

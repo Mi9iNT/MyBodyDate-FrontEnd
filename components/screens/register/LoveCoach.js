@@ -89,7 +89,7 @@ export const LoveCoach = ({route, navigation}) => {
             Choix unique.
           </Text>
         </View>
-
+        {/* <BtnNext route={route} navigation={navigation} txt={'Continuer'} background={'white'} top={30} /> */}
         <View style={[Styles.ViewBtn1, {top: 30}]}>
           <TouchableOpacity
             style={Styles.btn}

@@ -11,6 +11,7 @@ import {
 import {BlurView} from '@react-native-community/blur';
 import Styles from '../../../assets/style/Styles';
 import {NativeModules} from 'react-native';
+import { BtnNext } from '../../composants/BtnNext';
 
 //Home Screen
 export const LangueParler = ({route, navigation}) => {
@@ -176,7 +177,7 @@ export const LangueParler = ({route, navigation}) => {
         <View style={[Styles.ViewText, {top: 100}]}>
           <Text style={[Styles.textWhiteCenter]}>LANGUE PARLÉES ?</Text>
         </View>
-        <View style={[Styles.ViewInputRadioLang, {bottom: 140}]}>
+        <View style={[Styles.ViewInputRadioLang, {top: 80}]}>
           <View style={{flex: 2}}>
             <TouchableOpacity
               style={Styles.btnInputLang}
@@ -350,12 +351,12 @@ export const LangueParler = ({route, navigation}) => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{bottom: 100}}>
+        <View style={{top: 120}}>
           <Text style={[Styles.textWhite3, {left: 30,fontSize:12}]}>Choix multiples.</Text>
           <View style={[Styles.line]} />
         </View>
 
-        <View style={[{top: 60}]}>
+        <View style={[{top: 280}]}>
           <TouchableOpacity
             style={[Styles.row, styles.btnModal]}
             onPress={() => setModalVisible(false)}
@@ -372,7 +373,7 @@ export const LangueParler = ({route, navigation}) => {
             Langue de votre appareil.
           </Text>
         </View>
-        <View style={[{bottom: 30}]}>
+        {/* <View style={[{bottom: 30}]}>
           <TouchableOpacity
             onPress={() => {
               setButtonPressed('Continuer');
@@ -405,7 +406,7 @@ export const LangueParler = ({route, navigation}) => {
               source={buttonPressed === 'Continuer' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc.png')}
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
         <Modal
           animationType="slide"
           transparent={true}
@@ -434,6 +435,14 @@ export const LangueParler = ({route, navigation}) => {
             </View>
           </TouchableOpacity>
         </Modal>
+        <BtnNext
+          route={route}
+          navigation={navigation}
+          navigateTo={'Situation'}
+          txt={'Continuer'}
+          background={'white'}
+          top={220}
+        />
       </ImageBackground>
     </View>
   );

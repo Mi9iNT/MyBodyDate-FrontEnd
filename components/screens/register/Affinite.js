@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
+import { BtnNext } from '../../composants/BtnNext';
 
 export const Affinite = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
@@ -72,7 +73,8 @@ export const Affinite = ({route, navigation}) => {
             style={[
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -102,7 +104,8 @@ export const Affinite = ({route, navigation}) => {
               Styles.mt10,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -132,7 +135,8 @@ export const Affinite = ({route, navigation}) => {
               Styles.mt10,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -162,7 +166,8 @@ export const Affinite = ({route, navigation}) => {
               Styles.mt10,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -192,7 +197,8 @@ export const Affinite = ({route, navigation}) => {
               Styles.mt10,
               {
                 width: '80%',
-                height: 56,
+                maxHeight: 70,
+                padding: 10,
                 alignSelf: 'center',
                 borderColor: '#0019A7',
                 borderWidth: 2,
@@ -224,8 +230,15 @@ export const Affinite = ({route, navigation}) => {
             Choix multiple.
           </Text>
         </View>
-
-        <View style={[Styles.ViewBtn2, {top: 90}]}>
+        <BtnNext
+          route={route}
+          navigation={navigation}
+          navigateTo={'Rythme1'}
+          txt={'Continuer'}
+          background={'white'}
+          top={120}
+        />
+        {/* <View style={[Styles.ViewBtn2, {top: 90}]}>
           <TouchableOpacity
             style={Styles.btn}
             onPress={() => {
@@ -276,7 +289,7 @@ export const Affinite = ({route, navigation}) => {
               }
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ImageBackground>
     </View>
   );

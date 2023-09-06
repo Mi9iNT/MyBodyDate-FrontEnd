@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
+import { BtnNext } from '../../composants/BtnNext';
 
 export const Genre = ({route, navigation}) => {
   // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
@@ -127,13 +128,20 @@ export const Genre = ({route, navigation}) => {
         <View style={[Styles.ViewTextChoice, {top: 280, left: 30}]}>
           <Text style={[Styles.textWhite2, {fontSize: 12}]}>Choix unique.</Text>
         </View>
-
-        <View style={[Styles.ViewBtn1, {top: 40}]}>
+        <BtnNext
+          route={route}
+          navigation={navigation}
+          navigateTo={'Date de naissance'}
+          txt={'Continuer'}
+          background={'white'}
+          top={100}
+        />
+        {/* <View style={[Styles.ViewBtn1, {top: 40}]}>
           <TouchableOpacity
             style={Styles.btn}
             onPress={() => {
               setButtonPressed('Continuer');
-              navigation.navigate('Date de naissance', {
+              navigation.navigate('', {
                 userConsent: consentement,
                 routeName: routeChoice,
                 loveCoach: loveCoach,
@@ -160,7 +168,7 @@ export const Genre = ({route, navigation}) => {
               source={buttonPressed === 'Continuer' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc.png')}
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ImageBackground>
     </View>
   );

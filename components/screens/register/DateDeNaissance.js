@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Styles from '../../../assets/style/Styles';
+import { BtnNext } from '../../composants/BtnNext';
 
 export const DateDeNaissance = ({route, navigation}) => {
   // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
@@ -291,10 +292,18 @@ export const DateDeNaissance = ({route, navigation}) => {
             <Text style={[Styles.textWhite2, {fontSize: 12}]}>
               Choix unique.
             </Text>
-          </View>
+          </View> 
+          <BtnNext
+          route={route}
+          navigation={navigation}
+          navigateTo={'Taille'}
+          txt={'Continuer'}
+          background={'white'}
+          top={80}
+        />
         </View>
 
-        <View style={[Styles.ViewBtn1, {flex: 1}]}>
+        {/* <View style={[Styles.ViewBtn1, {flex: 1}]}>
           <TouchableOpacity
             style={{}}
             onPress={() => {
@@ -327,7 +336,7 @@ export const DateDeNaissance = ({route, navigation}) => {
               source={buttonPressed === 'Continuer' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc.png')}
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ImageBackground>
     </View>
   );
