@@ -12,7 +12,8 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Styles from '../../../assets/style/Styles';
-import { BtnNext } from '../../composants/BtnNext';
+import {BtnNext} from '../../composants/BtnNext';
+import StylesPrenom from '../../../assets/style/styleScreens/styleRegister/StylePrenom';
 
 export const Prenom = ({route, navigation}) => {
   // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
@@ -71,146 +72,55 @@ export const Prenom = ({route, navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
-    <View style={Styles.container}>
+    <View style={StylesPrenom.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesPrenom.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <View style={{flex: 6}}>
-          <View
-            style={{
-              top: 50,
-              flexDirection: 'column',
-              width: '80%',
-              alignSelf: 'center',
-            }}>
-            <Text
-              style={{
-                top: 50,
-                color: '#FFF',
-                textAlign: 'center',
-                fontFamily: 'Comfortaa',
-                fontSize: 24,
-                fontStyle: 'normal',
-                fontWeight: 700,
-                textTransform: 'uppercase',
-              }}>
-              IDENTIFIANT
+        <View style={[StylesPrenom.ViewText]}>
+          <Text style={[StylesPrenom.TxtTitle]}>IDENTIFIANT</Text>
+          <Text style={[StylesPrenom.textWhite]}>
+            Sur MyBodyDate votre vrai prénom est visible de tous les membres
+            sauf si vous préférez afficher votre pseudo. Les modérateurs passent
+            tous les pseudos en revue.
+          </Text>
+          <Text style={[StylesPrenom.textBlue]}>Règle des pseudos</Text>
+          <View style={StylesPrenom.ViewRow}>
+            <Text style={[StylesPrenom.textWhite2]}>
+              Afficher mon pseudo (par défaut)
             </Text>
-            <Text
-              style={{
-                top: 100,
-                color: '#FFF',
-                fontFamily: 'Comfortaa',
-                fontSize: 15,
-                fontStyle: 'normal',
-                fontWeight: 700,
-                letterSpacing: 1,
-              }}>
-              Sur MyBodyDate votre vrai prénom est visible de tous les membres
-              sauf si vous préférez afficher votre pseudo. Les modérateurs
-              passent tous les pseudos en revue.
-            </Text>
-            <Text
-              style={{
-                top: 140,
-                color: '#0019A7',
-                fontFamily: 'Comfortaa',
-                fontSize: 15,
-                fontStyle: 'normal',
-                fontWeight: 700,
-                letterSpacing: 1,
-                textDecorationLine: 'underline',
-              }}>
-              Règle des pseudos
-            </Text>
-            <View
-              style={{
-                top: 180,
-                left: 10,
-                width: '100%',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
-              <Text
-                style={{
-                  color: '#FFF',
-                  fontFamily: 'Comfortaa',
-                  fontSize: 15,
-                  fontStyle: 'normal',
-                  fontWeight: 700,
-                }}>
-                Afficher mon pseudo (par défaut)
-              </Text>
-              <Switch
-                trackColor={{false: '#BEC8FF', true: '#17ff58'}}
-                thumbColor={isEnabled ? '#BEC8FF' : '#f4f3f4'}
-                ios_backgroundColor="#f4f3f4"
-                onValueChange={toggleSwitch}
-                value={isEnabled}
-                style={{}}
-              />
-            </View>
-            <SafeAreaView style={{top: 200}}>
-              <TextInput
-                style={{
-                  height: 40,
-                  margin: 12,
-                  borderWidth: 1,
-                  padding: 10,
-                  textAlign: 'center',
-                  fontSize: 15,
-                  borderRadius: 50,
-                  borderColor: '#fff',
-                }}
-                onChangeText={setPrenom}
-                value={prenom}
-                placeholder="Votre Prénom"
-                placeholderTextColor={'#fff'}
-                keyboardType="default"
-              />
-              <TextInput
-                style={{
-                  height: 40,
-                  margin: 12,
-                  borderWidth: 1,
-                  padding: 10,
-                  textAlign: 'center',
-                  fontSize: 15,
-                  borderRadius: 50,
-                  borderColor: '#fff',
-                }}
-                onChangeText={setPseudo}
-                value={pseudo}
-                placeholder="Votre Pseudo "
-                placeholderTextColor={'#fff'}
-                keyboardType="default"
-              />
-            </SafeAreaView>
-            <Text
-              style={[
-                {
-                  top: 220,
-                  color: '#0019A7',
-                  textAlign: 'center',
-                  fontFamily: 'Comfortaa',
-                  fontSize: 18,
-                  fontStyle: 'normal',
-                  fontWeight: 700,
-                },
-              ]}>
-              ID.{formattedDate}.(id)
-            </Text>
-            <View style={{top: 260, left: 20}}>
-              <Text style={[Styles.textWhite2, {fontSize: 12}]}>
-                Choix unique.
-              </Text>
-            </View>
+            <Switch
+              trackColor={{false: '#BEC8FF', true: '#17ff58'}}
+              thumbColor={isEnabled ? '#BEC8FF' : '#f4f3f4'}
+              ios_backgroundColor="#f4f3f4"
+              onValueChange={toggleSwitch}
+              value={isEnabled}
+              style={{}}
+            />
           </View>
+          <SafeAreaView style={{top: 200}}>
+            <TextInput
+              style={[StylesPrenom.inputPrenom]}
+              onChangeText={setPrenom}
+              value={prenom}
+              placeholder="Votre Prénom"
+              placeholderTextColor={'#fff'}
+              keyboardType="default"
+            />
+            <TextInput
+              style={[StylesPrenom.inputPseudo]}
+              onChangeText={setPseudo}
+              value={pseudo}
+              placeholder="Votre Pseudo "
+              placeholderTextColor={'#fff'}
+              keyboardType="default"
+            />
+          </SafeAreaView>
+          <Text style={[StylesPrenom.textBlue2]}>ID.{formattedDate}.(id)</Text>
+          <Text style={[StylesPrenom.textWhite3]}>Choix unique.</Text>
         </View>
         <View style={{flex: 1}}>
           <TouchableOpacity
-            style={{justifyContent: 'center', alignItems: 'center', height: 56}}
+            style={[StylesPrenom.Btn]}
             onPress={() => {
               setButtonPressed('Continuer');
               setModalVisible(true);
@@ -218,23 +128,15 @@ export const Prenom = ({route, navigation}) => {
             accessibilityLabel="Continuer">
             <Text
               style={[
-                Styles.textBtn9,
+                StylesPrenom.TxtBtn,
                 {
-                  zIndex: 1,
-                  top: 40,
                   color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
                 },
               ]}>
               Continuer
             </Text>
             <Image
-              style={[
-                {
-                  height: 56,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
+              style={[StylesPrenom.ImgBtn]}
               source={
                 buttonPressed === 'Continuer'
                   ? require('../../../assets/boutons/Bouton-Rouge.png')
@@ -249,161 +151,40 @@ export const Prenom = ({route, navigation}) => {
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => setModalVisible(false)}>
-          <View
-            style={{
-              position: 'absolute',
-              top: 160,
-              width: 390,
-              height: 620,
-              backgroundColor: '#FFF',
-              borderTopLeftRadius: 50,
-              borderTopRightRadius: 50,
-            }}>
+          <View style={[StylesPrenom.ViewModal]}>
             <TouchableOpacity
               onPress={() => setModalVisible(false)}
-              style={{
-                top: -200,
-                backgroundColor: 'transparent',
-                height: '34%',
-                width: '100%',
-                position: 'relative',
-              }}
+              style={[StylesPrenom.BtnCloseModal]}
             />
             <View>
               <Image
                 source={require('../../../assets/images/avertissement.png')}
-                style={{
-                  bottom: 180,
-                  width: 70,
-                  height: 70,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                }}
+                style={[StylesPrenom.icoModal]}
               />
-              <View style={{bottom: 180, width: '80%', alignSelf: 'center'}}>
-                <Text
-                  style={{
-                    color: '#0019A7',
-                    textAlign: 'center',
-                    fontFamily: 'Gilroy',
-                    fontSize: 20,
-                    fontStyle: 'normal',
-                    fontWeight: 700,
-                    lineHeight: 100,
-                  }}>
+              <View style={[StylesPrenom.ViewTextModal]}>
+                <Text style={StylesPrenom.titleModal}>
                   Règles concernant le pseudo ?
                 </Text>
-                <Text
-                  style={{
-                    color: '#0019A7',
-                    textAlign: 'left',
-                    fontFamily: 'Gilroy',
-                    fontSize: 20,
-                    fontStyle: 'normal',
-                    fontWeight: 700,
-                    fontSize: 16,
-                    marginBottom: 20,
-                  }}>
+                <Text style={[StylesPrenom.textModalBlue]}>
                   Pour vérifiez que votre pseudo soit bien approuvé
                 </Text>
-                <View style={{flexDirection: 'column'}}>
-                  <View style={{flexDirection: 'row'}}>
-                    <Text
-                      style={{
-                        color: '#0019A7',
-                        textAlign: 'left',
-                        fontFamily: 'Gilroy',
-                        fontSize: 20,
-                        fontStyle: 'normal',
-                        fontWeight: 700,
-                        fontSize: 16,
-                        marginRight: 8,
-                      }}>
-                      •
-                    </Text>
-                    <Text
-                      style={[
-                        Styles.mb10,
-                        {
-                          color: '#0019A7',
-                          textAlign: 'left',
-                          fontFamily: 'Gilroy',
-                          fontSize: 20,
-                          fontStyle: 'normal',
-                          fontWeight: 700,
-                          fontSize: 16,
-                        },
-                      ]}>
+                <View style={[StylesPrenom.ViewModalCol]}>
+                  <View style={[StylesPrenom.ViewModalRow]}>
+                    <Text style={[StylesPrenom.BlueDot]}>•</Text>
+                    <Text style={[StylesPrenom.SubTextBlue]}>
                       Pour vérifiez que votre pseudo soit bien approuvé
                     </Text>
-                    <View style={{flexDirection: 'column'}} />
                   </View>
-                  <View style={{flexDirection: 'row'}}>
-                    <Text
-                      style={[
-                        Styles.mb10,
-                        {
-                          color: '#0019A7',
-                          textAlign: 'left',
-                          fontFamily: 'Gilroy',
-                          fontSize: 20,
-                          fontStyle: 'normal',
-                          fontWeight: 700,
-                          fontSize: 16,
-                          marginRight: 8,
-                        },
-                      ]}>
-                      •
-                    </Text>
-                    <Text
-                      style={[
-                        Styles.mb10,
-                        {
-                          color: '#0019A7',
-                          textAlign: 'left',
-                          fontFamily: 'Gilroy',
-                          fontSize: 20,
-                          fontStyle: 'normal',
-                          fontWeight: 700,
-                          fontSize: 16,
-                        },
-                      ]}>
+                  <View style={[StylesPrenom.ViewModalRow]}>
+                    <Text style={[StylesPrenom.BlueDot]}>•</Text>
+                    <Text style={[StylesPrenom.SubTextBlue]}>
                       N’incluez pas votre nom complet N’incluez pas vos
                       coordonnées
                     </Text>
                   </View>
-                  <View style={{flexDirection: 'row'}}>
-                    <Text
-                      style={[
-                        Styles.mb10,
-                        {
-                          color: '#0019A7',
-                          textAlign: 'left',
-                          fontFamily: 'Gilroy',
-                          fontSize: 20,
-                          fontStyle: 'normal',
-                          fontWeight: 700,
-                          fontSize: 16,
-                          marginRight: 8,
-                        },
-                      ]}>
-                      •
-                    </Text>
-                    <Text
-                      style={[
-                        Styles.mb10,
-                        {
-                          color: '#0019A7',
-                          textAlign: 'left',
-                          fontFamily: 'Gilroy',
-                          fontSize: 20,
-                          fontStyle: 'normal',
-                          fontWeight: 700,
-                          fontSize: 16,
-                          lineHeight: 20,
-                          marginBottom: 8,
-                        },
-                      ]}>
+                  <View style={[StylesPrenom.ViewModalRow]}>
+                    <Text style={[StylesPrenom.BlueDot]}>•</Text>
+                    <Text style={[StylesPrenom.SubTextBlue]}>
                       N’incluez aucune remarque sexuelle explicite ni vulgaire
                     </Text>
                   </View>
@@ -443,37 +224,13 @@ export const Prenom = ({route, navigation}) => {
                       ? require('../../../assets/boutons/Bouton-Rouge-Court.png')
                       : require('../../../assets/boutons/Bouton-Bleu-Court.png')
                   }
-                  style={{
-                    width: 148,
-                    height: 56,
-                    resizeMode: 'contain',
-                    alignSelf: 'center',
-                  }}
+                  style={[StylesPrenom.ImgBtnModal]}
                 />
-                <Text
-                  style={{
-                    bottom: 40,
-                    color: '#FFF',
-                    textAlign: 'center',
-                    fontFamily: 'Comfortaa',
-                    fontSize: 18,
-                    fontStyle: 'normal',
-                    fontWeight: 700,
-                  }}>
-                  Compris
-                </Text>
+                <Text style={[StylesPrenom.TextBtnModal]}>Compris</Text>
               </TouchableOpacity>
             </View>
           </View>
         </Modal>
-        {/* <BtnNext
-          route={route}
-          navigation={navigation}
-          navigateTo={'Date de naissance'}
-          txt={'Continuer'}
-          background={'white'}
-          top={100}
-        /> */}
       </ImageBackground>
     </View>
   );

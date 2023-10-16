@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
@@ -8,7 +8,10 @@ import {
   ScrollView,
   ImageBackground,
   TouchableOpacity,
+  PermissionsAndroid,
 } from 'react-native';
+import {PERMISSIONS, check, RESULTS} from 'react-native-permissions';
+import {launchCamera} from 'react-native-image-picker';
 import Styles from '../../../assets/style/Styles';
 
 export const CharteEngagement = ({route, navigation}) => {
@@ -59,6 +62,98 @@ export const CharteEngagement = ({route, navigation}) => {
   const [buttonPressed, setButtonPressed] = useState('');
 
   const [modalCharteVisible, setModalCharteVisible] = useState(true);
+
+  const [cameraStatus, setCameraStatus] = useState(false);
+
+  const [imagePath, setImagePath] = useState(false);
+
+  console.log(imagePath);
+
+  // console.log('imageVerif =', imageVerif);
+
+  const checkPermissions = () => {
+    check(PERMISSIONS.ANDROID.CAMERA)
+      .then(result => {
+        switch (result) {
+          case RESULTS.UNAVAILABLE:
+            console.log(
+              'This feature is not available (on this device / in this context)',
+            );
+            break;
+          case RESULTS.DENIED:
+            console.log(
+              'The permission has not been requested / is denied but requestable',
+            );
+            break;
+          case RESULTS.LIMITED:
+            console.log('The permission is limited: some actions are possible');
+            break;
+          case RESULTS.GRANTED:
+            console.log('The permission is granted');
+            break;
+          case RESULTS.BLOCKED:
+            console.log('The permission is denied and not requestable anymore');
+            break;
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  const requestCameraPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: 'MyBodyDate',
+          message:
+            'Autoriser MY BODY DATE à accéder à la caméra de cet appareil ?',
+          buttonNeutral: 'Demander plus tard',
+          buttonNegative: 'Annuler',
+          buttonPositive: 'Autoriser',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('Accès autorisé à la caméra');
+        setCameraStatus(true);
+      } else {
+        console.log('Accès refusé à la caméra');
+        setCameraStatus(false);
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
+  useEffect(() => {
+    checkPermissions();
+  }, []);
+
+  openCamera = () => {
+    if (cameraStatus) {
+      const options = {
+        mediaType: 'photo',
+        includeBase64: false,
+        maxHeight: 2000,
+        maxWidth: 2000,
+      };
+
+      launchCamera(options, response => {
+        if (response.didCancel) {
+          console.log("L'utilisateur a annulé la capture.");
+        } else if (response.errorCode) {
+          console.log('Erreur : ', response.errorMessage);
+        } else {
+          const source = response.assets[0].uri;
+          setImagePath(source);
+          setModalCharteVisible(false);
+        }
+      });
+    } else {
+      requestCameraPermission();
+    }
+  };
 
   return (
     <View style={Styles.container}>
@@ -149,7 +244,6 @@ export const CharteEngagement = ({route, navigation}) => {
                           borderRadius: 30,
                         },
                       ]}
-                      blurRadius={0}
                       source={require('../../../assets/images/Kolia-Verif.png')}
                     />
                     <Image
@@ -206,7 +300,7 @@ export const CharteEngagement = ({route, navigation}) => {
                     style={{top: 50}}
                     onPress={() => {
                       setButtonPressed('Photo');
-                      setModalCharteVisible(false);
+                      openCamera();
                     }}
                     accessibilityLabel="Prendre une photo">
                     <Text

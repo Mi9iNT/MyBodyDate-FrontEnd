@@ -11,7 +11,8 @@ import {
 import {BlurView} from '@react-native-community/blur';
 import Styles from '../../../assets/style/Styles';
 import {NativeModules} from 'react-native';
-import { BtnNext } from '../../composants/BtnNext';
+import {BtnNext} from '../../composants/BtnNext';
+import StylesLangParler from '../../../assets/style/styleScreens/styleRegister/StyleLangParler';
 
 //Home Screen
 export const LangueParler = ({route, navigation}) => {
@@ -124,289 +125,209 @@ export const LangueParler = ({route, navigation}) => {
     [selectedValues];
   console.log(lang);
 
-  const styles = StyleSheet.create({
-    modal: {
-      backgroundColor: 'transparent',
-      borderRadius: 10,
-      padding: 10,
-      width: '60%',
-      alignSelf: 'center',
-      marginTop: '50%',
-      top: 340,
-    },
-    item: {
-      fontSize: 18,
-      padding: 10,
-    },
-    btnModal: {
-      backgroundColor: 'transparent',
-      borderRadius: 50,
-      borderWidth: 2,
-      bottom: 120,
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderColor: '#cacaca',
-      alignSelf: 'center',
-      height: 60,
-      width: '80%',
-    },
-    blurView: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    absolute: {
-      position: 'absolute',
-      top: 510,
-      height: 90,
-      width: '100%',
-      alignSelf: 'center',
-      borderRadius: 50,
-    },
-    textGray: {
-      color: '#cacaca',
-      fontSize: 16,
-    },
-  });
+  const styles = StyleSheet.create({});
 
   return (
-    <View style={Styles.container}>
+    <View style={StylesLangParler.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesLangParler.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText, {top: 100}]}>
-          <Text style={[Styles.textWhiteCenter]}>LANGUE PARLÉES ?</Text>
+        <View style={[StylesLangParler.ViewText]}>
+          <Text style={[StylesLangParler.TxtTitle]}>LANGUE PARLÉES ?</Text>
         </View>
-        <View style={[Styles.ViewInputRadioLang, {top: 80}]}>
+        <View style={[StylesLangParler.ViewInputRadioLang]}>
           <View style={{flex: 2}}>
             <TouchableOpacity
-              style={Styles.btnInputLang}
+              style={StylesLangParler.btnInputLang}
               onPress={() => handleSelection('Français')}
               accessibilityLabel="Français">
               <Image
-                style={Styles.SelectedImage}
+                style={StylesLangParler.SelectedImage}
                 source={
                   selectedValues.includes('Français')
                     ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
-              <Text style={Styles.textBtnInputLang}>Français</Text>
+              <Text style={StylesLangParler.textBtnInputLang}>Français</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={Styles.btnInputLang}
+              style={StylesLangParler.btnInputLang}
               onPress={() => handleSelection('Espagnol')}
               accessibilityLabel="Espagnol">
               <Image
-                style={Styles.SelectedImage}
+                style={StylesLangParler.SelectedImage}
                 source={
                   selectedValues.includes('Espagnol')
                     ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
-              <Text style={Styles.textBtnInputLang}>Espagnol Castillan</Text>
+              <Text style={StylesLangParler.textBtnInputLang}>Espagnol Castillan</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={Styles.btnInputLang}
+              style={StylesLangParler.btnInputLang}
               onPress={() => handleSelection('Néerlandais')}
               accessibilityLabel="Néerlandais">
               <Image
-                style={Styles.SelectedImage}
+                style={StylesLangParler.SelectedImage}
                 source={
                   selectedValues.includes('Néerlandais')
                     ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
-              <Text style={Styles.textBtnInputLang}>Néerlandais</Text>
+              <Text style={StylesLangParler.textBtnInputLang}>Néerlandais</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={Styles.btnInputLang}
+              style={StylesLangParler.btnInputLang}
               onPress={() => handleSelection('Portugais')}
               accessibilityLabel="Portugais">
               <Image
-                style={Styles.SelectedImage}
+                style={StylesLangParler.SelectedImage}
                 source={
                   selectedValues.includes('Portugais')
                     ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
-              <Text style={Styles.textBtnInputLang}>Portugais</Text>
+              <Text style={StylesLangParler.textBtnInputLang}>Portugais</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={Styles.btnInputLang}
+              style={StylesLangParler.btnInputLang}
               onPress={() => handleSelection('Polonais')}
               accessibilityLabel="Poonais">
               <Image
-                style={Styles.SelectedImage}
+                style={StylesLangParler.SelectedImage}
                 source={
                   selectedValues.includes('Polonais')
                     ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
-              <Text style={Styles.textBtnInputLang}>Polonais</Text>
+              <Text style={StylesLangParler.textBtnInputLang}>Polonais</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={Styles.btnInputLang}
+              style={StylesLangParler.btnInputLang}
               onPress={() => handleSelection('Chinois')}
               accessibilityLabel="Chinois mandarin">
               <Image
-                style={Styles.SelectedImage}
+                style={StylesLangParler.SelectedImage}
                 source={
                   selectedValues.includes('Chinois')
                     ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
-              <Text style={Styles.textBtnInputLang}>Chinois mandarin</Text>
+              <Text style={StylesLangParler.textBtnInputLang}>Chinois mandarin</Text>
             </TouchableOpacity>
           </View>
           <View style={{flex: 2}}>
             <TouchableOpacity
-              style={Styles.btnInputLang}
+              style={StylesLangParler.btnInputLang}
               onPress={() => handleSelection('Anglais')}
               accessibilityLabel="Anglais">
               <Image
-                style={Styles.SelectedImage}
+                style={StylesLangParler.SelectedImage}
                 source={
                   selectedValues.includes('Anglais')
                     ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
-              <Text style={Styles.textBtnInputLang}>Anglais</Text>
+              <Text style={StylesLangParler.textBtnInputLang}>Anglais</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={Styles.btnInputLang}
+              style={StylesLangParler.btnInputLang}
               onPress={() => handleSelection('Allemand')}
               accessibilityLabel="Allemand">
               <Image
-                style={Styles.SelectedImage}
+                style={StylesLangParler.SelectedImage}
                 source={
                   selectedValues.includes('Allemand')
                     ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
-              <Text style={Styles.textBtnInputLang}>Allemand</Text>
+              <Text style={StylesLangParler.textBtnInputLang}>Allemand</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={Styles.btnInputLang}
+              style={StylesLangParler.btnInputLang}
               onPress={() => handleSelection('Italien')}
               accessibilityLabel="Italien">
               <Image
-                style={Styles.SelectedImage}
+                style={StylesLangParler.SelectedImage}
                 source={
                   selectedValues.includes('Italien')
                     ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
-              <Text style={Styles.textBtnInputLang}>Italien</Text>
+              <Text style={StylesLangParler.textBtnInputLang}>Italien</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={Styles.btnInputLang}
+              style={StylesLangParler.btnInputLang}
               onPress={() => handleSelection('Arabe')}
               accessibilityLabel="Arabe">
               <Image
-                style={Styles.SelectedImage}
+                style={StylesLangParler.SelectedImage}
                 source={
                   selectedValues.includes('Arabe')
                     ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
-              <Text style={Styles.textBtnInputLang}>Arabe</Text>
+              <Text style={StylesLangParler.textBtnInputLang}>Arabe</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={Styles.btnInputLang}
+              style={StylesLangParler.btnInputLang}
               onPress={() => handleSelection('Grec')}
               accessibilityLabel="Grec">
               <Image
-                style={Styles.SelectedImage}
+                style={StylesLangParler.SelectedImage}
                 source={
                   selectedValues.includes('Grec')
                     ? require('../../../assets/images/radio_selected.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
-              <Text style={Styles.textBtnInputLang}>Grec</Text>
+              <Text style={StylesLangParler.textBtnInputLang}>Grec</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={Styles.btnInputLang}
+              style={StylesLangParler.btnInputLang}
               onPress={() => handleSelection('Japonnais')}
               accessibilityLabel="Japonnais">
               <Image
-                style={Styles.SelectedImage}
+                style={StylesLangParler.SelectedImage}
                 source={
                   selectedValues.includes('Japonnais')
                     ? require('../../../assets/images/radio_selected_noir.png')
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
-              <Text style={Styles.textBtnInputLang}>Japonnais</Text>
+              <Text style={StylesLangParler.textBtnInputLang}>Japonnais</Text>
             </TouchableOpacity>
           </View>
         </View>
         <View style={{top: 120}}>
-          <Text style={[Styles.textWhite3, {left: 30,fontSize:12}]}>Choix multiples.</Text>
-          <View style={[Styles.line]} />
+          <Text style={[StylesLangParler.textWhite]}>Choix multiples.</Text>
+          <View style={[StylesLangParler.line]} />
         </View>
 
         <View style={[{top: 280}]}>
           <TouchableOpacity
-            style={[Styles.row, styles.btnModal]}
+            style={[Styles.row, StylesLangParler.btnModal]}
             onPress={() => setModalVisible(false)}
             accessibilityLabel="Afficher Modal">
-            <Text style={[styles.item, Styles.textGrayCenter]}>
+            <Text
+              style={[StylesLangParler.item, StylesLangParler.textGrayCenter]}>
               {localeLang}
             </Text>
-            <Image
-              style={[Styles.SelectedImage, Styles.ml20]}
-              source={require('../../../assets/images/arrow-down.png')}
-            />
           </TouchableOpacity>
-          <Text style={[Styles.textWhiteCenter2, {bottom: 100}]}>
+          <Text style={[StylesLangParler.textWhiteCenter2]}>
             Langue de votre appareil.
           </Text>
         </View>
-        {/* <View style={[{bottom: 30}]}>
-          <TouchableOpacity
-            onPress={() => {
-              setButtonPressed('Continuer');
-              navigation.navigate('Situation', {
-                userConsent: consentement,
-                routeName: routeChoice,
-                loveCoach: loveCoach,
-                userEmail: userEmail,
-                userPhone: userPhone,
-                userCity: userCity,
-                accesPosition: accesPosition,
-                genre: genre,
-                userBirth: userBirth,
-                userSize: userSize,
-                userLang: lang,
-              });}
-            }
-            accessibilityLabel="Continuer">
-            <Text style={[Styles.textBtn9, {zIndex: 1, top: 40, color:buttonPressed === 'Continuer' ? '#fff' : '#0019A7'}]}>
-              Continuer
-            </Text>
-            <Image
-              style={[
-                {
-                  height: 56,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={buttonPressed === 'Continuer' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc.png')}
-            />
-          </TouchableOpacity>
-        </View> */}
         <Modal
           animationType="slide"
           transparent={true}
@@ -415,20 +336,24 @@ export const LangueParler = ({route, navigation}) => {
           <TouchableOpacity
             onPress={() => setModalVisible(false)}
             accessibilityLabel="Fermer Modal">
-            <Image key={'blurryImage'} style={styles.absolute} />
+            <Image key={'blurryImage'} />
             <BlurView
-              style={styles.absolute}
+              style={StylesLangParler.absoluteBlur}
               blurType="light"
               blurAmount={10}
               reducedTransparencyFallbackColor="white"
             />
-            <View style={styles.modal}>
+            <View style={StylesLangParler.modal}>
               <TouchableOpacity
                 onPress={() => {
                   setSelectedLang(localeLang);
                   setModalVisible(false);
                 }}>
-                <Text style={[styles.item, Styles.textWhiteCenter]}>
+                <Text
+                  style={[
+                    StylesLangParler.item,
+                    StylesLangParler.textWhiteCenter,
+                  ]}>
                   {localeLang}
                 </Text>
               </TouchableOpacity>
@@ -441,7 +366,7 @@ export const LangueParler = ({route, navigation}) => {
           navigateTo={'Situation'}
           txt={'Continuer'}
           background={'white'}
-          top={220}
+          top={260}
         />
       </ImageBackground>
     </View>

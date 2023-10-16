@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
 import Logo from '../../composants/Logo';
+import StylesLinksSignIn from '../../../assets/style/styleScreens/styleRegister/StyleLinksSignIn';
 
 export const LinksSignIn = ({route, navigation}) => {
   // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
@@ -21,27 +22,28 @@ export const LinksSignIn = ({route, navigation}) => {
   const [buttonPressed, setButtonPressed] = useState();
 
   return (
-    <View style={Styles.container}>
+    <View style={StylesLinksSignIn.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesLinksSignIn.bgGradient}
         source={require('../../../assets/images/Background.png')}>
         <Logo />
 
-        <View style={Styles.ViewText2}>
-          <Text style={[Styles.textWhite, Styles.fb, {left: 30, fontSize:24}]}>
+        <View style={StylesLinksSignIn.ViewText}>
+          <Text style={[StylesLinksSignIn.textTitle, Styles.fb]}>
             UN COUP DE COEUR
           </Text>
-          <Text style={[Styles.textWhite, Styles.fb, {left: 30, fontSize:24}]}>
+          <Text style={[StylesLinksSignIn.textTitle, Styles.fb]}>
             N'ATTEND PAS
           </Text>
-          <Text style={[Styles.textWhite, Styles.fl, {top: 20, left: 30, fontSize:24}]}>
-            NE PERDEZ PLUS RIEN...{' '}
+          <Text style={[StylesLinksSignIn.textTitle2, Styles.fl, {top: 20}]}>
+            NE PERDEZ PLUS RIEN...
           </Text>
         </View>
 
-        <View style={[Styles.ViewBtnLog, {bottom: 20, width:'80%', alignSelf:'center'}]}>
+        <View style={[StylesLinksSignIn.ViewBtnLog]}>
           <View style={[{bottom: 40}]}>
             <TouchableOpacity
+              style={[StylesLinksSignIn.btn]}
               accessibilityLabel="Se connecter par email"
               onPress={() => {
                 navigation.navigate("S'inscrire par mail", {
@@ -51,17 +53,11 @@ export const LinksSignIn = ({route, navigation}) => {
                 });
                 setButtonPressed('mail');
               }}>
-              <Text style={[Styles.textBtn6, {zIndex: 1, top: 40, fontSize:18}]}>
+              <Text style={[StylesLinksSignIn.textBtn]}>
                 S'inscrire par email
               </Text>
               <Image
-                style={{
-                  width: 331,
-                  height: 56,
-                  flexShrink: 0,
-                  alignSelf: 'center',
-                  resizeMode:'contain',
-                }}
+                style={StylesLinksSignIn.imgBtn}
                 source={
                   buttonPressed === 'mail'
                     ? require('../../../assets/boutons/Bouton-Rouge-Email.png')
@@ -70,6 +66,7 @@ export const LinksSignIn = ({route, navigation}) => {
               />
             </TouchableOpacity>
             <TouchableOpacity
+              style={[StylesLinksSignIn.btn, Styles.mt20]}
               onPress={() => {
                 navigation.navigate("S'inscrire par numero", {
                   userConsent: consentement,
@@ -79,17 +76,11 @@ export const LinksSignIn = ({route, navigation}) => {
                 setButtonPressed('numero');
               }}
               accessibilityLabel="Se connecter avec son numéro de téléphone">
-              <Text style={[Styles.textBtn6, {zIndex: 2, top: 40, fontSize:18, left: 10}]}>
+              <Text style={[StylesLinksSignIn.textBtn2]}>
                 S'inscrire avec son n°
               </Text>
               <Image
-                style={{
-                  width: 331,
-                  height: 56,
-                  flexShrink: 0,
-                  alignSelf: 'center',
-                  resizeMode: 'contain',
-                }}
+                style={[StylesLinksSignIn.imgBtn]}
                 source={
                   buttonPressed === 'numero'
                     ? require('../../../assets/boutons/Bouton-Rouge-Telephone.png')
@@ -99,8 +90,8 @@ export const LinksSignIn = ({route, navigation}) => {
             </TouchableOpacity>
             <View style={[{top: 20}]}>
               <View>
-                <Text style={[Styles.textBtn, Styles.mb2, Styles.fl]}>
-                  {' '}
+                <Text
+                  style={[StylesLinksSignIn.textWhite, Styles.mb2, Styles.fl]}>
                   Vous n'avez pas de compte ?
                 </Text>
                 <TouchableOpacity
@@ -112,18 +103,9 @@ export const LinksSignIn = ({route, navigation}) => {
                     })
                   }
                   accessibilityLabel="Se connecter">
-                  <Text
-                    style={[
-                      Styles.textBtn,
-                      Styles.mb,
-                      Styles.fb,
-                      {top: 5, textDecorationLine: 'underline'},
-                    ]}>
-                    {' '}
-                    Se connecter
-                  </Text>
+                  <Text style={[StylesLinksSignIn.linkWhite]}>Se connecter</Text>
                 </TouchableOpacity>
-                <View style={[Styles.line, {top:10}]} />
+                <View style={[StylesLinksSignIn.line]} />
               </View>
 
               <View>
@@ -136,14 +118,7 @@ export const LinksSignIn = ({route, navigation}) => {
                     })
                   }
                   accessibilityLabel="Récupération email">
-                  <Text
-                    style={[
-                      Styles.textBtnBlue,
-                      Styles.mb,
-                      Styles.underline,
-                      Styles.fb,
-                    ]}>
-                    {' '}
+                  <Text style={[StylesLinksSignIn.linkBlue]}>
                     Récupérez mon compte.
                   </Text>
                 </TouchableOpacity>

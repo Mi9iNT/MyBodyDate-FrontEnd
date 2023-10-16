@@ -16,6 +16,7 @@ import {
   request,
   RESULTS,
 } from 'react-native-permissions';
+import StylesAccesPosition from '../../../assets/style/styleScreens/styleRegister/StyleAccesPosition';
 
 export const AccesPosition = ({route, navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -165,58 +166,34 @@ export const AccesPosition = ({route, navigation}) => {
   }, []);
 
   return (
-    <View style={Styles.container}>
+    <View style={StylesAccesPosition.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesAccesPosition.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText]}>
-          <Text style={[Styles.textTitleWhite2, {top: 130, left: 30}]}>
-            AUTORISEZ L&apos;ACCÈS À{'\n'}VOTRE POSITION
-          </Text>
-        </View>
-
-        <View style={[Styles.ViewImg, {top: 50}]}>
-          <View style={[Styles.BlockImg]}>
+        <Text style={[StylesAccesPosition.textTitleWhite]}>
+          AUTORISEZ L&apos;ACCÈS À
+        </Text>
+        <Text style={[StylesAccesPosition.textTitleWhite]}>VOTRE POSITION</Text>
+        <View style={[StylesAccesPosition.ViewImg]}>
+          <View style={[StylesAccesPosition.BlockImg]}>
             <Image
-              style={Styles.ImgBulle}
+              style={StylesAccesPosition.ImgBulle}
               source={require('../../../assets/images/emplacement.png')}
             />
           </View>
-          <Text
-            style={[
-              {
-                top: 50,
-                width: '90%',
-                alignSelf: 'center',
-                color: '#FFF',
-                fontFamily: 'Comfortaa',
-                fontSize: 12,
-                fontWeight: 700,
-              },
-            ]}>
+          <Text style={[StylesAccesPosition.Description]}>
             Pour retrouver les personnes que vous croisez, nous avons besoin de
             savoir où vous êtes .
           </Text>
-          <Text
-            style={[
-              {
-                top: 150,
-                width: '90%',
-                alignSelf: 'center',
-                color: '#FFF',
-                fontFamily: 'Comfortaa',
-                fontSize: 12,
-                fontWeight: 700,
-              },
-            ]}>
+          <Text style={[StylesAccesPosition.Description2]}>
             Choisissez “ Lorsque vous utilisez l&apos;application” pour ne rater
             aucune rencontre.
           </Text>
         </View>
 
-        <View style={[{top: -20}]}>
+        <View style={[{bottom: 40}]}>
           <TouchableOpacity
-            style={Styles.btn}
+            style={{}}
             onPress={() => {
               setModalVisible(true);
               setButtonPressed('Go');
@@ -225,14 +202,7 @@ export const AccesPosition = ({route, navigation}) => {
               C&apos;est parti
             </Text>
             <Image
-              style={[
-                {
-                  width: '100%',
-                  height: 56,
-                  alignSelf: 'center',
-                  resizeMode: 'contain',
-                },
-              ]}
+              style={[StylesAccesPosition.ImgBtn]}
               source={
                 buttonPressed === 'Go'
                   ? require('../../../assets/boutons/Bouton-Rouge.png')
@@ -251,29 +221,15 @@ export const AccesPosition = ({route, navigation}) => {
               requestLocationPermission;
               setModalVisible(!modalVisible);
             }}>
-            <View style={[Styles.centeredView, {top: 200}]}>
+            <View style={[StylesAccesPosition.centeredView, {top: 200}]}>
               <Image
-                style={[
-                  {
-                    bottom: 180,
-                    width: 40,
-                    resizeMode: 'contain',
-                  },
-                ]}
+                style={[StylesAccesPosition.IcoPosition]}
                 source={require('../../../assets/boutons/ico-position.png')}
               />
-              <Text
-                style={[
-                  Styles.textBlack,
-                  {bottom: 160, width: '90%', textAlign: 'center'},
-                ]}>
+              <Text style={[StylesAccesPosition.textBlack2]}>
                 Autoriser MY BODY DATE à accéder à la position de cet appareil ?
               </Text>
-              <View
-                style={[
-                  {bottom: 140, width: '90%', justifyContent: 'space-around'},
-                  Styles.row,
-                ]}>
+              <View style={[StylesAccesPosition.RowModal]}>
                 <TouchableOpacity
                   onPress={() => {
                     requestLocationFinePermission();
@@ -281,18 +237,16 @@ export const AccesPosition = ({route, navigation}) => {
                   }}>
                   <Image
                     source={require('../../../assets/images/position-exacte.png')}
-                    style={{
-                      width: 140,
-                      height: 140,
-                      resizeMode: 'contain',
-                      borderRadius: 100,
-                      borderColor: '#0019A7',
-                      borderWidth: buttonPerm === 'Exact' ? 2 : 0,
-                    }}
+                    style={[
+                      StylesAccesPosition.IcoPermission,
+                      {
+                        borderWidth: buttonPerm === 'Exact' ? 2 : 0,
+                      },
+                    ]}
                   />
                   <Text
                     style={[
-                      Styles.textBlackBold2,
+                      StylesAccesPosition.textBlackBold,
                       {top: 10, fontWeight: buttonPerm === 'Exact' ? 700 : 500},
                     ]}>
                     Exacte
@@ -305,20 +259,17 @@ export const AccesPosition = ({route, navigation}) => {
                   }}>
                   <Image
                     source={require('../../../assets/images/position-approximative.png')}
-                    style={{
-                      width: 140,
-                      height: 140,
-                      resizeMode: 'contain',
-                      borderRadius: 100,
-                      borderColor: '#0019A7',
-                      borderWidth: buttonPerm === 'Approximative' ? 2 : 0,
-                    }}
+                    style={[
+                      StylesAccesPosition.IcoPermission,
+                      {
+                        borderWidth: buttonPerm === 'Approximative' ? 2 : 0,
+                      },
+                    ]}
                   />
                   <Text
                     style={[
-                      Styles.textBlackBold2,
+                      StylesAccesPosition.textBlackBold2,
                       {
-                        top: 10,
                         fontWeight: buttonPerm === 'Approximative' ? 700 : 500,
                       },
                     ]}>
@@ -329,13 +280,14 @@ export const AccesPosition = ({route, navigation}) => {
               <View>
                 <TouchableOpacity
                   onPress={() => requestLocationFinePermission()}>
-                  <Text style={[Styles.textBlack, {bottom: 100}]}>
+                  <Text style={[StylesAccesPosition.textBlack, {bottom: 100}]}>
                     Lorsque vous utilisez l&apos;application
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => requestLocationFinePermission()}>
-                  <Text style={[Styles.textBlackBold, {bottom: 80}]}>
+                  <Text
+                    style={[StylesAccesPosition.textBlackBold, {bottom: 80}]}>
                     Uniquement cette fois-ci
                   </Text>
                 </TouchableOpacity>
@@ -351,7 +303,8 @@ export const AccesPosition = ({route, navigation}) => {
                       accesPosition: 'denied',
                     });
                   }}>
-                  <Text style={[Styles.textBlackBold, {bottom: 60}]}>
+                  <Text
+                    style={[StylesAccesPosition.textBlackBold, {bottom: 60}]}>
                     Ne pas autoriser
                   </Text>
                 </TouchableOpacity>

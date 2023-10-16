@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Styles from '../../../assets/style/Styles';
+import {BtnNext} from '../../composants/BtnNext';
 
 /* Screen 2 */
 
@@ -201,7 +202,15 @@ export const ProfilMultiples = ({route, navigation}) => {
             ]}>
             Voir les profils dans les paramètres plus tard
           </Text>
-          <View style={[{top: 120}]}>
+          <BtnNext
+            route={route}
+            navigation={navigation}
+            navigateTo={'Prenium'}
+            txt={'Continuer'}
+            background={'white'}
+            top={150}
+          />
+          {/* <View style={[{top: 120}]}>
             <TouchableOpacity
               style={Styles.btn}
               onPress={() => {
@@ -255,7 +264,7 @@ export const ProfilMultiples = ({route, navigation}) => {
                 }
               />
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
       </ImageBackground>
     </View>
