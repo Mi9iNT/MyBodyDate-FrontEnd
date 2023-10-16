@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
-import { BtnNext } from '../../composants/BtnNext';
+import {BtnNext} from '../../composants/BtnNext';
+import StylesAffinite from '../../../assets/style/styleScreens/styleRegister/StyleAffinite';
 
 export const Affinite = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
@@ -60,236 +61,121 @@ export const Affinite = ({route, navigation}) => {
   };
 
   return (
-    <View style={Styles.container}>
+    <View style={StylesAffinite.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesAffinite.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText, Styles.mt100]}>
-          <Text style={[Styles.textWhiteCenter]}>VOS AFFINITÉS ?</Text>
-        </View>
+        <Text style={[StylesAffinite.TxtTitle]}>VOS AFFINITÉS ?</Text>
 
-        <View style={[Styles.ViewBTNSelect2, {top: 60}]}>
+        <View style={[StylesAffinite.ViewBTNSelect]}>
           <TouchableOpacity
-            style={[
-              {
-                width: '80%',
-                maxHeight: 70,
-                padding: 10,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesAffinite.btnSelect]}
             onPress={() => handleButtonPress('Cuisine & Gourmet')}
             accessibilityLabel="Cuisine & Gourmet">
             <Text
-              style={{
-                color: selectedAffinite.includes('Cuisine & Gourmet')
-                  ? '#0019A7'
-                  : '#FFF',
-                textAlign: 'center',
-                fontFamily: selectedAffinite.includes('Cuisine & Gourmet')
-                  ? 'Comfortaa-Bold'
-                  : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-              }}>
+              style={[
+                StylesAffinite.txtBtnSelect,
+                {
+                  color: selectedAffinite.includes('Cuisine & Gourmet')
+                    ? '#0019A7'
+                    : '#FFF',
+                  fontFamily: selectedAffinite.includes('Cuisine & Gourmet')
+                    ? 'Comfortaa-Bold'
+                    : 'Comfortaa',
+                },
+              ]}>
               Cuisine & Gourmet
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[
-              Styles.mt10,
-              {
-                width: '80%',
-                maxHeight: 70,
-                padding: 10,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesAffinite.btnSelect]}
             onPress={() => handleButtonPress('Globe Trotter')}
             accessibilityLabel="Globe Trotter">
             <Text
-              style={{
-                color: selectedAffinite.includes('Globe Trotter')
-                  ? '#0019A7'
-                  : '#FFF',
-                textAlign: 'center',
-                fontFamily: selectedAffinite.includes('Globe Trotter')
-                  ? 'Comfortaa-Bold'
-                  : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-              }}>
+              style={[
+                StylesAffinite.txtBtnSelect,
+                {
+                  color: selectedAffinite.includes('Globe Trotter')
+                    ? '#0019A7'
+                    : '#FFF',
+                  fontFamily: selectedAffinite.includes('Globe Trotter')
+                    ? 'Comfortaa-Bold'
+                    : 'Comfortaa',
+                },
+              ]}>
               Globe Trotter
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[
-              Styles.mt10,
-              {
-                width: '80%',
-                maxHeight: 70,
-                padding: 10,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesAffinite.btnSelect]}
             onPress={() => handleButtonPress('Fan de Musée & Culture')}
             accessibilityLabel="Fan de Musée & Culture">
             <Text
-              style={{
-                color: selectedAffinite.includes('Fan de Musée & Culture')
-                  ? '#0019A7'
-                  : '#FFF',
-                textAlign: 'center',
-                fontFamily: selectedAffinite.includes('Fan de Musée & Culture')
-                  ? 'Comfortaa-Bold'
-                  : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-              }}>
+              style={[
+                StylesAffinite.txtBtnSelect,
+                {
+                  color: selectedAffinite.includes('Fan de Musée & Culture')
+                    ? '#0019A7'
+                    : '#FFF',
+                  fontFamily: selectedAffinite.includes(
+                    'Fan de Musée & Culture',
+                  )
+                    ? 'Comfortaa-Bold'
+                    : 'Comfortaa',
+                },
+              ]}>
               Fan de Musée & Culture
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[
-              Styles.mt10,
-              {
-                width: '80%',
-                maxHeight: 70,
-                padding: 10,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesAffinite.btnSelect]}
             onPress={() => handleButtonPress('Amis.es des Animaux')}
             accessibilityLabel="Rien de très sérieux">
             <Text
-              style={{
-                color: selectedAffinite.includes('Amis.es des Animaux')
-                  ? '#0019A7'
-                  : '#FFF',
-                textAlign: 'center',
-                fontFamily: selectedAffinite.includes('Amis.es des Animaux')
-                  ? 'Comfortaa-Bold'
-                  : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-              }}>
+              style={[
+                StylesAffinite.txtBtnSelect,
+                {
+                  color: selectedAffinite.includes('Amis.es des Animaux')
+                    ? '#0019A7'
+                    : '#FFF',
+                  fontFamily: selectedAffinite.includes('Amis.es des Animaux')
+                    ? 'Comfortaa-Bold'
+                    : 'Comfortaa',
+                },
+              ]}>
               Amis.es des Animaux
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[
-              Styles.mt10,
-              {
-                width: '80%',
-                maxHeight: 70,
-                padding: 10,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesAffinite.btnSelect]}
             onPress={() => handleButtonPress('Sportif.ve')}
             accessibilityLabel="Sportif.ve">
             <Text
-              style={{
-                color: selectedAffinite.includes('Sportif.ve')
-                  ? '#0019A7'
-                  : '#FFF',
-                textAlign: 'center',
-                fontFamily: selectedAffinite.includes('Sportif.ve')
-                  ? 'Comfortaa-Bold'
-                  : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-              }}>
+              style={[
+                StylesAffinite.txtBtnSelect,
+                {
+                  color: selectedAffinite.includes('Sportif.ve')
+                    ? '#0019A7'
+                    : '#FFF',
+                  fontFamily: selectedAffinite.includes('Sportif.ve')
+                    ? 'Comfortaa-Bold'
+                    : 'Comfortaa',
+                },
+              ]}>
               Sportif.ve
             </Text>
           </TouchableOpacity>
         </View>
 
-        <View style={{top: 220, left: 40}}>
-          <Text style={[Styles.textWhite2, {fontSize: 12}]}>
-            Choix multiple.
-          </Text>
-        </View>
+        <Text style={[StylesAffinite.textWhite]}>Choix multiple.</Text>
         <BtnNext
           route={route}
           navigation={navigation}
           navigateTo={'Rythme1'}
           txt={'Continuer'}
           background={'white'}
-          top={120}
+          top={170}
         />
-        {/* <View style={[Styles.ViewBtn2, {top: 90}]}>
-          <TouchableOpacity
-            style={Styles.btn}
-            onPress={() => {
-              setButtonPressed('Continuer');
-              navigation.navigate('Rythme1', {
-                userConsent: consentement,
-                routeName: routeChoice,
-                loveCoach: loveCoach,
-                userEmail: userEmail,
-                userPhone: userPhone,
-                userCity: userCity,
-                accesPosition: accesPosition,
-                genre: genre,
-                userBirth: userBirth,
-                userSize: userSize,
-                userLang: userLang,
-                userSituation: userSituation,
-                userOrientation: userOrientation,
-                userRecherche1: userRecherche1,
-                userRecherche2: userRecherche2,
-                userAffinites: selectedAffinite,
-              });
-            }}
-            accessibilityLabel="Continuer">
-            <Text
-              style={[
-                Styles.textBtn9,
-                {
-                  zIndex: 1,
-                  top: 40,
-                  color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
-                },
-              ]}>
-              Continuer
-            </Text>
-            <Image
-              style={[
-                {
-                  height: 56,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={
-                buttonPressed === 'Continuer'
-                  ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Blanc.png')
-              }
-            />
-          </TouchableOpacity>
-        </View> */}
       </ImageBackground>
     </View>
   );

@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Styles from '../../../assets/style/Styles';
-import { BtnNext } from '../../composants/BtnNext';
+import {BtnNext} from '../../composants/BtnNext';
+import StylesRecherche1 from '../../../assets/style/styleScreens/styleRegister/StyleRecherche1';
 
 export const Recherche1 = ({route, navigation}) => {
   const [recherche1, setState] = useState('');
@@ -52,154 +53,70 @@ export const Recherche1 = ({route, navigation}) => {
       <ImageBackground
         style={Styles.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText, {top: 100}]}>
-          <Text style={[Styles.textTitleWhite3]}>VOTRE RECHERCHE ?</Text>
-        </View>
+        <Text style={[StylesRecherche1.TxtTitle]}>VOTRE RECHERCHE ?</Text>
 
-        <View style={[Styles.ViewBTNSelect, {top: 180}]}>
+        <View style={[StylesRecherche1.ViewBTNSelect]}>
           <TouchableOpacity
-            style={[
-              Styles.mt20,
-              {
-                width: '80%',
-                maxHeight: 70,
-                padding: 10,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesRecherche1.btnSelect]}
             onPress={() => handleRecherche1('Homme')}
             accessibilityLabel="Homme">
             <Text
-              style={{
-                color: recherche1 === 'Homme' ? '#0019A7' : '#FFF',
-                textAlign: 'center',
-                fontFamily:
-                  recherche1 === 'Homme' ? 'Comfortaa-Bold' : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-              }}>
+              style={[
+                StylesRecherche1.txtBtnSelect,
+                {
+                  color: recherche1 === 'Homme' ? '#0019A7' : '#FFF',
+                  fontFamily:
+                    recherche1 === 'Homme' ? 'Comfortaa-Bold' : 'Comfortaa',
+                },
+              ]}>
               Homme
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[
-              Styles.mt20,
-              {
-                width: '80%',
-                maxHeight: 70,
-                padding: 10,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesRecherche1.btnSelect]}
             onPress={() => handleRecherche1('Femme')}
             accessibilityLabel="Femme">
             <Text
-              style={{
-                color: recherche1 === 'Femme' ? '#0019A7' : '#FFF',
-                textAlign: 'center',
-                fontFamily:
-                  recherche1 === 'Femme' ? 'Comfortaa-Bold' : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-              }}>
+              style={[
+                StylesRecherche1.txtBtnSelect,
+                {
+                  color: recherche1 === 'Femme' ? '#0019A7' : '#FFF',
+                  fontFamily:
+                    recherche1 === 'Femme' ? 'Comfortaa-Bold' : 'Comfortaa',
+                },
+              ]}>
               Femme
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[
-              Styles.mt20,
-              {
-                width: '80%',
-                maxHeight: 70,
-                padding: 10,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesRecherche1.btnSelect]}
             onPress={() => handleRecherche1('Tout le monde')}
             accessibilityLabel="Tout le monde">
             <Text
-              style={{
-                color: recherche1 === 'Tout le monde' ? '#0019A7' : '#FFF',
-                textAlign: 'center',
-                fontFamily:
-                  recherche1 === 'Tout le monde'
-                    ? 'Comfortaa-Bold'
-                    : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-              }}>
+              style={[
+                StylesRecherche1.txtBtnSelect,
+                {
+                  color: recherche1 === 'Tout le monde' ? '#0019A7' : '#FFF',
+                  fontFamily:
+                    recherche1 === 'Tout le monde'
+                      ? 'Comfortaa-Bold'
+                      : 'Comfortaa',
+                },
+              ]}>
               Tout le monde
             </Text>
           </TouchableOpacity>
         </View>
 
-        <View style={{top: 280, left: 40}}>
-          <Text style={[Styles.textWhite2, {fontSize: 12}]}>Choix unique.</Text>
-        </View>
+        <Text style={[StylesRecherche1.textWhite]}>Choix unique.</Text>
         <BtnNext
           route={route}
           navigation={navigation}
           navigateTo={'Recherche2'}
           txt={'Continuer'}
           background={'white'}
-          top={160}
+          top={260}
         />
-        {/* <View style={[Styles.ViewBtn2, {top: 140}]}>
-          <TouchableOpacity
-            style={Styles.btn}
-            onPress={() => {
-              setButtonPressed('Continuer');
-              navigation.navigate('Recherche2', {
-                userConsent: consentement,
-                routeName: routeChoice,
-                loveCoach: loveCoach,
-                userEmail: userEmail,
-                userPhone: userPhone,
-                userCity: userCity,
-                accesPosition: accesPosition,
-                genre: genre,
-                userBirth: userBirth,
-                userSize: userSize,
-                userLang: userLang,
-                userSituation: userSituation,
-                userOrientation: userOrientation,
-                userRecherche1: recherche1,
-              });}
-            }
-            accessibilityLabel="Continuer">
-            <Text style={[Styles.textBtn9, {zIndex: 1, top: 40, color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7' }]}>
-              Continuer
-            </Text>
-            <Image
-              style={[
-                {
-                  
-                maxHeight: 70,
-                padding: 10,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={
-                buttonPressed === 'Continuer'
-                  ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Blanc.png')
-              }
-            />
-          </TouchableOpacity>
-        </View> */}
       </ImageBackground>
     </View>
   );

@@ -7,6 +7,7 @@ import {
   Image,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
+import {BtnNext} from '../../composants/BtnNext';
 
 /* Screen 2 */
 
@@ -105,24 +106,27 @@ export const Prenium = ({route, navigation}) => {
             inconnu.e dans le rue pour qu&apos;il{'\n'}
             vous retouve sur notre application.
           </Text>
-          <Image
-            style={[Styles.imgCard, {top: 120}]}
-            source={require('../../../assets/images/carte-visite.png')}
-          />
-          <TouchableOpacity onPress={() => handleRadioChange(!radioValue)}>
-            <View style={[Styles.radioInputContainerTwo, {top: 120}]}>
-              <Image
-                source={
-                  radioValue
-                    ? require('../../../assets/images/radio_selected.png')
-                    : require('../../../assets/images/radio_unselected.png')
-                }
-                style={{width: 20, height: 20}}
-              />
-              <Text style={[Styles.TextInputTwo]}>
-                Cocher, pour obtenir votre abnnement Prenium
-              </Text>
-            </View>
+          <TouchableOpacity style={[Styles.imgCard, {top: 110}]}>
+            <Image
+              style={[Styles.imgCard]}
+              source={require('../../../assets/images/carte-visite.png')}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => handleRadioChange(!radioValue)}
+            style={[Styles.radioInputContainerTwo, {top: 120}]}>
+            <Image
+              source={
+                radioValue
+                  ? require('../../../assets/images/radio_selected.png')
+                  : require('../../../assets/images/radio_unselected.png')
+              }
+              style={{width: 20, height: 20}}
+            />
+            <Text style={[Styles.TextInputTwo]}>
+              Cocher, pour obtenir votre abnnement Prenium
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={Styles.btn}
@@ -154,7 +158,15 @@ export const Prenium = ({route, navigation}) => {
               Voir les conditions d&apos;abonnement Prenium
             </Text>
           </TouchableOpacity>
-          <View style={[{top: 110}]}>
+          <BtnNext
+            route={route}
+            navigation={navigation}
+            navigateTo={'Compte'}
+            txt={'Continuer'}
+            background={'white'}
+            top={150}
+          />
+          {/* <View style={[{top: 110}]}>
             <TouchableOpacity
               style={Styles.btn}
               onPress={() => {
@@ -208,7 +220,7 @@ export const Prenium = ({route, navigation}) => {
                 }
               />
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
       </ImageBackground>
     </View>

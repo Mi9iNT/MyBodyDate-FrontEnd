@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {BtnNext} from '../../composants/BtnNext';
 import Styles from '../../../assets/style/Styles';
+import StylesVille from '../../../assets/style/styleScreens/styleRegister/StyleVille';
 
 export const Ville = ({route, navigation}) => {
   // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
@@ -30,16 +31,14 @@ export const Ville = ({route, navigation}) => {
   const [buttonPressed, setButtonPressed] = React.useState('');
 
   return (
-    <View style={Styles.container}>
+    <View style={StylesVille.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesVille.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText, {top: 150, left: 50}]}>
-          <Text style={[Styles.textTitleWhite2]}>VOTRE VILLE ?</Text>
-        </View>
-        <SafeAreaView style={[Styles.ViewInput, {top: 250}]}>
+        <Text style={[StylesVille.TxtTitle]}>VOTRE VILLE ?</Text>
+        <SafeAreaView style={[StylesVille.ViewInput]}>
           <TextInput
-            style={Styles.TextInput}
+            style={StylesVille.TextInput}
             keyboardType="default"
             placeholder="Entrez votre ville"
             placeholderTextColor="#FFF"
@@ -50,8 +49,8 @@ export const Ville = ({route, navigation}) => {
           <Text
             style={[
               {
-                top: 60,
-                left: 55,
+                top: 170,
+                left: 40,
                 color: '#FFF',
                 fontFamily: 'Comfortaa-Bold',
                 fontSize: 12,
@@ -66,53 +65,8 @@ export const Ville = ({route, navigation}) => {
           navigateTo={'Accès Position'}
           txt={'Continuer'}
           background={'white'}
-          top={280}
+          top={380}
         />
-
-        {/* <View style={[Styles.ViewBtn2, {top: 280}]}>
-          <TouchableOpacity
-            style={Styles.btn}
-            onPress={() => {
-              setButtonPressed('Continuer');
-              navigation.navigate('Accès Position', {
-                userConsent: consentement,
-                routeName: routeChoice,
-                loveCoach: loveCoach,
-                userEmail: userEmail,
-                userPhone: userPhone,
-                userCity: userCity,
-              });
-            }}
-            accessibilityLabel="Continuer">
-            <Text
-              style={[
-                Styles.textBtn9,
-                {
-                  zIndex: 1,
-                  top: 42,
-                  color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
-                },
-              ]}>
-              Continuer
-            </Text>
-            <Image
-              style={[
-                {
-                  top: 0,
-                  width: '90%',
-                  height: 56,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={
-                buttonPressed === 'Continuer'
-                  ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Blanc.png')
-              }
-            />
-          </TouchableOpacity>
-        </View> */}
       </ImageBackground>
     </View>
   );

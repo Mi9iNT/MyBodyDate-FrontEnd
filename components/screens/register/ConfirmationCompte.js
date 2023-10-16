@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import ConfirmHcaptcha from '@hcaptcha/react-native-hcaptcha';
 import Lottie from 'lottie-react-native';
 import Styles from '../../../assets/style/Styles';
+import { BtnNext } from '../../composants/BtnNext';
 
 const siteKey = 'e8489cc3-b124-4243-b0bd-abd6d596e104';
 const baseUrl = 'https://hcaptcha.com';
@@ -88,7 +89,7 @@ export const ConfirmationCompte = ({route, navigation}) => {
           <Lottie
             style={[
               {
-                bottom: 5,
+                bottom: 40,
                 width: '80%',
                 alignSelf: 'center',
                 resizeMode: 'contain',
@@ -102,7 +103,7 @@ export const ConfirmationCompte = ({route, navigation}) => {
             style={[
               Styles.textWhite2,
               {
-                top: 10,
+                bottom: 70,
                 alignSelf: 'center',
                 textAlign: 'center',
                 color: '#A70000',
@@ -119,7 +120,7 @@ export const ConfirmationCompte = ({route, navigation}) => {
           <Lottie
             style={[
               {
-                bottom: 30,
+                bottom: 60,
                 width: '80%',
                 alignSelf: 'center',
                 resizeMode: 'contain',
@@ -133,7 +134,7 @@ export const ConfirmationCompte = ({route, navigation}) => {
             style={[
               Styles.textWhite2,
               {
-                bottom: 20,
+                bottom: 90,
                 alignSelf: 'center',
                 textAlign: 'center',
                 color: '#0019A7',
@@ -186,7 +187,7 @@ export const ConfirmationCompte = ({route, navigation}) => {
               <Image
                 style={[
                   {
-                    top: -30,
+                    bottom: 30,
                     width: '80%',
                     height: 60,
                     resizeMode: 'contain',
@@ -198,7 +199,7 @@ export const ConfirmationCompte = ({route, navigation}) => {
             </TouchableOpacity>
           )}
         </View>
-        <View style={[{top: 130}]}>
+        <View style={[{top: 100}]}>
           <ConfirmHcaptcha
             ref={captchaForm}
             siteKey={siteKey}
@@ -207,7 +208,15 @@ export const ConfirmationCompte = ({route, navigation}) => {
             onMessage={onMessage}
           />
           {testReached()}
-          <View style={[{top: -170}]}>
+          <BtnNext
+            route={route}
+            navigation={navigation}
+            navigateTo={'Ajouter photo'}
+            txt={'Continuer'}
+            background={'white'}
+            top={-220}
+          />
+          {/* <View style={[{bottom: 170}]}>
             <TouchableOpacity
               onPress={() => {
                 setButtonPressed('Continuer');
@@ -260,7 +269,7 @@ export const ConfirmationCompte = ({route, navigation}) => {
                 }
               />
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
       </ImageBackground>
     </View>

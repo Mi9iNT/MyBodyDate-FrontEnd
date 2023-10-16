@@ -9,7 +9,8 @@ import {
   FlatList,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
-import { BtnNext } from '../../composants/BtnNext';
+import {BtnNext} from '../../composants/BtnNext';
+import StylesTaille from '../../../assets/style/styleScreens/styleRegister/StyleTaille';
 
 export const Taille = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
@@ -51,14 +52,7 @@ export const Taille = ({route, navigation}) => {
   };
 
   const renderItem = ({item}) => (
-    <View
-      style={{
-        width: 70,
-        padding: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#FFF',
-        alignSelf: 'center',
-      }}>
+    <View style={[StylesTaille.SelectBox]}>
       <TouchableOpacity
         style={Styles.btn}
         onPress={() => handlePress(item.value)}
@@ -66,8 +60,8 @@ export const Taille = ({route, navigation}) => {
         <Text
           style={
             selectedIndex === item.value
-              ? Styles.SelectedText
-              : Styles.NotSelectedText
+              ? StylesTaille.SelectedText
+              : StylesTaille.NotSelectedText
           }>
           {item.value}
         </Text>
@@ -76,21 +70,19 @@ export const Taille = ({route, navigation}) => {
   );
 
   return (
-    <View style={Styles.container}>
+    <View style={StylesTaille.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesTaille.bgGradient}
         source={require('../../../assets/images/Background.png')}>
         <View style={{flex: 5}}>
-          <View style={[Styles.ViewText]}>
-            <Text style={[Styles.textTitleWhite3, {top: 150}]}>
-              VOTRE TAILLE ?
-            </Text>
+          <View style={[StylesTaille.ViewText]}>
+            <Text style={[StylesTaille.TxtTitle]}>VOTRE TAILLE ?</Text>
           </View>
-          <View style={{flexDirection: 'row',height:140, width:'80%',justifyContent:'center',alignSelf:'center',alignItems:'center',top:100,}}>
-            <SafeAreaView style={[{top: 0, justifyContent:'center',}]}>
+          <View style={[StylesTaille.ViewRow]}>
+            <SafeAreaView style={[StylesTaille.BoxFlat]}>
               <FlatList
                 ref={scrollViewRef}
-                style={{height:130,alignSelf:'center'}}
+                style={[StylesTaille.Flat]}
                 data={Data}
                 initialNumToRender={3}
                 refreshing={true}
@@ -99,97 +91,38 @@ export const Taille = ({route, navigation}) => {
                 keyExtractor={item => item.index.toString()}
               />
             </SafeAreaView>
-            <View style={{flexDirection: 'column', height:130, top:5, left:20,alignItems:'center',}}>
+            <View style={[StylesTaille.BoxCol]}>
               <TouchableOpacity
-                style={{
-                  top:10,
-                  width: 20,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  alignSelf: 'flex-end',
-                }}
+                style={[StylesTaille.ScrollUp]}
                 onPress={scrollUp}
                 accessibilityLabel="Monter">
                 <Image
                   source={require('../../../assets/boutons/Arrow1.png')}
-                  style={{height: 70, resizeMode: 'contain'}}
+                  style={[StylesTaille.ScrollUpImg]}
                 />
               </TouchableOpacity>
-              
+
               <TouchableOpacity
-                style={{
-                  width: 20,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  alignSelf: 'flex-end',
-                  bottom:10,
-                }}
+                style={[StylesTaille.ScrollDown]}
                 onPress={scrollDown}
                 accessibilityLabel="Descendre">
                 <Image
                   source={require('../../../assets/boutons/Arrow2.png')}
-                  style={{ height: 70, resizeMode: 'contain'}}
+                  style={[StylesTaille.ScrollDownImg]}
                 />
               </TouchableOpacity>
             </View>
           </View>
+          <Text style={[StylesTaille.textWhite]}>Choix unique.</Text>
           <BtnNext
             route={route}
             navigation={navigation}
             navigateTo={'Langue parler'}
             txt={'Continuer'}
             background={'white'}
-            top={400}
+            top={300}
           />
         </View>
-        {/* <View style={[{flex: 1}]}>
-          <TouchableOpacity
-            style={Styles.btn}
-            onPress={() => {
-              setButtonPressed('Continuer');
-              navigation.navigate('Langue parler', {
-                userConsent: consentement,
-                routeName: routeChoice,
-                loveCoach: loveCoach,
-                userEmail: userEmail,
-                userPhone: userPhone,
-                userCity: userCity,
-                accesPosition: accesPosition,
-                genre: genre,
-                userBirth: userBirth,
-                userSize: taille,
-              });
-            }}
-            accessibilityLabel="Continuer">
-            <Text
-              style={[
-                Styles.textBtn9,
-                {
-                  zIndex: 1,
-                  top: 40,
-                  color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
-                },
-              ]}>
-              Continuer
-            </Text>
-            <Image
-              style={[
-                {
-                  top: 0,
-                  width: '90%',
-                  height: 56,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={
-                buttonPressed === 'Continuer'
-                  ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Blanc.png')
-              }
-            />
-          </TouchableOpacity>
-        </View> */}
       </ImageBackground>
     </View>
   );
