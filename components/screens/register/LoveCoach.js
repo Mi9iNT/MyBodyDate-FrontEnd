@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Logo from '../../composants/Logo';
 import Styles from '../../../assets/style/Styles';
+import StylesLoveCoach from '../../../assets/style/styleScreens/styleRegister/StyleLoveCoach';
 
 //Home Screen
 export const LoveCoach = ({route, navigation}) => {
@@ -24,9 +25,11 @@ export const LoveCoach = ({route, navigation}) => {
       : require('../../../assets/images/radio_unselected.png');
 
     return (
-      <TouchableOpacity style={[Styles.radioInputContainer, {alignItems:'center'}]} onPress={onPress}>
-        <Image source={icon} style={Styles.radioInputIcon} />
-        <Text style={[Styles.textWhite6, {fontSize:13, marginBottom:10}]}>{label}</Text>
+      <TouchableOpacity
+        style={[StylesLoveCoach.radioInputContainer]}
+        onPress={onPress}>
+        <Image source={icon} style={StylesLoveCoach.radioInputIcon} />
+        <Text style={[StylesLoveCoach.textInput]}>{label}</Text>
       </TouchableOpacity>
     );
   };
@@ -36,17 +39,14 @@ export const LoveCoach = ({route, navigation}) => {
   console.log('Love Coach: ' + selectedOption);
 
   return (
-    <View style={Styles.container}>
+    <View style={StylesLoveCoach.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesLoveCoach.bgGradient}
         source={require('../../../assets/images/Background.png')}>
         <Logo />
-        {/* // radio_props={items} initial={1} onPress={(value) => setValue(value)} buttonColor='#fff' labelColor='#fff' selectedButtonColor='#fff' selectedLabelColor='#fff'  */}
-        <View style={Styles.ViewText}>
-          <Text style={[Styles.textWhite, {top: 50, left: 30, fontSize:24}]}>
-            LOVE COACH
-          </Text>
-          <Text style={[Styles.textWhite2, {top: 100, width: '80%', height: 230, alignSelf:'center', fontSize:15}]}>
+        <View style={StylesLoveCoach.ViewText}>
+          <Text style={[StylesLoveCoach.textWhite]}>LOVE COACH</Text>
+          <Text style={[StylesLoveCoach.textWhite2]}>
             Nous sommes heureux de vous accompagner pour augmenter vos chances
             de matchs. En choisissant le programme gratuit LOVE COACH, nous vous
             proposerons des profils personnalisés de célibataires correspondant
@@ -54,7 +54,7 @@ export const LoveCoach = ({route, navigation}) => {
             événements près de chez vous et/ou dans la ville de votre choix.
           </Text>
         </View>
-        <View style={[Styles.ViewRadio, Styles.ml40, {top: 100}]}>
+        <View style={[StylesLoveCoach.ViewRadio, Styles.ml40]}>
           <RadioInput
             label="Non, je peux me débrouiller"
             selected={selectedOption === 'Non'}
@@ -67,32 +67,15 @@ export const LoveCoach = ({route, navigation}) => {
           />
         </View>
         <View style={{left: 40}}>
-          <Text
-            style={{
-              color: '#FFF',
-              fontFamily: 'Comfortaa',
-              fontSize: 13,
-              fontStyle: 'normal',
-              fontWeight: 700,
-              marginBottom: 20,
-            }}>
+          <Text style={[StylesLoveCoach.textInfo]}>
             Création du compte gratuit.
           </Text>
-          <Text
-            style={{
-              color: '#FFF',
-              fontFamily: 'Comfortaa',
-              fontSize: 13,
-              fontStyle: 'normal',
-              fontWeight: 700,
-            }}>
-            Choix unique.
-          </Text>
+          <Text style={[StylesLoveCoach.textInfo2]}>Choix unique.</Text>
         </View>
         {/* <BtnNext route={route} navigation={navigation} txt={'Continuer'} background={'white'} top={30} /> */}
-        <View style={[Styles.ViewBtn1, {top: 30}]}>
+        <View style={[StylesLoveCoach.ViewBtn]}>
           <TouchableOpacity
-            style={Styles.btn}
+            style={[]}
             onPress={() => {
               if (routeChoice === 'Se connecter') {
                 navigation.navigate('Liens de connexion', {
@@ -112,18 +95,15 @@ export const LoveCoach = ({route, navigation}) => {
             accessibilityLabel="Continuer">
             <Text
               style={[
-                Styles.textBtn9,
-                {zIndex: 1, top: 40, fontSize:18, color: buttonPressed ? '#fff' : '#0019A7'},
+                StylesLoveCoach.textBtn9,
+                {
+                  color: buttonPressed ? '#fff' : '#0019A7',
+                },
               ]}>
               Continuer
             </Text>
             <Image
-              style={{
-                height: 56,
-                flexShrink: 0,
-                alignSelf: 'center',
-                resizeMode: 'contain',
-              }}
+              style={[StylesLoveCoach.imgBtn]}
               source={
                 buttonPressed
                   ? require('../../../assets/boutons/Bouton-Rouge.png')

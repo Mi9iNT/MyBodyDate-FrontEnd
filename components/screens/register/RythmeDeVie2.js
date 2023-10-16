@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
-import { BtnNext } from '../../composants/BtnNext';
+import {BtnNext} from '../../composants/BtnNext';
+import StylesRythmeDeVie2 from '../../../assets/style/styleScreens/styleRegister/StyleRythmeDeVie2';
 
 export const RythmeDeVie2 = ({route, navigation}) => {
   // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
@@ -70,172 +71,108 @@ export const RythmeDeVie2 = ({route, navigation}) => {
   console.log(selectedRythme2);
 
   return (
-    <View style={Styles.container}>
+    <View style={StylesRythmeDeVie2.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesRythmeDeVie2.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText, {top: 120}]}>
-          <Text style={[Styles.textTitleWhite3]}>VOTRE RYTHME DE VIE ?</Text>
-        </View>
-
-        <View style={[Styles.ViewBTNSelect2, {top: 140}]}>
+        <Text style={[StylesRythmeDeVie2.TxtTitle]}>VOTRE RYTHME DE VIE ?</Text>
+        <View style={[StylesRythmeDeVie2.ViewBTNSelect]}>
           <TouchableOpacity
-            style={[
-              {
-                width: '80%',
-                maxHeight: 70,
-                padding: 10,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesRythmeDeVie2.btnSelect]}
             onPress={() => handleButtonPress('Petit déjeuner')}
             accessibilityLabel="Petit déjeuner">
             <Text
-              style={{
-                color: selectedRythme2.includes('Petit déjeuner')
-                  ? '#0019A7'
-                  : '#FFF',
-                textAlign: 'center',
-                fontFamily: selectedRythme2.includes('Petit déjeuner')
-                  ? 'Comfortaa-Bold'
-                  : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-              }}>
+              style={[
+                StylesRythmeDeVie2.txtBtnSelect,
+                {
+                  color: selectedRythme2.includes('Petit déjeuner')
+                    ? '#0019A7'
+                    : '#FFF',
+                  fontFamily: selectedRythme2.includes('Petit déjeuner')
+                    ? 'Comfortaa-Bold'
+                    : 'Comfortaa',
+                },
+              ]}>
               Petit déjeuner
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[
-              Styles.mt20,
-              {
-                width: '80%',
-                maxHeight: 70,
-                padding: 10,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesRythmeDeVie2.btnSelect]}
             onPress={() => handleButtonPress('Brunch')}
             accessibilityLabel="Brunch">
             <Text
-              style={{
-                color: selectedRythme2.includes('Brunch') ? '#0019A7' : '#FFF',
-                textAlign: 'center',
-                fontFamily: selectedRythme2.includes('Brunch')
-                  ? 'Comfortaa-Bold'
-                  : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-              }}>
+              style={[
+                StylesRythmeDeVie2.txtBtnSelect,
+                {
+                  color: selectedRythme2.includes('Brunch')
+                    ? '#0019A7'
+                    : '#FFF',
+                  fontFamily: selectedRythme2.includes('Brunch')
+                    ? 'Comfortaa-Bold'
+                    : 'Comfortaa',
+                },
+              ]}>
               Brunch
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[
-              Styles.mt20,
-              {
-                width: '80%',
-                maxHeight: 70,
-                padding: 10,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesRythmeDeVie2.btnSelect]}
             onPress={() => handleButtonPress('Déjeuner')}
             accessibilityLabel="Déjeuner">
             <Text
-              style={{
-                color: selectedRythme2.includes('Déjeuner')
-                  ? '#0019A7'
-                  : '#FFF',
-                textAlign: 'center',
-                fontFamily: selectedRythme2.includes('Déjeuner')
-                  ? 'Comfortaa-Bold'
-                  : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-              }}>
+              style={[
+                StylesRythmeDeVie2.txtBtnSelect,
+                {
+                  color: selectedRythme2.includes('Déjeuner')
+                    ? '#0019A7'
+                    : '#FFF',
+                  fontFamily: selectedRythme2.includes('Déjeuner')
+                    ? 'Comfortaa-Bold'
+                    : 'Comfortaa',
+                },
+              ]}>
               Déjeuner
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[
-              Styles.mt20,
-              {
-                width: '80%',
-                maxHeight: 70,
-                padding: 10,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesRythmeDeVie2.btnSelect]}
             onPress={() => handleButtonPress('Afterwork')}
             accessibilityLabel="Afterwork">
             <Text
-              style={{
-                color: selectedRythme2.includes('Afterwork')
-                  ? '#0019A7'
-                  : '#FFF',
-                textAlign: 'center',
-                fontFamily: selectedRythme2.includes('Afterwork')
-                  ? 'Comfortaa-Bold'
-                  : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-              }}>
+              style={[
+                StylesRythmeDeVie2.txtBtnSelect,
+                {
+                  color: selectedRythme2.includes('Afterwork')
+                    ? '#0019A7'
+                    : '#FFF',
+                  fontFamily: selectedRythme2.includes('Afterwork')
+                    ? 'Comfortaa-Bold'
+                    : 'Comfortaa',
+                },
+              ]}>
               Afterwork
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[
-              Styles.mt20,
-              {
-                width: '80%',
-                maxHeight: 70,
-                padding: 10,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesRythmeDeVie2.btnSelect]}
             onPress={() => handleButtonPress('Diner')}
             accessibilityLabel="Diner">
             <Text
-              style={{
-                color: selectedRythme2.includes('Diner') ? '#0019A7' : '#FFF',
-                textAlign: 'center',
-                fontFamily: selectedRythme2.includes('Diner')
-                  ? 'Comfortaa-Bold'
-                  : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-              }}>
+              style={[
+                StylesRythmeDeVie2.txtBtnSelect,
+                {
+                  color: selectedRythme2.includes('Diner') ? '#0019A7' : '#FFF',
+                  fontFamily: selectedRythme2.includes('Diner')
+                    ? 'Comfortaa-Bold'
+                    : 'Comfortaa',
+                },
+              ]}>
               Diner
             </Text>
           </TouchableOpacity>
         </View>
 
-        <View style={{top: 280, left: 40}}>
-          <Text style={[Styles.textWhite2, {fontSize: 12}]}>
-            Choix multiple.
-          </Text>
-        </View>
+        <Text style={[StylesRythmeDeVie2.textWhite]}>Choix multiple.</Text>
         <BtnNext
           route={route}
           navigation={navigation}
@@ -244,60 +181,6 @@ export const RythmeDeVie2 = ({route, navigation}) => {
           background={'white'}
           top={150}
         />
-        {/* <View style={[Styles.ViewBtn2, {top: 130}]}>
-          <TouchableOpacity
-            style={Styles.btn}
-            onPress={() => {
-              setButtonPressed('Continuer');
-              navigation.navigate('Prenom', {
-                userConsent: consentement,
-                routeName: routeChoice,
-                loveCoach: loveCoach,
-                userEmail: userEmail,
-                userPhone: userPhone,
-                userCity: userCity,
-                accesPosition: accesPosition,
-                genre: genre,
-                userBirth: userBirth,
-                userSize: userSize,
-                userLang: userLang,
-                userSituation: userSituation,
-                userOrientation: userOrientation,
-                userRecherche1: userRecherche1,
-                userRecherche2: userRecherche2,
-                userAffinites: userAffinites,
-                rythmeDeVie1: rythmeDeVie1,
-                rythmeDeVie2: selectedRythme2,
-              });
-            }}
-            accessibilityLabel="Continuer">
-            <Text
-              style={[
-                Styles.textBtn9,
-                {
-                  zIndex: 1,
-                  top: 40,
-                  color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
-                },
-              ]}>
-              Continuer
-            </Text>
-            <Image
-              style={[
-                {
-                  height: 56,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={
-                buttonPressed === 'Continuer'
-                  ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Blanc.png')
-              }
-            />
-          </TouchableOpacity>
-        </View> */}
       </ImageBackground>
     </View>
   );

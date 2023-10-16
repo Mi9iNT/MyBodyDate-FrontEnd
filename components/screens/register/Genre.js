@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
-import { BtnNext } from '../../composants/BtnNext';
+import {BtnNext} from '../../composants/BtnNext';
+import StylesGenre from '../../../assets/style/styleScreens/styleRegister/StyleGenre';
 
 export const Genre = ({route, navigation}) => {
   // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
@@ -34,141 +35,73 @@ export const Genre = ({route, navigation}) => {
   const [buttonPressed, setButtonPressed] = useState('');
 
   return (
-    <View style={Styles.container}>
+    <View style={StylesGenre.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesGenre.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText, {top: 150}]}>
-          <Text style={[Styles.textTitleWhite3]}>VOTRE GENRE ?</Text>
-        </View>
+        <Text style={[StylesGenre.TxtTitle]}>VOTRE GENRE ?</Text>
 
-        <View style={[Styles.ViewBTNSelect, {top: 200}]}>
+        <View style={[StylesGenre.ViewBTNSelect]}>
           <TouchableOpacity
-            style={[
-              {
-                width: '80%',
-                height: 56,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesGenre.BtnSelect]}
             onPress={() => setState({state: 'Femme'})}
             accessibilityLabel="Femme">
             <Text
-              style={{
-                color: genre.state === 'Femme' ? '#0019A7' : '#FFF',
-                textAlign: 'center',
-                fontFamily:
-                  genre.state === 'Femme' ? 'Comfortaa-Bold' : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-              }}>
+              style={[
+                StylesGenre.TextSelect,
+                {
+                  color: genre.state === 'Femme' ? '#0019A7' : '#FFF',
+                  fontFamily:
+                    genre.state === 'Femme' ? 'Comfortaa-Bold' : 'Comfortaa',
+                },
+              ]}>
               Femme
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[
-              Styles.mt20,
-              {
-                width: '80%',
-                height: 56,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesGenre.BtnSelect]}
             onPress={() => setState({state: 'Homme'})}
             accessibilityLabel="Homme">
             <Text
-              style={{
-                color: genre.state === 'Homme' ? '#0019A7' : '#FFF',
-                textAlign: 'center',
-                fontFamily:
-                  genre.state === 'Homme' ? 'Comfortaa-Bold' : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-              }}>
+              style={[
+                StylesGenre.TextSelect,
+                {
+                  color: genre.state === 'Homme' ? '#0019A7' : '#FFF',
+                  fontFamily:
+                    genre.state === 'Homme' ? 'Comfortaa-Bold' : 'Comfortaa',
+                },
+              ]}>
               Homme
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[
-              Styles.mt20,
-              {
-                width: '80%',
-                height: 56,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesGenre.BtnSelect]}
             onPress={() => setState({state: 'Non binaire'})}
             accessibilityLabel="Non binaire">
             <Text
-              style={{
-                color: genre.state === 'Non binaire' ? '#0019A7' : '#FFF',
-                textAlign: 'center',
-                fontFamily:
-                  genre.state === 'Non binaire' ? 'Comfortaa-Bold' : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-              }}>
+              style={[
+                StylesGenre.TextSelect,
+                {
+                  color: genre.state === 'Non binaire' ? '#0019A7' : '#FFF',
+                  fontFamily:
+                    genre.state === 'Non binaire'
+                      ? 'Comfortaa-Bold'
+                      : 'Comfortaa',
+                },
+              ]}>
               Non binaire
             </Text>
           </TouchableOpacity>
         </View>
-
-        <View style={[Styles.ViewTextChoice, {top: 280, left: 30}]}>
-          <Text style={[Styles.textWhite2, {fontSize: 12}]}>Choix unique.</Text>
-        </View>
+        <Text style={[StylesGenre.textWhite]}>Choix unique.</Text>
         <BtnNext
           route={route}
           navigation={navigation}
           navigateTo={'Date de naissance'}
           txt={'Continuer'}
           background={'white'}
-          top={100}
+          top={300}
         />
-        {/* <View style={[Styles.ViewBtn1, {top: 40}]}>
-          <TouchableOpacity
-            style={Styles.btn}
-            onPress={() => {
-              setButtonPressed('Continuer');
-              navigation.navigate('', {
-                userConsent: consentement,
-                routeName: routeChoice,
-                loveCoach: loveCoach,
-                userEmail: userEmail,
-                userPhone: userPhone,
-                userCity: userCity,
-                accesPosition: accesPosition,
-                genre: genre.state,
-              });
-}
-            }
-            accessibilityLabel="Continuer">
-            <Text style={[Styles.textBtn9, {zIndex: 1, top: 42, color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7'}]}>
-              Continuer
-            </Text>
-            <Image
-              style={[
-                {
-                  height: 56,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={buttonPressed === 'Continuer' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc.png')}
-            />
-          </TouchableOpacity>
-        </View> */}
       </ImageBackground>
     </View>
   );

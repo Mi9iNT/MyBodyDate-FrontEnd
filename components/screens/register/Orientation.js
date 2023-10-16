@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
+import {BtnNext} from '../../composants/BtnNext';
+import StylesOrientation from '../../../assets/style/styleScreens/styleRegister/StyleOrientation';
 
 export const Orientation = ({route, navigation}) => {
   // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
@@ -47,114 +49,85 @@ export const Orientation = ({route, navigation}) => {
   console.log('Orientation : ' + orientation.state);
 
   return (
-    <View style={Styles.container}>
+    <View style={StylesOrientation.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesOrientation.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText, {top: 100}]}>
-          <Text style={[Styles.textTitleWhite3]}>VOTRE ORIENATION ?</Text>
-        </View>
+        <Text style={[StylesOrientation.TxtTitle]}>VOTRE ORIENATION ?</Text>
 
-        <View style={[Styles.ViewBTNSelect, {top: 160}]}>
+        <View style={[StylesOrientation.ViewBTNSelect]}>
           <TouchableOpacity
-            style={[
-              Styles.mt20,
-              {
-                width: '80%',
-                height: 56,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesOrientation.btnSelect]}
             onPress={() => setState({state: 'HétérosexeLle'})}
             accessibilityLabel="HétérosexeLle">
             <Text
-              style={{
-                color:
-                  orientation.state === 'HétérosexeLle' ? '#0019A7' : '#fff',
-                textAlign: 'center',
-                fontFamily:
-                  orientation.state === 'HétérosexeLle'
-                    ? 'Comfortaa-Bold'
-                    : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-                fontWeight: orientation.state === 'HétérosexeLle' ? 700 : 500,
-              }}>
+              style={[
+                StylesOrientation.txtBtnSelect,
+                {
+                  color:
+                    orientation.state === 'HétérosexeLle' ? '#0019A7' : '#fff',
+                  fontFamily:
+                    orientation.state === 'HétérosexeLle'
+                      ? 'Comfortaa-Bold'
+                      : 'Comfortaa',
+                  fontWeight: orientation.state === 'HétérosexeLle' ? 700 : 500,
+                },
+              ]}>
               HétérosexeLle
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[
-              Styles.mt20,
-              {
-                width: '80%',
-                height: 56,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesOrientation.btnSelect]}
             onPress={() => setState({state: 'HomosexueLle'})}
             accessibilityLabel="HomosexueLle">
             <Text
-              style={{
-                color:
-                  orientation.state === 'HomosexueLle' ? '#0019A7' : '#fff',
-                textAlign: 'center',
-                fontFamily:
-                  orientation.state === 'HomosexueLle'
-                    ? 'Comfortaa-Bold'
-                    : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-                fontWeight: orientation.state === 'HomosexueLle' ? 700 : 500,
-              }}>
+              style={[
+                StylesOrientation.txtBtnSelect,
+                {
+                  color:
+                    orientation.state === 'HomosexueLle' ? '#0019A7' : '#fff',
+                  fontFamily:
+                    orientation.state === 'HomosexueLle'
+                      ? 'Comfortaa-Bold'
+                      : 'Comfortaa',
+                  fontWeight: orientation.state === 'HomosexueLle' ? 700 : 500,
+                },
+              ]}>
               HomosexueLle
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[
-              Styles.mt20,
-              {
-                width: '80%',
-                height: 56,
-                alignSelf: 'center',
-                borderColor: '#0019A7',
-                borderWidth: 2,
-                borderRadius: 100,
-                justifyContent: 'center',
-              },
-            ]}
+            style={[StylesOrientation.btnSelect]}
             onPress={() => setState({state: 'BisexueLle'})}
             accessibilityLabel="BisexueLle">
             <Text
-              style={{
-                color: orientation.state === 'BisexueLle' ? '#0019A7' : '#fff',
-                textAlign: 'center',
-                fontFamily:
-                  orientation.state === 'BisexueLle'
-                    ? 'Comfortaa-Bold'
-                    : 'Comfortaa',
-                fontSize: 18,
-                fontStyle: 'normal',
-                fontWeight: orientation.state === 'BisexueLle' ? 700 : 500,
-              }}>
+              style={[
+                StylesOrientation.txtBtnSelect,
+                {
+                  color:
+                    orientation.state === 'BisexueLle' ? '#0019A7' : '#fff',
+                  fontFamily:
+                    orientation.state === 'BisexueLle'
+                      ? 'Comfortaa-Bold'
+                      : 'Comfortaa',
+                  fontWeight: orientation.state === 'BisexueLle' ? 700 : 500,
+                },
+              ]}>
               BisexueLle
             </Text>
           </TouchableOpacity>
         </View>
 
-        <View style={{top: 280, left: 40}}>
-          <Text style={[Styles.textWhite2, {fontSize: 12}]}>Choix unique.</Text>
-        </View>
-
-        <View style={[Styles.ViewBtn2, {top: 130}]}>
+        <Text style={[StylesOrientation.textWhite]}>Choix unique.</Text>
+        <BtnNext
+          route={route}
+          navigation={navigation}
+          navigateTo={'Recherche1'}
+          txt={'Continuer'}
+          background={'white'}
+          top={270}
+        />
+        {/* <View style={[Styles.ViewBtn2, {top: 130}]}>
           <TouchableOpacity
             style={Styles.btn}
             onPress={() => {
@@ -204,7 +177,7 @@ export const Orientation = ({route, navigation}) => {
               }
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ImageBackground>
     </View>
   );

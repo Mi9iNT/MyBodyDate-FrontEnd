@@ -12,6 +12,7 @@ import Logo from '../composants/Logo';
 import Video from 'react-native-video';
 
 import Styles from '../../assets/style/Styles';
+import StylesBienvenue from '../../assets/style/styleScreens/styleRegister/StyleBienvenue';
 
 export const Bienvenue = ({route, navigation}) => {
   // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
@@ -32,40 +33,18 @@ export const Bienvenue = ({route, navigation}) => {
   };
 
   return (
-    <View style={Styles.container}>
+    <View style={StylesBienvenue.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesBienvenue.bgGradient}
         source={require('../../assets/images/Background.png')}>
         <Logo />
 
-        <View style={[Styles.ViewText, {left: 30}]}>
-          <Text
-            style={[
-              {
-                color: '#FFF',
-                fontFamily: 'Comfortaa-Bold',
-                fontSize: 24,
-                fontStyle: 'normal',
-                fontWeight: 500,
-              },
-            ]}>
-            BIENVENUE,
-          </Text>
-          <Text
-            style={[
-              {
-                color: '#FFF',
-                fontFamily: 'Comfortaa-Bold',
-                fontSize: 24,
-                fontStyle: 'normal',
-                fontWeight: 500,
-              },
-            ]}>
-            DÉCOUVREZ NOUS.
-          </Text>
+        <View style={[StylesBienvenue.ViewText, {left: 30}]}>
+          <Text style={[StylesBienvenue.TxtTitle]}>BIENVENUE,</Text>
+          <Text style={[StylesBienvenue.TxtTitle2]}>DÉCOUVREZ NOUS.</Text>
         </View>
 
-        <View style={[Styles.ViewVideo, {top: 50}]}>
+        <View style={[StylesBienvenue.ViewVideo, {top: 50}]}>
           <Video
             source={{
               uri: 'https://video.wixstatic.com/video/8e4c05_5791dadfe85b41e792e18d6fcac7717a/480p/mp4/file.mp4',
@@ -85,17 +64,17 @@ export const Bienvenue = ({route, navigation}) => {
               onPress={() => setIsPlaying(p => !p)}>
               {isHovered ? (
                 <Image
-                  style={Styles.btnVideo}
+                  style={StylesBienvenue.btnVideo}
                   source={require('../../assets/images/play_hover.png')}
                 />
               ) : isPlaying ? (
                 <Image
-                  style={Styles.btnVideo}
+                  style={StylesBienvenue.btnVideo}
                   source={require('../../assets/images/pause.png')}
                 />
               ) : (
                 <Image
-                  style={Styles.btnVideo}
+                  style={StylesBienvenue.btnVideo}
                   source={require('../../assets/images/play.png')}
                 />
               )}
@@ -103,27 +82,14 @@ export const Bienvenue = ({route, navigation}) => {
           </View>
         </View>
         <TouchableOpacity
-          style={[{bottom: 100, left:'20%'}]}
+          style={[{bottom: 100, left: '20%'}]}
           onPress={() =>
             navigation.navigate('Création et Développement', {
               routeName: routeChoice,
             })
           }
           accessibilityLabel="Passer">
-          <Text
-            style={[
-              {
-                color: '#FFF',
-                textAlign: 'center',
-                fontFamily: 'Comfortaa',
-                fontSize: 16,
-                fontStyle: 'normal',
-                fontWeight: 700,
-                textDecorationLine: 'underline',
-              },
-            ]}>
-            Passer
-          </Text>
+          <Text style={[StylesBienvenue.TxtBtn]}>Passer</Text>
         </TouchableOpacity>
       </ImageBackground>
     </View>

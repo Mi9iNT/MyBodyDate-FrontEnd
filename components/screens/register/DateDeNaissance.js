@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Styles from '../../../assets/style/Styles';
-import { BtnNext } from '../../composants/BtnNext';
+import {BtnNext} from '../../composants/BtnNext';
+import StylesDateDeNaissance from '../../../assets/style/styleScreens/styleRegister/StyleDateDeNaissance';
 
 export const DateDeNaissance = ({route, navigation}) => {
   // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
@@ -148,195 +149,89 @@ export const DateDeNaissance = ({route, navigation}) => {
     );
   };
   return (
-    <View style={Styles.container}>
+    <View style={StylesDateDeNaissance.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesDateDeNaissance.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <View style={{flex: 8}}>
-          <View style={[Styles.ViewText, {top: 80}]}>
-            <Text style={[Styles.textTitleWhite3, {top: 50}]}>VOTRE DATE</Text>
-            <Text style={[Styles.textTitleWhite3, {top: 50}]}>
-              DE NAISSANCE ?
-            </Text>
-          </View>
+        <Text style={[StylesDateDeNaissance.TxtTitle]}>VOTRE DATE</Text>
+        <Text style={[StylesDateDeNaissance.TxtTitle]}>DE NAISSANCE ?</Text>
 
-          <SafeAreaView style={[Styles.ViewInputDate, {top: 180}]}>
-            <View>
-              <TouchableOpacity
-                style={[
-                  {
-                    top: 0,
-                    width: 320,
-                    height: 140,
-                    borderRadius: 100,
-                    padding: 16,
-                    color: '#fff',
-                    borderColor: '#0F0BAE',
-                    borderWidth: 2,
-                    textAlign: 'center',
-                    alignSelf: 'center',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  },
-                ]}
-                accessibilityLabel="Sélectionner une date"
-                onPress={() => setShowDatePicker(true)}>
-                {formattedDate ? (
-                  <Text
-                    style={[
-                      {
-                        color: '#0019A7',
-                        textAlign: 'center',
-                        fontFamily: 'Comfortaa',
-                        fontSize: 18,
-                        fontStyle: 'normal',
-                        fontWeight: 700,
-                      },
-                    ]}>
-                    {formattedDate}
-                  </Text>
-                ) : (
-                  <Text
-                    style={[
-                      {
-                        color: '#FFF',
-                        textAlign: 'center',
-                        fontFamily: 'Comfortaa',
-                        fontSize: 18,
-                        fontStyle: 'normal',
-                        fontWeight: 700,
-                      },
-                    ]}>
-                    DD/MM/AAAA
-                  </Text>
-                )}
-              </TouchableOpacity>
-              {showDatePicker && (
-                <DateTimePicker
-                  testID="dateTimePicker"
-                  value={date}
-                  mode="date"
-                  is24Hour={true}
-                  display="default"
-                  onChange={handleDateSelect}
-                />
+        <SafeAreaView style={[StylesDateDeNaissance.ViewInputDate]}>
+          <View>
+            <TouchableOpacity
+              style={[StylesDateDeNaissance.BtnPicker]}
+              accessibilityLabel="Sélectionner une date"
+              onPress={() => setShowDatePicker(true)}>
+              {formattedDate ? (
+                <Text style={[StylesDateDeNaissance.textBlue]}>
+                  {formattedDate}
+                </Text>
+              ) : (
+                <Text style={[StylesDateDeNaissance.textWhite]}>
+                  DD/MM/AAAA
+                </Text>
               )}
+            </TouchableOpacity>
+            {showDatePicker && (
+              <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode="date"
+                is24Hour={true}
+                display="default"
+                onChange={handleDateSelect}
+              />
+            )}
+          </View>
+        </SafeAreaView>
+        <View style={[StylesDateDeNaissance.BoxInput]}>
+          <Text style={[StylesDateDeNaissance.textWhite1]}>
+            Catégorisation automatique.
+          </Text>
+          <View style={[StylesDateDeNaissance.BoxInputCol]}>
+            <View style={[StylesDateDeNaissance.BoxInputRow]}>
+              <RadioInput
+                label="GEN Z"
+                subText="(18 - 23 ans)"
+                selected={age >= 18 && age <= 23 ? 'oui' : 'non'}
+              />
+              <RadioInput
+                label="GEN X"
+                subText="(38 - 56 ans)"
+                selected={age >= 38 && age <= 56 ? 'oui' : 'non'}
+              />
             </View>
-          </SafeAreaView>
-          <View
-            style={{
-              top: 200,
-              width: '90%',
-              height: 200,
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              alignSelf: 'center',
-            }}>
-            <Text
-              style={{
-                color: '#FFF',
-                fontFamily: 'Comfortaa',
-                fontSize: 12,
-                fontStyle: 'normal',
-                fontWeight: 700,
-              }}>
-              Catégorisation automatique.
-            </Text>
-            <View
-              style={{
-                flexDirection: 'column',
-                width: '100%',
-                height: 160,
-                alignSelf: 'center',
-                alignItems: 'center',
-                justifyContent: 'space-around',
-              }}>
-              <View
-                style={{
-                  width: '90%',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                }}>
-                <RadioInput
-                  label="GEN Z"
-                  subText="(18 - 23 ans)"
-                  selected={age >= 18 && age <= 23 ? 'oui' : 'non'}
-                />
-                <RadioInput
-                  label="GEN X"
-                  subText="(38 - 56 ans)"
-                  selected={age >= 38 && age <= 56 ? 'oui' : 'non'}
-                />
-              </View>
-              <View
-                style={{
-                  width: '90%',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                }}>
-                <RadioInput
-                  label="MILLENNIALS"
-                  subText="(24 - 37 ans)"
-                  selected={age >= 24 && age <= 37 ? 'oui' : 'non'}
-                />
-                <RadioInput
-                  label="BOOMER"
-                  subText="(57 - 77 ans)"
-                  selected={age >= 57 && age <= 77 ? 'oui' : 'non'}
-                />
-              </View>
+            <View style={[StylesDateDeNaissance.BoxInputRow]}>
+              <RadioInput
+                label="MILLENNIALS"
+                subText="(24 - 37 ans)"
+                selected={age >= 24 && age <= 37 ? 'oui' : 'non'}
+              />
+              <RadioInput
+                label="BOOMER"
+                subText="(57 - 77 ans)"
+                selected={age >= 57 && age <= 77 ? 'oui' : 'non'}
+              />
             </View>
           </View>
+        </View>
 
-          <View style={[Styles.ViewTextChoice, {top: 220, left: 30}]}>
-            <Text style={[Styles.textWhite2, {fontSize: 12}]}>
-              Choix unique.
+        {age > 77 || age < 18 ? (
+          <View style={[StylesDateDeNaissance.ViewTextError]}>
+            <Text style={[StylesDateDeNaissance.TextError]}>
+              Vous n'avez pas l'âge requis pour faire aboutir votre inscription.
             </Text>
-          </View> 
-          <BtnNext
+          </View>
+        ) : null}
+        <Text style={[StylesDateDeNaissance.textWhite2]}>Choix unique.</Text>
+        <BtnNext
           route={route}
           navigation={navigation}
           navigateTo={'Taille'}
           txt={'Continuer'}
           background={'white'}
-          top={80}
+          top={150}
         />
-        </View>
-
-        {/* <View style={[Styles.ViewBtn1, {flex: 1}]}>
-          <TouchableOpacity
-            style={{}}
-            onPress={() => {
-              setButtonPressed('Continuer');
-              navigation.navigate('Taille', {
-                userConsent: consentement,
-                routeName: routeChoice,
-                loveCoach: loveCoach,
-                userEmail: userEmail,
-                userPhone: userPhone,
-                userCity: userCity,
-                accesPosition: accesPosition,
-                genre: genre,
-                userBirth: shortDate,
-              });
-            }}
-            accessibilityLabel="Continuer">
-            <Text style={[Styles.textBtn9, {zIndex: 1, top: 23, color:buttonPressed === 'Continuer' ? '#fff' : '#0019A7'}]}>
-              Continuer
-            </Text>
-            <Image
-              style={[
-                {
-                  bottom: 20,
-                  height: 56,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={buttonPressed === 'Continuer' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc.png')}
-            />
-          </TouchableOpacity>
-        </View> */}
       </ImageBackground>
     </View>
   );

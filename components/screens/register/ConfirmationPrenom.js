@@ -9,9 +9,9 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import PropTypes from 'prop-types';
 import Styles from '../../../assets/style/Styles';
+import StylesConfirmationPrenom from '../../../assets/style/styleScreens/styleRegister/StyleConfirmationPrenom';
 
 export const ConfirmationPrenom = ({route, navigation}) => {
   const {
@@ -49,164 +49,137 @@ export const ConfirmationPrenom = ({route, navigation}) => {
   const [buttonPressed, setButtonPressed] = useState();
 
   return (
-    <KeyboardAwareScrollView
-      innerRef={ref => {
-        this.scroll = ref;
-      }}
-      style={[Styles.container2, {top: 0}]}>
-      <ImageBackground
-        style={Styles.bgGradient}
-        source={require('../../../assets/images/Background.png')}>
-        <View style={Styles.ViewText}>
-          <Text style={[Styles.textTitleWhite3, {top: 150}]}>PRÉNOM</Text>
-        </View>
-        <SafeAreaView
-          style={[Styles.ViewInputPrenom2, {top: 280, height: 480}]}>
-          <TextInput
-            style={Styles.TextInput}
-            keyboardType="default"
-            placeholder="Entrez votre Prénom"
-            placeholderTextColor="#FFF"
-            maxLength={100}
-            onChangeText={prenom => setPrenom(prenom)}
-            value={prenom}
+    <ImageBackground
+      style={Styles.bgGradient}
+      source={require('../../../assets/images/Background.png')}>
+      <Text style={[StylesConfirmationPrenom.TxtTitle]}>PRÉNOM</Text>
+      <SafeAreaView style={[StylesConfirmationPrenom.ViewInputPrenom, {}]}>
+        <TextInput
+          style={Styles.TextInput}
+          keyboardType="default"
+          placeholder="Entrez votre Prénom"
+          placeholderTextColor="#FFF"
+          maxLength={100}
+          onChangeText={prenom => setPrenom(prenom)}
+          value={prenom}
+        />
+        <Text style={[StylesConfirmationPrenom.textBlue]}>
+          ID.{formattedDate}.(id)
+        </Text>
+      </SafeAreaView>
+      <Text style={[StylesConfirmationPrenom.textWhite]}>Choix unique.</Text>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}>
+        <TouchableOpacity
+          onPress={() => {
+            setModalVisible(false);
+          }}
+          style={[StylesConfirmationPrenom.BtnCloseModal]}
+        />
+        <View style={[StylesConfirmationPrenom.ViewModal]}>
+          <Image
+            style={[StylesConfirmationPrenom.icoModal,]}
+            source={require('../../../assets/images/avertissement.png')}
           />
-          <Text style={[Styles.textBlueCenter, {top: 20}]}>
-            ID.{formattedDate}.(id)
+          <Text style={[StylesConfirmationPrenom.textModalBlue]}>
+            Vous vous appelez {prenom} ?
           </Text>
-        </SafeAreaView>
-        <View style={{top: 100, left: 40}}>
-          <Text style={[Styles.textWhite2]}>Choix unique.</Text>
+          <Text style={[StylesConfirmationPrenom.textModalBlue2]}>
+            Vérifiez bien votre prénom,{'\n'}
+            il ne pourra plus être{'\n'}
+            modifié par la suite.
+          </Text>
         </View>
-        <View style={{bottom: 200}}>
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-              setModalVisible(!modalVisible);
-            }}>
-            <View style={[Styles.centeredView2, {top: 350}]}>
-              <Image
-                style={[Styles.imgPrenomAdv, {bottom: 240}]}
-                source={require('../../../assets/images/avertissement.png')}
-              />
-              <Text style={[Styles.textBlueCenter2, {bottom: 180}]}>
-                Vous vous appelez {prenom} ?
-              </Text>
-              <Text style={[Styles.textBlueCenter3, {bottom: 160}]}>
-                Vérifiez bien votre prénom,{'\n'}
-                il ne pourra plus être{'\n'}
-                modifié par la suite.
-              </Text>
-            </View>
-            <View style={[Styles.ViewBtnRow, {top: -50}]}>
-              <TouchableOpacity
-                accessibilityLabel="Modifier"
-                onPress={() => {
-                  setButtonPressed('Modifier');
-                  setModalVisible(false);
-                }}>
-                <Text
-                  style={[
-                    Styles.textBtn9,
-                    {
-                      zIndex: 2,
-                      top: 42,
-                      color:
-                        buttonPressed === 'Modifier' ? '#A70000' : '#0019A7',
-                    },
-                  ]}>
-                  Modifier
-                </Text>
-                <Image
-                  style={[{width: 150, height: 56, resizeMode: 'contain'}]}
-                  source={
-                    buttonPressed === 'Modifier'
-                      ? require('../../../assets/boutons/Bouton-Trans-Court-Rouge.png')
-                      : require('../../../assets/boutons/Bouton-Trans-Court.png')
-                  }
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
-                accessibilityLabel="Accepter"
-                onPress={() => {
-                  setButtonPressed('Accepter');
-                  setModalVisible(false);
-                  navigation.navigate('Profil multiples', {
-                    userConsent,
-                    routeName,
-                    loveCoach,
-                    userEmail,
-                    userPhone,
-                    userCity,
-                    accesPosition,
-                    genre,
-                    userBirth,
-                    userSize,
-                    userLang,
-                    userSituation,
-                    userOrientation,
-                    userRecherche1,
-                    userRecherche2,
-                    userAffinites,
-                    rythmeDeVie1,
-                    rythmeDeVie2,
-                    userPrenom: prenom,
-                    pseudo,
-                  });
-                }}>
-                <Text style={[Styles.textBtn6, {zIndex: 2, top: 42}]}>
-                  Accepter
-                </Text>
-                <Image
-                  style={[{width: 150, height: 56, resizeMode: 'contain'}]}
-                  source={
-                    buttonPressed === 'Accepter'
-                      ? require('../../../assets/boutons/Bouton-Rouge-Court.png')
-                      : require('../../../assets/boutons/Bouton-Bleu-Court.png')
-                  }
-                />
-              </TouchableOpacity>
-            </View>
-          </Modal>
-        </View>
-        <View style={[Styles.ViewBtn2, {bottom: 40}]}>
+        <View style={[StylesConfirmationPrenom.ViewBtnModalRow]}>
           <TouchableOpacity
+            accessibilityLabel="Modifier"
             onPress={() => {
-              setButtonPressed('Continuer');
-              setModalVisible(true);
-            }}
-            accessibilityLabel="Continuer">
+              setButtonPressed('Modifier');
+              setModalVisible(false);
+            }}>
             <Text
               style={[
-                Styles.textBtn9,
+                StylesConfirmationPrenom.TextBtnModal,
                 {
-                  zIndex: 1,
-                  top: 40,
-                  color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
+                  color: buttonPressed === 'Modifier' ? '#A70000' : '#0019A7',
                 },
               ]}>
-              Continuer
+              Modifier
             </Text>
             <Image
-              style={[
-                {
-                  height: 56,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
+              style={[StylesConfirmationPrenom.ImgBtnModal]}
               source={
-                buttonPressed === 'Continuer'
-                  ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Blanc.png')
+                buttonPressed === 'Modifier'
+                  ? require('../../../assets/boutons/Bouton-Trans-Court-Rouge.png')
+                  : require('../../../assets/boutons/Bouton-Trans-Court.png')
+              }
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            accessibilityLabel="Accepter"
+            onPress={() => {
+              setButtonPressed('Accepter');
+              setModalVisible(false);
+              navigation.navigate('Profil multiples', {
+                userConsent,
+                routeName,
+                loveCoach,
+                userEmail,
+                userPhone,
+                userCity,
+                accesPosition,
+                genre,
+                userBirth,
+                userSize,
+                userLang,
+                userSituation,
+                userOrientation,
+                userRecherche1,
+                userRecherche2,
+                userAffinites,
+                rythmeDeVie1,
+                rythmeDeVie2,
+                userPrenom: prenom,
+                pseudo,
+              });
+            }}>
+            <Text style={[StylesConfirmationPrenom.TextBtnModal2,]}>
+              Accepter
+            </Text>
+            <Image
+              style={[StylesConfirmationPrenom.ImgBtnModal2]}
+              source={
+                buttonPressed === 'Accepter'
+                  ? require('../../../assets/boutons/Bouton-Rouge-Court.png')
+                  : require('../../../assets/boutons/Bouton-Bleu-Court.png')
               }
             />
           </TouchableOpacity>
         </View>
-      </ImageBackground>
-    </KeyboardAwareScrollView>
+      </Modal>
+      <TouchableOpacity
+        style={[StylesConfirmationPrenom.Btn]}
+        onPress={() => {
+          setButtonPressed('Continuer');
+          setModalVisible(true);
+        }}
+        accessibilityLabel="Continuer">
+        <Text style={[StylesConfirmationPrenom.TxtBtn]}>Continuer</Text>
+        <Image
+          style={[StylesConfirmationPrenom.ImgBtn]}
+          source={
+            buttonPressed === 'Continuer'
+              ? require('../../../assets/boutons/Bouton-Rouge.png')
+              : require('../../../assets/boutons/Bouton-Blanc.png')
+          }
+        />
+      </TouchableOpacity>
+    </ImageBackground>
   );
 };
 

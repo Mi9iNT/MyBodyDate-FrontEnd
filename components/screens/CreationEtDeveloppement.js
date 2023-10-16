@@ -11,6 +11,8 @@ import {
 import Logo from '../composants/Logo';
 import Lottie from 'lottie-react-native';
 import Styles from '../../assets/style/Styles';
+import StylesCreationEtDeveloppement from '../../assets/style/styleScreens/styleRegister/StyleCreationEtDeveloppement';
+import StylesBienvenue from '../../assets/style/styleScreens/styleRegister/StyleBienvenue';
 /* Screen 3 */
 
 export const Creation = ({route, navigation}) => {
@@ -30,40 +32,22 @@ export const Creation = ({route, navigation}) => {
   const [buttonPressed, setButtonPressed] = useState(false);
 
   return (
-    <View style={Styles.container}>
+    <View style={StylesCreationEtDeveloppement.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesCreationEtDeveloppement.bgGradient}
         source={require('../../assets/images/Background.png')}>
         <Logo />
 
         <View style={[Styles.ViewText, {top: 50, left: 30}]}>
-          <Text
-            style={[
-              {
-                color: '#FFF',
-                fontFamily: 'Comfortaa-Bold',
-                fontSize: 24,
-                fontStyle: 'normal',
-                fontWeight: 500,
-              },
-            ]}>
+          <Text style={[StylesCreationEtDeveloppement.TxtTitle]}>
             CRÉATION ET
           </Text>
-          <Text
-            style={[
-              {
-                color: '#FFF',
-                fontFamily: 'Comfortaa-Bold',
-                fontSize: 24,
-                fontStyle: 'normal',
-                fontWeight: 500,
-              },
-            ]}>
+          <Text style={[StylesCreationEtDeveloppement.TxtTitle2]}>
             DÉVELOPPEMENT.
           </Text>
         </View>
 
-        <View style={[Styles.ViewVideo, {top: 0, height: 100, height: 100}]}>
+        <View style={[StylesCreationEtDeveloppement.ViewVideo]}>
           <Lottie
             source={require('../../assets/animations/Animation-credits.json')}
             autoPlay
@@ -75,13 +59,16 @@ export const Creation = ({route, navigation}) => {
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-            requestLocationPermission, setModalVisible(!modalVisible);
+            setModalVisible(!modalVisible);
           }}>
-          <View style={[Styles.centeredView5, {top: 200}]}>
-            <ScrollView style={[{width: 400, alignSelf: 'center', top: 20}]}>
+          <View
+            style={[StylesCreationEtDeveloppement.CenteredView, {top: 200}]}>
+            <ScrollView style={[StylesBienvenue.ScrollView]}>
               {/* <Icon name="location-dot" size={19} color="#fff" /> */}
-              <Text style={[Styles.textBlue3]}>CONSENTEMENT</Text>
-              <Text style={[Styles.textBlue4]}>
+              <Text style={[StylesCreationEtDeveloppement.textBlue]}>
+                CONSENTEMENT
+              </Text>
+              <Text style={[StylesCreationEtDeveloppement.textBlue2]}>
                 Nous respectons la vie privée de nos utilisateurs. Vos données,
                 vos choix.{'\n'}MyBodyDate utilise des cookies et des
                 informations non sensibles pour assurer le bon fonctionnement de
@@ -89,30 +76,29 @@ export const Creation = ({route, navigation}) => {
                 consultés ou personnaliser les contenus affichés.{'\n'}Pour en
                 savoir plus sur les cookies, les données utilisées et leur
                 traitement vous pouvez consulter{' '}
-                <Text style={[Styles.textBtnBlue2]}>
+                <Text style={[StylesCreationEtDeveloppement.textBlueUnder]}>
                   notre politique en matière de cookies et nos engagements en
                   matière de sécurité et de Confidentialité de données
                   personnelles.
                 </Text>
                 {'\n'}
               </Text>
-              <Text
-                style={[Styles.textBlack2, {top: -10, width: 320, left: 40}]}>
+              <Text style={[StylesCreationEtDeveloppement.textBlack]}>
                 Notre site n&apos;accepte que des profils vérifiés au delà de 7
                 jours.{'\n'}Sinon votre compte sera suspendu.
               </Text>
-              <Text style={[Styles.textBlue4, {top: -20, left: 0}]}>
+              <Text style={[StylesCreationEtDeveloppement.textBlue3]}>
                 Nous sommes conforme RGPD, règlement générale à la
                 règlementation de la protection des données
               </Text>
             </ScrollView>
           </View>
 
-          <View style={[Styles.ViewBtnRow, {top: -20}]}>
+          <View style={[StylesCreationEtDeveloppement.ViewBtnRow]}>
             <TouchableOpacity
               accessibilityLabel="Refuser"
               onPress={() => {
-                navigation.navigate('Love Coach', {
+                navigation.navigate('Bienvenue', {
                   userConsent: 'Refuser',
                   routeName: routeChoice,
                 });
@@ -121,19 +107,15 @@ export const Creation = ({route, navigation}) => {
               }}>
               <Text
                 style={[
-                  Styles.textBtn9,
+                  StylesCreationEtDeveloppement.textBtn,
                   {
-                    zIndex: 1,
-                    top: 40,
                     color: buttonPressed === 'Refuser' ? '#A70000' : '#0019A7',
                   },
                 ]}>
                 Refuser
               </Text>
               <Image
-                style={[
-                  {top: 0, width: 150, height: 50, resizeMode: 'contain'},
-                ]}
+                style={[StylesCreationEtDeveloppement.ImgBtn]}
                 source={
                   buttonPressed === 'Refuser'
                     ? require('../../assets/boutons/Bouton-Trans-Court-Rouge.png')
@@ -151,13 +133,11 @@ export const Creation = ({route, navigation}) => {
                 setButtonPressed('Accepter');
                 setModalVisible(false);
               }}>
-              <Text style={[Styles.textBtn6, {zIndex: 2, top: 40}]}>
+              <Text style={[StylesCreationEtDeveloppement.textBtn2]}>
                 Accepter
               </Text>
               <Image
-                style={[
-                  {top: 0, width: 150, height: 50, resizeMode: 'contain'},
-                ]}
+                style={[StylesCreationEtDeveloppement.ImgBtn2]}
                 source={
                   buttonPressed === 'Accepter'
                     ? require('../../assets/boutons/Bouton-Rouge-Court.png')
@@ -167,7 +147,7 @@ export const Creation = ({route, navigation}) => {
             </TouchableOpacity>
           </View>
         </Modal>
-        <View style={[Styles.row, {width: '100%', top: 10}]}>
+        <View style={[StylesCreationEtDeveloppement.Row]}>
           <TouchableOpacity
             style={[{}]}
             onPress={() => {
@@ -176,25 +156,14 @@ export const Creation = ({route, navigation}) => {
             }}
             accessibilityLabel="Passer">
             <Image
-              style={[
-                {
-                  bottom: 68,
-                  width: 55,
-                  height: 55,
-                  resizeMode: 'contain',
-                  left: 150,
-                },
-              ]}
+              style={[StylesCreationEtDeveloppement.ImgBtn3]}
               source={
                 buttonPressed
                   ? require('../../assets/boutons/Passer-Rouge.png')
                   : require('../../assets/boutons/Passer.png')
               }
             />
-            <Text
-              style={[Styles.textBtn4, {bottom: 110, left: 260, fontSize: 16}]}>
-              Passer
-            </Text>
+            <Text style={[StylesCreationEtDeveloppement.textBtn3]}>Passer</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>

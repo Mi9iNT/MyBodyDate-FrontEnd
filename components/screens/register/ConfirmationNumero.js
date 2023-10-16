@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
+import StylesConfirmationNumero from '../../../assets/style/styleScreens/styleRegister/StyleConfirmationNumero';
 
 export const ConfirmationNumero = ({route, navigation}) => {
   // Constantes récupérant les valeurs données par l'utilisateur
@@ -27,28 +28,26 @@ export const ConfirmationNumero = ({route, navigation}) => {
   const [buttonPressed, setButtonPressed] = useState('');
 
   return (
-    <View style={Styles.container}>
+    <View style={StylesConfirmationNumero.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesConfirmationNumero.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText2, {top: 100}]}>
-          <Text style={[Styles.textTitleWhite3]}>CONFRIMATION</Text>
-          <Text style={[Styles.textTitleWhite3]}>NUMÉRO</Text>
-        </View>
-        <SafeAreaView style={[Styles.ViewInput, {top: 20}]}>
+        <Text style={[StylesConfirmationNumero.TxtTitle]}>CONFRIMATION</Text>
+        <Text style={[StylesConfirmationNumero.TxtTitle]}>NUMÉRO</Text>
+        <SafeAreaView style={[StylesConfirmationNumero.ViewInput]}>
           <TextInput
-            style={Styles.TextInput}
+            style={StylesConfirmationNumero.TextInput}
             keyboardType="numeric"
             placeholder="Entrez le code reçu par sms"
             placeholderTextColor="#FFF"
             maxLength={11}
-            onChangeText={userCode => setCode(userCode)}
+            onChangeText={text => setCode(text)}
             value={userCode}
           />
         </SafeAreaView>
-        <View style={[{top: -100}]}>
+        <View style={[{bottom: 100}]}>
           <TouchableOpacity
-            style={[{top: -10}]}
+            style={[{bottom: 10}]}
             onPress={() => {
               setButtonPressed('Reessayez');
               navigation.navigate("S'inscrire par numero", {
@@ -58,18 +57,9 @@ export const ConfirmationNumero = ({route, navigation}) => {
               });
             }}
             accessibilityLabel="Récupérer mon compte">
-            <Text style={[Styles.textBtn6, {top: 42, zIndex: 2}]}>
-              Réessayez
-            </Text>
+            <Text style={[StylesConfirmationNumero.textBtn]}>Réessayez</Text>
             <Image
-              style={[
-                {
-                  width: '80%',
-                  height: 56,
-                  alignSelf: 'center',
-                  resizeMode: 'contain',
-                },
-              ]}
+              style={[StylesConfirmationNumero.imgBtn]}
               source={
                 buttonPressed === 'Reessayez'
                   ? require('../../../assets/boutons/Bouton-Rouge.png')
@@ -77,7 +67,7 @@ export const ConfirmationNumero = ({route, navigation}) => {
               }
             />
           </TouchableOpacity>
-          <Text style={[Styles.textWhite3, {top: 20}]}>
+          <Text style={[StylesConfirmationNumero.textWhite]}>
             Si vous n&apos;avez pas reçu d&apos;sms, veuillez rééssayez.
           </Text>
           <TouchableOpacity
@@ -91,18 +81,11 @@ export const ConfirmationNumero = ({route, navigation}) => {
               });
             }}
             accessibilityLabel="Récupérer mon compte">
-            <Text style={[Styles.textBtn6, {top: 42, left: 10, zIndex: 3}]}>
+            <Text style={[StylesConfirmationNumero.textBtn1]}>
               S&apos;inscrire par email
             </Text>
             <Image
-              style={[
-                {
-                  width: '80%',
-                  height: 56,
-                  alignSelf: 'center',
-                  resizeMode: 'contain',
-                },
-              ]}
+              style={[StylesConfirmationNumero.imgBtn1]}
               source={
                 buttonPressed === 'Recup'
                   ? require('../../../assets/boutons/Bouton-Noir-Email.png')
@@ -110,11 +93,11 @@ export const ConfirmationNumero = ({route, navigation}) => {
               }
             />
           </TouchableOpacity>
-          <Text style={[Styles.textWhite3, {top: 40}]}>
+          <Text style={[StylesConfirmationNumero.textWhite1]}>
             Utilisez un autre moyen pour vous inscrire
           </Text>
         </View>
-        <View style={[{top: -20}]}>
+        <View style={[{bottom: 40}]}>
           <TouchableOpacity
             onPress={() => {
               setButtonPressed('Continuer');
@@ -128,24 +111,15 @@ export const ConfirmationNumero = ({route, navigation}) => {
             accessibilityLabel="Continuer">
             <Text
               style={[
-                Styles.textBtn9,
+                StylesConfirmationNumero.textBtn2,
                 {
-                  zIndex: 1,
-                  top: 40,
                   color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
                 },
               ]}>
               Continuer
             </Text>
             <Image
-              style={[
-                {
-                  width: '100%',
-                  height: 56,
-                  alignSelf: 'center',
-                  resizeMode: 'contain',
-                },
-              ]}
+              style={[StylesConfirmationNumero.imgBtn2]}
               source={
                 buttonPressed === 'Continuer'
                   ? require('../../../assets/boutons/Bouton-Rouge.png')

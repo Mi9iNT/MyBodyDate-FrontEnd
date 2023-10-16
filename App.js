@@ -141,7 +141,6 @@ const HomeStack = createNativeStackNavigator();
 const SettingsStack = createNativeStackNavigator();
 
 enableLatestRenderer();
-
 // Composant pour les écrans des onglets
 function TabNavigator({route}) {
   const {tabPath} = route.params;
@@ -189,7 +188,8 @@ function TabNavigator({route}) {
 
 function HomeNavigator() {
   return (
-    <HomeStack.Navigator  initialRouteName="Home">
+    <HomeStack.Navigator initialRouteName="Home">
+      <Stack.Screen name="Test" component={ScreenTest} options={{ headerShown: false }} />
       <HomeStack.Screen name="Home" component={Home} options={{ headerShown: false }} />
       <HomeStack.Screen name="Tabs" component={TabNavigator} options={{ headerShown: false }} />
       <HomeStack.Screen name="Main" component={MainNavigator} options={{ headerShown: false }} />
@@ -575,7 +575,6 @@ function MainNavigator() {
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen name="Home" component={HomeStack} options={{ headerShown: false }} />
-      <Stack.Screen name="Home Next" component={ScreenTest} options={{ headerShown: false }} />
       <Stack.Screen name="Bienvenue" component={Bienvenue} options={{ headerShown: false }} />
       <Stack.Screen name="Tabs" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Home" component={HomeNavigator} options={{headerShown: false}} />
