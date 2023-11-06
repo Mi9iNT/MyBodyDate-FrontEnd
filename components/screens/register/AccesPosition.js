@@ -191,7 +191,7 @@ export const AccesPosition = ({route, navigation}) => {
           </Text>
         </View>
 
-        <View style={[{bottom: 40}]}>
+        <View style={[{bottom: 60}]}>
           <TouchableOpacity
             style={{}}
             onPress={() => {

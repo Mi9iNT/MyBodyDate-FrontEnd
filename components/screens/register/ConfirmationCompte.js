@@ -10,7 +10,8 @@ import PropTypes from 'prop-types';
 import ConfirmHcaptcha from '@hcaptcha/react-native-hcaptcha';
 import Lottie from 'lottie-react-native';
 import Styles from '../../../assets/style/Styles';
-import { BtnNext } from '../../composants/BtnNext';
+import {BtnNext} from '../../composants/BtnNext';
+import StylesConfirmationCompte from '../../../assets/style/styleScreens/styleRegister/StyleConfirmationCompte';
 
 const siteKey = 'e8489cc3-b124-4243-b0bd-abd6d596e104';
 const baseUrl = 'https://hcaptcha.com';
@@ -87,29 +88,12 @@ export const ConfirmationCompte = ({route, navigation}) => {
       return (
         <>
           <Lottie
-            style={[
-              {
-                bottom: 40,
-                width: '80%',
-                alignSelf: 'center',
-                resizeMode: 'contain',
-              },
-            ]}
+            style={[StylesConfirmationCompte.lottie]}
             source={require('../../../assets/animations/AnimRefuserCaptcha.json')}
             autoPlay
             loop
           />
-          <Text
-            style={[
-              Styles.textWhite2,
-              {
-                bottom: 70,
-                alignSelf: 'center',
-                textAlign: 'center',
-                color: '#A70000',
-                fontFamily: 'Comfortaa-Bold',
-              },
-            ]}>
+          <Text style={[StylesConfirmationCompte.lottieText]}>
             Test non confirmé
           </Text>
         </>
@@ -118,29 +102,12 @@ export const ConfirmationCompte = ({route, navigation}) => {
       return (
         <>
           <Lottie
-            style={[
-              {
-                bottom: 60,
-                width: '80%',
-                alignSelf: 'center',
-                resizeMode: 'contain',
-              },
-            ]}
+            style={[StylesConfirmationCompte.lottie2]}
             source={require('../../../assets/animations/AnimValiderCaptcha.json')}
             autoPlay
             loop
           />
-          <Text
-            style={[
-              Styles.textWhite2,
-              {
-                bottom: 90,
-                alignSelf: 'center',
-                textAlign: 'center',
-                color: '#0019A7',
-                fontFamily: 'Comfortaa-Bold',
-              },
-            ]}>
+          <Text style={[StylesConfirmationCompte.lottieText2]}>
             Test confirmé
           </Text>
         </>
@@ -149,130 +116,53 @@ export const ConfirmationCompte = ({route, navigation}) => {
   }
 
   return (
-    <View
-      innerRef={ref => {
-        this.scroll = ref;
-      }}
-      style={[Styles.container2, {top: 0}]}>
-      <ImageBackground
-        style={Styles.bgGradient}
-        source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText, {top: 100}]}>
-          <Text style={[Styles.textWhiteCenter]}>MON COMPTE</Text>
-        </View>
-        <View style={[Styles.ViewText2, {top: 100}]}>
-          <Text
-            style={[
-              Styles.textWhite4,
-              {top: 0, alignSelf: 'center', width: '80%', fontSize: 15},
-            ]}>
-            Prouvez que vous n&apos;êtes pas un robot.
-          </Text>
-          <Text
-            style={[
-              Styles.textWhite4,
-              {top: 10, alignSelf: 'center', width: '80%', fontSize: 15},
-            ]}>
-            Pour cela, réalisez ce test pour pouvoir poursuivre.
-          </Text>
-          {!code && (
-            <TouchableOpacity
-              style={[{top: 50}]}
-              onPress={() => {
-                captchaForm.current.show();
-              }}>
-              <Text style={[Styles.textBtn6, {zIndex: 1, top: 15}]}>
-                Faire le test
-              </Text>
-              <Image
-                style={[
-                  {
-                    bottom: 30,
-                    width: '80%',
-                    height: 60,
-                    resizeMode: 'contain',
-                    alignSelf: 'center',
-                  },
-                ]}
-                source={require('../../../assets/boutons/Bouton-Rouge.png')}
-              />
-            </TouchableOpacity>
-          )}
-        </View>
-        <View style={[{top: 100}]}>
-          <ConfirmHcaptcha
-            ref={captchaForm}
-            siteKey={siteKey}
-            baseUrl={baseUrl}
-            languageCode="fr"
-            onMessage={onMessage}
-          />
-          {testReached()}
-          <BtnNext
-            route={route}
-            navigation={navigation}
-            navigateTo={'Ajouter photo'}
-            txt={'Continuer'}
-            background={'white'}
-            top={-220}
-          />
-          {/* <View style={[{bottom: 170}]}>
-            <TouchableOpacity
-              onPress={() => {
-                setButtonPressed('Continuer');
-                navigation.navigate('Ajouter photo', {
-                  userConsent: consentement,
-                  routeName: routeChoice,
-                  loveCoach: loveCoach,
-                  userEmail: userEmail,
-                  userPhone: userPhone,
-                  userCity: userCity,
-                  accesPosition: accesPosition,
-                  genre: genre,
-                  userBirth: userBirth,
-                  userSize: userSize,
-                  userLang: userLang,
-                  userSituation: userSituation,
-                  userOrientation: userOrientation,
-                  userRecherche1: userRecherche1,
-                  userRecherche2: userRecherche2,
-                  userAffinites: userAffinites,
-                  rythmeDeVie1: rythmeDeVie1,
-                  rythmeDeVie2: rythmeDeVie2,
-                  userPrenom: userPrenom,
-                });
-              }}
-              accessibilityLabel="Continuer">
-              <Text
-                style={[
-                  Styles.textBtn9,
-                  {
-                    zIndex: 1,
-                    top: 40,
-                    color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
-                  },
-                ]}>
-                Continuer
-              </Text>
-              <Image
-                style={[
-                  {
-                    height: 56,
-                    resizeMode: 'contain',
-                    alignSelf: 'center',
-                  },
-                ]}
-                source={
-                  buttonPressed
-                    ? require('../../../assets/boutons/Bouton-Rouge.png')
-                    : require('../../../assets/boutons/Bouton-Blanc.png')
-                }
-              />
-            </TouchableOpacity>
-          </View> */}
-        </View>
-      </ImageBackground>
-    </View>
+    <ImageBackground
+      style={StylesConfirmationCompte.bgGradient}
+      source={require('../../../assets/images/Background.png')}>
+      <Text style={[StylesConfirmationCompte.TxtTitle]}>MON COMPTE</Text>
+      <Text style={[StylesConfirmationCompte.textWhite]}>
+        Prouvez que vous n&apos;êtes pas un robot.
+      </Text>
+      <Text style={[StylesConfirmationCompte.textWhite2]}>
+        Pour cela, réalisez ce test pour pouvoir poursuivre.
+      </Text>
+      <View style={[{top: 280}]}>
+        {!code && (
+          <TouchableOpacity
+            style={[{top: 0}]}
+            onPress={() => {
+              captchaForm.current.show();
+            }}>
+            <Text style={[StylesConfirmationCompte.textBtn]}>
+              Faire le test
+            </Text>
+            <Image
+              style={[StylesConfirmationCompte.imgBtn]}
+              source={require('../../../assets/boutons/Bouton-Rouge.png')}
+            />
+          </TouchableOpacity>
+        )}
+      </View>
+
+      <View style={[{top: 400}]}>
+        <ConfirmHcaptcha
+          ref={captchaForm}
+          siteKey={siteKey}
+          baseUrl={baseUrl}
+          languageCode="fr"
+          onMessage={onMessage}
+        />
+        {testReached()}
+        <BtnNext
+          route={route}
+          navigation={navigation}
+          navigateTo={'Ajouter photo'}
+          txt={'Continuer'}
+          background={'white'}
+          top={code ? 40 : -40}
+        />
+      </View>
+    </ImageBackground>
   );
 };
 

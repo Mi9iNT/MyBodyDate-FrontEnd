@@ -11,6 +11,11 @@ import {
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import Styles from '../../../assets/style/Styles';
 import PropTypes from 'prop-types';
+import StylesCompte from '../../../assets/style/styleScreens/styleRegister/StyleCompte';
+import RegisterNumero from '../../composants/register/RegisterNumero';
+import RegisterEmail from '../../composants/register/RegisterEmail';
+import LoginEmail from '../../composants/login/LoginEmail';
+import LoginNumero from '../../composants/login/LoginNumero';
 
 export const Compte = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
@@ -119,266 +124,24 @@ export const Compte = ({route, navigation}) => {
       innerRef={ref => {
         this.scroll = ref;
       }}
-      style={[Styles.container2, {top: 0}]}>
+      style={[StylesCompte.container, {top: 0}]}>
       <ImageBackground
-        style={[Styles.bgGradient, {top: 0, height: 810}]}
+        style={[StylesCompte.bgGradient]}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText6]}>
-          <Text style={[Styles.textWhiteCenter, {top: 120}]}>MON COMPTE</Text>
+        <View style={[StylesCompte.ViewText]}>
+          <Text style={[StylesCompte.TxtTitle]}>MON COMPTE</Text>
         </View>
-        {routeChoice === "S'inscrire par numero" ? (
-          <SafeAreaView style={[{bottom: 100}]}>
-            <TextInput
-              style={[Styles.TextInputEmail, {position: 'relative', top: 0}]}
-              keyboardType="numeric"
-              placeholder="Votre numéro"
-              placeholderTextColor="#FFF"
-              maxLength={10}
-              onChangeText={numero => setNumero(numero)}
-              onBlur={() => validatePhone(numero)}
-              value={numero}
-            />
-            {errorNumero ? (
-              <Text
-                style={[
-                  Styles.textError,
-                  {top: 10, width: '70%', fontSize: 12},
-                ]}>
-                {errorNumero}
-              </Text>
-            ) : (
-              <Text
-                style={[
-                  Styles.textWhite4,
-                  {top: 10, width: '70%', fontSize: 12},
-                ]}>
-                Veuillez entrer un numéro de téléphone valide
-              </Text>
-            )}
-          </SafeAreaView>
-        ) : routeChoice === "Connexion numero" ? (
-          <SafeAreaView style={[{bottom: 100}]}>
-            <TextInput
-              style={[Styles.TextInputEmail, {position: 'relative', top: 0}]}
-              keyboardType="numeric"
-              placeholder="Votre numéro"
-              placeholderTextColor="#FFF"
-              maxLength={10}
-              onChangeText={numero => setNumero(numero)}
-              onBlur={() => validatePhone(numero)}
-              value={numero}
-            />
-            {errorNumero ? (
-              <Text
-                style={[
-                  Styles.textError,
-                  {top: 10, width: '70%', fontSize: 12},
-                ]}>
-                {errorNumero}
-              </Text>
-            ) : (
-              <Text
-                style={[
-                  Styles.textWhite4,
-                  {top: 10, width: '70%', fontSize: 12},
-                ]}>
-                Veuillez entrer un numéro de téléphone valide
-              </Text>
-            )}
-          </SafeAreaView>
-        ) : routeChoice === 'Connexion mail' ?(
-          <SafeAreaView style={[{bottom: errorEmail ? 50 : 0}]}>
-            <TextInput
-              style={[Styles.TextInputEmail, {top: 0}]}
-              keyboardType="email-address"
-              placeholder="Votre email"
-              placeholderTextColor="#FFF"
-              maxLength={100}
-              onChangeText={text => setEmail(text)}
-              onBlur={() => validateEmail(email)}
-              value={email}
-            />
-            {errorEmail ? (
-              <Text
-                style={[
-                  Styles.textError,
-                  {top: 10, fontFamily: 'Comfortaa-Bold', fontSize: 12},
-                ]}>
-                {errorEmail}
-              </Text>
-            ) : (
-              <Text
-                style={[
-                  Styles.textWhite4,
-                  {top: 10, left: 30, width: '80%', fontSize: 12},
-                ]}>
-                Allez dans votre boîte de messagerie pour confirmer votre
-                e-mail.
-              </Text>
-            )}
-
-            <TextInput
-              style={[Styles.TextInputPassword, {top: 30}]}
-              keyboardType="default"
-              placeholder="Votre mot de passe"
-              placeholderTextColor="#FFF"
-              maxLength={100}
-              onBlur={() => validatePassword(password)}
-              onChangeText={text => setPassword(text)}
-              value={password}
-              secureTextEntry={true}
-            />
-            {errorPassword ? (
-              <Text
-                style={[
-                  Styles.textError2,
-                  {top: 40, right: 20, width: '60%', fontSize: 12},
-                ]}>
-                {errorPassword}
-              </Text>
-            ) : (
-              <Text
-                style={[
-                  Styles.textWhite4,
-                  {top: 50, left: 30, width: '80%', fontSize: 12},
-                ]}>
-                Pour garantir la sécurité de votre{'\n'}mot de passe, il doit
-                contenir{'\n'}:{'\n'}-au moins une lettre majuscule{'\n'}-au
-                moins une lettre minuscule{'\n'}-au moins un chiffre{'\n'}-au
-                moins un caractère spéciale{'\n'}(@#$%^&?!){'\n'}-au moins huit
-                (8) caractères
-              </Text>
-            )}
-          </SafeAreaView>
-        ): routeChoice ===  "S'inscrire par mail" ?(
-          <SafeAreaView style={[{bottom: errorEmail ? 50 : 0}]}>
-            <TextInput
-              style={[Styles.TextInputEmail, {top: 0}]}
-              keyboardType="email-address"
-              placeholder="Votre email"
-              placeholderTextColor="#FFF"
-              maxLength={100}
-              onChangeText={text => setEmail(text)}
-              onBlur={() => validateEmail(email)}
-              value={email}
-            />
-            {errorEmail ? (
-              <Text
-                style={[
-                  Styles.textError,
-                  {top: 10, fontFamily: 'Comfortaa-Bold', fontSize: 12},
-                ]}>
-                {errorEmail}
-              </Text>
-            ) : (
-              <Text
-                style={[
-                  Styles.textWhite4,
-                  {top: 10, left: 30, width: '80%', fontSize: 12},
-                ]}>
-                Allez dans votre boîte de messagerie pour confirmer votre
-                e-mail.
-              </Text>
-            )}
-
-            <TextInput
-              style={[Styles.TextInputPassword, {top: 30}]}
-              keyboardType="default"
-              placeholder="Votre mot de passe"
-              placeholderTextColor="#FFF"
-              maxLength={100}
-              onBlur={() => validatePassword(password)}
-              onChangeText={text => setPassword(text)}
-              value={password}
-              secureTextEntry={true}
-            />
-            {errorPassword ? (
-              <Text
-                style={[
-                  Styles.textError2,
-                  {top: 40, right: 20, width: '60%', fontSize: 12},
-                ]}>
-                {errorPassword}
-              </Text>
-            ) : (
-              <Text
-                style={[
-                  Styles.textWhite4,
-                  {top: 50, left: 30, width: '80%', fontSize: 12},
-                ]}>
-                Pour garantir la sécurité de votre{'\n'}mot de passe, il doit
-                contenir{'\n'}:{'\n'}-au moins une lettre majuscule{'\n'}-au
-                moins une lettre minuscule{'\n'}-au moins un chiffre{'\n'}-au
-                moins un caractère spéciale{'\n'}(@#$%^&?!){'\n'}-au moins huit
-                (8) caractères
-              </Text>
-            )}
-          </SafeAreaView>
-        ): (
-          <SafeAreaView style={[{bottom: errorEmail ? 50 : 0}]}>
-            <TextInput
-              style={[Styles.TextInputEmail, {top: 0}]}
-              keyboardType="email-address"
-              placeholder="Votre email"
-              placeholderTextColor="#FFF"
-              maxLength={100}
-              onChangeText={text => setEmail(text)}
-              onBlur={() => validateEmail(email)}
-              value={email}
-            />
-            {errorEmail ? (
-              <Text
-                style={[
-                  Styles.textError,
-                  {top: 10, fontFamily: 'Comfortaa-Bold', fontSize: 12},
-                ]}>
-                {errorEmail}
-              </Text>
-            ) : (
-              <Text
-                style={[
-                  Styles.textWhite4,
-                  {top: 10, left: 30, width: '80%', fontSize: 12},
-                ]}>
-                Allez dans votre boîte de messagerie pour confirmer votre
-                e-mail.
-              </Text>
-            )}
-
-            <TextInput
-              style={[Styles.TextInputPassword, {top: 30}]}
-              keyboardType="default"
-              placeholder="Votre mot de passe"
-              placeholderTextColor="#FFF"
-              maxLength={100}
-              onBlur={() => validatePassword(password)}
-              onChangeText={text => setPassword(text)}
-              value={password}
-              secureTextEntry={true}
-            />
-            {errorPassword ? (
-              <Text
-                style={[
-                  Styles.textError2,
-                  {top: 40, right: 20, width: '60%', fontSize: 12},
-                ]}>
-                {errorPassword}
-              </Text>
-            ) : (
-              <Text
-                style={[
-                  Styles.textWhite4,
-                  {top: 50, left: 30, width: '80%', fontSize: 12},
-                ]}>
-                Pour garantir la sécurité de votre{'\n'}mot de passe, il doit
-                contenir{'\n'}:{'\n'}-au moins une lettre majuscule{'\n'}-au
-                moins une lettre minuscule{'\n'}-au moins un chiffre{'\n'}-au
-                moins un caractère spéciale{'\n'}(@#$%^&?!){'\n'}-au moins huit
-                (8) caractères
-              </Text>
-            )}
-          </SafeAreaView>
-        )}
+        <View style={[{flex:2, top: 180,}]}>
+          {routeChoice === "S'inscrire par numero" ? (
+            <RegisterNumero />
+          ) : routeChoice === 'Connexion numero' ? (
+            <LoginNumero />
+          ) : routeChoice === 'Connexion mail' ? (
+            <LoginEmail />
+          ) : routeChoice === "S'inscrire par mail" ? (
+            <RegisterEmail />
+          ) : null}
+        </View>
 
         <View style={{top: 100, left: 40}}>
           <Text style={[Styles.textWhite2, {fontSize: 12}]}>Choix unique.</Text>
@@ -443,7 +206,11 @@ export const Compte = ({route, navigation}) => {
                   alignSelf: 'center',
                 },
               ]}
-              source={buttonPressed === 'Continuer' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Blanc.png')}
+              source={
+                buttonPressed === 'Continuer'
+                  ? require('../../../assets/boutons/Bouton-Rouge.png')
+                  : require('../../../assets/boutons/Bouton-Blanc.png')
+              }
             />
           </TouchableOpacity>
         </View>

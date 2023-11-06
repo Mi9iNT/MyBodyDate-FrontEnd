@@ -115,7 +115,7 @@ export const Recherche1 = ({route, navigation}) => {
           navigateTo={'Recherche2'}
           txt={'Continuer'}
           background={'white'}
-          top={260}
+          top={280}
         />
       </ImageBackground>
     </View>

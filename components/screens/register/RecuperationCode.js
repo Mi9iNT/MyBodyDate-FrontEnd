@@ -11,6 +11,8 @@ import {
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import PropTypes from 'prop-types';
 import Styles from '../../../assets/style/Styles';
+import StylesLoginEmail from '../../../assets/style/StyleComposants/styleLogin/StyleLoginEmail';
+import StylesRecuperationCode from '../../../assets/style/styleScreens/styleRegister/StyleRecuperationCode';
 
 export const RecuperationCode = ({route, navigation}) => {
   // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
@@ -45,11 +47,18 @@ export const RecuperationCode = ({route, navigation}) => {
         Si vous n&apos;avez pas reçu votre code,{' '}
         <TouchableOpacity
           style={[{}]}
-          onPress={() => navigation.navigate('Compte', {routeName:routeChoice})}>
+          onPress={() =>
+            navigation.navigate('Compte', {routeName: routeChoice})
+          }>
           <Text
             style={[
               Styles.textWhite3,
-              {position: 'relative', top: 4, fontSize:12, textDecorationLine: 'underline'},
+              {
+                position: 'relative',
+                top: 4,
+                fontSize: 12,
+                textDecorationLine: 'underline',
+              },
             ]}>
             réessayez
           </Text>
@@ -61,27 +70,10 @@ export const RecuperationCode = ({route, navigation}) => {
     txtCode = (
       <Text style={{fontSize: 12}}>
         Si vous n&apos;avez pas reçu votre code,{' '}
-        <TouchableOpacity onPress={() => navigation.navigate('Compte', {routeName:routeChoice})}>
-          <Text
-            style={[
-              Styles.textWhite3,
-              {
-                position: 'relative',
-                top: 4,
-                textDecorationLine: 'underline', fontSize:12,
-              },
-            ]}>
-            réessayez
-          </Text>
-        </TouchableOpacity>
-        .
-      </Text>
-    );
-  } else if (routeChoice === "S'inscrire par mail") {
-    txtCode = (
-      <Text style={{fontSize: 12}}>
-        Si vous n&apos;avez pas reçu d&apos;email, consultez vos spams, ou{' '}
-        <TouchableOpacity onPress={() => navigation.navigate('Compte', {routeName:routeChoice})}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('Compte', {routeName: routeChoice})
+          }>
           <Text
             style={[
               Styles.textWhite3,
@@ -98,11 +90,38 @@ export const RecuperationCode = ({route, navigation}) => {
         .
       </Text>
     );
-  } else if (routeChoice === "Connexion mail") {
+  } else if (routeChoice === "S'inscrire par mail") {
     txtCode = (
       <Text style={{fontSize: 12}}>
         Si vous n&apos;avez pas reçu d&apos;email, consultez vos spams, ou{' '}
-        <TouchableOpacity onPress={() => navigation.navigate('Compte', {routeName:routeChoice})}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('Compte', {routeName: routeChoice})
+          }>
+          <Text
+            style={[
+              Styles.textWhite3,
+              {
+                position: 'relative',
+                top: 4,
+                textDecorationLine: 'underline',
+                fontSize: 12,
+              },
+            ]}>
+            réessayez
+          </Text>
+        </TouchableOpacity>
+        .
+      </Text>
+    );
+  } else if (routeChoice === 'Connexion mail') {
+    txtCode = (
+      <Text style={{fontSize: 12}}>
+        Si vous n&apos;avez pas reçu d&apos;email, consultez vos spams, ou{' '}
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('Compte', {routeName: routeChoice})
+          }>
           <Text
             style={[
               Styles.textWhite3,
@@ -124,7 +143,7 @@ export const RecuperationCode = ({route, navigation}) => {
   let selectedRoute;
   switch (routeChoice) {
     case 'Connexion mail':
-      selectedRoute = 'Discover';
+      selectedRoute = 'Tabs';
       break;
     case "S'inscrire par mail":
       selectedRoute = 'Confirmation compte';
@@ -133,10 +152,10 @@ export const RecuperationCode = ({route, navigation}) => {
       selectedRoute = 'Confirmation compte';
       break;
     case 'Se connecter':
-      selectedRoute = 'Discover';
+      selectedRoute = 'Tabs';
       break;
     case 'Connexion numero':
-      selectedRoute = 'Discover';
+      selectedRoute = 'Tabs';
       break;
     default:
       selectedRoute = 'Confirmation compte';
@@ -147,16 +166,14 @@ export const RecuperationCode = ({route, navigation}) => {
       innerRef={ref => {
         this.scroll = ref;
       }}
-      style={[Styles.container2, {top: 0, height: 1000}]}>
+      style={[StylesRecuperationCode.container]}>
       <ImageBackground
-        tyle={[Styles.bgGradient, {top: 0, height: 0}]}
+        style={[StylesRecuperationCode.bgGradient]}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText, {top: 100}]}>
-          <Text style={[Styles.textWhiteCenter]}>VOTRE CODE ?</Text>
-        </View>
-        <SafeAreaView style={[Styles.ViewInput, {top: 300, height: 700}]}>
+        <Text style={[StylesRecuperationCode.TxtTitle]}>VOTRE CODE ?</Text>
+        <SafeAreaView style={[StylesRecuperationCode.ViewInput]}>
           <TextInput
-            style={Styles.TextInput}
+            style={StylesRecuperationCode.TextInput}
             keyboardType="numeric"
             placeholder="Votre code"
             placeholderTextColor="#FFF"
@@ -164,56 +181,41 @@ export const RecuperationCode = ({route, navigation}) => {
             onChangeText={userCode => setCode(userCode)}
             value={userCode}
           />
-          <Text
-            style={[Styles.textWhite3, {top: 20, width: '70%', fontSize: 12}]}>
-            {txtCode}
-          </Text>
+          <Text style={[StylesRecuperationCode.textWhite]}>{txtCode}</Text>
         </SafeAreaView>
 
-        <View style={[Styles.ViewBtn2, {top: -50}]}>
-          <TouchableOpacity
-            style={Styles.btn}
-            onPress={() =>
-              navigation.navigate(selectedRoute, {
-                userConsent: consentement,
-                routeName: routeChoice,
-                loveCoach: loveCoach,
-                userEmail: userEmail,
-                userPhone: userPhone,
-                userCity: userCity,
-                accesPosition: accesPosition,
-                genre: genre,
-                userBirth: userBirth,
-                userSize: userSize,
-                userLang: userLang,
-                userSituation: userSituation,
-                userOrientation: userOrientation,
-                userRecherche1: userRecherche1,
-                userRecherche2: userRecherche2,
-                userAffinites: userAffinites,
-                rythmeDeVie1: rythmeDeVie1,
-                rythmeDeVie2: rythmeDeVie2,
-                userPrenom: userPrenom,
-              })
-            }
-            accessibilityLabel="Continuer">
-            <Text style={[Styles.textBtn9, {zIndex: 1, top: 45}]}>
-              Continuer
-            </Text>
-            <Image
-              style={[
-                {
-                  top: 0,
-                  width: '90%',
-                  height: 60,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={require('../../../assets/boutons/Bouton-Blanc.png')}
-            />
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={[StylesRecuperationCode.btn]}
+          onPress={() =>
+            navigation.navigate(selectedRoute, {
+              userConsent: consentement,
+              routeName: routeChoice,
+              loveCoach: loveCoach,
+              userEmail: userEmail,
+              userPhone: userPhone,
+              userCity: userCity,
+              accesPosition: accesPosition,
+              genre: genre,
+              userBirth: userBirth,
+              userSize: userSize,
+              userLang: userLang,
+              userSituation: userSituation,
+              userOrientation: userOrientation,
+              userRecherche1: userRecherche1,
+              userRecherche2: userRecherche2,
+              userAffinites: userAffinites,
+              rythmeDeVie1: rythmeDeVie1,
+              rythmeDeVie2: rythmeDeVie2,
+              userPrenom: userPrenom,
+            })
+          }
+          accessibilityLabel="Continuer">
+          <Text style={[StylesRecuperationCode.textBtn]}>Continuer</Text>
+          <Image
+            style={[StylesRecuperationCode.imgBtn]}
+            source={require('../../../assets/boutons/Bouton-Blanc.png')}
+          />
+        </TouchableOpacity>
       </ImageBackground>
     </KeyboardAwareScrollView>
   );

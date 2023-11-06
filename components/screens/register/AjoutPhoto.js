@@ -13,6 +13,7 @@ import {PERMISSIONS, check, RESULTS} from 'react-native-permissions';
 import RNFS from 'react-native-fs';
 import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
 import Styles from '../../../assets/style/Styles';
+import StylesAjoutPhoto from '../../../assets/style/styleScreens/styleRegister/StyleAjoutPhoto';
 
 export const AjoutPhoto = ({route, navigation}) => {
   // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
@@ -204,95 +205,76 @@ export const AjoutPhoto = ({route, navigation}) => {
   };
 
   return (
-    <View style={Styles.container}>
+    <View style={StylesAjoutPhoto.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesAjoutPhoto.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText, {top: 100}]}>
-          <Text style={[Styles.textTitleWhite3]}>AJOUTEZ UNE PHOTO</Text>
-          <Text style={[Styles.textWhiteCenter2, {top: 10, width: '100%'}]}>
+        <View style={[StylesAjoutPhoto.ViewText]}>
+          <Text style={[StylesAjoutPhoto.TxtTitle]}>AJOUTEZ UNE PHOTO</Text>
+          <Text style={[StylesAjoutPhoto.TxtTitle2]}>
             Affichez votre lifestyle.(6 photos publiques)
           </Text>
-          <Image style={[Styles.imgPhoto, {top: 20}]} source={avatar} />
+          <Image style={[StylesAjoutPhoto.imgPhoto]} source={avatar} />
+          <View style={[StylesAjoutPhoto.viewBtn]}>
+            <TouchableOpacity
+              style={[StylesAjoutPhoto.btn]}
+              accessibilityLabel="Importer une image"
+              onPress={() => {
+                setButtonPressed('Import');
+                ImagePicker();
+              }}>
+              <Image
+                style={[StylesAjoutPhoto.imgBtn]}
+                source={
+                  buttonPressed === 'Import'
+                    ? require('../../../assets/boutons/Bouton-Rouge-Image.png')
+                    : require('../../../assets/boutons/Bouton-Noir-Image.png')
+                }
+              />
+              <Text style={[StylesAjoutPhoto.textBtn]}>Importer une image</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[StylesAjoutPhoto.btn]}
+              accessibilityLabel="Prendre une photo"
+              onPress={() => {
+                setButtonPressed('Photo');
+                openCamera();
+              }}>
+              <Image
+                style={[StylesAjoutPhoto.imgBtn]}
+                source={
+                  buttonPressed === 'Photo'
+                    ? require('../../../assets/boutons/Bouton-Rouge-Photo.png')
+                    : require('../../../assets/boutons/Bouton-Noir-Photo.png')
+                }
+              />
+              <Text style={[StylesAjoutPhoto.textBtn]}>Prendre une photo</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[StylesAjoutPhoto.btn]}
+              accessibilityLabel="Meta - Facebook"
+              onPress={() => {
+                setButtonPressed('Meta');
+              }}>
+              <Image
+                style={[StylesAjoutPhoto.imgBtn]}
+                source={
+                  buttonPressed === 'Meta'
+                    ? require('../../../assets/boutons/Bouton-Rouge-Meta.png')
+                    : require('../../../assets/boutons/Bouton-Noir-Meta.png')
+                }
+              />
+              <Text style={[StylesAjoutPhoto.textBtn]}>Meta (Facebook)</Text>
+            </TouchableOpacity>
+          </View>
+
           <TouchableOpacity
-            accessibilityLabel="Importer une image"
-            onPress={() => {
-              setButtonPressed('Import');
-              ImagePicker();
-            }}>
-            <Text style={[Styles.textBtn6, {zIndex: 1, top: 62, left: 20}]}>
-              Importer une image
-            </Text>
-            <Image
-              style={[
-                {
-                  top: 20,
-                  height: 56,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={
-                buttonPressed === 'Import'
-                  ? require('../../../assets/boutons/Bouton-Rouge-Image.png')
-                  : require('../../../assets/boutons/Bouton-Noir-Image.png')
-              }
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            accessibilityLabel="Prendre une photo"
-            onPress={() => {
-              setButtonPressed('Photo');
-              openCamera();
-            }}>
-            <Text style={[Styles.textBtn6, {zIndex: 2, top: 40, left: 20}]}>
-              Prendre une photo
-            </Text>
-            <Image
-              style={[
-                {
-                  top: 0,
-                  height: 56,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={
-                buttonPressed === 'Photo'
-                  ? require('../../../assets/boutons/Bouton-Rouge-Photo.png')
-                  : require('../../../assets/boutons/Bouton-Noir-Photo.png')
-              }
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            accessibilityLabel="Meta - Facebook"
-            onPress={() => {
-              setButtonPressed('Meta');
-            }}>
-            <Text style={[Styles.textBtn6, {zIndex: 3, top: 22, left: 10}]}>
-              Meta (Facebook)
-            </Text>
-            <Image
-              style={[
-                {
-                  top: -20,
-                  height: 56,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={
-                buttonPressed === 'Meta'
-                  ? require('../../../assets/boutons/Bouton-Rouge-Meta.png')
-                  : require('../../../assets/boutons/Bouton-Noir-Meta.png')
-              }
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[Styles.btn, {top: 40}]}
+            style={[StylesAjoutPhoto.btn2]}
             onPress={() => navigation.navigate('Empreinte vocal')}
             accessibilityLabel="Enregistrer plus tard">
-            <Text style={Styles.textBtnBlue}>Enregistrer plus tard</Text>
+            <Text style={[StylesAjoutPhoto.textBtnBlue]}>
+              Enregistrer plus tard
+            </Text>
           </TouchableOpacity>
           <Modal
             animationType="slide"
@@ -301,74 +283,38 @@ export const AjoutPhoto = ({route, navigation}) => {
             onRequestClose={() => {
               setModalPreventImageaVisible(!modalRecaptchaVisible);
             }}>
-            <View style={[Styles.centeredView3, {top: 150}]}>
+            <View style={[StylesAjoutPhoto.centeredView]}>
               <Image
-                style={[
-                  Styles.btnCadenas,
-                  {width: 100, height: 100, bottom: 120, resizeMode: 'contain'},
-                ]}
+                style={[StylesAjoutPhoto.icoCadenas]}
                 source={require('../../../assets/images/cadenas.png')}
               />
-              <Text style={[Styles.textBlueCenter3, {bottom: 80}]}>
+              <Text style={[StylesAjoutPhoto.textBlueCenter]}>
                 À MONTRER{'\n'}SOUS RÉSERVE !
               </Text>
-              <View style={[Styles.row, {bottom: 140}]}>
+              <View style={[StylesAjoutPhoto.rowImg]}>
                 <Image
-                  style={[
-                    Styles.btnCadenas,
-                    {
-                      width: 100,
-                      height: 130,
-                      top: 100,
-                      resizeMode: 'cover',
-                      borderWidth: 2,
-                      borderColor: '#0F0BAE',
-                      borderRadius: 30,
-                    },
-                  ]}
+                  style={[StylesAjoutPhoto.imgBlur]}
                   blurRadius={10}
                   source={require('../../../assets/images/x-femme.png')}
                 />
                 <Image
-                  style={[
-                    Styles.btnCadenas,
-                    Styles.mx20,
-                    {
-                      width: 100,
-                      height: 130,
-                      top: 100,
-                      resizeMode: 'cover',
-                      borderWidth: 2,
-                      borderColor: '#0F0BAE',
-                      borderRadius: 30,
-                    },
-                  ]}
+                  style={[StylesAjoutPhoto.imgBlur]}
                   blurRadius={10}
                   source={require('../../../assets/images/x-homme.png')}
                 />
                 <Image
-                  style={[
-                    Styles.btnCadenas,
-                    {
-                      width: 100,
-                      height: 130,
-                      top: 100,
-                      resizeMode: 'cover',
-                      borderWidth: 2,
-                      borderColor: '#0F0BAE',
-                      borderRadius: 30,
-                    },
-                  ]}
+                  style={[StylesAjoutPhoto.imgNblur]}
                   source={require('../../../assets/images/julia.jpg')}
                 />
               </View>
-              <Text style={[Styles.textBlueCenter3, {bottom: 30}]}>
+              <Text style={[StylesAjoutPhoto.textBlueCenter2]}>
                 Les profils dénudés ou les visages{'\n'}masqués peu
                 reconnaissables ne{'\n'}sont pas autorisés sur votre profil
                 {'\n'}public. Vous pouvez ajouter ces{'\n'}à votre dossier dédié
                 et{'\n'}confidentiel plus tard.
               </Text>
               <TouchableOpacity
+                style={[StylesAjoutPhoto.btn]}
                 onPress={() => {
                   setButtonPressed('Next');
                   setModalPreventImageaVisible(false);
@@ -396,69 +342,42 @@ export const AjoutPhoto = ({route, navigation}) => {
                 }}
                 accessibilityLabel="Continuer">
                 <Image
-                  style={[
-                    {
-                      bottom: 0,
-                      height: 56,
-                      resizeMode: 'contain',
-                      alignSelf: 'center',
-                    },
-                  ]}
+                  style={[StylesAjoutPhoto.imgBtn]}
                   source={
                     buttonPressed === 'Next'
                       ? require('../../../assets/boutons/Bouton-Rouge.png')
                       : require('../../../assets/boutons/Bouton-Bleu.png')
                   }
                 />
-                <Text
-                  style={[
-                    Styles.textBtn9,
-                    {
-                      zIndex: 1,
-                      bottom: 48,
-                      color: '#fff',
-                    },
-                  ]}>
-                  Continuer
-                </Text>
+                <Text style={[StylesAjoutPhoto.textBtn2]}>Continuer</Text>
               </TouchableOpacity>
             </View>
           </Modal>
-          <View style={[{top: 50}]}>
-            <TouchableOpacity
-              style={Styles.btn}
-              onPress={() => {
-                setButtonPressed('Continuer');
-                setModalPreventImageaVisible(true);
-              }}
-              accessibilityLabel="Continuer">
-              <Text
-                style={[
-                  Styles.textBtn9,
-                  {
-                    zIndex: 4,
-                    top: 40,
-                    color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
-                  },
-                ]}>
-                Continuer
-              </Text>
-              <Image
-                style={[
-                  {
-                    height: 56,
-                    resizeMode: 'contain',
-                    alignSelf: 'center',
-                  },
-                ]}
-                source={
-                  buttonPressed === 'Continuer'
-                    ? require('../../../assets/boutons/Bouton-Rouge.png')
-                    : require('../../../assets/boutons/Bouton-Blanc.png')
-                }
-              />
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity
+            style={StylesAjoutPhoto.btn3}
+            onPress={() => {
+              setButtonPressed('Continuer');
+              setModalPreventImageaVisible(true);
+            }}
+            accessibilityLabel="Continuer">
+            <Text
+              style={[
+                StylesAjoutPhoto.textBtn1,
+                {
+                  color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
+                },
+              ]}>
+              Continuer
+            </Text>
+            <Image
+              style={[StylesAjoutPhoto.imgBtn2]}
+              source={
+                buttonPressed === 'Continuer'
+                  ? require('../../../assets/boutons/Bouton-Rouge.png')
+                  : require('../../../assets/boutons/Bouton-Blanc.png')
+              }
+            />
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     </View>

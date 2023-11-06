@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
 import {BtnNext} from '../../composants/BtnNext';
+import StylesPrenium from '../../../assets/style/styleScreens/styleRegister/StylePrenium';
 
 /* Screen 2 */
 
@@ -81,147 +82,84 @@ export const Prenium = ({route, navigation}) => {
   console.log('Prenium: ' + prenium);
 
   return (
-    <View style={Styles.container}>
+    <View style={StylesPrenium.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesPrenium.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText, {top: 100}]}>
-          <Text style={[Styles.textWhiteCenter]}>ABONNEMENT PRENIUM</Text>
-          <Text style={[Styles.textWhiteRound, {top: 50, padding: 10}]}>
-            {userPrenom}
-          </Text>
-          {/* Parenthèse (id) à changer par n° id_user de la bdd */}
-          <Text
-            style={[
-              Styles.textBlueCenter,
-              {top: 80, fontFamily: 'Comfortaa-Bold'},
-            ]}>
-            ID.{formattedDate}.(id)
-          </Text>
-          <Text style={[Styles.textWhite4, {top: 100}]}>
-            Grâce à l&apos;abonnement, obtenez{'\n'}
-            notre carte de visite avec votre {'\n'}
-            numéro d&apos;identification.{'\n'}
-            Donnez cette carte à un.e{'\n'}
-            inconnu.e dans le rue pour qu&apos;il{'\n'}
-            vous retouve sur notre application.
-          </Text>
-          <TouchableOpacity style={[Styles.imgCard, {top: 110}]}>
-            <Image
-              style={[Styles.imgCard]}
-              source={require('../../../assets/images/carte-visite.png')}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => handleRadioChange(!radioValue)}
-            style={[Styles.radioInputContainerTwo, {top: 120}]}>
-            <Image
-              source={
-                radioValue
-                  ? require('../../../assets/images/radio_selected.png')
-                  : require('../../../assets/images/radio_unselected.png')
-              }
-              style={{width: 20, height: 20}}
-            />
-            <Text style={[Styles.TextInputTwo]}>
-              Cocher, pour obtenir votre abnnement Prenium
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={Styles.btn}
-            onPress={() => {
-              navigation.navigate('Prenium', {
-                userConsent: consentement,
-                routeName: routeChoice,
-                loveCoach: loveCoach,
-                userEmail: userEmail,
-                userPhone: userPhone,
-                userCity: userCity,
-                accesPosition: accesPosition,
-                genre: genre,
-                userBirth: userBirth,
-                userSize: userSize,
-                userLang: userLang,
-                userSituation: userSituation,
-                userOrientation: userOrientation,
-                userRecherche1: userRecherche1,
-                userRecherche2: userRecherche2,
-                userAffinites: userAffinites,
-                rythmeDeVie1: rythmeDeVie1,
-                rythmeDeVie2: rythmeDeVie2,
-                userPrenom: userPrenom,
-              });
-            }}
-            accessibilityLabel="Voir les conditions d'abonnement Prenium<">
-            <Text style={[Styles.textBtn8, {top: 120}]}>
-              Voir les conditions d&apos;abonnement Prenium
-            </Text>
-          </TouchableOpacity>
-          <BtnNext
-            route={route}
-            navigation={navigation}
-            navigateTo={'Compte'}
-            txt={'Continuer'}
-            background={'white'}
-            top={150}
+        <Text style={[StylesPrenium.TxtTitle]}>ABONNEMENT PRENIUM</Text>
+        <Text style={[StylesPrenium.textWhiteRound]}>{userPrenom}</Text>
+        {/* Parenthèse (id) à changer par n° id_user de la bdd */}
+        <Text style={[StylesPrenium.textBlueCenter]}>
+          ID.{formattedDate}.(id)
+        </Text>
+        <Text style={[StylesPrenium.textWhite]}>
+          Grâce à l&apos;abonnement, obtenez{'\n'}
+          notre carte de visite avec votre {'\n'}
+          numéro d&apos;identification.{'\n'}
+          Donnez cette carte à un.e{'\n'}
+          inconnu.e dans le rue pour qu&apos;il{'\n'}
+          vous retouve sur notre application.
+        </Text>
+        <TouchableOpacity style={[StylesPrenium.ViewImgCard]}>
+          <Image
+            style={[StylesPrenium.imgCard]}
+            source={require('../../../assets/images/carte-visite.png')}
           />
-          {/* <View style={[{top: 110}]}>
-            <TouchableOpacity
-              style={Styles.btn}
-              onPress={() => {
-                setButtonPressed('Continuer');
-                navigation.navigate('Compte', {
-                  userConsent: consentement,
-                  routeName: routeChoice,
-                  loveCoach: loveCoach,
-                  userEmail: userEmail,
-                  userPhone: userPhone,
-                  userCity: userCity,
-                  accesPosition: accesPosition,
-                  genre: genre,
-                  userBirth: userBirth,
-                  userSize: userSize,
-                  userLang: userLang,
-                  userSituation: userSituation,
-                  userOrientation: userOrientation,
-                  userRecherche1: userRecherche1,
-                  userRecherche2: userRecherche2,
-                  userAffinites: userAffinites,
-                  rythmeDeVie1: rythmeDeVie1,
-                  rythmeDeVie2: rythmeDeVie2,
-                  userPrenom: userPrenom,
-                });
-              }}
-              accessibilityLabel="Continuer">
-              <Text
-                style={[
-                  Styles.textBtn9,
-                  {
-                    zIndex: 1,
-                    top: 40,
-                    color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
-                  },
-                ]}>
-                Continuer
-              </Text>
-              <Image
-                style={[
-                  {
-                    height: 56,
-                    resizeMode: 'contain',
-                    alignSelf: 'center',
-                  },
-                ]}
-                source={
-                  buttonPressed === 'Continuer'
-                    ? require('../../../assets/boutons/Bouton-Rouge.png')
-                    : require('../../../assets/boutons/Bouton-Blanc.png')
-                }
-              />
-            </TouchableOpacity>
-          </View> */}
-        </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => handleRadioChange(!radioValue)}
+          style={[StylesPrenium.radioInputContainer]}>
+          <Image
+            source={
+              radioValue
+                ? require('../../../assets/images/radio_selected.png')
+                : require('../../../assets/images/radio_unselected.png')
+            }
+            style={{width: 20, height: 20}}
+          />
+          <Text style={[StylesPrenium.TextInput]}>
+            Cocher, pour obtenir votre abnnement Prenium
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={Styles.btn}
+          onPress={() => {
+            navigation.navigate('Prenium', {
+              userConsent: consentement,
+              routeName: routeChoice,
+              loveCoach: loveCoach,
+              userEmail: userEmail,
+              userPhone: userPhone,
+              userCity: userCity,
+              accesPosition: accesPosition,
+              genre: genre,
+              userBirth: userBirth,
+              userSize: userSize,
+              userLang: userLang,
+              userSituation: userSituation,
+              userOrientation: userOrientation,
+              userRecherche1: userRecherche1,
+              userRecherche2: userRecherche2,
+              userAffinites: userAffinites,
+              rythmeDeVie1: rythmeDeVie1,
+              rythmeDeVie2: rythmeDeVie2,
+              userPrenom: userPrenom,
+            });
+          }}
+          accessibilityLabel="Voir les conditions d'abonnement Prenium<">
+          <Text style={[StylesPrenium.textWhite2]}>
+            Voir les conditions d&apos;abonnement Prenium
+          </Text>
+        </TouchableOpacity>
+        <BtnNext
+          route={route}
+          navigation={navigation}
+          navigateTo={'Compte'}
+          txt={'Continuer'}
+          background={'white'}
+          top={320}
+        />
       </ImageBackground>
     </View>
   );
