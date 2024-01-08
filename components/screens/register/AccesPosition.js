@@ -18,26 +18,14 @@ import {
 } from 'react-native-permissions';
 import StylesAccesPosition from '../../../assets/style/styleScreens/styleRegister/StyleAccesPosition';
 
-export const AccesPosition = ({route, navigation}) => {
+export const AccesPosition = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
-
-  // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-
-  console.log('Choix de route : ', routeChoice);
-  console.log('Consentement : ', consentement);
-  console.log('Love Coach : ', loveCoach);
-  console.log('Email : ', userEmail);
-  console.log('Téléphone : ', userPhone);
-  console.log('Ville : ', userCity);
 
   const [buttonPressed, setButtonPressed] = useState('');
   const [buttonPerm, setButtonPerm] = useState('Exact');
+  const [accessFineLocation, setAccessFineLocation] = useState();
+  const [accessBackgroundLocation, setAccessBackgroundLocation] = useState();
+  const [accessCoarseLocation, setAccessCoarseLocation] = useState();
 
   // La constante checkMultiplePermissions vérifie que tous les accès à la localisation soient garantis ou non
   const checkMultiplePermissions = () => {
@@ -67,9 +55,9 @@ export const AccesPosition = ({route, navigation}) => {
     console.log('Permission Localisation:', permissionStatus);
     setModalVisible(false);
     if (permissionStatus === RESULTS.GRANTED) {
-      console.log('Vous pouvez utiliser la géolocalisation');
+      console.log('Vous pouvez utiliser la géolocalisation Location');
     } else {
-      console.log('Accès refusé à la géolocalisation');
+      console.log('Accès refusé à la géolocalisation Location');
     }
   };
 
@@ -90,26 +78,10 @@ export const AccesPosition = ({route, navigation}) => {
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         setModalVisible(false);
         console.log('Vous pouvez utiliser la position exacte');
-        navigation.navigate('Genre', {
-          userConsent: consentement,
-          routeName: routeChoice,
-          loveCoach: loveCoach,
-          userEmail: userEmail,
-          userPhone: userPhone,
-          userCity: userCity,
-          accesPosition: granted,
-        });
+        navigation.navigate('Genre');
       } else {
         setModalVisible(false);
-        navigation.navigate('Genre', {
-          userConsent: consentement,
-          routeName: routeChoice,
-          loveCoach: loveCoach,
-          userEmail: userEmail,
-          userPhone: userPhone,
-          userCity: userCity,
-          accesPosition: granted,
-        });
+        navigation.navigate('Genre');
         console.log('Accès refusé à la géolocalisation');
       }
     } catch (err) {

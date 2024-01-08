@@ -3,6 +3,8 @@ import * as React from 'react';
 
 import {enableLatestRenderer} from 'react-native-maps';
 
+import {WebSocketProvider} from './context/WebSocketContext';
+
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -22,7 +24,6 @@ import {Genre} from './components/screens/register/Genre';
 import {DateDeNaissance} from './components/screens/register/DateDeNaissance';
 import {Taille} from './components/screens/register/Taille';
 import {LangueParler} from './components/screens/register/LangueParler';
-import {Screen8} from './components/screens/Screen8';
 import {ScreenTest} from './components/screens/ScreenTest';
 import {Situation} from './components/screens/register/Situation';
 import {Orientation} from './components/screens/register/Orientation';
@@ -578,10 +579,6 @@ function MainNavigator() {
       <Stack.Screen name="Bienvenue" component={Bienvenue} options={{ headerShown: false }} />
       <Stack.Screen name="Tabs" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Home" component={HomeNavigator} options={{headerShown: false}} />
-      {/* <Stack.Screen name="Discover" component={HomeTabs} options={{headerShown: false}} /> */}
-      {/* <Stack.Screen name="ProfilMe" component={HomeTabs} options={{headerShown: false}} /> */}
-      {/* <Stack.Screen name="Messages" component={HomeTabs} options={{headerShown: false}} /> */}
-      {/* <Stack.Screen name="Map" component={HomeTabs} options={{headerShown: false}} /> */}
     </Stack.Navigator>
   );
 }
@@ -589,8 +586,10 @@ function MainNavigator() {
 function App() {
   return (
     <NavigationContainer>
-      <StatusBar translucent backgroundColor="transparent" />
-      <HomeNavigator />
+       <WebSocketProvider>
+        <StatusBar translucent backgroundColor="transparent" />
+        <HomeNavigator />
+      </WebSocketProvider>
     </NavigationContainer>
   );
 }

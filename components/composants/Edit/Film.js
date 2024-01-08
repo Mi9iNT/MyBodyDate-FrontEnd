@@ -8,23 +8,6 @@ import {View, Text, Image,ImageBackground, TextInput, TouchableOpacity, Modal} f
 export const Film = ({visibleFilm, closeModalFilm}) => {
   const [modalFilmlVisible, setModalFilmlVisible] = useState(false);
 
-
-  const [modalVisible, setModalVisible] = useState(false);
-  const [addProVisible, setAddProVisible] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
-
-  const handleAddProToggle = index => {
-    const newArray = [...addProVisible];
-    newArray[index] = !newArray[index];
-    setAddProVisible(newArray);
-  };
-
   useEffect(() => {
     StatusBar.setHidden(true);
     return () => {
@@ -66,11 +49,43 @@ export const Film = ({visibleFilm, closeModalFilm}) => {
   };
 
   return (
+    <>
+      <TouchableOpacity
+        onPress={() => {
+          setModalFilmlVisible(true);
+        }}
+        style={{
+          bottom: 280,
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}
+      >
+      <Image source={require('../../../assets/images/popcorn.png')} />
+      <Text
+        style={{
+          fontFamily: 'Comfortaa',
+          fontWeight: '700',
+          fontSize: 15,
+          color: '#9424FA',
+          left: 20,
+        }}>
+        Les films que je ne me lasse {'\n'}pas de revoir...
+      </Text>
+      <View style={{width: 35, height: 35, left: 72}}>
+        <Image
+          source={
+            modalFilmlVisible
+              ? require('../../../assets/images/add_plein.png')
+              : require('../../../assets/images/add_vide.png')
+          }
+        />
+      </View>
+    </TouchableOpacity>
     <Modal
       animationType="slide"
       transparent={true}
-      visible={visibleFilm}
-      onRequestClose={closeModalFilm}>
+      visible={modalFilmlVisible}
+      statusBarTranslucent={true}>
       {/* Arrière-plan semi-transparent */}
       <View
         style={{
@@ -85,7 +100,7 @@ export const Film = ({visibleFilm, closeModalFilm}) => {
             width: '100%',
             height: '100%',
           }}
-          onPress={() => closeModalFilm()}
+          onPress={() => {setModalFilmlVisible(false);}}
           accessibilityLabel="Ferme la fenêtre"
         />
         {/* Contenu de la modal */}
@@ -350,6 +365,8 @@ export const Film = ({visibleFilm, closeModalFilm}) => {
       </View>
       </View>
     </Modal>
+    </>
+    
   );
 };
 

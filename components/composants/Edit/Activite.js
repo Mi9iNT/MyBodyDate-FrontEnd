@@ -8,21 +8,6 @@ import {View, Text, Image,ImageBackground, TextInput, TouchableOpacity, Modal} f
 export const Activite = ({visibleActivite, closeModalActivite}) => {
   const [modalActivitelVisible, setModalActivitelVisible] = useState(false);
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [addProVisible, setAddProVisible] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
-
-  const handleAddProToggle = index => {
-    const newArray = [...addProVisible];
-    newArray[index] = !newArray[index];
-    setAddProVisible(newArray);
-  };
 
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -65,18 +50,50 @@ export const Activite = ({visibleActivite, closeModalActivite}) => {
   };
 
   return (
-    <Modal
+    <>
+      
+      <TouchableOpacity
+        onPress={() => {
+          setModalActivitelVisible(true);
+        }}
+        style={{
+          bottom: 340,
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}>
+        <Image source={require('../../../assets/images/activité.png')} />
+        <Text
+          style={{
+            fontFamily: 'Comfortaa',
+            fontWeight: '700',
+            fontSize: 15,
+            color: '#9424FA',
+            left: 25,
+          }}>
+          Mon activité favorite...
+        </Text>
+        <View style={{width: 35, height: 35, left: 121}}>
+          <Image
+            source={
+              modalActivitelVisible
+                ? require('../../../assets/images/add_plein.png')
+                : require('../../../assets/images/add_vide.png')
+            }
+          />
+        </View>
+      </TouchableOpacity>
+      <Modal
       animationType="slide"
       transparent={true}
-      visible={visibleActivite}
-      onRequestClose={closeModalActivite}>
+      statusBarTranslucent={true}
+      visible={modalActivitelVisible}>
       {/* Arrière-plan semi-transparent */}
       <View
         style={{
           flex: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Couleur semi-transparente
-          justifyContent: 'center', // Centrer verticalement
-          alignItems: 'center', // Centrer horizontalement
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}>
         <TouchableOpacity
           style={{
@@ -84,7 +101,7 @@ export const Activite = ({visibleActivite, closeModalActivite}) => {
             width: '100%',
             height: '100%',
           }}
-          onPress={() => closeModalActivite()}
+            onPress={() => { setModalActivitelVisible(false); }}
           accessibilityLabel="Ferme la fenêtre"
         />
         {/* Contenu de la modal */}
@@ -347,6 +364,8 @@ export const Activite = ({visibleActivite, closeModalActivite}) => {
       </View>
       </View>
     </Modal>
+    </>
+    
   );
 };
 

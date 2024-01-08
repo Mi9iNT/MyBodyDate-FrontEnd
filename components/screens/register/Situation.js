@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -6,37 +6,35 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-import Styles from '../../../assets/style/Styles';
-import {BtnNext} from '../../composants/BtnNext';
 import StylesSituation from '../../../assets/style/styleScreens/styleRegister/StyleSituation';
+import {storeData, getData} from '../../../service/storage';
 
-export const Situation = ({route, navigation}) => {
-  // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  console.log('Choix de route : ', routeChoice);
-  console.log('Consentement : ', consentement);
-  console.log('Love Coach : ', loveCoach);
-  console.log('Email : ', userEmail);
-  console.log('Téléphone : ', userPhone);
-  console.log('Ville : ', userCity);
-  console.log('Accès position : ', accesPosition);
-  console.log('Genre : ', genre);
-  console.log('Date de naissance : ', userBirth);
-  console.log('Taille : ', userSize);
-  console.log('Langues : ', userLang);
+export const Situation = ({navigation}) => {
+
+  useEffect(() => {
+    handleGetData();
+  }, []);
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetData = async () => {
+    try {
+      const userSituation = await getData('situation');
+      setSituation(userSituation || '');
+      // console.log('langue : ' + langue);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
 
   // Constante permettant de récupérer la valeur du bouton sélectionner par l'utilisateur
-  const [situation, setState] = useState('');
+  const [situation, setSituation] = useState('');
 
   const [buttonPressed, setButtonPressed] = useState();
 
@@ -57,7 +55,7 @@ export const Situation = ({route, navigation}) => {
         <View style={[StylesSituation.ViewBTNSelect]}>
           <TouchableOpacity
             style={[StylesSituation.btnSelect]}
-            onPress={() => setState({state: 'Célibataire'})}
+            onPress={() => setSituation({state: 'Célibataire'})}
             accessibilityLabel="Célibataire">
             <Text
               style={[
@@ -76,7 +74,7 @@ export const Situation = ({route, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={[StylesSituation.btnSelect]}
-            onPress={() => setState({state: 'Séparé.e'})}
+            onPress={() => setSituation({state: 'Séparé.e'})}
             accessibilityLabel="Séparé(e)">
             <Text
               style={[
@@ -95,7 +93,7 @@ export const Situation = ({route, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={[StylesSituation.btnSelect]}
-            onPress={() => setState({state: 'Divorcé.e'})}
+            onPress={() => setSituation({state: 'Divorcé.e'})}
             accessibilityLabel="Divorcé.e">
             <Text
               style={[
@@ -114,7 +112,7 @@ export const Situation = ({route, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={[StylesSituation.btnSelect]}
-            onPress={() => setState({state: 'Veuf'})}
+            onPress={() => setSituation({state: 'Veuf'})}
             accessibilityLabel="Veuf">
             <Text
               style={[
@@ -131,7 +129,7 @@ export const Situation = ({route, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={[StylesSituation.btnSelect]}
-            onPress={() => setState({state: "C'est compliqué"})}
+            onPress={() => setSituation({state: "C'est compliqué"})}
             accessibilityLabel="C\'est compliqué">
             <Text
               style={[
@@ -151,14 +149,30 @@ export const Situation = ({route, navigation}) => {
           </TouchableOpacity>
         </View>
         <Text style={[StylesSituation.textWhite]}>Choix unique.</Text>
-        <BtnNext
-          route={route}
-          navigation={navigation}
-          navigateTo={'Orientation'}
-          txt={'Continuer'}
-          background={'white'}
-          top={80}
-        />
+        <TouchableOpacity
+          style={StylesSituation.ViewBtn}
+          onPress={() => {
+            navigation.navigate('Orientation');
+            handleStoreData('situation', situation ?? '');
+            setButtonPressed(true);
+          }}
+          accessibilityLabel="Continuer">
+          <Text
+            style={[
+              StylesSituation.TxtBtn,
+              {color: buttonPressed ? '#fff' : '#0019A7'},
+            ]}>
+            Continuer
+          </Text>
+          <Image
+            style={[StylesSituation.imgBtn]}
+            source={
+              buttonPressed
+                ? require('../../../assets/boutons/Bouton-Rouge.png')
+                : require('../../../assets/boutons/Bouton-Blanc.png')
+            }
+          />
+        </TouchableOpacity>
       </ImageBackground>
     </View>
   );

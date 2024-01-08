@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -9,17 +9,25 @@ import {
 import PropTypes from 'prop-types';
 import Styles from '../../../assets/style/Styles';
 import StylesConfirmationEmail from '../../../assets/style/styleScreens/styleRegister/StyleConfirmationEmail';
-import StylesSConfirmationEmail from '../../../assets/style/styleScreens/styleRegister/StyleConfirmationEmail';
+import {storeData, getData} from '../../../service/storage';
 
-export const ConfirmationEmail = ({route, navigation}) => {
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  console.log('Choix de route : ', routeChoice);
-  console.log('Consentement : ', consentement);
-  console.log('Love Coach : ', loveCoach);
-  console.log('Email : ', userEmail);
+export const ConfirmationEmail = ({navigation}) => {
+
+  useEffect(() => {
+    handleGetData();
+  }, []);
+
+  const handleGetData = async () => {
+    try {
+      const route = await getData('route');
+      setRouteChoice(route || '');
+      // console.log('route : ' + route);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  const [routeChoice, setRouteChoice] = useState();
 
   const [buttonPressed, setButtonPressed] = useState();
 
@@ -93,12 +101,7 @@ export const ConfirmationEmail = ({route, navigation}) => {
             style={[StylesConfirmationEmail.btnUn]}
             onPress={() => {
               setButtonPressed('Continuer');
-              navigation.navigate('Ville', {
-                userConsent: consentement,
-                routeName: routeChoice,
-                loveCoach: loveCoach,
-                userEmail: userEmail,
-              });
+              navigation.navigate('Ville');
             }}
             accessibilityLabel="Continuer">
             <Text
@@ -125,15 +128,4 @@ export const ConfirmationEmail = ({route, navigation}) => {
   );
 };
 
-ConfirmationEmail.propTypes = {
-  route: PropTypes.shape({
-    params: PropTypes.shape({
-      routeName: PropTypes.string.isRequired,
-      userConsent: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
-        .isRequired,
-      loveCoach: PropTypes.string,
-      userEmail: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
-  navigation: PropTypes.object.isRequired,
-};
+

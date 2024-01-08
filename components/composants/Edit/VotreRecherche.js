@@ -4,26 +4,29 @@
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image, TouchableOpacity, Modal} from 'react-native';
-import {MyComponentVotreRecherche} from './MyComponentVotreRecherche';
+import StylesVotreRecherche from '../../../assets/style/StyleComposants/styleEdit/StyleVotreRecherche';
 
-export const VotreRecherche = ({visibleVotreRecherche, closeModalVotreRecherche}) => {
-  const [modalVotreRecherchelVisible, setModalVotreRecherchelVisible] = useState(false);
+export const VotreRecherche = ({}) => {
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [addProVisible, setAddProVisible] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const [openModalRecherche, setOpenModalRecherche] = useState(false);
 
-  const handleAddProToggle = index => {
-    const newArray = [...addProVisible];
-    newArray[index] = !newArray[index];
-    setAddProVisible(newArray);
-  };
+  const recherche = [
+    'Pas important',
+    'Moins de 10 000 €',
+    '10001 - 20000 €',
+    '20 000 € - 30 000 €',
+    '30001 - 40000 €',
+    '40001 - 50000 €',
+    '50001 - 60000 €',
+    '60001 - 80000 €',
+    '80 001 - 100 000 €',
+    'Plus de 100 0001€',
+  ];
+
+  const [viewRecherche, setViewRecherche] = useState(false);
+
+  const [userRecherche, setUserRecherche] = useState(false);
+
 
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -33,79 +36,120 @@ export const VotreRecherche = ({visibleVotreRecherche, closeModalVotreRecherche}
   }, []);
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={visibleVotreRecherche}
-      onRequestClose={closeModalVotreRecherche}>
-      {/* Arrière-plan semi-transparent */}
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Couleur semi-transparente
-          justifyContent: 'center', // Centrer verticalement
-          alignItems: 'center', // Centrer horizontalement
-        }}>
-        <TouchableOpacity
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-          }}
-          onPress={() => closeModalVotreRecherche()}
-          accessibilityLabel="Ferme la fenêtre"
-        />
-        {/* Contenu de la modal */}
-        <View
-          style={{
-            top: 40,
-            width: 394,
-            height: 700,
-            backgroundColor: 'white',
-            borderTopLeftRadius: 50,
-            borderTopRightRadius: 50,
-          }}>
-          <View
-            style={{
-              alignSelf: 'center',
-            }}>
+    <View>
+      <TouchableOpacity
+        onPress={() => {
+          setOpenModalRecherche(true);
+        }}
+        style={[StylesVotreRecherche.btnModal]}>
         <Image
-          source={require('../../../assets/images/LoupeRP.png')}
-          style={{
-            width: 84,
-            height: 84,
-            top: 30,
-            alignSelf: 'center',
-          }}
+          style={[StylesVotreRecherche.icoBtnModal]}
+          source={require('../../../assets/images/recherche_emploi.png')}
         />
         <Text
-          style={{
-            fontFamily: 'Gilroy',
-            fontWeight: '700',
-            fontSize: 20,
-            color: '#000',
-            top: 50,
-          }}>
-          Votre rechreche
+          style={[StylesVotreRecherche.txtBtnModal]}>
+          Recherche
         </Text>
-      </View>
-      <View>
-        <Text
-          style={{
-            fontFamily: 'Gilroy',
-            fontWeight: '700',
-            fontSize: 14,
-            color: '#000',
-            top: 80,
-            left: 30,
-          }}>
-          Sélectionnez votre rechreche.
-        </Text>
-      </View>
-      <MyComponentVotreRecherche />
+        <Image
+          style={[StylesVotreRecherche.plusBtnModal]}
+          source={
+            openModalRecherche
+              ? require('../../../assets/images/add_pro_plein.png')
+              : require('../../../assets/images/add_pro_vide.png')
+          }
+        />
+      </TouchableOpacity>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={openModalRecherche}
+        statusBarTranslucent={true}
+      >
+        {/* Arrière-plan semi-transparent */}
+        <View
+          style={[StylesVotreRecherche.containerModal]}>
+          <TouchableOpacity
+            style={[StylesVotreRecherche.btnClose]}
+            onPress={() => {setOpenModalRecherche(false);}}
+            accessibilityLabel="Ferme la fenêtre"
+          />
+          {/* Contenu de la modal */}
+          <View
+            style={[StylesVotreRecherche.viewModal]}>
+            <View
+              style={{
+                alignSelf: 'center',
+              }}>
+              <Image
+                source={require('../../../assets/images/ChemiseEditRP.png')}
+                style={[StylesVotreRecherche.icoModal]}
+              />
+              <Text
+                style={[StylesVotreRecherche.txtTitleModal]}>
+                Recherche
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={[StylesVotreRecherche.subTxtModal]}>
+                Sélectionnez votre statut professionnel.
+              </Text>
+            </View>
+            <View>
+              <View
+                style={{
+                  alignItems: 'center',
+                  top: 140,
+                }}>
+                <View style={{flexDirection:'row'}}>
+                  <View style={{flexDirection: 'column'}}>
+                  <TouchableOpacity
+                    onPress={() => { viewRecherche ? setViewRecherche(false) : setViewRecherche(true); }} // Show the second code on click
+                    style={
+                      { width: 276, alignSelf: 'center', }
+                    }>
+                  <Text
+                    style={[StylesVotreRecherche.txtOptionSelected]}>
+                    {userRecherche ? userRecherche : 'Sélectionnez votre recherche.'}
+                  </Text>
+              </TouchableOpacity>
+              {viewRecherche ?
+                <View
+                  style={[StylesVotreRecherche.viewOption]} >
+                  {recherche.map((item, index) => (
+                    <TouchableOpacity key={index} style={{}} onPress={() => { setUserRecherche(item); setViewRecherche(false); }}>
+                      <Text
+                        key={index}
+                        style={[StylesVotreRecherche.txtOption]}>
+                        {item}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+                : null}
+                </View>
+                <TouchableOpacity
+                  onPress={() => { viewRecherche ? setViewRecherche(false) : setViewRecherche(true); }}>
+                  <Image
+                    source={require('../../../assets/images/FlecheEditRP.png')}
+                    style={[StylesVotreRecherche.icoViewOption,{
+                      transform: [{rotate: viewRecherche ? '180deg' : '0deg'}],
+                    }]}/>
+                </TouchableOpacity>
+                </View>
+              </View>
+
+              <Text
+                style={[StylesVotreRecherche.txtChoice,{
+                  top: viewRecherche ? 50 : 350,
+                }]}>
+                Choix unique.
+              </Text>
+            </View>
+          </View>
         </View>
-      </View>
-    </Modal>
+      </Modal>
+    </View>
   );
 };
 

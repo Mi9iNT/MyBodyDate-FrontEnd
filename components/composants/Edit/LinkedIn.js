@@ -4,25 +4,32 @@
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image, ImageBackground, TextInput, TouchableOpacity, Modal} from 'react-native';
-import {MyComponentLinkedIn} from './MyComponentLinkedIn';
+import StylesLinkedin from '../../../assets/style/StyleComposants/styleEdit/StyleLinkedin';
 
-export const LinkedIn = ({visibleLinkedIn, closeModalLinkedIn}) => {
+export const LinkedIn = ({}) => {
   const [modalLinkedInlVisible, setModalLinkedInlVisible] = useState(false);
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [addProVisible, setAddProVisible] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const [urlShow, setUrlShow] = useState(false);
 
-  const handleAddProToggle = index => {
-    const newArray = [...addProVisible];
-    newArray[index] = !newArray[index];
-    setAddProVisible(newArray);
+  const [urlLinkedin, setUrlLinkedin] = useState(false);
+
+  const [urlError, setUrlError] = useState(false);
+
+  console.log(urlLinkedin);
+
+  const urlRegex = new RegExp(
+    '^(http|https)://(([a-zA-Z0-9-]+.)?([a-zA-Z0-9-]+.)?[a-zA-Z0-9-]+\\.[a-zA-Z]{2,4}(:[0-9]+)?(/[a-zA-Z0-9-]*)?(.[a-zA-Z0-9]{1,4})?)*$'
+  );
+
+  const verifyUrl = (index) => {
+    let url = 'https://www.linkedin.com/in/' + index;
+
+    if (urlRegex.test(url)) {
+      setUrlLinkedin(url);
+      setUrlError(false);
+    } else {
+      setUrlError(true);
+    }
   };
 
   useEffect(() => {
@@ -33,117 +40,97 @@ export const LinkedIn = ({visibleLinkedIn, closeModalLinkedIn}) => {
   }, []);
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={visibleLinkedIn}
-      onRequestClose={closeModalLinkedIn}>
-      {/* Arrière-plan semi-transparent */}
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Couleur semi-transparente
-          justifyContent: 'center', // Centrer verticalement
-          alignItems: 'center', // Centrer horizontalement
-        }}>
-        <TouchableOpacity
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-          }}
-          onPress={() => closeModalLinkedIn()}
-          accessibilityLabel="Ferme la fenêtre"
-        />
-        {/* Contenu de la modal */}
-        <View
-          style={{
-            top: 40,
-            width: 394,
-            height: 700,
-            backgroundColor: 'white',
-            borderTopLeftRadius: 50,
-            borderTopRightRadius: 50,
-          }}>
-          <View
-            style={{
-              alignSelf: 'center',
-            }}>
+    <>
+      <TouchableOpacity
+        onPress={() => {
+          setModalLinkedInlVisible(true);
+        }}
+        style={[StylesLinkedin.btnModal]}>
         <Image
-          source={require('../../../assets/images/LinkedIn.png')}
-          style={{
-            width: 70,
-            height: 70,
-            top: 30,
-            alignSelf: 'center',
-          }}
+          style={[StylesLinkedin.icoBtnModal]}
+          source={require('../../../assets/images/LinkedIn-RP.png')}
         />
         <Text
-          style={{
-            fontFamily: 'Gilroy',
-            fontWeight: '700',
-            fontSize: 20,
-            color: '#000',
-            top: 50,
-          }}>
-          Mon compte LinkedIn
+          style={[StylesLinkedin.txtBtnModal]}>
+          Url LinkedIn
         </Text>
-      </View>
-      <View>
-        <Text
-          style={{
-            fontFamily: 'Gilroy',
-            fontWeight: '700',
-            fontSize: 14,
-            color: '#000',
-            top: 80,
-            left: 30,
-          }}>
-          Entrez le lien URL de votre compte LinkedIn.
-        </Text>
-      </View>
-      <View style={{alignSelf: 'center'}}>
-        <ImageBackground
-          source={require('../../../assets/images/RectangleRP.png')}
-          style={{
-            width: 354,
-            height: 40,
-            top: 150,
-          }}>
+        <Image
+          style={[StylesLinkedin.plusBtnModal]}
+          source={
+            modalLinkedInlVisible === true
+              ? require('../../../assets/images/add_pro_plein.png')
+              : require('../../../assets/images/add_pro_vide.png')
+          }
+        />
+      </TouchableOpacity>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalLinkedInlVisible}
+        statusBarTranslucent={true}
+      >
+        {/* Arrière-plan semi-transparent */}
           <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              left: 10,
-            }}>
-            <TextInput
-              style={{
-                fontSize: 14,
-                fontFamily: 'Comfortaa',
-                fontWeight: '700',
-                color: '#6D6966',
-                padding: 5,
-                left: 10,
-              }}
-              defaultValue="URL"
-            />
+            style={[StylesLinkedin.containerModal]}>
+              <TouchableOpacity
+                style={[StylesLinkedin.btnClose]}
+                onPress={() => setModalLinkedInlVisible(false)}
+                accessibilityLabel="Ferme la fenêtre"
+              />
+              {/* Contenu de la modal */}
+              <View
+                style={[StylesLinkedin.viewModal]}>
+                <View
+                  style={{
+                    alignSelf: 'center',
+                  }}>
+              <Image
+                source={require('../../../assets/images/LinkedIn.png')}
+                style={[StylesLinkedin.icoModal]}
+              />
+              <Text
+                style={[StylesLinkedin.txtTitleModal]}>
+                Mon compte LinkedIn
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={[StylesLinkedin.subTxtModal]}>
+                Entrez le lien URL de votre compte LinkedIn . . .
+              </Text>
+            </View>
+            <View style={{alignSelf: 'center'}}>
+              <View
+                style={[StylesLinkedin.viewRow]}>
+                <Text style={[StylesLinkedin.txtIndice]}>{urlShow === true ?  'linkedin.com/in/' : 'URL'}</Text>
+                <TextInput
+                  style={[StylesLinkedin.txtInput,{
+                    right: urlShow === true ? 5 : 0,
+                    minWidth: urlShow === true ? '60%' : '80%',
+                  }]}
+                  keyboardType="url"
+                  onFocus={() => setUrlShow(true)}
+                  onEndEditing={(event) => {
+                    setUrlShow(false); verifyUrl(event.nativeEvent.text);
+                    }
+                  }
+                  defaultValue={urlLinkedin.lengh < 0 ? '' : urlShow ? '' : urlLinkedin}
+                />
+              </View>
+              {urlError
+                ? <Text style={[StylesLinkedin.txtError]}>
+                      l'URL saisie est invalide
+                  </Text>
+                : null}
+            </View>
+            <Text
+              style={[StylesLinkedin.txtChoice]}>
+              Choix unique.
+            </Text>
           </View>
-        </ImageBackground>
-      </View>
-      <Text
-        style={{
-          fontFamily: 'Comfortaa',
-          fontWeight: '700',
-          fontSize: 12,
-          color: '#000',
-          left: 30,
-          top: 450,
-        }}>
-        Choix unique.
-      </Text>
-    </View>
         </View>
-    </Modal>
+      </Modal>
+    </>
   );
 };
 

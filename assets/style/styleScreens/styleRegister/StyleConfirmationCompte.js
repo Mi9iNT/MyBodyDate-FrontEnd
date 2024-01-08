@@ -77,6 +77,26 @@ const StylesConfirmationCompte = {
     color: '#0019A7',
     fontFamily: 'Comfortaa-Bold',
   },
+  ViewBtn: {
+    top: 80,
+    height: 56,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imgBtn2: {
+    height: 56,
+    flexShrink: 0,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    top: 18,
+  },
+  TxtBtn: {
+    fontSize: 22,
+    textAlign: 'center',
+    fontFamily: 'Comfortaa',
+    bottom: 28,
+    zIndex: 1,
+  },
 };
 
 export default StylesConfirmationCompte;

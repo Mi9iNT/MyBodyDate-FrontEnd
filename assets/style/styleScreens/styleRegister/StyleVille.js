@@ -1,12 +1,16 @@
 const StylesVille = {
   container: {
-    flex: 1,
+    width: '100%',
+    height: '100%',
     justifyContent: 'center',
   },
   bgGradient: {
     resizeMode: 'contain',
     width: '100%',
     height: '100%',
+  },
+  viewContent: {
+    flex: 8,
   },
   TxtTitle: {
     top: 150,
@@ -31,6 +35,27 @@ const StylesVille = {
     borderColor: '#FFF',
     borderRadius: 30,
     padding: 15,
+  },
+  ViewBtn: {
+    flex: 2,
+    height: 56,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imgBtn: {
+    height: 56,
+    flexShrink: 0,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    bottom: 17,
+  },
+  TxtBtn: {
+    color: '#0F0BAE',
+    fontSize: 22,
+    textAlign: 'center',
+    fontFamily: 'Comfortaa',
+    top: 24,
+    zIndex: 1,
   },
 };
 

@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import PropTypes from 'prop-types';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -7,27 +6,32 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-import Styles from '../../../assets/style/Styles';
-import {BtnNext} from '../../composants/BtnNext';
+import {storeData, getData} from '../../../service/storage';
 import StylesRecherche2 from '../../../assets/style/styleScreens/styleRegister/StyleRecherche2';
 
-export const Recherche2 = ({route, navigation}) => {
-  const {
-    routeName,
-    userConsent,
-    loveCoach,
-    userEmail,
-    userPhone,
-    userCity,
-    accesPosition,
-    genre,
-    userBirth,
-    userSize,
-    userLang,
-    userSituation,
-    userOrientation,
-    userRecherche1,
-  } = route.params ?? {};
+export const Recherche2 = ({navigation}) => {
+
+  useEffect(() => {
+    handleGetData();
+  }, []);
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetData = async () => {
+    try {
+      const userRecherche2 = await getData('recherche2');
+      setSelectedRecherche2(userRecherche2 || '');
+      // console.log('Recherche 2 : ' + userRecherche2);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
 
   const [selectedRecherhe2, setSelectedRecherche2] = useState([]);
 
@@ -204,38 +208,31 @@ export const Recherche2 = ({route, navigation}) => {
         </View>
 
         <Text style={[StylesRecherche2.textWhite]}>Choix multiple.</Text>
-        <BtnNext
-          route={route}
-          navigation={navigation}
-          navigateTo={'Affinite'}
-          txt={'Continuer'}
-          background={'white'}
-          top={50}
-        />
+        <TouchableOpacity
+          style={StylesRecherche2.ViewBtn}
+          onPress={() => {
+            navigation.navigate('Affinite');
+            handleStoreData('recherche2', selectedRecherhe2 ?? '');
+            setButtonPressed(true);
+          }}
+          accessibilityLabel="Continuer">
+          <Text
+            style={[
+              StylesRecherche2.TxtBtn,
+              {color: buttonPressed ? '#fff' : '#0019A7'},
+            ]}>
+            Continuer
+          </Text>
+          <Image
+            style={[StylesRecherche2.imgBtn]}
+            source={
+              buttonPressed
+                ? require('../../../assets/boutons/Bouton-Rouge.png')
+                : require('../../../assets/boutons/Bouton-Blanc.png')
+            }
+          />
+        </TouchableOpacity>
       </ImageBackground>
     </View>
   );
-};
-
-Recherche2.propTypes = {
-  route: PropTypes.shape({
-    params: PropTypes.shape({
-      routeName: PropTypes.string,
-      userConsent: PropTypes.string,
-      loveCoach: PropTypes.string,
-      userEmail: PropTypes.string,
-      userPhone: PropTypes.string,
-      userCity: PropTypes.string,
-      accesPosition: PropTypes.string,
-      genre: PropTypes.string,
-      userBirth: PropTypes.string,
-      userSize: PropTypes.string,
-      userLang: PropTypes.string,
-      userSituation: PropTypes.string,
-      userOrientation: PropTypes.string,
-      userRecherche1: PropTypes.string,
-      userRecherche2: PropTypes.array,
-    }),
-  }),
-  navigation: PropTypes.object,
 };

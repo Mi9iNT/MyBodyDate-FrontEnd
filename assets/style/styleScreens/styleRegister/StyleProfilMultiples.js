@@ -80,14 +80,26 @@ const StylesProfilMultiples = {
     fontSize: 14,
     padding: 15,
   },
+  ViewBtn: {
+    top: 280,
+    height: 56,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imgBtn: {
+    height: 56,
+    flexShrink: 0,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    bottom: 17,
+  },
   TxtBtn: {
-    color: '#FFF',
+    color: '#0F0BAE',
+    fontSize: 22,
     textAlign: 'center',
     fontFamily: 'Comfortaa',
-    fontSize: 16,
-    fontStyle: 'normal',
-    fontWeight: 700,
-    textDecorationLine: 'underline',
+    top: 24,
+    zIndex: 1,
   },
 };
 

@@ -20,12 +20,12 @@ const StylesTaille = {
   },
   ViewRow: {
     flexDirection: 'row',
-    height: 140,
+    height: 150,
     width: '80%',
     justifyContent: 'center',
     alignSelf: 'center',
     alignItems: 'center',
-    top: 150,
+    bottom: 50,
   },
   BoxFlat: {justifyContent: 'center'},
   Flat: {
@@ -58,8 +58,6 @@ const StylesTaille = {
   BoxCol: {
     flexDirection: 'column',
     height: 130,
-    top: 6,
-    left: 20,
     alignItems: 'center',
   },
   ScrollUp: {
@@ -86,7 +84,7 @@ const StylesTaille = {
     resizeMode: 'contain',
   },
   textWhite: {
-    top: 420,
+    top: 100,
     left: 40,
     color: '#fff',
     fontSize: 12,
@@ -94,14 +92,26 @@ const StylesTaille = {
     height: 200,
     fontFamily: 'Comfortaa',
   },
+  ViewBtn: {
+    flex: 1,
+    height: 56,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imgBtn: {
+    height: 56,
+    flexShrink: 0,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    bottom: 17,
+  },
   TxtBtn: {
-    color: '#FFF',
+    color: '#0F0BAE',
+    fontSize: 22,
     textAlign: 'center',
     fontFamily: 'Comfortaa',
-    fontSize: 16,
-    fontStyle: 'normal',
-    fontWeight: 700,
-    textDecorationLine: 'underline',
+    top: 24,
+    zIndex: 1,
   },
 };
 

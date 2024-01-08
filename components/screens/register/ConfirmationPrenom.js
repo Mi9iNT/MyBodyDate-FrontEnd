@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -9,35 +9,35 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import PropTypes from 'prop-types';
 import Styles from '../../../assets/style/Styles';
+import {storeData, getData} from '../../../service/storage';
 import StylesConfirmationPrenom from '../../../assets/style/styleScreens/styleRegister/StyleConfirmationPrenom';
 
-export const ConfirmationPrenom = ({route, navigation}) => {
-  const {
-    routeName,
-    userConsent,
-    loveCoach,
-    userEmail,
-    userPhone,
-    userCity,
-    accesPosition,
-    genre,
-    userBirth,
-    userSize,
-    userLang,
-    userSituation,
-    userOrientation,
-    userRecherche1,
-    userRecherche2,
-    userAffinites,
-    rythmeDeVie1,
-    rythmeDeVie2,
-    userPrenom,
-    pseudo,
-  } = route.params ?? '';
+export const ConfirmationPrenom = ({navigation}) => {
 
-  const [prenom, setPrenom] = useState(userPrenom);
+  useEffect(() => {
+    handleGetData();
+  }, []);
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetData = async () => {
+    try {
+      const firstname = await getData('firstname');
+      setPrenom(firstname || '');
+      // console.log('firstname : ' + firstname);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  const [prenom, setPrenom] = useState();
   const [modalVisible, setModalVisible] = useState(false);
 
   const currentDate = new Date();
@@ -125,28 +125,7 @@ export const ConfirmationPrenom = ({route, navigation}) => {
             onPress={() => {
               setButtonPressed('Accepter');
               setModalVisible(false);
-              navigation.navigate('Profil multiples', {
-                userConsent,
-                routeName,
-                loveCoach,
-                userEmail,
-                userPhone,
-                userCity,
-                accesPosition,
-                genre,
-                userBirth,
-                userSize,
-                userLang,
-                userSituation,
-                userOrientation,
-                userRecherche1,
-                userRecherche2,
-                userAffinites,
-                rythmeDeVie1,
-                rythmeDeVie2,
-                userPrenom: prenom,
-                pseudo,
-              });
+              navigation.navigate('Profil multiples');
             }}>
             <Text style={[StylesConfirmationPrenom.TextBtnModal2,]}>
               Accepter
@@ -165,6 +144,7 @@ export const ConfirmationPrenom = ({route, navigation}) => {
       <TouchableOpacity
         style={[StylesConfirmationPrenom.Btn]}
         onPress={() => {
+          handleStoreData('firstname', prenom ?? '');
           setButtonPressed('Continuer');
           setModalVisible(true);
         }}
@@ -181,32 +161,4 @@ export const ConfirmationPrenom = ({route, navigation}) => {
       </TouchableOpacity>
     </ImageBackground>
   );
-};
-
-ConfirmationPrenom.propTypes = {
-  route: PropTypes.shape({
-    params: PropTypes.shape({
-      routeName: PropTypes.string,
-      userConsent: PropTypes.string,
-      loveCoach: PropTypes.string,
-      userEmail: PropTypes.string,
-      userPhone: PropTypes.string,
-      userCity: PropTypes.string,
-      accesPosition: PropTypes.string,
-      genre: PropTypes.string,
-      userBirth: PropTypes.string,
-      userSize: PropTypes.string,
-      userLang: PropTypes.string,
-      userSituation: PropTypes.string,
-      userOrientation: PropTypes.string,
-      userRecherche1: PropTypes.string,
-      userRecherche2: PropTypes.array,
-      userAffinites: PropTypes.array,
-      rythmeDeVie1: PropTypes.string,
-      rythmeDeVie2: PropTypes.array,
-      userPrenom: PropTypes.string,
-      pseudo: PropTypes.string,
-    }),
-  }).isRequired,
-  navigation: PropTypes.object.isRequired,
 };

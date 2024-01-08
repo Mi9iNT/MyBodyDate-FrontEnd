@@ -9,11 +9,28 @@ import {
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
 import Logo from '../../composants/Logo';
+import {storeData, getData} from '../../../service/storage';
 
-export const LinksLogIn = ({route, navigation}) => {
+export const LinksLogIn = ({navigation}) => {
+  const [routeChoice, setRouteChoice] = useState();
   // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
-  const routeChoice = route.params?.routeName ?? '';
-  console.log('Choix de route : ', routeChoice);
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetRoute = async () => {
+    try {
+      const route = await getData('route_choice');
+      setRouteChoice(route || '');
+      // console.log('route_choice : ' + route);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
 
   const [buttonPressed, setButtonPressed] = useState('');
 
@@ -114,7 +131,7 @@ export const LinksLogIn = ({route, navigation}) => {
               style={[{top: 50, height: 56}]}
               onPress={() => {
                 setButtonPressed('Google');
-                navigation.navigate('Tabs', {routeName: 'Se connecter'});
+                navigation.navigate('Tabs');
               }}
               accessibilityLabel="Connexion avec Google">
               <Text
@@ -153,7 +170,8 @@ export const LinksLogIn = ({route, navigation}) => {
               style={[{top: 50, height: 56}]}
               onPress={() => {
                 setButtonPressed('Email');
-                navigation.navigate('Compte', {routeName: 'Connexion mail'});
+                handleStoreData('route_choice', 'connexion email');
+                navigation.navigate('Compte');
               }}
               accessibilityLabel="Se connecter par email">
               <Text
@@ -189,7 +207,8 @@ export const LinksLogIn = ({route, navigation}) => {
               style={[{top: 70, height: 56}]}
               onPress={() => {
                 setButtonPressed('Numero');
-                navigation.navigate('Compte', {routeName: 'Connexion numero'});
+                handleStoreData('route_choice', 'connexion numero');
+                navigation.navigate('Compte');
               }}
               accessibilityLabel="Se connecter avec son numéro de téléphone">
               <Text
@@ -228,11 +247,9 @@ export const LinksLogIn = ({route, navigation}) => {
               Vous n'avez pas de compte ?
             </Text>
             <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Liens d'inscription", {
-                  routeName: "S'inscrire",
-                })
-              }
+              onPress={() => {
+                navigation.navigate("Liens d'inscription");
+              }}
               accessibilityLabel="Rejoignez-nous">
               <Text
                 style={[
@@ -249,11 +266,10 @@ export const LinksLogIn = ({route, navigation}) => {
             <View style={[Styles.line]} />
             <View>
               <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('Recuperation email', {
-                    routeName: 'Recuperation de compte',
-                  })
-                }
+                onPress={() => {
+                  handleStoreData('route_choice', 'recuperation email');
+                  navigation.navigate('Recuperation email');
+                }}
                 accessibilityLabel="Récupération email">
                 <Text
                   style={[

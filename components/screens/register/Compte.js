@@ -1,62 +1,64 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
-  ImageBackground,
-  SafeAreaView,
-  TextInput,
   Image,
   TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import Styles from '../../../assets/style/Styles';
-import PropTypes from 'prop-types';
 import StylesCompte from '../../../assets/style/styleScreens/styleRegister/StyleCompte';
 import RegisterNumero from '../../composants/register/RegisterNumero';
 import RegisterEmail from '../../composants/register/RegisterEmail';
 import LoginEmail from '../../composants/login/LoginEmail';
 import LoginNumero from '../../composants/login/LoginNumero';
+import {storeData, getData} from '../../../service/storage';
 
-export const Compte = ({route, navigation}) => {
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  const userSituation = route.params?.userSituation ?? '';
-  const userOrientation = route.params?.userOrientation ?? '';
-  const userRecherche1 = route.params?.userRecherche1 ?? '';
-  const userRecherche2 = route.params?.userRecherche2 ?? '';
-  const userAffinites = route.params?.userAffinites ?? '';
-  const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-  const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
-  const userPrenom = route.params?.userPrenom ?? '';
+export const Compte = ({navigation}) => {
+  useEffect(() => {
+    handleGetRoute();
+    handleGetEmail();
+    handleGetNumero();
+  }, []);
 
-  console.log('Choix de route : ', routeChoice);
-  console.log('Consentement : ', consentement);
-  console.log('Love Coach : ', loveCoach);
-  console.log('Email : ', userEmail);
-  console.log('Téléphone : ', userPhone);
-  console.log('Ville : ', userCity);
-  console.log('Accès position : ', accesPosition);
-  console.log('Genre : ', genre);
-  console.log('Date de naissance : ', userBirth);
-  console.log('Taille : ', userSize);
-  console.log('Langues : ', userLang);
-  console.log('Situation : ', userSituation);
-  console.log('Orientation : ', userOrientation);
-  console.log('Recherche 1 : ', userRecherche1);
-  console.log('Recherche 2 : ', userRecherche2);
-  console.log('Affinité(s) : ', userAffinites);
-  console.log('Rythme de vie 1 : ', rythmeDeVie1);
-  console.log('Rythme de vie 2 : ', rythmeDeVie2);
-  console.log('Prénom : ', userPrenom);
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetRoute = async () => {
+    try {
+      const routeChoice = await getData('route_choice');
+      setRouteChoice(routeChoice || '');
+      // console.log('route_choice : ' + routeChoice);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  const handleGetEmail = async () => {
+    try {
+      const userEMail = await getData('email');
+      setEmail(userEMail || '');
+      // console.log('Email : ' + userEmail);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  const handleGetNumero = async () => {
+    try {
+      const userPhone = await getData('phone');
+      setNumero(userPhone || '');
+      // console.log('Téléphone : ' + userPhone);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
 
   const [errorMessage, setErrorMessage] = useState('');
   const [errorEmail, setErrorEmail] = useState('');
@@ -65,6 +67,8 @@ export const Compte = ({route, navigation}) => {
   const [email, setEmail] = useState('');
   const [numero, setNumero] = useState('');
   const [password, setPassword] = useState('');
+
+  const [routeChoice, setRouteChoice] = useState('');
 
   const [buttonPressed, setButtonPressed] = useState('');
 
@@ -98,19 +102,19 @@ export const Compte = ({route, navigation}) => {
 
   let selectedRoute;
   switch (routeChoice) {
-    case 'Recuperation code':
+    case 'recuperation code':
       selectedRoute = 'Recuperation code';
       break;
-    case "S'inscrire par mail":
+    case 'inscription email':
       selectedRoute = 'Confirmation compte';
       break;
-    case "S'inscrire par numero":
+    case 'inscription numero':
       selectedRoute = 'Recuperation code';
       break;
-    case 'Connexion mail':
+    case 'connexion email':
       selectedRoute = 'Recuperation code';
       break;
-    case 'Connexion numero':
+    case 'connexion numero':
       selectedRoute = 'Recuperation code';
       break;
     default:
@@ -131,19 +135,28 @@ export const Compte = ({route, navigation}) => {
         <View style={[StylesCompte.ViewText]}>
           <Text style={[StylesCompte.TxtTitle]}>MON COMPTE</Text>
         </View>
-        <View style={[{flex:2, top: 180,}]}>
-          {routeChoice === "S'inscrire par numero" ? (
-            <RegisterNumero />
-          ) : routeChoice === 'Connexion numero' ? (
-            <LoginNumero />
-          ) : routeChoice === 'Connexion mail' ? (
-            <LoginEmail />
-          ) : routeChoice === "S'inscrire par mail" ? (
-            <RegisterEmail />
+        <View style={[{flex: 2, top: 180}]}>
+          {routeChoice === 'inscription numero' ? (
+            <RegisterNumero
+              selectedRoute={selectedRoute}
+              navigation={navigation}
+            />
+          ) : routeChoice === 'connexion numero' ? (
+            <LoginNumero
+              selectedRoute={selectedRoute}
+              navigation={navigation}
+            />
+          ) : routeChoice === 'connexion email' ? (
+            <LoginEmail selectedRoute={selectedRoute} navigation={navigation} />
+          ) : routeChoice === 'inscription email' ? (
+            <RegisterEmail
+              selectedRoute={selectedRoute}
+              navigation={navigation}
+            />
           ) : null}
         </View>
 
-        <View style={{top: 100, left: 40}}>
+        {/* <View style={{top: 100, left: 40}}>
           <Text style={[Styles.textWhite2, {fontSize: 12}]}>Choix unique.</Text>
         </View>
 
@@ -156,27 +169,7 @@ export const Compte = ({route, navigation}) => {
               validatePhone(numero);
               setButtonPressed('Continuer');
               if ((!errorPassword && !errorEmail) || !errorNumero) {
-                navigation.navigate(selectedRoute, {
-                  userConsent: consentement,
-                  routeName: routeChoice,
-                  loveCoach: loveCoach,
-                  userEmail: userEmail,
-                  userPhone: userPhone,
-                  userCity: userCity,
-                  accesPosition: accesPosition,
-                  genre: genre,
-                  userBirth: userBirth,
-                  userSize: userSize,
-                  userLang: userLang,
-                  userSituation: userSituation,
-                  userOrientation: userOrientation,
-                  userRecherche1: userRecherche1,
-                  userRecherche2: userRecherche2,
-                  userAffinites: userAffinites,
-                  rythmeDeVie1: rythmeDeVie1,
-                  rythmeDeVie2: rythmeDeVie2,
-                  userPrenom: userPrenom,
-                });
+                navigation.navigate(selectedRoute);
               } else if (errorEmail) {
                 setErrorMessage(
                   'Veuillez entrer une adresse e-mail et un mot de passe valide.',
@@ -213,37 +206,10 @@ export const Compte = ({route, navigation}) => {
               }
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ImageBackground>
     </KeyboardAwareScrollView>
   );
-};
-
-Compte.propTypes = {
-  route: PropTypes.shape({
-    params: PropTypes.shape({
-      routeName: PropTypes.string,
-      userConsent: PropTypes.string,
-      loveCoach: PropTypes.string,
-      userEmail: PropTypes.string,
-      userPhone: PropTypes.string,
-      userCity: PropTypes.string,
-      accesPosition: PropTypes.string,
-      genre: PropTypes.string,
-      userBirth: PropTypes.string,
-      userSize: PropTypes.string,
-      userLang: PropTypes.string,
-      userSituation: PropTypes.string,
-      userOrientation: PropTypes.string,
-      userRecherche1: PropTypes.string,
-      userRecherche2: PropTypes.array,
-      userAffinites: PropTypes.array,
-      rythmeDeVie1: PropTypes.string,
-      rythmeDeVie2: PropTypes.string,
-      userPrenom: PropTypes.string,
-    }),
-  }),
-  navigation: PropTypes.object,
 };
 
 export default Compte;

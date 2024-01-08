@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -7,17 +7,75 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
+import {storeData, getData, getDatas} from '../../../service/storage';
 import Logo from '../../composants/Logo';
 import Styles from '../../../assets/style/Styles';
 import StylesLoveCoach from '../../../assets/style/styleScreens/styleRegister/StyleLoveCoach';
 
 //Home Screen
 export const LoveCoach = ({route, navigation}) => {
-  // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  console.log('Choix de route : ', routeChoice);
-  console.log('Consentement : ', consentement);
+
+  const [buttonPressed, setButtonPressed] = useState();
+  const [selectedOption, setSelectedOption] = useState('Oui');
+  const [userConsent, setUserConsent] = useState('');
+  const [routeChoice, setRouteChoice] = useState('');
+  console.log('Route :' + routeChoice);
+  console.log(userConsent);
+
+  useEffect(() => {
+    handleGetData();
+  }, []);
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetData = async () => {
+    try {
+      const consent = await getData('love_coach');
+      setUserConsent(consent || '');
+      // console.log(consent);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  const keysToRetrieve = ['user_consent', 'love_coach', 'route_choice'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const retrieveMultipleValues = async () => {
+    try {
+      const retrievedValues = await getDatas(keysToRetrieve);
+      console.log('Valeurs récupérées :', retrievedValues);
+      // Utilisez retrievedValues comme nécessaire dans votre application
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+  retrieveMultipleValues();
+
+  useEffect(() => {
+    const retrieveData = async () => {
+      try {
+        const values = await Promise.all(
+          keysToRetrieve.map(async key => {
+            const value = await getData(key);
+            setRouteChoice(value);
+            return {key, value};
+          }),
+        );
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données :', error);
+      }
+    };
+
+    // Appelez la fonction pour récupérer les données dès que le composant est monté
+    retrieveData();
+  }, []);
 
   const RadioInput = ({label, selected, onPress}) => {
     const icon = selected
@@ -33,10 +91,6 @@ export const LoveCoach = ({route, navigation}) => {
       </TouchableOpacity>
     );
   };
-  const [selectedOption, setSelectedOption] = useState('Oui');
-  const [buttonPressed, setButtonPressed] = useState();
-
-  console.log('Love Coach: ' + selectedOption);
 
   return (
     <View style={StylesLoveCoach.container}>
@@ -77,18 +131,12 @@ export const LoveCoach = ({route, navigation}) => {
           <TouchableOpacity
             style={[]}
             onPress={() => {
-              if (routeChoice === 'Se connecter') {
-                navigation.navigate('Liens de connexion', {
-                  userConsent: consentement,
-                  routeName: routeChoice,
-                  LoveCoach: selectedOption,
-                });
+              if (routeChoice === 'connexion') {
+                navigation.navigate('Liens de connexion');
+                handleStoreData('love_coach', selectedOption);
               } else {
-                navigation.navigate("Liens d'inscription", {
-                  userConsent: consentement,
-                  routeName: routeChoice,
-                  loveCoach: selectedOption,
-                });
+                navigation.navigate("Liens d'inscription");
+                handleStoreData('love_coach', selectedOption);
               }
               setButtonPressed(true);
             }}

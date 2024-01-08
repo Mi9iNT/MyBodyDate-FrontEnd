@@ -5,25 +5,18 @@ import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image, ImageBackground, TextInput, TouchableOpacity, Modal} from 'react-native';
 import {MyComponentOffre} from './MyComponentOffre';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import StylesOffre from '../../../assets/style/StyleComposants/styleEdit/StyleOffre';
 
 export const Offre = ({visibleOffre, closeModalOffre}) => {
   const [modalOffrelVisible, setModalOffrelVisible] = useState(false);
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [addProVisible, setAddProVisible] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const [modalOffre, setModalOffre] = useState(false);
 
-  const handleAddProToggle = index => {
-    const newArray = [...addProVisible];
-    newArray[index] = !newArray[index];
-    setAddProVisible(newArray);
-  };
+  const [offreTitle, setOffreTitle] = useState('Entrer l\'intitulé de votre offre . . .');
+
+  const [offreDescription, setOffreDescription] = useState('Entrer la description de votre offre . . .');
 
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -33,151 +26,94 @@ export const Offre = ({visibleOffre, closeModalOffre}) => {
   }, []);
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={visibleOffre}
-      onRequestClose={closeModalOffre}>
-      {/* Arrière-plan semi-transparent */}
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Couleur semi-transparente
-          justifyContent: 'center', // Centrer verticalement
-          alignItems: 'center', // Centrer horizontalement
-        }}>
-        <TouchableOpacity
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-          }}
-          onPress={() => closeModalOffre()}
-          accessibilityLabel="Ferme la fenêtre"
+    <>
+      <TouchableOpacity
+        onPress={() => {
+          setModalOffre(true);
+        }}
+        style={[StylesOffre.btnModal]}>
+        <Image
+          style={[StylesOffre.icoBtnModal]}
+          source={require('../../../assets/images/publier__offre.png')}
         />
-        {/* Contenu de la modal */}
+        <Text
+          style={[StylesOffre.txtBtnModal]}>
+          Publier une offre
+        </Text>
+          <Image
+            style={[StylesOffre.plusBtnModal]}
+            source={
+              modalOffre
+                ? require('../../../assets/images/add_pro_plein.png')
+                : require('../../../assets/images/add_pro_vide.png')
+            }
+          />
+      </TouchableOpacity>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalOffre}
+        statusBarTranslucent={true}
+      >
+        {/* Arrière-plan semi-transparent */}
         <View
-          style={{
-            top: 40,
-            width: 394,
-            height: 700,
-            backgroundColor: 'white',
-            borderTopLeftRadius: 50,
-            borderTopRightRadius: 50,
-          }}>
+          style={[StylesOffre.containerModal]}>
+          <TouchableOpacity
+            style={[StylesOffre.btnClose]}
+            onPress={() => setModalOffre(false)}
+            accessibilityLabel="Ferme la fenêtre"
+          />
+          {/* Contenu de la modal */}
           <View
-            style={{
-              alignSelf: 'center',
-            }}>
-            <Image
-              source={require('../../../assets/images/Distinct.png')}
+            style={[StylesOffre.viewModal]}>
+            <View
               style={{
-                width: 70,
-                height: 70,
-                top: 30,
-                alignSelf: 'center',
-                alignItems: 'center',
-              }}
-            />
-            <Text
-              style={{
-                fontFamily: 'Gilroy',
-                fontWeight: '700',
-                fontSize: 20,
-                color: '#000',
-                top: 50,
-                textAlign: 'center',
                 alignSelf: 'center',
               }}>
-              Publier une offre
-            </Text>
-          </View>
-          <View>
-            <Text
-              style={{
-                fontFamily: 'Gilroy',
-                fontWeight: '700',
-                fontSize: 14,
-                color: '#000',
-                top: 140,
-                left: 30,
-              }}>
-              Intitulé de l'offre
-            </Text>
-          </View>
-          <View style={{alignSelf: 'center'}}>
-            <ImageBackground
-              source={require('../../../assets/images/RectangleRP.png')}
-              style={{
-                width: 353,
-                height: 40,
-                top: 150,
-              }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  left: 10,
-                }}>
+              <Image
+                source={require('../../../assets/images/Distinct.png')}
+                style={[StylesOffre.icoModal]}
+              />
+              <Text
+                style={[StylesOffre.txtTitleModal]}>
+                Publier une offre
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={[StylesOffre.subTxtModal]}>
+                Intitulé de l'offre
+              </Text>
+            </View>
+              <SafeAreaView style={{ top: 160, alignSelf:'center' }}>
                 <TextInput
-                  style={{
-                    fontSize: 14,
-                    fontFamily: 'Comfortaa',
-                    fontWeight: '700',
-                    color: '#6D6966',
-                    left: 10,
-                  }}
-                  defaultValue="Lorem ipsum"
-                  // Vous pouvez ajouter des gestionnaires d'événements ici pour gérer les changements de texte, etc.
+                  style={[StylesOffre.txtIntitulateOffre]}
+                  onChangeText={setOffreTitle}
+                  value={offreTitle}
                 />
-              </View>
-            </ImageBackground>
-          </View>
-          <View>
-            <Text
-              style={{
-                fontFamily: 'Gilroy',
-                fontWeight: '700',
-                fontSize: 14,
-                color: '#000',
-                top: 190,
-                left: 30,
-              }}>
-              Description de l'offre
-            </Text>
-          </View>
-          <View style={{alignSelf: 'center'}}>
-            <ImageBackground
-              source={require('../../../assets/images/Rectangle-B-RP.png')}
-              style={{
-                width: 345,
-                height: 230,
-                top: 200,
-              }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  left: 10,
-                }}>
+              </SafeAreaView>
+            <View>
+              <Text
+                style={[StylesOffre.subTxtModal2]}>
+                Description de l'offre
+              </Text>
+              <SafeAreaView style={{ top: 220 , alignSelf:'center'}}>
                 <TextInput
-                  style={{
-                    fontSize: 14,
-                    fontFamily: 'Comfortaa',
-                    fontWeight: '700',
-                    color: '#6D6966',
-                    left: 20,
-                    top: 20,
-                  }}
-                  defaultValue="Lorem ipsum"
-                  // Vous pouvez ajouter des gestionnaires d'événements ici pour gérer les changements de texte, etc.
+                  style={[StylesOffre.txtDescriptionOffre]}
+                  placeholder="Entrer la description de votre offre . . ."
+                  allowFontScaling={true}
+                  editable={true}
+                  multiline={true}
+                  scrollEnabled={true}
+                  onChangeText={setOffreDescription}
+                  value={offreDescription}
                 />
-              </View>
-            </ImageBackground>
+              </SafeAreaView>
+            </View>
           </View>
         </View>
-      </View>
-    </Modal>
+      </Modal>
+    </>
   );
 };
 

@@ -3,10 +3,9 @@ const StylesCompte = {
     flex: 1,
   },
   bgGradient: {
-    width: '100%',
-    minHeight: 880,
+    minHeight: 900,
     resizeMode: 'contain',
-    flexDirection:'column',
+    flexDirection: 'column',
   },
   ViewText: {
     top: 120,

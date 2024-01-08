@@ -83,7 +83,7 @@ export const TalkChat = ({ navigation, route }) => {
 
   // State pour gérer les messages envoyés par l'utilisateur
   const [messages, setMessages] = useState([]);
-  console.log(messages);
+  // console.log(messages);
   const [text, setText] = useState(text);
   const [audioPath, setAudioPath] = useState([]);
   const [newAudioPath, setNewAudioPath] = useState(false);
@@ -150,14 +150,14 @@ const wait = (ms) => {
   const [currentDurationSec, setCurrentDurationSec] = useState(0);
   const [playTime, setPlayTime] = useState('00:00:00');
   const [duration, setDuration] = useState('00:00:00');
-  console.log(
-    'recordTime : ',
-    recordTime,
-    ' playTime : ',
-    playTime,
-    ' duration : ',
-    duration,
-  );
+  // console.log(
+  //   'recordTime : ',
+  //   recordTime,
+  //   ' playTime : ',
+  //   playTime,
+  //   ' duration : ',
+  //   duration,
+  // );
 
   useEffect(() => {
     const checkPermissions = async () => {
@@ -178,7 +178,7 @@ const wait = (ms) => {
   const onStartRecord = async () => {
     try {
       if (recording) {
-        console.log('Enregistrement déjà en cours . . .');
+        // console.log('Enregistrement déjà en cours . . .');
         return;
       }
       setRecording(true);
@@ -199,7 +199,7 @@ const wait = (ms) => {
         AVNumberOfChannelsKeyIOS: 2,
         AVFormatIDKeyIOS: AVEncodingOption.mp3,
       };
-      console.log('audioSet', audioSet);
+      // console.log('audioSet', audioSet);
       const uri = new audioRecorderPlayer.startRecorder(path, audioSet);
       const recordBackListener = audioRecorderPlayer.addRecordBackListener(e => {
         if (typeof e.currentPosition === 'number' && e.currentPosition > 0) {
@@ -209,13 +209,13 @@ const wait = (ms) => {
           );
         }
       });
-      console.log(`uri: ${uri}`);
+      // console.log(`uri: ${uri}`);
       setNewAudioPath(uri);
       setAudioPath(prevAudioPath => [...prevAudioPath, uri]);
       wait(2000);
       return recordBackListener;
     } catch (error) {
-      console.log('Erreur lors du démarrage de l\'enregistrement audio :', error);
+      // console.log('Erreur lors du démarrage de l\'enregistrement audio :', error);
     }
   };
 
@@ -239,7 +239,7 @@ const wait = (ms) => {
 
     // Réinitialiser l'état du chemin audio actuel.
     setNewAudioPath(null);
-    console.log(result);
+    // console.log(result);
   };
 
 
@@ -248,8 +248,8 @@ const onStartPlay = async (index) => {
     onPausePlay();
   } else {
     setPlaying(true);
-    console.log('Player en lecture . . .');
-    console.log(index);
+    // console.log('Player en lecture . . .');
+    // console.log(index);
   
     if (index >= 0 && index < messages.length) {
       const path = messages[index].audio;
@@ -258,12 +258,12 @@ const onStartPlay = async (index) => {
       // Vérifiez si le fichier audio existe
       const exists = await RNFS.exists(path);
       if (!exists) {
-        console.log("Le fichier audio n'existe pas");
+        // console.log("Le fichier audio n'existe pas");
         return;
       }
 
       const msg = await audioRecorderPlayer.startPlayer(path);
-      console.log(msg);
+      // console.log(msg);
       audioRecorderPlayer.setVolume(1.0);
       audioRecorderPlayer.addPlayBackListener(e => {
         if (typeof e.currentPosition === 'number') {
@@ -279,7 +279,7 @@ const onStartPlay = async (index) => {
           );
 
           if (e.currentPosition === e.duration) {
-            console.log('Lecture finit');
+            // console.log('Lecture finit');
             audioRecorderPlayer.stopPlayer();
 
             // Réinitialisez l'état playTime du message audio une fois la lecture terminée
@@ -296,7 +296,7 @@ const onStartPlay = async (index) => {
           setDuration(audioRecorderPlayer.mmssss(Math.floor(e.duration)));
         }
         if (e.currentPosition === e.duration) {
-          console.log('Lecture finit');
+          // console.log('Lecture finit');
           audioRecorderPlayer.stopPlayer();
 
           // Réinitialisez l'état playTime du message audio une fois la lecture terminée
@@ -311,22 +311,20 @@ const onStartPlay = async (index) => {
   }
 };
 
-
-
   const onPausePlay = async (index) => {
     if (index >= 0 && index < messages.length) {
       const path = messages[index].audio;
       setSelectedAudio(messages[index].id);
       setPlaying(false);
       audioRecorderPlayer.pausePlayer();
-      console.log('Lecteur en pause . . .');
+      // console.log('Lecteur en pause . . .');
     };
   };
 
   const onStopPlay = () => {
     setPlaying(false);
     setPlayTime('00:00:00');
-    console.log('Lecteur arrêté');
+    // console.log('Lecteur arrêté');
     audioRecorderPlayer.stopPlayer();
     audioRecorderPlayer.removePlayBackListener();
   };

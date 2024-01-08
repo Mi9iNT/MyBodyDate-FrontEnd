@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   ScrollView,
@@ -13,23 +13,84 @@ import Lottie from 'lottie-react-native';
 import Styles from '../../assets/style/Styles';
 import StylesCreationEtDeveloppement from '../../assets/style/styleScreens/styleRegister/StyleCreationEtDeveloppement';
 import StylesBienvenue from '../../assets/style/styleScreens/styleRegister/StyleBienvenue';
-/* Screen 3 */
+import {storeData, getData} from '../../service/storage';
 
-export const Creation = ({route, navigation}) => {
+export const Creation = ({navigation}) => {
+  const [buttonPressed, setButtonPressed] = useState();
+  const [userConsent, setUserConsent] = useState('');
+  console.log(userConsent);
+
+  useEffect(() => {
+    handleGetData();
+  }, []);
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetData = async () => {
+    try {
+      const consent = await getData('user_consent');
+      setUserConsent(consent || '');
+      // console.log(consent);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  // useEffect(() => {
+  //   axios
+  //     .get('http://10.0.2.2:9088/api/testUsers')
+  //     .then(response => {
+  //       setUsers(response.data);
+  //       // console.log(response.data);
+  //     })
+  //     .catch(err => console.log(err));
+  // }, []);
+
+  // useEffect(() => {
+  //   // Utilisation de la méthode GET
+  //   getMethod('/testUsers')
+  //     .then(data => {
+  //       console.log('Données récupérées:', data);
+  //       // Faites quelque chose avec les données reçues
+  //     })
+  //     .catch(error => {
+  //       console.error('Erreur de récupération des données:', error);
+  //       // Gérez les erreurs ici
+  //     });
+
+  //   // const getUser = async () => {
+  //   //   try {
+  //   //     const response = await fetch('http://localhost:9088/');
+  //   //     const json = await response.json();
+  //   //     setUser(json);
+  //   //     console.log(user);
+  //   //   } catch (error) {
+  //   //     console.error(error);
+  //   //   }
+  //   // };
+
+  //   // Utilisation de la méthode POST
+  //   // postMethod('/{subscriptionId}', {paramètre: 'valeur'})
+  //   //   .then(data => {
+  //   //     console.log('Réponse POST:', data);
+  //   //     // Faites quelque chose avec la réponse
+  //   //   })
+  //   //   .catch(error => {
+  //   //     console.error('Erreur lors de la requête POST:', error);
+  //   //     // Gérez les erreurs ici
+  //   //   });
+  // }, []);
+
   // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
-  const routeChoice = route.params?.routeName ?? '';
-  console.log('Choix de route : ', routeChoice);
-
-  //Constante permettant de savoir si l'utilisateur à appuyer sur play ou sur pause
-  const [isPlaying, setIsPlaying] = useState(false);
-  // const btnOpacity = useRef(new Animated.Value(0));
 
   // Constantes concernant la Modal d'accès au consentement
   const [modalVisible, setModalVisible] = useState(false);
-
-  //Constante permettant de savoir si l'utilisateur à appuyer sur Accepter ou sur Refuser
-  const [consentement, setConsentement] = useState();
-  const [buttonPressed, setButtonPressed] = useState(false);
 
   return (
     <View style={StylesCreationEtDeveloppement.container}>
@@ -98,18 +159,18 @@ export const Creation = ({route, navigation}) => {
             <TouchableOpacity
               accessibilityLabel="Refuser"
               onPress={() => {
-                navigation.navigate('Bienvenue', {
-                  userConsent: 'Refuser',
-                  routeName: routeChoice,
-                });
-                setButtonPressed('Refuser');
+                setButtonPressed('refuser');
+                handleStoreData('user_consent', 'refuser');
                 setModalVisible(false);
               }}>
               <Text
                 style={[
                   StylesCreationEtDeveloppement.textBtn,
                   {
-                    color: buttonPressed === 'Refuser' ? '#A70000' : '#0019A7',
+                    color:
+                      buttonPressed === 'refuser' || userConsent === 'refuser'
+                        ? '#A70000'
+                        : '#0019A7',
                   },
                 ]}>
                 Refuser
@@ -117,7 +178,7 @@ export const Creation = ({route, navigation}) => {
               <Image
                 style={[StylesCreationEtDeveloppement.ImgBtn]}
                 source={
-                  buttonPressed === 'Refuser'
+                  buttonPressed === 'refuser' || userConsent === 'refuser'
                     ? require('../../assets/boutons/Bouton-Trans-Court-Rouge.png')
                     : require('../../assets/boutons/Bouton-Trans-Court.png')
                 }
@@ -126,11 +187,9 @@ export const Creation = ({route, navigation}) => {
             <TouchableOpacity
               accessibilityLabel="Accepter"
               onPress={() => {
-                navigation.navigate('Love Coach', {
-                  userConsent: 'Accepter',
-                  routeName: routeChoice,
-                });
-                setButtonPressed('Accepter');
+                navigation.navigate('Love Coach');
+                setButtonPressed('accepter');
+                handleStoreData('user_consent', 'accepter');
                 setModalVisible(false);
               }}>
               <Text style={[StylesCreationEtDeveloppement.textBtn2]}>
@@ -139,7 +198,7 @@ export const Creation = ({route, navigation}) => {
               <Image
                 style={[StylesCreationEtDeveloppement.ImgBtn2]}
                 source={
-                  buttonPressed === 'Accepter'
+                  buttonPressed === 'accepter' || userConsent === 'accepter'
                     ? require('../../assets/boutons/Bouton-Rouge-Court.png')
                     : require('../../assets/boutons/Bouton-Bleu-Court.png')
                 }
@@ -152,13 +211,13 @@ export const Creation = ({route, navigation}) => {
             style={[{}]}
             onPress={() => {
               setModalVisible(true);
-              setButtonPressed(true);
+              setButtonPressed('passer');
             }}
             accessibilityLabel="Passer">
             <Image
               style={[StylesCreationEtDeveloppement.ImgBtn3]}
               source={
-                buttonPressed
+                buttonPressed === 'passer' || userConsent === 'passer'
                   ? require('../../assets/boutons/Passer-Rouge.png')
                   : require('../../assets/boutons/Passer.png')
               }

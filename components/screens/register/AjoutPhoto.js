@@ -9,10 +9,16 @@ import {
   TouchableOpacity,
   PermissionsAndroid,
 } from 'react-native';
-import {PERMISSIONS, check, RESULTS} from 'react-native-permissions';
+import {
+  PERMISSIONS,
+  check,
+  checkMultiple,
+  requestMultiple,
+  RESULTS,
+} from 'react-native-permissions';
 import RNFS from 'react-native-fs';
+import {getMethod, postMethod} from '../../../service/axiosInstance';
 import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
-import Styles from '../../../assets/style/Styles';
 import StylesAjoutPhoto from '../../../assets/style/styleScreens/styleRegister/StyleAjoutPhoto';
 
 export const AjoutPhoto = ({route, navigation}) => {
@@ -60,14 +66,13 @@ export const AjoutPhoto = ({route, navigation}) => {
 
   const [cameraStatus, setCameraStatus] = useState(false);
 
-  const [imagePath, setImagePath] = useState(false);
-  console.log(imagePath);
+  const [sourcePath, setSourcePath] = useState(false);
 
   let avatar;
-  if (imagePath === false) {
+  if (sourcePath === false) {
     avatar = require('../../../assets/images/image.png');
   } else {
-    avatar = {uri: 'file://' + imagePath};
+    avatar = {uri: sourcePath};
   }
   // Constantes concernant la Modal de prevention pour les images
   const [modalRecaptchaVisible, setModalPreventImageaVisible] = useState(false);
@@ -88,9 +93,11 @@ export const AjoutPhoto = ({route, navigation}) => {
             break;
           case RESULTS.LIMITED:
             console.log('The permission is limited: some actions are possible');
+            requestPermission();
             break;
           case RESULTS.GRANTED:
             console.log('The permission is granted');
+            requestPermission();
             break;
           case RESULTS.BLOCKED:
             console.log('The permission is denied and not requestable anymore');
@@ -102,28 +109,26 @@ export const AjoutPhoto = ({route, navigation}) => {
       });
   };
 
-  const requestCameraPermission = async () => {
+  const requestPermission = async () => {
     try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.CAMERA,
-        {
-          title: 'MyBodyDate',
-          message:
-            'Autoriser MY BODY DATE à accéder à la caméra de cet appareil ?',
-          buttonNeutral: 'Demander plus tard',
-          buttonNegative: 'Annuler',
-          buttonPositive: 'Autoriser',
-        },
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log('Accès autorisé à la caméra');
+      const cameraPermission = PERMISSIONS.ANDROID.CAMERA;
+
+      const permissions = [cameraPermission];
+
+      const result = await requestMultiple(permissions);
+
+      console.log('Résultat des demandes de permission :', result);
+
+      console.log('Camera', result[cameraPermission]);
+
+      if (result[cameraPermission] === RESULTS.GRANTED) {
+        console.log('Autorisations accordées.');
         setCameraStatus(true);
       } else {
-        console.log('Accès refusé à la caméra');
-        setCameraStatus(false);
+        console.log('Autorisations refusées.');
       }
     } catch (err) {
-      console.warn(err);
+      console.error('Erreur lors de la demande de permissions : ', err);
     }
   };
 
@@ -143,19 +148,8 @@ export const AjoutPhoto = ({route, navigation}) => {
       } else if (response.errorCode) {
         console.log('Erreur : ', response.errorMessage);
       } else {
-        const sourcePath = response.assets[0].uri; // déjà préfixé avec 'file://'
-        const destinationPath =
-          RNFS.DocumentDirectoryPath + '/assets/upload/avatar/userAvatar';
-
-        RNFS.moveFile(sourcePath, destinationPath)
-          .then(() => {
-            console.log('Image moved to ' + destinationPath);
-            setImagePath(destinationPath);
-          })
-          .catch(err => {
-            console.log('moveFile error: ' + err.message);
-            setImagePath(false);
-          });
+        setSourcePath(response.assets[0].uri);
+        console.log(sourcePath);
       }
     });
   };
@@ -175,34 +169,44 @@ export const AjoutPhoto = ({route, navigation}) => {
         } else if (response.errorCode) {
           console.log('Erreur : ', response.errorMessage);
         } else {
-          const sourcePath = response.assets[0].uri;
+          setSourcePath(response.assets[0].uri);
           console.log(sourcePath);
-          const destinationDir = RNFS.DocumentDirectoryPath + '/image/';
-          console.log('destinationDir = ', destinationDir);
-          RNFS.mkdir(destinationDir)
-            .then(() => {
-              // Déplacez le fichier
-              const destinationPath = destinationDir + '/userAvatar.jpg';
-              RNFS.moveFile(sourcePath, destinationPath)
-                .then(() => {
-                  console.log('Image moved to ' + destinationPath);
-                  setImagePath(destinationPath);
-                })
-                .catch(err => {
-                  console.log('moveFile error: ' + err.message);
-                  setImagePath(false);
-                });
-            })
-            .catch(err => {
-              console.log('mkdir error: ' + err.message);
-              setImagePath(false);
-            });
+          //     const destinationDir = RNFS.DocumentDirectoryPath + '/image/';
+          //     console.log('destinationDir = ', destinationDir);
+          //     RNFS.mkdir(destinationDir)
+          //       .then(() => {
+          //         // Déplacez le fichier
+          //         const destinationPath = destinationDir + '/userAvatar.jpg';
+          //         RNFS.moveFile(sourcePath, destinationPath)
+          //           .then(() => {
+          //             console.log('Image moved to ' + destinationPath);
+          //             setImagePath(destinationPath);
+          //           })
+          //           .catch(err => {
+          //             console.log('moveFile error: ' + err.message);
+          //             setImagePath(false);
+          //           });
+          //       })
+          //       .catch(err => {
+          //         console.log('mkdir error: ' + err.message);
+          //         setImagePath(false);
+          //       });
         }
       });
     } else {
-      requestCameraPermission();
+      requestPermission();
     }
   };
+
+  useEffect(() => {
+    getMethod('/currentUser')
+      .then(data => {
+        console.log('Données récupérées :', data);
+      })
+      .catch(error => {
+        console.error('Erreur lors de la récupération des données :', error);
+      });
+  }, []);
 
   return (
     <View style={StylesAjoutPhoto.container}>

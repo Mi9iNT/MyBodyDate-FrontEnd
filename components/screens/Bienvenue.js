@@ -1,8 +1,7 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
-  Animated,
   ImageBackground,
   TouchableOpacity,
   TouchableHighlight,
@@ -14,15 +13,11 @@ import Video from 'react-native-video';
 import Styles from '../../assets/style/Styles';
 import StylesBienvenue from '../../assets/style/styleScreens/styleRegister/StyleBienvenue';
 
-export const Bienvenue = ({route, navigation}) => {
-  // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
-  const routeChoice = route.params?.routeName ?? '';
-  console.log('Choix de route : ', routeChoice);
-
+export const Bienvenue = ({navigation}) => {
   //Constante permettant de savoir si l'utilisateur à appuyer sur play ou sur pause
-  const [isPlaying, setIsPlaying] = React.useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  const [isHovered, setIsHovered] = React.useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleHover = () => {
     setIsHovered(true);
@@ -83,11 +78,7 @@ export const Bienvenue = ({route, navigation}) => {
         </View>
         <TouchableOpacity
           style={[{bottom: 100, left: '20%'}]}
-          onPress={() =>
-            navigation.navigate('Création et Développement', {
-              routeName: routeChoice,
-            })
-          }
+          onPress={() => navigation.navigate('Création et Développement')}
           accessibilityLabel="Passer">
           <Text style={[StylesBienvenue.TxtBtn]}>Passer</Text>
         </TouchableOpacity>

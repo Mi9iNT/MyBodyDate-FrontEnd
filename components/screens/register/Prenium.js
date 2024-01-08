@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -7,59 +7,83 @@ import {
   Image,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
-import {BtnNext} from '../../composants/BtnNext';
 import StylesPrenium from '../../../assets/style/styleScreens/styleRegister/StylePrenium';
+import {storeData, getData} from '../../../service/storage';
 
 /* Screen 2 */
 
-export const Prenium = ({route, navigation}) => {
-  // Constantes concernant la Modal d'accès aux Permissions
-  const [modalVisible, setModalVisible] = useState(true);
+export const Prenium = ({navigation}) => {
+  useEffect(() => {
+    handleGetFirstname();
+    handleGetUsername();
+    handleGetShowFirstname();
+    handleGetPrenium();
+    handleGetRoute();
+  }, []);
 
-  // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  const userSituation = route.params?.userSituation ?? '';
-  const userOrientation = route.params?.userOrientation ?? '';
-  const userRecherche1 = route.params?.userRecherche1 ?? '';
-  const userRecherche2 = route.params?.userRecherche2 ?? '';
-  const userAffinites = route.params?.userAffinites ?? '';
-  const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-  const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
-  const userPrenom = route.params?.userPrenom ?? '';
-  console.log('Choix de route : ', routeChoice);
-  console.log('Consentement : ', consentement);
-  console.log('Love Coach : ', loveCoach);
-  console.log('Email : ', userEmail);
-  console.log('Téléphone : ', userPhone);
-  console.log('Ville : ', userCity);
-  console.log('Accès position : ', accesPosition);
-  console.log('Genre : ', genre);
-  console.log('Date de naissance : ', userBirth);
-  console.log('Taille : ', userSize);
-  console.log('Langues : ', userLang);
-  console.log('Situation : ', userSituation);
-  console.log('Orientation : ', userOrientation);
-  console.log('Recherche 1 : ', userRecherche1);
-  console.log('Recherche 2 : ', userRecherche2);
-  console.log('Affinité(s) : ', userAffinites);
-  console.log('Rythme de vie 1 : ', rythmeDeVie1);
-  console.log('Rythme de vie 2 : ', rythmeDeVie2);
-  console.log('Prénom : ', userPrenom);
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetFirstname = async () => {
+    try {
+      const firstname = await getData('firstname');
+      setPrenom(firstname || '');
+      // console.log('firstname : ' + firstname);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  const handleGetUsername = async () => {
+    try {
+      const username = await getData('username');
+      setUsername(username || '');
+      // console.log('username : ' + username);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  const handleGetRoute = async () => {
+    try {
+      const route = await getData('route_choice');
+      console.log('route : ' + route);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  const handleGetPrenium = async () => {
+    try {
+      const userPrenium = await getData('prenium');
+      setRadioValue(userPrenium || '');
+      // console.log('prenium : ' + userPrenium);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  const handleGetShowFirstname = async () => {
+    try {
+      const showFistrname = await getData('show_firstname');
+      setShowFirstname(showFistrname || '');
+      // console.log('username : ' + username);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  const [prenom, setPrenom] = useState();
+  const [username, setUsername] = useState();
+  const [showFirstname, setShowFirstname] = useState();
 
   const [buttonPressed, setButtonPressed] = useState();
 
-  //Constante permettant de savoir si l'utilisateur à appuyer sur play ou sur pause
-  const [isPlaying, setIsPlaying] = React.useState(false);
   // Obtenir et formater la date courante en utilisant la méthode Date()
   const currentDate = new Date();
   const year = currentDate.getFullYear().toString(); // année sur 4 chiffres
@@ -68,18 +92,7 @@ export const Prenium = ({route, navigation}) => {
   // Constant récupérant l'année, le mois et le jour courant
   const formattedDate = `${year}${month}${day}`;
 
-  const [radioValue, setRadioValue] = useState(false);
-
-  const handleRadioChange = value => {
-    setRadioValue(value);
-  };
-  if (radioValue === false) {
-    prenium = 'Non';
-  } else {
-    prenium = 'Oui';
-  }
-
-  console.log('Prenium: ' + prenium);
+  const [radioValue, setRadioValue] = useState();
 
   return (
     <View style={StylesPrenium.container}>
@@ -87,7 +100,9 @@ export const Prenium = ({route, navigation}) => {
         style={StylesPrenium.bgGradient}
         source={require('../../../assets/images/Background.png')}>
         <Text style={[StylesPrenium.TxtTitle]}>ABONNEMENT PRENIUM</Text>
-        <Text style={[StylesPrenium.textWhiteRound]}>{userPrenom}</Text>
+        <Text style={[StylesPrenium.textWhiteRound]}>
+          {showFirstname ? prenom : username}
+        </Text>
         {/* Parenthèse (id) à changer par n° id_user de la bdd */}
         <Text style={[StylesPrenium.textBlueCenter]}>
           ID.{formattedDate}.(id)
@@ -108,7 +123,9 @@ export const Prenium = ({route, navigation}) => {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => handleRadioChange(!radioValue)}
+          onPress={() => {
+            radioValue ? setRadioValue(false) : setRadioValue(true);
+          }}
           style={[StylesPrenium.radioInputContainer]}>
           <Image
             source={
@@ -125,41 +142,37 @@ export const Prenium = ({route, navigation}) => {
         <TouchableOpacity
           style={Styles.btn}
           onPress={() => {
-            navigation.navigate('Prenium', {
-              userConsent: consentement,
-              routeName: routeChoice,
-              loveCoach: loveCoach,
-              userEmail: userEmail,
-              userPhone: userPhone,
-              userCity: userCity,
-              accesPosition: accesPosition,
-              genre: genre,
-              userBirth: userBirth,
-              userSize: userSize,
-              userLang: userLang,
-              userSituation: userSituation,
-              userOrientation: userOrientation,
-              userRecherche1: userRecherche1,
-              userRecherche2: userRecherche2,
-              userAffinites: userAffinites,
-              rythmeDeVie1: rythmeDeVie1,
-              rythmeDeVie2: rythmeDeVie2,
-              userPrenom: userPrenom,
-            });
+            navigation.navigate('Prenium');
           }}
           accessibilityLabel="Voir les conditions d'abonnement Prenium<">
           <Text style={[StylesPrenium.textWhite2]}>
             Voir les conditions d&apos;abonnement Prenium
           </Text>
         </TouchableOpacity>
-        <BtnNext
-          route={route}
-          navigation={navigation}
-          navigateTo={'Compte'}
-          txt={'Continuer'}
-          background={'white'}
-          top={320}
-        />
+        <TouchableOpacity
+          style={StylesPrenium.ViewBtn}
+          onPress={() => {
+            navigation.navigate('Compte');
+            handleStoreData('prenium', radioValue ?? '');
+            setButtonPressed(true);
+          }}
+          accessibilityLabel="Continuer">
+          <Text
+            style={[
+              StylesPrenium.TxtBtn,
+              {color: buttonPressed ? '#fff' : '#0019A7'},
+            ]}>
+            Continuer
+          </Text>
+          <Image
+            style={[StylesPrenium.imgBtn]}
+            source={
+              buttonPressed
+                ? require('../../../assets/boutons/Bouton-Rouge.png')
+                : require('../../../assets/boutons/Bouton-Blanc.png')
+            }
+          />
+        </TouchableOpacity>
       </ImageBackground>
     </View>
   );

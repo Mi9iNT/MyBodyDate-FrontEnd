@@ -16,22 +16,6 @@ import {
 export const Ami = ({visibleAmi, closeModalAmi}) => {
   const [modalAmilVisible, setModalAmilVisible] = useState(false);
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [addProVisible, setAddProVisible] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
-
-  const handleAddProToggle = index => {
-    const newArray = [...addProVisible];
-    newArray[index] = !newArray[index];
-    setAddProVisible(newArray);
-  };
-
   useEffect(() => {
     StatusBar.setHidden(true);
     return () => {
@@ -40,11 +24,43 @@ export const Ami = ({visibleAmi, closeModalAmi}) => {
   }, []);
 
   return (
+    <>
+      <TouchableOpacity
+       onPress={() => {
+          setModalAmilVisible(true);
+        }}
+        style={{
+          bottom: 300,
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}>
+      <Image source={require('../../../assets/images/amitié.png')} />
+      <Text
+        style={{
+          fontFamily: 'Comfortaa',
+          fontWeight: '700',
+          fontSize: 15,
+          color: '#9424FA',
+          left: 20,
+        }}>
+        Pour moi le plus important en {'\n'}amitié...
+      </Text>
+      <View style={{width: 35, height: 35, left: 63}}>
+        <Image
+          source={
+            modalAmilVisible
+              ? require('../../../assets/images/add_plein.png')
+              : require('../../../assets/images/add_vide.png')
+          }
+        />
+      </View>
+    </TouchableOpacity>
     <Modal
       animationType="slide"
       transparent={true}
-      visible={visibleAmi}
-      onRequestClose={closeModalAmi}>
+      visible={modalAmilVisible}
+      statusBarTranslucent={true}
+      >
       {/* Arrière-plan semi-transparent */}
       <View
         style={{
@@ -59,7 +75,7 @@ export const Ami = ({visibleAmi, closeModalAmi}) => {
             width: '100%',
             height: '100%',
           }}
-          onPress={() => closeModalAmi()}
+            onPress={() => { setModalAmilVisible(false); }}
           accessibilityLabel="Ferme la fenêtre"
         />
         {/* Contenu de la modal */}
@@ -131,12 +147,12 @@ export const Ami = ({visibleAmi, closeModalAmi}) => {
                 top: 20,
               }}
               defaultValue="Lorem ipsum"
-              // Vous pouvez ajouter des gestionnaires d'événements ici pour gérer les changements de texte, etc.
             />
           </ImageBackground>
         </View>
       </View>
     </Modal>
+    </>
   );
 };
 
