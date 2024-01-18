@@ -5,6 +5,7 @@ import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image, TouchableOpacity, Modal, ScrollView} from 'react-native';
 import StylesLangue from '../../../assets/style/StyleComposants/styleEdit/StyleLangue';
+import {storeData, getData, getDatas} from '../../../service/storage';
 
 export const Langue = ({}) => {
   const [modalLanguelVisible, setModalLanguelVisible] = useState(false);
@@ -31,19 +32,51 @@ export const Langue = ({}) => {
   const handleButtonPress = value => {
     let newUserLangue = [...userLangue];
 
-    if (newUserLangue.includes(value)) {
+    if (newUserLangue !== null && newUserLangue.includes(value)) {
       newUserLangue = newUserLangue.filter(
         item => item !== value,
       );
+      handleStoreData('user_langues', newUserLangue);
     } else {
       newUserLangue.push(value);
+      handleStoreData('user_langues', newUserLangue);
     }
 
     setUserLanguage(newUserLangue);
     console.log('Langue sélectionner : ' + newUserLangue);
   };
 
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const keysToRetrieve = ['user_langues'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const getMultipleValues = async () => {
+  try {
+    const retrievedValues = await getDatas(keysToRetrieve);
+
+    if (retrievedValues && Array.isArray(retrievedValues)) {
+      const result = {};
+      retrievedValues.forEach(item => {
+        result[item.key] = item.value;
+      });
+
+      setUserLanguage(result.user_langues || []);
+    }
+  } catch (error) {
+    console.error('Erreur lors de la récupération des données :', error);
+  }
+};
+
+
   useEffect(() => {
+    getMultipleValues();
     StatusBar.setHidden(true);
     return () => {
       StatusBar.setHidden(false);
@@ -137,7 +170,7 @@ export const Langue = ({}) => {
                             style={[StylesLangue.txtOption]}>
                             {item}
                           </Text>
-                          {userLangue.includes(item)
+                          {userLangue !== null && userLangue.includes(item)
                             ? <View style={[StylesLangue.lineOption]} />
                             : null}
                         </TouchableOpacity>

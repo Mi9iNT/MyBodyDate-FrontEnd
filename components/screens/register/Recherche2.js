@@ -49,7 +49,7 @@ export const Recherche2 = ({navigation}) => {
     }
 
     setSelectedRecherche2(newSelectedRecherche2);
-    console.log('Recherche 2 : ' + newSelectedRecherche2);
+    // console.log('Recherche 2 : ' + newSelectedRecherche2);
   };
 
   return (

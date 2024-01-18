@@ -4,49 +4,64 @@
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image,ImageBackground, TextInput, TouchableOpacity, Modal} from 'react-native';
+import {storeData, getData, getDatas} from '../../../service/storage';
+import StylesMaCuisine from '../../../assets/style/StyleComposants/styleEdit/StyleMaCuisine';
 
-export const MaCuisine = ({visibleMaCuisine, closeModalMaCuisine}) => {
+export const MaCuisine = ({}) => {
   const [modalMaCuisinelVisible, setModalMaCuisinelVisible] = useState(false);
 
+  const handleButtonPress = value => {
+    let newUserCuisine = [...userCuisine];
+
+    if (newUserCuisine !== null && newUserCuisine.includes(value)) {
+      newUserCuisine = newUserCuisine.filter(item => item !== value);
+      handleStoreData('user_cuisine', newUserCuisine);
+    } else {
+      newUserCuisine.push(value);
+      handleStoreData('user_cuisine', newUserCuisine);
+    }
+
+    setUserCuisine(newUserCuisine);
+    console.log('user_cuisine : ' + newUserCuisine);
+  };
+
+  const [userCuisine, setUserCuisine] = useState([]);
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const keysToRetrieve = ['user_cuisine'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const getMultipleValues = async () => {
+    try {
+      const retrievedValues = await getDatas(keysToRetrieve);
+
+      if (retrievedValues && Array.isArray(retrievedValues)) {
+        const result = {};
+        retrievedValues.forEach(item => {
+          result[item.key] = item.value;
+        });
+
+        setUserCuisine(result.user_cuisine || []);
+      }
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
   useEffect(() => {
+    getMultipleValues();
     StatusBar.setHidden(true);
     return () => {
       StatusBar.setHidden(false);
     };
   }, []);
-
-  const [isEscargotImagePlus, setIsEscargotImagePlus] = useState(true);
-  const [isSuShiImagePlus, setIsSuShiImagePlus] = useState(true);
-  const [isSaladeImagePlus, setIsSaladeImagePlus] = useState(true);
-  const [isPizzaImagePlus, setIsPizzaImagePlus] = useState(true);
-
-  /////////////////
-  const [isBorderEscargotVisible, setIsBorderEscargotVisible] = useState(false);
-  const [isBorderSuShiVisible, setIsBorderSuShiVisible] = useState(false);
-  const [isBorderSaladeVisible, setIsBorderSaladeVisible] = useState(false);
-  const [isBorderPizzaVisible, setIsBorderPizzaVisible] = useState(false);
-
-  /////////////////
-
-  const toggleEscargotImage = () => {
-    setIsEscargotImagePlus(!isEscargotImagePlus);
-    setIsBorderEscargotVisible(!isBorderEscargotVisible);
-  };
-
-  const toggleSuShiImage = () => {
-    setIsSuShiImagePlus(!isSuShiImagePlus);
-    setIsBorderSuShiVisible(!isBorderSuShiVisible);
-  };
-
-  const toggleSaladeImage = () => {
-    setIsSaladeImagePlus(!isSaladeImagePlus);
-    setIsBorderSaladeVisible(!isBorderSaladeVisible);
-  };
-
-  const togglePizzaImage = () => {
-    setIsPizzaImagePlus(!isPizzaImagePlus);
-    setIsBorderPizzaVisible(!isBorderPizzaVisible);
-  };
 
   return (
     <>
@@ -54,31 +69,20 @@ export const MaCuisine = ({visibleMaCuisine, closeModalMaCuisine}) => {
         onPress={() => {
           setModalMaCuisinelVisible(true);
         }}
-        style={{
-          bottom: 320,
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}>
-        <Image source={require('../../../assets/images/cuisine.png')} />
+        style={[StylesMaCuisine.btnModal]}>
+        <Image style={[StylesMaCuisine.icoBtnModal]} source={require('../../../assets/images/cuisine.png')} />
         <Text
-          style={{
-            fontFamily: 'Comfortaa',
-            fontWeight: '700',
-            fontSize: 15,
-            color: '#9424FA',
-            left: 25,
-          }}>
+          style={[StylesMaCuisine.txtBtnModal]}>
           Ma cuisine favorite...
         </Text>
-        <View style={{width: 35, height: 35, left: 131}}>
           <Image
+            style={[StylesMaCuisine.plusBtnModal]}
             source={
-              modalMaCuisinelVisible
+              userCuisine
                 ? require('../../../assets/images/add_plein.png')
                 : require('../../../assets/images/add_vide.png')
             }
           />
-        </View>
       </TouchableOpacity>
       <Modal
         animationType="slide"
@@ -103,16 +107,9 @@ export const MaCuisine = ({visibleMaCuisine, closeModalMaCuisine}) => {
             onPress={() => { setModalMaCuisinelVisible(false); }}
             accessibilityLabel="Ferme la fenêtre"
           />
-          {/* Contenu de la modal */}
-          <View
-            style={{
-              top: 40,
-              width: 394,
-              height: 700,
-              backgroundColor: 'white',
-              borderTopLeftRadius: 50,
-              borderTopRightRadius: 50,
-            }}>
+      {/* Contenu de la modal */}
+      <View
+        style={[StylesMaCuisine.viewModal]}>
         <View
           style={{
             alignSelf: 'center',
@@ -166,9 +163,9 @@ export const MaCuisine = ({visibleMaCuisine, closeModalMaCuisine}) => {
             <Image
               source={require('../../../assets/images/Loupe-BB.png')}
               style={{
-                width: 30,
-                height: 30,
-                top: 5,
+                width: 20,
+                height: 20,
+                top: 10,
                 left: 10,
               }}
             />
@@ -204,22 +201,22 @@ export const MaCuisine = ({visibleMaCuisine, closeModalMaCuisine}) => {
               alignItems: 'center',
               top: 100,
             }}>
-            <TouchableOpacity onPress={toggleEscargotImage}>
+            <TouchableOpacity onPress={() => { handleButtonPress('Française'); }}>
               <ImageBackground
                 source={require('../../../assets/images/Escargo.png')}
                 style={{
                   width: 160,
                   height: 160,
                   right: 10,
-                  borderWidth: isBorderEscargotVisible ? 2 : 0, // Ajout du border conditionnel
+                  borderWidth: userCuisine.includes('Française') ? 2 : 0, // Ajout du border conditionnel
                   borderColor: '#9424FA', // Couleur du border (modifiable)
-                  borderRadius: isBorderEscargotVisible ? 33 : 0, // Ajout du border radius conditionnel
+                  borderRadius: userCuisine.includes('Française') ? 33 : 0, // Ajout du border radius conditionnel
                 }}>
                 <Image
                   source={
-                    isEscargotImagePlus
-                      ? require('../../../assets/images/PlusActivite.png')
-                      : require('../../../assets/images/MoinActivite.png')
+                    userCuisine.includes('Française')
+                      ? require('../../../assets/images/MoinActivite.png')
+                      : require('../../../assets/images/PlusActiviteCA.png')
                   }
                   style={{
                     width: 35,
@@ -241,22 +238,22 @@ export const MaCuisine = ({visibleMaCuisine, closeModalMaCuisine}) => {
                 Française
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={toggleSuShiImage}>
+            <TouchableOpacity onPress={() => {handleButtonPress('Sushis');}}>
               <ImageBackground
                 source={require('../../../assets/images/Sushi.png')}
                 style={{
                   width: 160,
                   height: 160,
                   Leftt: 10,
-                  borderWidth: isBorderSuShiVisible ? 2 : 0, // Ajout du border conditionnel
+                  borderWidth: userCuisine.includes('Sushis') ? 2 : 0, // Ajout du border conditionnel
                   borderColor: '#9424FA', // Couleur du border (modifiable)
-                  borderRadius: isBorderSuShiVisible ? 33 : 0, // Ajout du border radius conditionnel
+                  borderRadius: userCuisine.includes('Sushis') ? 33 : 0, // Ajout du border radius conditionnel
                 }}>
                 <Image
                   source={
-                    isSuShiImagePlus
-                      ? require('../../../assets/images/PlusActivite.png')
-                      : require('../../../assets/images/MoinActivite.png')
+                    userCuisine.includes('Sushis')
+                      ? require('../../../assets/images/MoinActivite.png')
+                      : require('../../../assets/images/PlusActiviteCA.png')
                   }
                   style={{
                     width: 35,
@@ -275,7 +272,7 @@ export const MaCuisine = ({visibleMaCuisine, closeModalMaCuisine}) => {
                   top: 10,
                   textAlign: 'center',
                 }}>
-                Sushis
+                Sushiss
               </Text>
             </TouchableOpacity>
           </View>
@@ -286,22 +283,22 @@ export const MaCuisine = ({visibleMaCuisine, closeModalMaCuisine}) => {
               alignItems: 'center',
               top: 120,
             }}>
-            <TouchableOpacity onPress={togglePizzaImage}>
+            <TouchableOpacity onPress={() => { handleButtonPress('Pizza'); }}>
               <ImageBackground
                 source={require('../../../assets/images/Pizza.png')}
                 style={{
                   width: 160,
                   height: 160,
                   right: 10,
-                  borderWidth: isBorderPizzaVisible ? 2 : 0, // Ajout du border conditionnel
+                  borderWidth: userCuisine.includes('Pizza') ? 2 : 0, // Ajout du border conditionnel
                   borderColor: '#9424FA', // Couleur du border (modifiable)
-                  borderRadius: isBorderPizzaVisible ? 33 : 0, // Ajout du border radius conditionnel
+                  borderRadius: userCuisine.includes('Pizza') ? 33 : 0, // Ajout du border radius conditionnel
                 }}>
                 <Image
                   source={
-                    isPizzaImagePlus
-                      ? require('../../../assets/images/PlusActivite.png')
-                      : require('../../../assets/images/MoinActivite.png')
+                    userCuisine.includes('Pizza')
+                      ? require('../../../assets/images/MoinActivite.png')
+                      : require('../../../assets/images/PlusActiviteCA.png')
                   }
                   style={{
                     width: 35,
@@ -323,22 +320,22 @@ export const MaCuisine = ({visibleMaCuisine, closeModalMaCuisine}) => {
                 Pizza
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={toggleSaladeImage}>
+            <TouchableOpacity onPress={() => { handleButtonPress('Végétarien'); }}>
               <ImageBackground
                 source={require('../../../assets/images/Salade.png')}
                 style={{
                   width: 160,
                   height: 160,
                   left: 10,
-                  borderWidth: isBorderSaladeVisible ? 2 : 0, // Ajout du border conditionnel
+                  borderWidth: userCuisine.includes('Végétarien') ? 2 : 0, // Ajout du border conditionnel
                   borderColor: '#9424FA', // Couleur du border (modifiable)
-                  borderRadius: isBorderSaladeVisible ? 33 : 0, // Ajout du border radius conditionnel
+                  borderRadius: userCuisine.includes('Végétarien') ? 33 : 0, // Ajout du border radius conditionnel
                 }}>
                 <Image
                   source={
-                    isSaladeImagePlus
-                      ? require('../../../assets/images/PlusActivite.png')
-                      : require('../../../assets/images/MoinActivite.png')
+                    userCuisine.includes('Végétarien')
+                      ? require('../../../assets/images/MoinActivite.png')
+                      : require('../../../assets/images/PlusActiviteCA.png')
                   }
                   style={{
                     width: 35,
@@ -366,8 +363,6 @@ export const MaCuisine = ({visibleMaCuisine, closeModalMaCuisine}) => {
         </View>
       </Modal>
     </>
-    
-    
   );
 };
 

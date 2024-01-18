@@ -17,27 +17,7 @@ import {Spotify} from '../../composants/edit/Spotify';
 import StylesProfileMeCafirst from '../../../assets/style/styleScreens/styleProfil/StyleProfileMeCafirst';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export const ProfilMeCAfirst = ({route, navigation, imagePath}) => {
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  const userSituation = route.params?.userSituation ?? '';
-  const userOrientation = route.params?.userOrientation ?? '';
-  const userRecherche1 = route.params?.userRecherche1 ?? '';
-  const userRecherche2 = route.params?.userRecherche2 ?? '';
-  const userAffinites = route.params?.userAffinites ?? '';
-  const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-  const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
-  const userPrenom = route.params?.userPrenom ?? '';
-  const userVoice = route.params?.userVoice ?? '';
+export const ProfilMeCAfirst = ({navigation, imagePath}) => {
 
   const [buttonPressed, setButtonPressed] = useState(false);
 
@@ -77,8 +57,6 @@ export const ProfilMeCAfirst = ({route, navigation, imagePath}) => {
 
   const [userDescription, SetUserDescription] = useState();
 
-  const tabPath = route.params?.tabPath ?? '';
-
   useEffect(() => {
     StatusBar.setHidden(true);
     return () => {
@@ -89,7 +67,7 @@ export const ProfilMeCAfirst = ({route, navigation, imagePath}) => {
   return (
     <View style={[StylesProfileMeCafirst.container]}>
       <MenuSlide imagePath={'Ami'} tabPath={'Ami'} />
-      <ScrollView>
+      <ScrollView style={{height: 1200,}}>
           <Text
             style={[StylesProfileMeCafirst.txtTitle]}>
             Profil éditer
@@ -218,21 +196,20 @@ export const ProfilMeCAfirst = ({route, navigation, imagePath}) => {
         <View
           style={{
             top: 100,
-            left: 20,
+            height: 850,
           }}>
           <SafeAreaView style={[StylesProfileMeCafirst.viewContent]}>
             <Text
               style={[StylesProfileMeCafirst.txtSubTitle,]}>
                 Quelques mots sur moi
             </Text>
-            <TextInput
-              onSubmitEditing={(event) => SetUserIntitulate(event.nativeEvent.text)}
-              placeholder="Lorem ipsum"
-              placeholderTextColor={'#9424FA'}
+            <Text
               style={[StylesProfileMeCafirst.intitulateInput]}
-            />
+            >
+              Description
+            </Text>
             <TextInput
-              placeholder="Lorem ipsum"
+              placeholder="Description"
               placeholderTextColor={'#9424FA'}
               allowFontScaling={true}
               editable={true}
@@ -248,8 +225,7 @@ export const ProfilMeCAfirst = ({route, navigation, imagePath}) => {
           </Text>
           <View
             style={{
-              marginTop: 450,
-              left: 10,
+              top: 450,
             }}>
             <NiveauDEtudes />
             <JeParle />

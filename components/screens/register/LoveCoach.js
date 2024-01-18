@@ -13,7 +13,7 @@ import Styles from '../../../assets/style/Styles';
 import StylesLoveCoach from '../../../assets/style/styleScreens/styleRegister/StyleLoveCoach';
 
 //Home Screen
-export const LoveCoach = ({route, navigation}) => {
+export const LoveCoach = ({navigation}) => {
 
   const [buttonPressed, setButtonPressed] = useState();
   const [selectedOption, setSelectedOption] = useState('Oui');

@@ -5,6 +5,7 @@ import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image, TouchableOpacity, Modal} from 'react-native';
 import StylesStatut from '../../../assets/style/StyleComposants/styleEdit/StyleStatut';
+import {storeData, getData, getDatas} from '../../../service/storage';
 
 export const Statut = ({}) => {
 
@@ -23,6 +24,34 @@ export const Statut = ({}) => {
     'Libéral',
     'Salarié',
   ];
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const keysToRetrieve = ['user_statut'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const getMultipleValues = async () => {
+    try {
+      const retrievedValues = await getDatas(keysToRetrieve);
+      // console.log('Valeurs récupérées :', retrievedValues);
+
+      const result = {};
+      retrievedValues.forEach(item => {
+        retrievedValues[item.key] = item.value;
+      });
+
+      setUserStatut(retrievedValues.user_statut);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+  getMultipleValues();
 
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -45,7 +74,7 @@ export const Statut = ({}) => {
         </Text>
         <Image style={[StylesStatut.plusBtnModal]}
           source={
-            openModalStatut === true
+            userStatut === true
               ? require('../../../assets/images/add_pro_plein.png')
               : require('../../../assets/images/add_pro_vide.png')
           }
@@ -107,7 +136,7 @@ export const Statut = ({}) => {
                     <View
                       style={[StylesStatut.viewOption]} >
                       {statut.map((item, index) => (
-                        <TouchableOpacity key={index} style={{}} onPress={() => { setUserStatut(item); setViewStatut(false); }}>
+                        <TouchableOpacity key={index} style={{}} onPress={() => { setUserStatut(item); handleStoreData('user_statut', item); setViewStatut(false); }}>
                           <Text
                             key={index}
                             style={[StylesStatut.txtOption]}>

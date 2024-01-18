@@ -155,58 +155,6 @@ export const Compte = ({navigation}) => {
             />
           ) : null}
         </View>
-
-        {/* <View style={{top: 100, left: 40}}>
-          <Text style={[Styles.textWhite2, {fontSize: 12}]}>Choix unique.</Text>
-        </View>
-
-        <View style={{bottom: 50}}>
-          <TouchableOpacity
-            accessibilityLabel="Continuer"
-            onPress={() => {
-              validateEmail(email);
-              validatePassword(password);
-              validatePhone(numero);
-              setButtonPressed('Continuer');
-              if ((!errorPassword && !errorEmail) || !errorNumero) {
-                navigation.navigate(selectedRoute);
-              } else if (errorEmail) {
-                setErrorMessage(
-                  'Veuillez entrer une adresse e-mail et un mot de passe valide.',
-                );
-              } else {
-                setErrorNumero(
-                  'Numéro de téléphone invalide. Veuillez respecter le format "+33 0 00 00 00"',
-                );
-              }
-            }}>
-            <Text
-              style={[
-                Styles.textBtn9,
-                {
-                  zIndex: 1,
-                  top: 40,
-                  color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
-                },
-              ]}>
-              Continuer
-            </Text>
-            <Image
-              style={[
-                {
-                  height: 56,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={
-                buttonPressed === 'Continuer'
-                  ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Blanc.png')
-              }
-            />
-          </TouchableOpacity>
-        </View> */}
       </ImageBackground>
     </KeyboardAwareScrollView>
   );

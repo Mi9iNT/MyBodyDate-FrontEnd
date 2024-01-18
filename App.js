@@ -5,6 +5,8 @@ import {enableLatestRenderer} from 'react-native-maps';
 
 import {WebSocketProvider} from './context/WebSocketContext';
 
+import { PushNotificationManager } from './service/PushNotificationManager';
+
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -148,42 +150,48 @@ function TabNavigator({route}) {
 
   return (
     <Tab.Navigator
-      screenOptions={{
-        tabBarShowLabel: false,
-        tabBarStyle: [
-          {
-            display: 'flex',
-          },
-          null,
-        ],
-      }}
-      tabBar={props => <MenuBottom {...props} />}>
-      <Tab.Screen
-        name="TabDiscover"
-        component={Discover}
-        options={{headerShown: false}}
-      />
-      <Tab.Screen
-        name="TabTalk"
-        component={Talk}
-        options={{headerShown: false}}
-      />
-      <Tab.Screen
-        name="TabMessages"
-        component={Messages}
-        options={{headerShown: false}}
-      />
-      <Tab.Screen
-        name="TabMap"
-        component={Map}
-        options={{headerShown: false}}
-      />
-      <Tab.Screen
-        name="TabMoi"
-        component={ProfilMeRA}
-        options={{headerShown: false}}
-      />
-    </Tab.Navigator>
+    screenOptions={{
+      tabBarShowLabel: false,
+      tabBarStyle: [
+        {
+          display: 'flex',
+        },
+        null,
+      ],
+    }}
+    tabBar={props => <MenuBottom {...props} />}
+  >
+    <Tab.Screen
+      name="TabDiscover"
+      component={Discover}
+      options={{ headerShown: false }}
+      key="discover"
+    />
+    <Tab.Screen
+      name="TabTalk"
+      component={Talk}
+      options={{ headerShown: false }}
+      key="talk"
+    />
+    <Tab.Screen
+      name="TabMessages"
+      component={Messages}
+      options={{ headerShown: false }}
+      key="messages"
+    />
+    <Tab.Screen
+      name="TabMap"
+      component={Map}
+      options={{ headerShown: false }}
+      key="map"
+    />
+    <Tab.Screen
+      name="TabMoi"
+      component={ProfilMeRA}
+      options={{ headerShown: false }}
+      key="moi"
+    />
+  </Tab.Navigator>
   );
 }
 
@@ -588,6 +596,7 @@ function App() {
     <NavigationContainer>
        <WebSocketProvider>
         <StatusBar translucent backgroundColor="transparent" />
+        {/* <PushNotificationManager /> */}
         <HomeNavigator />
       </WebSocketProvider>
     </NavigationContainer>

@@ -78,7 +78,7 @@ const StylesConfirmationCompte = {
     fontFamily: 'Comfortaa-Bold',
   },
   ViewBtn: {
-    top: 80,
+    top: 0,
     height: 56,
     justifyContent: 'center',
     alignItems: 'center',

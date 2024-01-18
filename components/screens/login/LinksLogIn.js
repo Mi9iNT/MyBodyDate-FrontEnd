@@ -59,7 +59,7 @@ export const LinksLogIn = ({navigation}) => {
               style={[{top: 10, height: 56}]}
               onPress={() => {
                 setButtonPressed('Apple');
-                navigation.navigate('Tabs', {routeName: 'Se connecter'});
+                navigation.navigate('Tabs', {tabPath: 'discover'});
               }}
               accessibilityLabel="Connexion avec Apple">
               <Text
@@ -95,7 +95,7 @@ export const LinksLogIn = ({navigation}) => {
               style={[{top: 30, height: 56}]}
               onPress={() => {
                 setButtonPressed('Facebook');
-                navigation.navigate('Tabs', {routeName: 'Se connecter'});
+                navigation.navigate('Tabs', {tabPath: 'discover'});
               }}
               accessibilityLabel="Connexion avec Facebook">
               <Text
@@ -131,7 +131,7 @@ export const LinksLogIn = ({navigation}) => {
               style={[{top: 50, height: 56}]}
               onPress={() => {
                 setButtonPressed('Google');
-                navigation.navigate('Tabs');
+                navigation.navigate('Tabs', {tabPath: 'discover'});
               }}
               accessibilityLabel="Connexion avec Google">
               <Text

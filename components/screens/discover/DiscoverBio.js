@@ -331,7 +331,7 @@ export const DiscoverBio = ({route, navigation, imagePath}) => {
           </View>
         </Modal>
       </ImageBackground>
-      <MenuBottom navigation={navigation} route={route} active={'Discover'} />
+      {/* <MenuBottom navigation={navigation} route={route} active={'Discover'} /> */}
     </View>
   );
 };

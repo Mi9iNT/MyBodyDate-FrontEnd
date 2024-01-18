@@ -16,16 +16,6 @@ export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation
 
   // const [imagePath, setImagePath] = useState();
 
-  // Logique de détermination de l'écran en fonction de tabPath
-  let tabPathDiscover = 'TabDiscover';
-  if (tabPath === 'Professionnel') {
-    tabPathDiscover = 'DiscoverRP';
-  } else if (tabPath === 'Ami') {
-    tabPathDiscover = 'DiscoverCA';
-  } else {
-    tabPathDiscover = 'TabDiscover';
-  }
-
   const getRandomLink = () => {
     const link1 = 'Voix du jour';
     const link2 = 'Carte magique';
@@ -74,7 +64,7 @@ export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation
             }}>
             <TouchableOpacity
               accessibilityLabel="Accueil"
-              onPress={() => navigation.navigate(tabPathDiscover, { tabPath: tabPath })}>
+              onPress={() => navigation.navigate('Tabs', { tabPath: tabPath })}>
               <Image
                 source={imagePath === 'Professionnel' ? require('../../assets/images/retour_flèche_noir.png') : imagePath === 'Professionnel-Clair' ? require('../../assets/images/retour_flèche_blanc.png') : require('../../assets/images/retour_flèche_bleu.png')}
                 style={{ width: 10, height: 20 }}
@@ -82,7 +72,7 @@ export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation
             </TouchableOpacity>
             <TouchableOpacity
               accessibilityLabel="Accueil"
-              onPress={() => navigation.navigate(tabPathDiscover, { tabPath: tabPath })}>
+              onPress={() => navigation.navigate('Tabs', { tabPath: tabPath })}>
               <Text
                 style={{
                   fontFamily: 'Comfortaa',
@@ -104,7 +94,7 @@ export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation
           }}>
           <TouchableOpacity
             accessibilityLabel="Accueil"
-            onPress={() => navigation.navigate(tabPathDiscover, { tabPath: tabPath }, { tabPath: 'Professionnel' })}>
+            onPress={() => navigation.navigate('Tabs', { tabPath: tabPath }, { tabPath: 'Professionnel' })}>
             <Image
               source={imagePath === 'Professionnel' ? require('../../assets/images/retour_flèche_noir.png') : imagePath === 'Professionnel-Clair' ? require('../../assets/images/retour_flèche_blanc.png') : require('../../assets/images/retour_flèche_bleu.png')}
               style={{ width: 10, height: 20 }}
@@ -112,7 +102,7 @@ export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation
           </TouchableOpacity>
           <TouchableOpacity
             accessibilityLabel="Retour profil pro"
-            onPress={() => navigation.navigate(tabPathDiscover, { tabPath: tabPath }, { tabPath: 'Professionnel' })}>
+            onPress={() => navigation.navigate('Tabs', { tabPath: tabPath }, { tabPath: 'Professionnel' })}>
             <Text
               style={{
                 fontFamily: 'Comfortaa',
@@ -161,7 +151,7 @@ export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation
         }}>
         <TouchableOpacity
           accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate(tabPathDiscover, {tabPath:tabPath})}>
+          onPress={() => navigation.navigate('Tabs', {tabPath:tabPath})}>
           <Image
             source={imagePath === 'Professionnel' ? require('../../assets/images/retour_flèche_noir.png') : imagePath === 'Professionnel-Clair' ? require('../../assets/images/retour_flèche_blanc.png') : require('../../assets/images/retour_flèche_bleu.png')}
             style={{ width: 10, height: 20 }}
@@ -169,7 +159,7 @@ export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation
         </TouchableOpacity>
         <TouchableOpacity
           accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate(tabPathDiscover, {tabPath:tabPath})}>
+          onPress={() => navigation.navigate('Tabs', {tabPath:tabPath})}>
           <Image
             source={imagePath === 'Professionnel-Clair' ? require('../../assets/images/home_blanc.png') : require('../../assets/images/home_1.png')}
             style={{ width: 20, height: 20, marginHorizontal: 15 }}
@@ -177,7 +167,7 @@ export const MenuSlide = ({ route, icoPushChange, backButton, settingsNavigation
         </TouchableOpacity>
         <TouchableOpacity
           accessibilityLabel="Accueil"
-          onPress={() => navigation.navigate(tabPathDiscover, {tabPath:tabPath})}>
+          onPress={() => navigation.navigate('Tabs', {tabPath:tabPath})}>
           <Text
             style={{
               fontFamily: 'Comfortaa',

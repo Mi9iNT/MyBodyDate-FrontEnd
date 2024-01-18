@@ -13,6 +13,7 @@ import AudioRecorderPlayer, {
   AudioEncoderAndroidType,
   AudioSourceAndroidType,
 } from 'react-native-audio-recorder-player';
+import {storeData, getData} from '../../../service/storage';
 import {PERMISSIONS, check, request} from 'react-native-permissions';
 import RNFS from 'react-native-fs';
 import Styles from '../../../assets/style/Styles';
@@ -21,28 +22,7 @@ import StylesEmpreinteVocal from '../../../assets/style/styleScreens/styleRegist
 const audioRecorderPlayer = new AudioRecorderPlayer();
 audioRecorderPlayer.setSubscriptionDuration(0.09);
 
-export const EmpreinteVocal = ({route, navigation}) => {
-  // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  const userSituation = route.params?.userSituation ?? '';
-  const userOrientation = route.params?.userOrientation ?? '';
-  const userRecherche1 = route.params?.userRecherche1 ?? '';
-  const userRecherche2 = route.params?.userRecherche2 ?? '';
-  const userAffinites = route.params?.userAffinites ?? '';
-  const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-  const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
-  const userPrenom = route.params?.userPrenom ?? '';
-
+export const EmpreinteVocal = ({navigation}) => {
   const [modalInfoVocaVisible, setModalInfoVocaVisible] = useState(false);
 
   // Constante permettant de savoir quel input radio a été sélectionné par l'utilisateur
@@ -55,6 +35,7 @@ export const EmpreinteVocal = ({route, navigation}) => {
 
   const [recording, setRecording] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const [empreinteVocal, setEmpreinteVocal] = useState();
   const [pause, setPause] = useState(false);
   const [permissionAudio, setPermissionAudio] = useState(null);
   const [result, setResult] = useState(false);
@@ -89,7 +70,26 @@ export const EmpreinteVocal = ({route, navigation}) => {
     };
 
     checkPermissions();
+    handleGetData();
   }, []);
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetData = async () => {
+    try {
+      const empreinte = await getData('empreinte_vocal');
+      setEmpreinteVocal(empreinte);
+      // console.log(sourcePath);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
 
   const onStartRecord = async () => {
     setRecording(true);
@@ -101,6 +101,7 @@ export const EmpreinteVocal = ({route, navigation}) => {
     const exists = await RNFS.exists(audioDirectory);
     if (!exists) {
       await RNFS.mkdir(audioDirectory);
+      setEmpreinteVocal(path);
     }
     const audioSet = {
       AudioEncoderAndroid: AudioEncoderAndroidType.MP3,
@@ -387,30 +388,7 @@ export const EmpreinteVocal = ({route, navigation}) => {
             <Text style={[StylesEmpreinteVocal.textWhite2]}>Choix unique.</Text>
             <TouchableOpacity
               style={[StylesEmpreinteVocal.btn]}
-              onPress={() =>
-                navigation.navigate("Charte d'engagement", {
-                  userConsent: consentement,
-                  routeName: routeChoice,
-                  loveCoach: loveCoach,
-                  userEmail: userEmail,
-                  userPhone: userPhone,
-                  userCity: userCity,
-                  accesPosition: accesPosition,
-                  genre: genre,
-                  userBirth: userBirth,
-                  userSize: userSize,
-                  userLang: userLang,
-                  userSituation: userSituation,
-                  userOrientation: userOrientation,
-                  userRecherche1: userRecherche1,
-                  userRecherche2: userRecherche2,
-                  userAffinites: userAffinites,
-                  rythmeDeVie1: rythmeDeVie1,
-                  rythmeDeVie2: rythmeDeVie2,
-                  userPrenom: userPrenom,
-                  userVoice: selectedVoice,
-                })
-              }
+              onPress={() => navigation.navigate("Charte d'engagement")}
               accessibilityLabel="Enregistrer plus tard">
               <Text style={StylesEmpreinteVocal.textBtnBlue}>
                 Enregistrer plus tard
@@ -475,28 +453,8 @@ export const EmpreinteVocal = ({route, navigation}) => {
           style={[{bottom: 20}]}
           onPress={() => {
             setButtonPressed('Continuer');
-            navigation.navigate("Charte d'engagement", {
-              userConsent: consentement,
-              routeName: routeChoice,
-              loveCoach: loveCoach,
-              userEmail: userEmail,
-              userPhone: userPhone,
-              userCity: userCity,
-              accesPosition: accesPosition,
-              genre: genre,
-              userBirth: userBirth,
-              userSize: userSize,
-              userLang: userLang,
-              userSituation: userSituation,
-              userOrientation: userOrientation,
-              userRecherche1: userRecherche1,
-              userRecherche2: userRecherche2,
-              userAffinites: userAffinites,
-              rythmeDeVie1: rythmeDeVie1,
-              rythmeDeVie2: rythmeDeVie2,
-              userPrenom: userPrenom,
-              userVoice: selectedVoice,
-            });
+            navigation.navigate("Charte d'engagement");
+            handleStoreData('empreinte_vocal', empreinteVocal);
           }}
           accessibilityLabel="Continuer">
           <Text

@@ -59,7 +59,7 @@ export const Competence = ({}) => {
         <Image
           style={[StylesCompetence.plusBtnModal]}
           source={
-            modalCompetencelVisible === true
+            userCompetence === true
               ? require('../../../assets/images/add_pro_plein.png')
               : require('../../../assets/images/add_pro_vide.png')
           }

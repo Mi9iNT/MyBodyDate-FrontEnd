@@ -4,28 +4,58 @@
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image, TouchableOpacity, Modal} from 'react-native';
-import {MyComponentMorphologie} from './MyComponentMorphologie';
+import {storeData, getData, getDatas} from '../../../service/storage';
+import StylesMorphologie from '../../../assets/style/StyleComposants/styleEdit/StyleMorphologie';
 
-export const Morphologie = ({visibleMorphologie, closeModalMorphologie}) => {
-  const [modalMorphologielVisible, setModalMorphologielVisible] = useState(false);
+export const Morphologie = ({}) => {
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [addProVisible, setAddProVisible] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const [modalMorphologieVisible, setModalMorphologieVisible] = useState(false);
 
-  const handleAddProToggle = index => {
-    const newArray = [...addProVisible];
-    newArray[index] = !newArray[index];
-    setAddProVisible(newArray);
+  const [viewMorphologie, setViewMorphologie] = useState(false);
+
+  const [userMorphologie, setUserMorphologie] = useState(false);
+
+  console.log(userMorphologie);
+
+  const morphologie = [
+    'Elancé.e',
+    'Mince',
+    'Sportif.ve',
+    'Corpulence Moyenne',
+    'Rond.e',
+    'Je ne sais pas trop',
+  ];
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
   };
 
+  const keysToRetrieve = ['user_morphology'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const getMultipleValues = async () => {
+    try {
+      const retrievedValues = await getDatas(keysToRetrieve);
+      // console.log('Valeurs récupérées :', retrievedValues);
+
+      const result = {};
+      retrievedValues.forEach(item => {
+        retrievedValues[item.key] = item.value;
+      });
+
+      setUserMorphologie(retrievedValues.user_morphology);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+  getMultipleValues();
+
   useEffect(() => {
+    getMultipleValues();
     StatusBar.setHidden(true);
     return () => {
       StatusBar.setHidden(false);
@@ -33,79 +63,106 @@ export const Morphologie = ({visibleMorphologie, closeModalMorphologie}) => {
   }, []);
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={visibleMorphologie}
-      onRequestClose={closeModalMorphologie}>
-      {/* Arrière-plan semi-transparent */}
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Couleur semi-transparente
-          justifyContent: 'center', // Centrer verticalement
-          alignItems: 'center', // Centrer horizontalement
-        }}>
-        <TouchableOpacity
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-          }}
-          onPress={() => closeModalMorphologie()}
-          accessibilityLabel="Ferme la fenêtre"
+    <>
+      <TouchableOpacity
+        onPress={() => {
+          setModalMorphologieVisible(true);
+        }}
+        style={[StylesMorphologie.btnModal]}>
+        <Image source={require('../../../assets/images/Body.png')} style={[StylesMorphologie.icoBtnModal]} />
+        <Text
+          style={[StylesMorphologie.txtBtnModal]}>
+          Morphologie
+        </Text>
+        <Image style={[StylesMorphologie.plusBtnModal]}
+          source={
+            !userMorphologie
+              ? require('../../../assets/images/add_ra_vide.png')
+              : require('../../../assets/images/PlusActivite.png')
+          }
         />
-        {/* Contenu de la modal */}
+      </TouchableOpacity>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalMorphologieVisible}
+        onRequestClose={() => { setModalMorphologieVisible(false); }}>
+        {/* Arrière-plan semi-transparent */}
         <View
-          style={{
-            top: 40,
-            width: 394,
-            height: 700,
-            backgroundColor: 'white',
-            borderTopLeftRadius: 50,
-            borderTopRightRadius: 50,
-          }}>
+          style={StylesMorphologie.containerModal}>
+          <TouchableOpacity
+            style={StylesMorphologie.btnClose}
+            onPress={() => setModalMorphologieVisible(false)}
+            accessibilityLabel="Fermer la fenêtre"
+          />
+          {/* Contenu de la modal */}
           <View
-            style={{
-              alignSelf: 'center',
-            }}>
-            <Image
-              source={require('../../../assets/images/Body.png')}
+            style={StylesMorphologie.viewModal}>
+            <View
               style={{
-                width: 84,
-                height: 84,
-                top: 30,
                 alignSelf: 'center',
-              }}
-            />
-            <Text
-              style={{
-                fontFamily: 'Gilroy',
-                fontWeight: '700',
-                fontSize: 20,
-                color: '#0019A7',
-                top: 50,
               }}>
-              Morphologie
-            </Text>
-          </View>
-          <View>
-            <Text
+              <Image
+                source={require('../../../assets/images/Body.png')}
+                style={StylesMorphologie.icoModal}
+              />
+              <Text
+                style={StylesMorphologie.txtTitleModal}>
+                Morphologie
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={StylesMorphologie.subTxtModal}>
+                Sélectionnez votre opinion concernant les enfants.
+              </Text>
+            </View>
+            <View
               style={{
-                fontFamily: 'Gilroy',
-                fontWeight: '700',
-                fontSize: 14,
-                color: '#0019A7',
-                top: 80,
-                left: 30,
+                top: 140,
+                alignItems: 'center',
               }}>
-              Sélectionnez votre morphologie.
-            </Text>
+            <View style={{flexDirection: 'row'}}>
+              <View style={{flexDirection: 'column'}}>
+              <TouchableOpacity
+                onPress={() => { viewMorphologie ? setViewMorphologie(false) : setViewMorphologie(true); }}
+                style={{ width: 276, alignSelf: 'center', }}
+              >
+              <Text
+                style={[StylesMorphologie.txtOptionSelected]}>
+                {userMorphologie ? userMorphologie : 'Type de morpholpgie'}
+              </Text>
+            </TouchableOpacity>
+            {viewMorphologie ?
+              <View
+                style={[StylesMorphologie.viewOption]} >
+                {morphologie.map((item, index) => (
+                  <TouchableOpacity key={index} style={{}} onPress={() => { setUserMorphologie(item);  handleStoreData('user_morphology', item); setViewMorphologie(false); }}>
+                    <Text
+                      key={index}
+                      style={[StylesMorphologie.txtOption]}>
+                      {item}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+              : null}
+              </View>
+              <TouchableOpacity
+                onPress={() => { viewMorphologie ? setViewMorphologie(false) : setViewMorphologie(true); }}>
+                <Image
+                  source={require('../../../assets/images/FlecheEditRA.png')}
+                  style={[StylesMorphologie.icoViewOption, {
+                    transform: [{rotate: viewMorphologie ? '180deg' : '0deg'}],
+                  }]}/>
+              </TouchableOpacity>  
+            </View>
+            </View>
+            <Text style={{top: 360, left: 40, color: '#0019A7', fontFamily: 'Comfortaa', fontSize: 12}}>Choix unique</Text>
           </View>
-          <MyComponentMorphologie />
         </View>
-      </View>
-    </Modal>
+      </Modal>
+    </>
   );
 };
 

@@ -42,53 +42,6 @@ export const Creation = ({navigation}) => {
     }
   };
 
-  // useEffect(() => {
-  //   axios
-  //     .get('http://10.0.2.2:9088/api/testUsers')
-  //     .then(response => {
-  //       setUsers(response.data);
-  //       // console.log(response.data);
-  //     })
-  //     .catch(err => console.log(err));
-  // }, []);
-
-  // useEffect(() => {
-  //   // Utilisation de la méthode GET
-  //   getMethod('/testUsers')
-  //     .then(data => {
-  //       console.log('Données récupérées:', data);
-  //       // Faites quelque chose avec les données reçues
-  //     })
-  //     .catch(error => {
-  //       console.error('Erreur de récupération des données:', error);
-  //       // Gérez les erreurs ici
-  //     });
-
-  //   // const getUser = async () => {
-  //   //   try {
-  //   //     const response = await fetch('http://localhost:9088/');
-  //   //     const json = await response.json();
-  //   //     setUser(json);
-  //   //     console.log(user);
-  //   //   } catch (error) {
-  //   //     console.error(error);
-  //   //   }
-  //   // };
-
-  //   // Utilisation de la méthode POST
-  //   // postMethod('/{subscriptionId}', {paramètre: 'valeur'})
-  //   //   .then(data => {
-  //   //     console.log('Réponse POST:', data);
-  //   //     // Faites quelque chose avec la réponse
-  //   //   })
-  //   //   .catch(error => {
-  //   //     console.error('Erreur lors de la requête POST:', error);
-  //   //     // Gérez les erreurs ici
-  //   //   });
-  // }, []);
-
-  // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
-
   // Constantes concernant la Modal d'accès au consentement
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -122,6 +75,18 @@ export const Creation = ({navigation}) => {
           onRequestClose={() => {
             setModalVisible(!modalVisible);
           }}>
+          <TouchableOpacity
+            style={{
+              position: 'absolute',
+              backgroundColor: 'transparent',
+              width: '100%',
+              height: '100%',
+            }}
+            onPress={() => {
+              setModalVisible(false);
+            }}
+            accessibilityLabel="Ferme la fenêtre"
+          />
           <View
             style={[StylesCreationEtDeveloppement.CenteredView, {top: 200}]}>
             <ScrollView style={[StylesBienvenue.ScrollView]}>

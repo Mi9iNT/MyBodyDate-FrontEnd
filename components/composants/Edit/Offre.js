@@ -7,6 +7,7 @@ import {View, Text, Image, ImageBackground, TextInput, TouchableOpacity, Modal} 
 import {MyComponentOffre} from './MyComponentOffre';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import StylesOffre from '../../../assets/style/StyleComposants/styleEdit/StyleOffre';
+import {storeData, getData, getDatas} from '../../../service/storage';
 
 export const Offre = ({visibleOffre, closeModalOffre}) => {
   const [modalOffrelVisible, setModalOffrelVisible] = useState(false);
@@ -18,7 +19,36 @@ export const Offre = ({visibleOffre, closeModalOffre}) => {
 
   const [offreDescription, setOffreDescription] = useState('Entrer la description de votre offre . . .');
 
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const keysToRetrieve = ['user_recherche'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const getMultipleValues = async () => {
+    try {
+      const retrievedValues = await getDatas(keysToRetrieve);
+      // console.log('Valeurs récupérées :', retrievedValues);
+
+      const result = {};
+      retrievedValues.forEach(item => {
+        retrievedValues[item.key] = item.value;
+      });
+      setOffreTitle(retrievedValues.user_offre_title);
+      setOffreDescription(retrievedValues.user_offre_description);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+  getMultipleValues();
+
   useEffect(() => {
+    getMultipleValues();
     StatusBar.setHidden(true);
     return () => {
       StatusBar.setHidden(false);
@@ -43,7 +73,7 @@ export const Offre = ({visibleOffre, closeModalOffre}) => {
           <Image
             style={[StylesOffre.plusBtnModal]}
             source={
-              modalOffre
+              offreTitle || offreDescription
                 ? require('../../../assets/images/add_pro_plein.png')
                 : require('../../../assets/images/add_pro_vide.png')
             }
@@ -87,8 +117,10 @@ export const Offre = ({visibleOffre, closeModalOffre}) => {
             </View>
               <SafeAreaView style={{ top: 160, alignSelf:'center' }}>
                 <TextInput
+                  placeholder="Entrer le titre de votre offre . . ."
                   style={[StylesOffre.txtIntitulateOffre]}
                   onChangeText={setOffreTitle}
+                  onEndEditing={() => handleStoreData('user_offre_title', offreTitle)}
                   value={offreTitle}
                 />
               </SafeAreaView>
@@ -106,6 +138,7 @@ export const Offre = ({visibleOffre, closeModalOffre}) => {
                   multiline={true}
                   scrollEnabled={true}
                   onChangeText={setOffreDescription}
+                  onEndEditing={() => handleStoreData('user_offre_description', offreDescription)}
                   value={offreDescription}
                 />
               </SafeAreaView>

@@ -1,6 +1,17 @@
 import axios from 'axios';
 
 // Créer une instance Axios avec une configuration de base
+export const instanceFile = () => {
+  return axios.create({
+    baseURL: 'http://10.0.2.2:9088/api',
+    timeout: 1000,
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+};
+
 export const instance = () => {
   return axios.create({
     baseURL: 'http://10.0.2.2:9088/api',
@@ -69,5 +80,17 @@ export const postMethod = async (url, data = {}) => {
       alert('Une erreur est survenue. Veuillez réessayer.');
       throw error;
     }
+  }
+};
+
+// Méthode pour effectuer une requête POSTde fichier
+export const postImageMethod = async (url, formData) => {
+  const apiInstance = instanceFile();
+  try {
+    const response = await apiInstance.post(url, formData);
+    return response.data;
+  } catch (error) {
+    // Gestion des erreurs
+    throw error;
   }
 };

@@ -12,11 +12,10 @@ import {BlurView} from '@react-native-community/blur';
 import Styles from '../../../assets/style/Styles';
 import {NativeModules} from 'react-native';
 import StylesLangParler from '../../../assets/style/styleScreens/styleRegister/StyleLangParler';
-import {storeData, getData} from '../../../service/storage';
+import {storeData, getData, getDatas} from '../../../service/storage';
 
 //Home Screen
 export const LangueParler = ({navigation}) => {
-  
   useEffect(() => {
     handleGetData();
   }, []);
@@ -84,9 +83,29 @@ export const LangueParler = ({navigation}) => {
   const handleSelection = value => {
     if (selectedValues.includes(value)) {
       setSelectedValues(selectedValues.filter(val => val !== value));
+      handleStoreData('user_langues', selectedValue);
     } else {
       setSelectedValues([...selectedValues, value]);
+      handleStoreData('user_langues', selectedValue);
     }
+
+    const keysToRetrieve = ['user_langues'];
+
+    // Appel de la fonction pour récupérer plusieurs valeurs
+    const getMultipleValues = async () => {
+      try {
+        const retrievedValues = await getDatas(keysToRetrieve);
+        // console.log('Valeurs récupérées :', retrievedValues);
+
+        retrievedValues.forEach(item => {
+          retrievedValues[item.key] = item.value;
+        });
+        setSelectedValues(retrievedValues.user_langues);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données :', error);
+      }
+    };
+    getMultipleValues();
 
     if (value == [1]) {
       inputValue = 'Français';

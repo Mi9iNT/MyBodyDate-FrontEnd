@@ -25,40 +25,19 @@ import { LinkedIn } from '../../composants/edit/LinkedIn';
 import StylesProfileMeRpfirst from '../../../assets/style/styleScreens/styleProfil/StyleProfileMeRpfirst';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  const userSituation = route.params?.userSituation ?? '';
-  const userOrientation = route.params?.userOrientation ?? '';
-  const userRecherche1 = route.params?.userRecherche1 ?? '';
-  const userRecherche2 = route.params?.userRecherche2 ?? '';
-  const userAffinites = route.params?.userAffinites ?? '';
-  const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-  const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
-  const userPrenom = route.params?.userPrenom ?? '';
-  const userVoice = route.params?.userVoice ?? '';
-  const tabPath = route.params?.tabPath ?? '';
+export const ProfilMeRPfirst = ({navigation, imagePath}) => {
 
-  const deleteAvatar = (index) => {
-    setAvatarPath(prevAvatar => {
-      let newAvatarPath = [...prevAvatar];
-      newAvatarPath[index] = null;
-      return newAvatarPath;
+  const contentDeleteImage = (index) => {
+    setImgPath(prevImg => {
+      let newImgPath = [...prevImg];
+      newImgPath[index] = null;
+      return newImgPath;
     });
   };
 
-  const [avatarPath, setAvatarPath] = useState([null, null, null]);
+  const [imgPath, setImgPath] = useState([null, null, null]);
 
-  console.log(avatarPath);
+  console.log(imgPath);
 
   const ImagePicker = (index) => {
     let options = {
@@ -72,10 +51,10 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
       } else if (response.errorCode) {
         console.log('Erreur : ', response.errorMessage);
       } else {
-        let newAvatar = response.assets[0].uri;
-        let newAvatarPath = [...avatarPath];
-        newAvatarPath[index] = newAvatar;
-        setAvatarPath(newAvatarPath);
+        let newImg = response.assets[0].uri;
+        let newImgPath = [...imgPath];
+        newImgPath[index] = newImg;
+        setImgPath(newImgPath);
       }
     });
   };
@@ -115,10 +94,10 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
           </Text>
           <View
             style={[StylesProfileMeRpfirst.viewPhoto]}>
-            {avatarPath.map((item, index) => (
+            {imgPath.map((item, index) => (
               <TouchableOpacity
                 key={index}
-                onPress={() => {item === null ? ImagePicker(index) : deleteAvatar(index)}}
+                onPress={() => {item === null ? ImagePicker(index) : contentDeleteImage(index)}}
                 style={[StylesProfileMeRpfirst.btnAddPhoto, {
                   width: index === 0 && item !== null ? 129 : 82,
                   height: index === 0 && item !== null ? 129 : 82,
@@ -128,7 +107,7 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
               {
               width: index === 0 && item !== null ? 129 : 82,
               height: index === 0 && item !== null ? 129 : 82,}]}>
-              <Image source={{ uri: avatarPath[index] }}
+              <Image source={{ uri: imgPath[index] }}
                 style={[StylesProfileMeRpfirst.userPhoto,
                   {
                     width: index === 0 && item !== null ? 129 : 82,
@@ -147,7 +126,7 @@ export const ProfilMeRPfirst = ({route, navigation, imagePath}) => {
           )}
         </TouchableOpacity>
             ))}
-            </View>
+          </View>
           </View>
           <SafeAreaView style={[StylesProfileMeRpfirst.viewContent]}>
             <Text

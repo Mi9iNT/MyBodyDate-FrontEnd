@@ -4,49 +4,65 @@
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image,ImageBackground, TextInput, TouchableOpacity, Modal} from 'react-native';
+import {storeData, getData, getDatas} from '../../../service/storage';
+import StylesFilm from '../../../assets/style/StyleComposants/styleEdit/StyleFilm';
 
-export const Film = ({visibleFilm, closeModalFilm}) => {
+export const Film = ({}) => {
+
   const [modalFilmlVisible, setModalFilmlVisible] = useState(false);
 
+  const [userFilm, setUserFilm] = useState([]);
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const keysToRetrieve = ['user_film'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const getMultipleValues = async () => {
+  try {
+    const retrievedValues = await getDatas(keysToRetrieve);
+
+    if (retrievedValues && Array.isArray(retrievedValues)) {
+      const result = {};
+      retrievedValues.forEach(item => {
+        result[item.key] = item.value;
+      });
+
+      setUserFilm(result.user_film || []);
+    }
+  } catch (error) {
+    console.error('Erreur lors de la récupération des données :', error);
+  }
+  };
+  
+  const handleButtonPress = value => {
+    let newUserFilm = [...userFilm];
+
+    if (newUserFilm !== null && newUserFilm.includes(value)) {
+      newUserFilm = newUserFilm.filter(item => item !== value);
+      handleStoreData('user_film', newUserFilm);
+    } else {
+      newUserFilm.push(value);
+      handleStoreData('user_film', newUserFilm);
+    }
+
+    setUserFilm(newUserFilm);
+    console.log('user_film : ' + newUserFilm);
+  };
+
   useEffect(() => {
+    getMultipleValues();
     StatusBar.setHidden(true);
     return () => {
       StatusBar.setHidden(false);
     };
   }, []);
-
-  const [isTransImagePlus, setIsTransImagePlus] = useState(true);
-  const [isShiroImagePlus, setIsShiroImagePlus] = useState(true);
-  const [isBadBoyImagePlus, setIsBadBoyImagePlus] = useState(true);
-  const [isAvengImagePlus, setIsAvengImagePlus] = useState(true);
-
-  /////////////////
-  const [isBorderTransVisible, setIsBorderTransVisible] = useState(false);
-  const [isBorderShiroVisible, setIsBorderShiroVisible] = useState(false);
-  const [isBorderBadBoyVisible, setIsBorderBadBoyVisible] = useState(false);
-  const [isBorderAvengVisible, setIsBorderAvengVisible] = useState(false);
-
-  /////////////////
-
-  const toggleTransImage = () => {
-    setIsTransImagePlus(!isTransImagePlus);
-    setIsBorderTransVisible(!isBorderTransVisible);
-  };
-
-  const toggleShiroImage = () => {
-    setIsShiroImagePlus(!isShiroImagePlus);
-    setIsBorderShiroVisible(!isBorderShiroVisible);
-  };
-
-  const toggleBadBoyImage = () => {
-    setIsBadBoyImagePlus(!isBadBoyImagePlus);
-    setIsBorderBadBoyVisible(!isBorderBadBoyVisible);
-  };
-
-  const toggleAvengImage = () => {
-    setIsAvengImagePlus(!isAvengImagePlus);
-    setIsBorderAvengVisible(!isBorderAvengVisible);
-  };
 
   return (
     <>
@@ -54,32 +70,21 @@ export const Film = ({visibleFilm, closeModalFilm}) => {
         onPress={() => {
           setModalFilmlVisible(true);
         }}
-        style={{
-          bottom: 280,
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}
+        style={[StylesFilm.btnModal]}
       >
-      <Image source={require('../../../assets/images/popcorn.png')} />
+      <Image style={[StylesFilm.icoBtnModal]} source={require('../../../assets/images/popcorn.png')} />
       <Text
-        style={{
-          fontFamily: 'Comfortaa',
-          fontWeight: '700',
-          fontSize: 15,
-          color: '#9424FA',
-          left: 20,
-        }}>
+        style={[StylesFilm.txtBtnModal]}>
         Les films que je ne me lasse {'\n'}pas de revoir...
       </Text>
-      <View style={{width: 35, height: 35, left: 72}}>
         <Image
+          style={[StylesFilm.plusBtnModal]}
           source={
-            modalFilmlVisible
+            userFilm
               ? require('../../../assets/images/add_plein.png')
               : require('../../../assets/images/add_vide.png')
           }
         />
-      </View>
     </TouchableOpacity>
     <Modal
       animationType="slide"
@@ -106,9 +111,9 @@ export const Film = ({visibleFilm, closeModalFilm}) => {
         {/* Contenu de la modal */}
         <View
           style={{
-            top: 40,
-            width: 394,
-            height: 700,
+            top: 80,
+            width: '100%',
+            height: 750,
             backgroundColor: 'white',
             borderTopLeftRadius: 50,
             borderTopRightRadius: 50,
@@ -166,9 +171,9 @@ export const Film = ({visibleFilm, closeModalFilm}) => {
           <Image
             source={require('../../../assets/images/Loupe-BB.png')}
             style={{
-              width: 30,
-              height: 30,
-              top: 5,
+              width: 20,
+              height: 20,
+              top: 10,
               left: 10,
             }}
           />
@@ -204,22 +209,22 @@ export const Film = ({visibleFilm, closeModalFilm}) => {
             alignItems: 'center',
             top: 100,
           }}>
-          <TouchableOpacity onPress={toggleTransImage}>
+          <TouchableOpacity onPress={() => {handleButtonPress('Transformers');}}>
             <ImageBackground
               source={require('../../../assets/images/Transform.png')}
               style={{
                 width: 160,
                 height: 160,
                 right: 10,
-                borderWidth: isBorderTransVisible ? 2 : 0, // Ajout du border conditionnel
-                borderColor: '#9424FA', // Couleur du border (modifiable)
-                borderRadius: isBorderTransVisible ? 33 : 0, // Ajout du border radius conditionnel
+                borderWidth: userFilm.includes('Transformers') ? 2 : 0,
+                borderColor: '#9424FA',
+                borderRadius: userFilm.includes('Transformers') ? 33 : 0,
               }}>
               <Image
                 source={
-                  isTransImagePlus
-                    ? require('../../../assets/images/PlusActivite.png')
-                    : require('../../../assets/images/MoinActivite.png')
+                  userFilm.includes('Transformers')
+                    ? require('../../../assets/images/MoinActivite.png')
+                    : require('../../../assets/images/PlusActiviteCA.png')
                 }
                 style={{
                   width: 35,
@@ -241,22 +246,22 @@ export const Film = ({visibleFilm, closeModalFilm}) => {
               Transformers
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={toggleShiroImage}>
+          <TouchableOpacity onPress={() => {handleButtonPress('Le voyage de Shihiro');}}>
             <ImageBackground
               source={require('../../../assets/images/Shiro.png')}
               style={{
                 width: 160,
                 height: 160,
                 Leftt: 10,
-                borderWidth: isBorderShiroVisible ? 2 : 0, // Ajout du border conditionnel
-                borderColor: '#9424FA', // Couleur du border (modifiable)
-                borderRadius: isBorderShiroVisible ? 33 : 0, // Ajout du border radius conditionnel
+                borderWidth: userFilm.includes('Le voyage de Shihiro') ? 2 : 0,
+                borderColor: '#9424FA',
+                borderRadius: userFilm.includes('Le voyage de Shihiro') ? 33 : 0, 
               }}>
               <Image
                 source={
-                  isShiroImagePlus
-                    ? require('../../../assets/images/PlusActivite.png')
-                    : require('../../../assets/images/MoinActivite.png')
+                  userFilm.includes('Le voyage de Shihiro')
+                    ? require('../../../assets/images/MoinActivite.png')
+                    : require('../../../assets/images/PlusActiviteCA.png')
                 }
                 style={{
                   width: 35,
@@ -286,22 +291,22 @@ export const Film = ({visibleFilm, closeModalFilm}) => {
             alignItems: 'center',
             top: 120,
           }}>
-          <TouchableOpacity onPress={toggleBadBoyImage}>
+          <TouchableOpacity onPress={() => {handleButtonPress('Baby Boy');}}>
             <ImageBackground
               source={require('../../../assets/images/BadBoy.png')}
               style={{
                 width: 160,
                 height: 160,
                 right: 10,
-                borderWidth: isBorderBadBoyVisible ? 2 : 0, // Ajout du border conditionnel
+                borderWidth: userFilm.includes('Baby Boy') ? 2 : 0, // Ajout du border conditionnel
                 borderColor: '#9424FA', // Couleur du border (modifiable)
-                borderRadius: isBorderBadBoyVisible ? 33 : 0, // Ajout du border radius conditionnel
+                borderRadius: userFilm.includes('Baby Boy') ? 33 : 0, // Ajout du border radius conditionnel
               }}>
               <Image
                 source={
-                  isBadBoyImagePlus
-                    ? require('../../../assets/images/PlusActivite.png')
-                    : require('../../../assets/images/MoinActivite.png')
+                  userFilm.includes('Baby Boy')
+                    ? require('../../../assets/images/MoinActivite.png')
+                    : require('../../../assets/images/PlusActiviteCA.png')
                 }
                 style={{
                   width: 35,
@@ -323,22 +328,22 @@ export const Film = ({visibleFilm, closeModalFilm}) => {
               Baby Boy
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={toggleAvengImage}>
+          <TouchableOpacity onPress={() => {handleButtonPress('Avengers');}}>
             <ImageBackground
               source={require('../../../assets/images/Aveng.png')}
               style={{
                 width: 160,
                 height: 160,
                 Left: 10,
-                borderWidth: isBorderAvengVisible ? 2 : 0, // Ajout du border conditionnel
+                borderWidth: userFilm.includes('Avengers') ? 2 : 0, // Ajout du border conditionnel
                 borderColor: '#9424FA', // Couleur du border (modifiable)
-                borderRadius: isBorderAvengVisible ? 33 : 0, // Ajout du border radius conditionnel
+                borderRadius: userFilm.includes('Avengers') ? 33 : 0, // Ajout du border radius conditionnel
               }}>
               <Image
                 source={
-                  isAvengImagePlus
-                    ? require('../../../assets/images/PlusActivite.png')
-                    : require('../../../assets/images/MoinActivite.png')
+                  userFilm.includes('Avengers')
+                    ? require('../../../assets/images/MoinActivite.png')
+                    : require('../../../assets/images/PlusActiviteCA.png')
                 }
                 style={{
                   width: 35,
@@ -366,7 +371,6 @@ export const Film = ({visibleFilm, closeModalFilm}) => {
       </View>
     </Modal>
     </>
-    
   );
 };
 

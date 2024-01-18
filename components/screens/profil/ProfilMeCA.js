@@ -14,31 +14,7 @@ import {
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
 
-export const ProfilMeCA = ({route, navigation}) => {
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  const userSituation = route.params?.userSituation ?? '';
-  const userOrientation = route.params?.userOrientation ?? '';
-  const userRecherche1 = route.params?.userRecherche1 ?? '';
-  const userRecherche2 = route.params?.userRecherche2 ?? '';
-  const userAffinites = route.params?.userAffinites ?? '';
-  const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-  const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
-  const userPrenom = route.params?.userPrenom ?? '';
-  const userVoice = route.params?.userVoice ?? '';
-  // const imagePath = route.params?.imagePath ?? '';
-  const tabPath = route.params?.tabPath ?? '';
-
-  const [modalVisible, setModalVisible] = useState(false);
+export const ProfilMeCA = ({navigation}) => {
 
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -540,9 +516,4 @@ export const ProfilMeCA = ({route, navigation}) => {
       </ScrollView>
     </View>
   );
-};
-
-ProfilMeCA.propTypes = {
-  route: PropTypes.object.isRequired,
-  navigation: PropTypes.object.isRequired,
-};
+}

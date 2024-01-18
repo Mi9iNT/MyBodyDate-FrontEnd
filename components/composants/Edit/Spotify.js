@@ -12,11 +12,66 @@ import {
   TouchableOpacity,
   Modal,
 } from 'react-native';
+import {storeData, getData, getDatas} from '../../../service/storage';
 
-export const Spotify = ({visibleSpotify, closeModalSpotify}) => {
+export const Spotify = ({ }) => {
+  
   const [modalSpotifylVisible, setModalSpotifylVisible] = useState(false);
 
+  const [urlShow, setUrlShow] = useState(false);
+
+  const [urlSpotify, setUrlSpotify] = useState(false);
+
+  const [urlError, setUrlError] = useState(false);
+
+  console.log(urlSpotify);
+
+  const urlRegex = new RegExp(
+    '^(http|https)://(([a-zA-Z0-9-]+.)?([a-zA-Z0-9-]+.)?[a-zA-Z0-9-]+\\.[a-zA-Z]{2,4}(:[0-9]+)?(/[a-zA-Z0-9-]*)?(.[a-zA-Z0-9]{1,4})?)*$'
+  );
+
+  const verifyUrl = (index) => {
+    let url = 'https://spotify.com/playlist/' + index;
+
+    if (urlRegex.test(url)) {
+      setUrlSpotify(url);
+      handleStoreData('user_spotify', url);
+      setUrlError(false);
+    } else {
+      setUrlError(true);
+    }
+  };
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const keysToRetrieve = ['user_spotify'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const getMultipleValues = async () => {
+    try {
+      const retrievedValues = await getDatas(keysToRetrieve);
+      // console.log('Valeurs récupérées :', retrievedValues);
+
+      const result = {};
+      retrievedValues.forEach(item => {
+        retrievedValues[item.key] = item.value;
+      });
+
+      setUrlSpotify(retrievedValues.user_spotify);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+  getMultipleValues();
+
   useEffect(() => {
+    getMultipleValues
     StatusBar.setHidden(true);
     return () => {
       StatusBar.setHidden(false);
@@ -31,8 +86,11 @@ export const Spotify = ({visibleSpotify, closeModalSpotify}) => {
         }}
         style={{
           bottom: 260,
+          width: '90%',
           flexDirection: 'row',
           alignItems: 'center',
+          alignSelf: 'center',
+          justifyContent: 'space-between',
         }}>
         <Image source={require('../../../assets/images/Spotify.png')} />
         <Text
@@ -41,19 +99,22 @@ export const Spotify = ({visibleSpotify, closeModalSpotify}) => {
             fontWeight: '700',
             fontSize: 15,
             color: '#9424FA',
-            left: 20,
+            right: 50,
           }}>
           Ma playlist Spotify
         </Text>
-        <View style={{width: 35, height: 35, left: 142}}>
-          <Image
-            source={
-              modalSpotifylVisible
-                ? require('../../../assets/images/add_plein.png')
-                : require('../../../assets/images/add_vide.png')
-            }
-          />
-        </View>
+        <Image
+          style={{
+            width: 37,
+            height: 37,
+            resizeMode: 'contain',
+          }}
+          source={
+            modalSpotifylVisible
+              ? require('../../../assets/images/add_plein.png')
+              : require('../../../assets/images/add_vide.png')
+          }
+        />
       </TouchableOpacity>
       <Modal
         animationType="slide"
@@ -80,8 +141,8 @@ export const Spotify = ({visibleSpotify, closeModalSpotify}) => {
           {/* Contenu de la modal */}
           <View
             style={{
-              top: 40,
-              width: 394,
+              top: 100,
+              width: '100%',
               height: 700,
               backgroundColor: 'white',
               borderTopLeftRadius: 50,

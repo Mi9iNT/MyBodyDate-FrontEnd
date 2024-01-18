@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -16,33 +16,66 @@ import {MenuBottom} from '../../composants/MenuBottom';
 import Styles from '../../../assets/style/Styles';
 import StylesProfileMeRa from '../../../assets/style/styleScreens/styleProfil/StyleProfileMeRa';
 import BtnReadRecord from '../../composants/BtnReadRecord';
+import {storeData, getDatas} from '../../../service/storage';
 
-export const ProfilMeRA = ({ route, navigation, imagePath }) => {
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  const userSituation = route.params?.userSituation ?? '';
-  const userOrientation = route.params?.userOrientation ?? '';
-  const userRecherche1 = route.params?.userRecherche1 ?? '';
-  const userRecherche2 = route.params?.userRecherche2 ?? '';
-  const userAffinites = route.params?.userAffinites ?? '';
-  const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-  const rythmeDeVie2 = route.params?.rythmeDeVie1 ?? '';
-  const userPrenom = route.params?.userPrenom ?? '';
-  const userVoice = route.params?.userVoice ?? '';
-  const user = route.params?.user ?? '';
-  const prenium = route.params?.prenium ?? '';
-  const tabPath = route.params?.tabPath ?? 'Amour';
+export const ProfilMeRA = ({ navigation, imagePath }) => {
 
-  // console.log("user : ".user);
+  const [tabPath, setTabPath] = useState('Amour');
+  const [userPrenom, setUserPrenom] = useState();
+  const [userBirth, setUserBirth] = useState();
+  const [userCity, setUserCity] = useState();
+  const [showFirstname, setShowFirstname] = useState();
+  const [userName, setUserName] = useState();
+  const [avatar, setAvatar] = useState();
+  const today = new Date();
+
+  // console.log(userPrenom, userName, showFirstname, userBirth, userCity);
+
+  const calculateAge = birthdate => {
+    console.log('calculate age appelé');
+    const birthdateDate = new Date(birthdate);
+    const birthYear = birthdateDate.getFullYear();
+    console.log(birthYear, birthdate);
+    let age = today.getFullYear() - birthYear;
+    const monthDiff = today.getMonth() - birthdateDate.getMonth();
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && today.getDate() < birthdateDate.getDate())
+    ) {
+      age--;
+    }
+    return age;
+  };
+
+  const keysToRetrieve = ['firstname', 'username', 'date_of_birth', 'city', 'show_firstname', 'avatar'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const getMultipleValues = async () => {
+    try {
+      const retrievedValues = await getDatas(keysToRetrieve);
+      // console.log('Valeurs récupérées :', retrievedValues);
+
+      const result = {};
+      retrievedValues.forEach(item => {
+        retrievedValues[item.key] = item.value;
+      });
+
+      setUserPrenom(retrievedValues.firstname);
+      setUserName(retrievedValues.username);
+      setUserBirth(calculateAge(retrievedValues.date_of_birth));
+      setUserCity(retrievedValues.city);
+      setShowFirstname(retrievedValues.show_firstname);
+      setAvatar(retrievedValues.avatar);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+  getMultipleValues();
+
+
+  useEffect(() => {
+    getMultipleValues();
+  }, []);
 
   const [boxPressed, setBoxPressed] = useState();
 
@@ -54,6 +87,14 @@ export const ProfilMeRA = ({ route, navigation, imagePath }) => {
 
   const formattedDate = `${year}${month}${day}`; // Constant récupérant l'année, le mois et le jour courant
 
+  let avatarPath;
+  if (!avatar) {
+    avatarPath = require('../../../assets/images/Ellipse44.png');
+  } else {
+    avatarPath = {uri: avatar};
+    // console.log(avatar);
+  }
+
   return (
     <ImageBackground
       style={StylesProfileMeRa.bgGradient}
@@ -64,7 +105,7 @@ export const ProfilMeRA = ({ route, navigation, imagePath }) => {
           style={StylesProfileMeRa.viewCol}>
           <Image
             accessibilityLabel="Avatar"
-              source={require('../../../assets/images/Ellipse44.png')}
+              source={avatarPath}
               style={StylesProfileMeRa.userAvatar}
             />
             <Text
@@ -83,7 +124,7 @@ export const ProfilMeRA = ({ route, navigation, imagePath }) => {
               />
             </View>
             <Text style={StylesProfileMeRa.userName}>
-              {!user ? 'Raluca' : user}
+              {showFirstname ? userPrenom : userName}
             </Text>
             <Text style={StylesProfileMeRa.userBC}>
               { !userBirth ? '43' : userBirth}, { !userCity ? 'Paris' : userCity}
@@ -218,18 +259,13 @@ export const ProfilMeRA = ({ route, navigation, imagePath }) => {
               Éclipsez-vous des regards
             </Text>
             <Text
-              style={[StylesProfileMeRa.txtTitle22,{color: boxPressed === '3' ? '#fff' : '#0019A7',}]}>
+              style={[StylesProfileMeRa.txtTitle22,{color: boxPressed === '3' ? '#fff' : '#0019A7'}]}>
               Éclipsez-vous des regards sur commande.
             </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
-      <MenuBottom navigation={navigation} tabPath={'Amour'} active={'Moi'} />
+      {/* <MenuBottom navigation={navigation} tabPath={'Amour'} active={'Moi'} /> */}
     </ImageBackground>
   );
-};
-
-ProfilMeRA.propTypes = {
-  route: PropTypes.object.isRequired,
-  navigation: PropTypes.object.isRequired,
 };

@@ -36,7 +36,7 @@ const StylesLangue = {
     height: '100%',
   },
   viewModal: {
-    top: 70,
+    top: 100,
     width: '100%',
     height: 700,
     backgroundColor: 'white',

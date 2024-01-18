@@ -2,9 +2,10 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
-import {StatusBar} from 'react-native';
+import {ScrollView, StatusBar} from 'react-native';
 import {View, Text, Image, TouchableOpacity, Modal} from 'react-native';
 import StylesVotreRecherche from '../../../assets/style/StyleComposants/styleEdit/StyleVotreRecherche';
+import {storeData, getData, getDatas} from '../../../service/storage';
 
 export const VotreRecherche = ({}) => {
 
@@ -27,8 +28,36 @@ export const VotreRecherche = ({}) => {
 
   const [userRecherche, setUserRecherche] = useState(false);
 
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const keysToRetrieve = ['user_recherche'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const getMultipleValues = async () => {
+    try {
+      const retrievedValues = await getDatas(keysToRetrieve);
+      // console.log('Valeurs récupérées :', retrievedValues);
+
+      const result = {};
+      retrievedValues.forEach(item => {
+        retrievedValues[item.key] = item.value;
+      });
+
+      setUserRecherche(retrievedValues.user_recherche);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+  getMultipleValues();
 
   useEffect(() => {
+    getMultipleValues();
     StatusBar.setHidden(true);
     return () => {
       StatusBar.setHidden(false);
@@ -53,7 +82,7 @@ export const VotreRecherche = ({}) => {
         <Image
           style={[StylesVotreRecherche.plusBtnModal]}
           source={
-            openModalRecherche
+            userRecherche
               ? require('../../../assets/images/add_pro_plein.png')
               : require('../../../assets/images/add_pro_vide.png')
           }
@@ -116,16 +145,18 @@ export const VotreRecherche = ({}) => {
               {viewRecherche ?
                 <View
                   style={[StylesVotreRecherche.viewOption]} >
-                  {recherche.map((item, index) => (
-                    <TouchableOpacity key={index} style={{}} onPress={() => { setUserRecherche(item); setViewRecherche(false); }}>
-                      <Text
-                        key={index}
-                        style={[StylesVotreRecherche.txtOption]}>
-                        {item}
-                      </Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
+                    <ScrollView style={{}}>
+                      {recherche.map((item, index) => (
+                        <TouchableOpacity key={index}  style={{margin: 10}} onPress={() => { setUserRecherche(item); handleStoreData('user_recherche', item); setViewRecherche(false); }}>
+                          <Text
+                            key={index}
+                            style={[StylesVotreRecherche.txtOption]}>
+                            {item}
+                          </Text>
+                        </TouchableOpacity>
+                      ))}
+                    </ScrollView>
+                  </View>
                 : null}
                 </View>
                 <TouchableOpacity

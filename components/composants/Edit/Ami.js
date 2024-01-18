@@ -11,12 +11,47 @@ import {
   TextInput,
   TouchableOpacity,
   Modal,
+  SafeAreaView,
 } from 'react-native';
+import {storeData, getData, getDatas} from '../../../service/storage';
+import StylesAmi from '../../../assets/style/StyleComposants/styleEdit/StyleAmi';
 
-export const Ami = ({visibleAmi, closeModalAmi}) => {
+export const Ami = ({ }) => {
+
   const [modalAmilVisible, setModalAmilVisible] = useState(false);
 
+  const [userAmi, setUserAmi] = useState();
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const keysToRetrieve = ['user_ami'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const getMultipleValues = async () => {
+  try {
+    const retrievedValues = await getDatas(keysToRetrieve);
+
+    if (retrievedValues && Array.isArray(retrievedValues)) {
+      const result = {};
+      retrievedValues.forEach(item => {
+        result[item.key] = item.value;
+      });
+
+      setUserAmi(result.user_ami || []);
+    }
+  } catch (error) {
+    console.error('Erreur lors de la récupération des données :', error);
+  }
+};
+
   useEffect(() => {
+    getMultipleValues();
     StatusBar.setHidden(true);
     return () => {
       StatusBar.setHidden(false);
@@ -29,31 +64,20 @@ export const Ami = ({visibleAmi, closeModalAmi}) => {
        onPress={() => {
           setModalAmilVisible(true);
         }}
-        style={{
-          bottom: 300,
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}>
-      <Image source={require('../../../assets/images/amitié.png')} />
-      <Text
-        style={{
-          fontFamily: 'Comfortaa',
-          fontWeight: '700',
-          fontSize: 15,
-          color: '#9424FA',
-          left: 20,
-        }}>
-        Pour moi le plus important en {'\n'}amitié...
-      </Text>
-      <View style={{width: 35, height: 35, left: 63}}>
+        style={[StylesAmi.btnModal]}>
+        <Image style={[StylesAmi.icoBtnModal]} source={require('../../../assets/images/amitié.png')} />
+        <Text
+          style={[StylesAmi.txtBtnModal]}>
+          Pour moi le plus important en {'\n'}amitié...
+        </Text>
         <Image
+          style={[StylesAmi.plusBtnModal]}
           source={
-            modalAmilVisible
+            userAmi
               ? require('../../../assets/images/add_plein.png')
               : require('../../../assets/images/add_vide.png')
           }
         />
-      </View>
     </TouchableOpacity>
     <Modal
       animationType="slide"
@@ -63,31 +87,15 @@ export const Ami = ({visibleAmi, closeModalAmi}) => {
       >
       {/* Arrière-plan semi-transparent */}
       <View
-        style={{
-          flex: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Couleur semi-transparente
-          justifyContent: 'center', // Centrer verticalement
-          alignItems: 'center', // Centrer horizontalement
-        }}>
+        style={[StylesAmi.containerModal]}>
         <TouchableOpacity
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-          }}
+          style={[StylesAmi.btnClose]}
             onPress={() => { setModalAmilVisible(false); }}
           accessibilityLabel="Ferme la fenêtre"
         />
         {/* Contenu de la modal */}
         <View
-          style={{
-            top: 40,
-            width: 394,
-            height: 700,
-            backgroundColor: 'white',
-            borderTopLeftRadius: 50,
-            borderTopRightRadius: 50,
-          }}>
+          style={[StylesAmi.viewModal]}>
           <View
             style={{
               flexDirection: 'row',
@@ -128,27 +136,30 @@ export const Ami = ({visibleAmi, closeModalAmi}) => {
               Définissez votre définition de l'amitié
             </Text>
           </View>
-          <ImageBackground
-            source={require('../../../assets/images/RectangleAmi.png')}
-            style={{
-              width: 354,
-              height: 236,
-              left: 20,
-              top: 140,
-            }}>
+          <SafeAreaView style={{ top: 160, alignSelf:'center' }}>
             <TextInput
-              style={{
-                fontSize: 14,
-                fontFamily: 'Comfortaa',
-                fontWeight: '700',
-                color: '#929EDE',
-                padding: 5,
-                left: 40,
-                top: 20,
-              }}
-              defaultValue="Lorem ipsum"
-            />
-          </ImageBackground>
+                style={{
+                  width: 345,
+                  height: 230,
+                  borderRadius: 50,
+                  borderWidth: 2,
+                  borderColor: '#9424FA',
+                  paddingHorizontal: 20,
+                  paddingVertical: 20,
+                  textAlign: 'left',
+                  textAlignVertical: 'top',
+                }}
+                placeholder="Entrer la description de votre offre . . ."
+                allowFontScaling={true}
+                editable={true}
+                multiline={true}
+                scrollEnabled={true}
+                onChangeText={(text) => setUserAmi(text)}
+                onEndEditing={(text) => handleStoreData('user_ami', text)}
+                value={userAmi}
+                defaultValue="Lorem ipsum"
+              />
+          </SafeAreaView>
         </View>
       </View>
     </Modal>

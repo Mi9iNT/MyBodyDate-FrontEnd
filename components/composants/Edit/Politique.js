@@ -4,26 +4,54 @@
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image, TouchableOpacity, Modal} from 'react-native';
-import {MyComponentPolitique} from './MyComponentPolitique';
+import {storeData, getData, getDatas} from '../../../service/storage';
+import StylesPolitique from '../../../assets/style/StyleComposants/styleEdit/StylePolitique';
 
-export const Politique = ({visiblePolitique, closeModalPolitique}) => {
-  const [modalPolitiquelVisible, setModalPolitiquelVisible] = useState(false);
+export const Politique = ({ }) => {
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [addProVisible, setAddProVisible] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const [modalPolitiqueVisible, setModalPolitiqueVisible] = useState(false);
 
-  const handleAddProToggle = index => {
-    const newArray = [...addProVisible];
-    newArray[index] = !newArray[index];
-    setAddProVisible(newArray);
+  const [viewPolitique, setViewPolitique] = useState(false);
+
+  const [userPolitique, setUserPolitique] = useState(false);
+
+  // console.log(userPolitique);
+
+  const politique = [
+    'Apolitisme',
+    'Centre',
+    'Libéral(e)',
+    'Gauche',
+    'Droite',
+  ];
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
   };
+
+  const keysToRetrieve = ['user_politic'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const getMultipleValues = async () => {
+    try {
+      const retrievedValues = await getDatas(keysToRetrieve);
+      // console.log('Valeurs récupérées :', retrievedValues);
+
+      const result = {};
+      retrievedValues.forEach(item => {
+        retrievedValues[item.key] = item.value;
+      });
+
+      setUserPolitique(retrievedValues.user_politic);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+  getMultipleValues();
 
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -33,79 +61,106 @@ export const Politique = ({visiblePolitique, closeModalPolitique}) => {
   }, []);
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={visiblePolitique}
-      onRequestClose={closeModalPolitique}>
-      {/* Arrière-plan semi-transparent */}
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Couleur semi-transparente
-          justifyContent: 'center', // Centrer verticalement
-          alignItems: 'center', // Centrer horizontalement
-        }}>
-        <TouchableOpacity
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-          }}
-          onPress={() => closeModalPolitique()}
-          accessibilityLabel="Ferme la fenêtre"
+    <>
+      <TouchableOpacity
+        onPress={() => {
+          setModalPolitiqueVisible(true);
+        }}
+        style={[StylesPolitique.btnModal]}>
+        <Image source={require('../../../assets/images/Politique.png')} style={[StylesPolitique.icoBtnModal]} />
+        <Text
+          style={[StylesPolitique.txtBtnModal]}>
+          Politique
+        </Text>
+        <Image style={[StylesPolitique.plusBtnModal]}
+          source={
+            !userPolitique
+              ? require('../../../assets/images/add_ra_vide.png')
+              : require('../../../assets/images/PlusActivite.png')
+          }
         />
-        {/* Contenu de la modal */}
+      </TouchableOpacity>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalPolitiqueVisible}
+        onRequestClose={() => { setModalPolitiqueVisible(false); }}>
+        {/* Arrière-plan semi-transparent */}
         <View
-          style={{
-            top: 40,
-            width: 394,
-            height: 700,
-            backgroundColor: 'white',
-            borderTopLeftRadius: 50,
-            borderTopRightRadius: 50,
-          }}>
+          style={StylesPolitique.containerModal}>
+          <TouchableOpacity
+            style={StylesPolitique.btnClose}
+            onPress={() => setModalPolitiqueVisible(false)}
+            accessibilityLabel="Fermer la fenêtre"
+          />
+          {/* Contenu de la modal */}
           <View
-            style={{
-              alignSelf: 'center',
-            }}>
-            <Image
-              source={require('../../../assets/images/Politique.png')}
+            style={StylesPolitique.viewModal}>
+            <View
               style={{
-                width: 84,
-                height: 84,
-                top: 30,
                 alignSelf: 'center',
-              }}
-            />
-            <Text
-              style={{
-                fontFamily: 'Gilroy',
-                fontWeight: '700',
-                fontSize: 20,
-                color: '#0019A7',
-                top: 50,
               }}>
-              Penchants politiques
-            </Text>
-          </View>
-          <View>
-            <Text
+              <Image
+                source={require('../../../assets/images/Politique.png')}
+                style={StylesPolitique.icoModal}
+              />
+              <Text
+                style={StylesPolitique.txtTitleModal}>
+                Orientation politique
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={StylesPolitique.subTxtModal}>
+                Sélectionnez votre orientation politique.
+              </Text>
+            </View>
+            <View
               style={{
-                fontFamily: 'Gilroy',
-                fontWeight: '700',
-                fontSize: 14,
-                color: '#0019A7',
-                top: 80,
-                left: 30,
+                top: 140,
+                alignItems: 'center',
               }}>
-              Sélectionnez votre penchant politique.
-            </Text>
+            <View style={{flexDirection: 'row'}}>
+              <View style={{flexDirection: 'column'}}>
+              <TouchableOpacity
+                onPress={() => { viewPolitique ? setViewPolitique(false) : setViewPolitique(true); }}
+                style={{ width: 276, alignSelf: 'center', }}
+              >
+              <Text
+                style={[StylesPolitique.txtOptionSelected]}>
+                {userPolitique ? userPolitique : 'Orientation politique'}
+              </Text>
+            </TouchableOpacity>
+            {viewPolitique ?
+              <View
+                style={[StylesPolitique.viewOption]} >
+                {politique.map((item, index) => (
+                  <TouchableOpacity key={index} style={{}} onPress={() => { setUserPolitique(item);  handleStoreData('user_politic', item); setViewPolitique(false); }}>
+                    <Text
+                      key={index}
+                      style={[StylesPolitique.txtOption, {fontWeight: userPolitique === item ? 700 : 500}]}>
+                      {item}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+              : null}
+              </View>
+              <TouchableOpacity
+                onPress={() => { viewPolitique ? setViewPolitique(false) : setViewPolitique(true); }}>
+                <Image
+                  source={require('../../../assets/images/FlecheEditRA.png')}
+                  style={[StylesPolitique.icoViewOption, {
+                    transform: [{rotate: viewPolitique ? '180deg' : '0deg'}],
+                  }]}/>
+              </TouchableOpacity>
+            </View>
+            </View>
+            <Text style={{top: 360, left: 40, color: '#0019A7', fontFamily: 'Comfortaa', fontSize: 12}}>Choix unique</Text>
           </View>
-          <MyComponentPolitique />
         </View>
-      </View>
-    </Modal>
+      </Modal>
+    </>
   );
 };
 

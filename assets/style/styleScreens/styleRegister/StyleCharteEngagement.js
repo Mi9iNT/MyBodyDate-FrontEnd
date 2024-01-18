@@ -82,6 +82,7 @@ const StylesCharteEngagement = {
   },
   ImgVerif: {
     width: 151,
+    height: 203,
     resizeMode: 'contain',
     borderWidth: 2,
     borderColor: '#0F0BAE',

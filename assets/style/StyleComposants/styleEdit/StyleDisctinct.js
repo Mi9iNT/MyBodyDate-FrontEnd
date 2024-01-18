@@ -36,7 +36,7 @@ const StylesDisctinct = {
     height: '100%',
   },
   viewModal: {
-    top: 80,
+    top: 100,
     width: '100%',
     height: 700,
     backgroundColor: 'white',

@@ -81,10 +81,10 @@ const StylesProfileMeCafirst = {
     color: '#9424FA',
     top: 20,
     width: '95%',
+    left: 20,
   },
   descriptionInput: {
     top: 20,
-    right: 20,
     color: 'black',
     paddingHorizontal: 20,
     paddingVertical: 20,

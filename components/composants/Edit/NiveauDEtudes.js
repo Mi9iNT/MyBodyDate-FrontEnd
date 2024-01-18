@@ -4,6 +4,8 @@
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image, TouchableOpacity, Modal} from 'react-native';
+import StylesNiveauDEtude from '../../../assets/style/StyleComposants/styleEdit/StyleNiveauDEtude';
+import {storeData, getData, getDatas} from '../../../service/storage';
 
 export const NiveauDEtudes = ({visible, closeModal}) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -22,7 +24,36 @@ export const NiveauDEtudes = ({visible, closeModal}) => {
     'Master ou doctorat',
   ];
 
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const keysToRetrieve = ['user_niveau_etude'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const getMultipleValues = async () => {
+    try {
+      const retrievedValues = await getDatas(keysToRetrieve);
+      // console.log('Valeurs récupérées :', retrievedValues);
+
+      const result = {};
+      retrievedValues.forEach(item => {
+        retrievedValues[item.key] = item.value;
+      });
+
+      setNiveauEtude(retrievedValues.user_niveau_etude);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+  getMultipleValues();
+
   useEffect(() => {
+    getMultipleValues();
     StatusBar.setHidden(true);
     return () => {
       StatusBar.setHidden(false);
@@ -35,33 +66,23 @@ export const NiveauDEtudes = ({visible, closeModal}) => {
         onPress={() => {
           setModalVisible(true);
         }}
-        style={{
-          bottom: 380,
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}>
+        style={[StylesNiveauDEtude.btnModal]}>
         <Image
+          style={[StylesNiveauDEtude.icoBtnModal]}
           source={require('../../../assets/images/btn_diplome.png')}
         />
         <Text
-          style={{
-            fontFamily: 'Comfortaa',
-            fontWeight: '700',
-            fontSize: 15,
-            color: '#9424FA',
-            left: 20,
-          }}>
+          style={[StylesNiveauDEtude.txtBtnModal]}>
           Niveau d'études
         </Text>
-        <View style={{width: 35, height: 35, left: 169}}>
-          <Image
-            source={
-              modalVisible
-                ? require('../../../assets/images/add_plein.png')
-                : require('../../../assets/images/add_vide.png')
-            }
-          />
-        </View>
+        <Image
+          style={[StylesNiveauDEtude.plusBtnModal]}
+          source={
+            niveauEtude
+              ? require('../../../assets/images/add_plein.png')
+              : require('../../../assets/images/add_vide.png')
+          }
+        />
       </TouchableOpacity>
       <Modal
         animationType="slide"
@@ -71,31 +92,15 @@ export const NiveauDEtudes = ({visible, closeModal}) => {
       >
         {/* Arrière-plan semi-transparent */}
         <View
-          style={{
-            flex: 1,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
+          style={[StylesNiveauDEtude.containerModal]}>
           <TouchableOpacity
-            style={{
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
-            }}
+            style={[StylesNiveauDEtude.btnClose]}
             onPress={() => setModalVisible(false)}
             accessibilityLabel="Ferme la fenêtre"
           />
           {/* Contenu de la modal */}
           <View
-            style={{
-              top: 80,
-              width: '100%',
-              height: 700,
-              backgroundColor: 'white',
-              borderTopLeftRadius: 50,
-              borderTopRightRadius: 50,
-            }}>
+            style={[StylesNiveauDEtude.viewModal]}>
             <View
               style={{
                 alignSelf: 'center',
@@ -165,7 +170,7 @@ export const NiveauDEtudes = ({visible, closeModal}) => {
                     flexDirection: 'row',
                     alignItems: 'center',
                   }}>
-                  <TouchableOpacity onPress={() => setNiveauEtude(label)}>
+                  <TouchableOpacity onPress={() => { setNiveauEtude(label); handleStoreData('user_niveau_etude', label); }}>
                     <Image
                       source={
                         niveauEtude === label

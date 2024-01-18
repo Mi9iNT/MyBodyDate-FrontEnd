@@ -130,14 +130,14 @@ const validatePassword = inputPassword => {
           {errorPassword ? (
             <Text
               style={[
-                StylesLoginEmail.textError2,
+                StylesLoginEmail.textError2, {top: 20}
               ]}>
               {errorPassword}
             </Text>
           ) : (
             <Text
               style={[
-                StylesLoginEmail.textWhite2, {bottom: 40}
+                StylesLoginEmail.textWhite2, {top: 25}
               ]}>
               Mot de passe oublié ?
             </Text>

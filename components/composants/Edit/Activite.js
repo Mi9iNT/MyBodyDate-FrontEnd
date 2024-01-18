@@ -4,89 +4,94 @@
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image,ImageBackground, TextInput, TouchableOpacity, Modal} from 'react-native';
+import {storeData, getData, getDatas} from '../../../service/storage';
+import StylesActivite from '../../../assets/style/StyleComposants/styleEdit/StyleActivite';
 
-export const Activite = ({visibleActivite, closeModalActivite}) => {
+export const Activite = ({}) => {
+
   const [modalActivitelVisible, setModalActivitelVisible] = useState(false);
 
+  const handleButtonPress = value => {
+    let newUserActivity = [...userActivity];
+
+    if (newUserActivity !== null && newUserActivity.includes(value)) {
+      newUserActivity = newUserActivity.filter(item => item !== value);
+      handleStoreData('user_activity', newUserActivity);
+    } else {
+      newUserActivity.push(value);
+      handleStoreData('user_activity', newUserActivity);
+    }
+
+    setUserAvtivity(newUserActivity);
+    console.log('user_activity : ' + newUserActivity);
+  };
+
+
+  const [userActivity, setUserAvtivity] = useState([]);
+
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const keysToRetrieve = ['user_activity'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const getMultipleValues = async () => {
+    try {
+      const retrievedValues = await getDatas(keysToRetrieve);
+
+      if (retrievedValues && Array.isArray(retrievedValues)) {
+        const result = {};
+        retrievedValues.forEach(item => {
+          result[item.key] = item.value;
+        });
+
+        setUserAvtivity(result.user_activity || []);
+      }
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
 
   useEffect(() => {
+    getMultipleValues();
     StatusBar.setHidden(true);
     return () => {
       StatusBar.setHidden(false);
     };
   }, []);
 
-  const [isMarvelImagePlus, setIsMarvelImagePlus] = useState(true);
-  const [isBasketImagePlus, setIsBasketImagePlus] = useState(true);
-  const [isHarryPImagePlus, setIsHarryPImagePlus] = useState(true);
-  const [isShopImagePlus, setIsShopImagePlus] = useState(true);
-
-  /////////////////
-  const [isBorderMarvelVisible, setIsBorderMarvelVisible] = useState(false);
-  const [isBorderBasketVisible, setIsBorderBasketVisible] = useState(false);
-  const [isBorderHarryPVisible, setIsBorderHarryPVisible] = useState(false);
-  const [isBorderShopVisible, setIsBorderShopVisible] = useState(false);
-
-  /////////////////
-
-  const toggleMarvelImage = () => {
-    setIsMarvelImagePlus(!isMarvelImagePlus);
-    setIsBorderMarvelVisible(!isBorderMarvelVisible);
-  };
-
-  const toggleBasketImage = () => {
-    setIsBasketImagePlus(!isBasketImagePlus);
-    setIsBorderBasketVisible(!isBorderBasketVisible);
-  };
-
-  const toggleHarryPImage = () => {
-    setIsHarryPImagePlus(!isHarryPImagePlus);
-    setIsBorderHarryPVisible(!isBorderHarryPVisible);
-  };
-
-  const toggleShopImage = () => {
-    setIsShopImagePlus(!isShopImagePlus);
-    setIsBorderShopVisible(!isBorderShopVisible);
-  };
-
   return (
     <>
-      
       <TouchableOpacity
         onPress={() => {
           setModalActivitelVisible(true);
         }}
-        style={{
-          bottom: 340,
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}>
-        <Image source={require('../../../assets/images/activité.png')} />
+        style={[StylesActivite.btnModal]}>
+        <Image style={[StylesActivite.icoBtnModal]} source={require('../../../assets/images/activité.png')} />
         <Text
-          style={{
-            fontFamily: 'Comfortaa',
-            fontWeight: '700',
-            fontSize: 15,
-            color: '#9424FA',
-            left: 25,
-          }}>
+          style={[StylesActivite.txtBtnModal]}>
           Mon activité favorite...
         </Text>
-        <View style={{width: 35, height: 35, left: 121}}>
           <Image
+            style={[StylesActivite.plusBtnModal]}
             source={
-              modalActivitelVisible
+              userActivity
                 ? require('../../../assets/images/add_plein.png')
                 : require('../../../assets/images/add_vide.png')
             }
           />
-        </View>
       </TouchableOpacity>
       <Modal
-      animationType="slide"
-      transparent={true}
-      statusBarTranslucent={true}
-      visible={modalActivitelVisible}>
+        animationType="slide"
+        transparent={true}
+        statusBarTranslucent={true}
+        visible={modalActivitelVisible}>
       {/* Arrière-plan semi-transparent */}
       <View
         style={{
@@ -107,9 +112,9 @@ export const Activite = ({visibleActivite, closeModalActivite}) => {
         {/* Contenu de la modal */}
         <View
           style={{
-            top: 40,
-            width: 394,
-            height: 700,
+            top: 95,
+            width: '100%',
+            height: 750,
             backgroundColor: 'white',
             borderTopLeftRadius: 50,
             borderTopRightRadius: 50,
@@ -166,9 +171,9 @@ export const Activite = ({visibleActivite, closeModalActivite}) => {
           <Image
             source={require('../../../assets/images/Loupe-BB.png')}
             style={{
-              width: 30,
-              height: 30,
-              top: 5,
+              width: 20,
+              height: 20,
+              top: 10,
               left: 10,
             }}
           />
@@ -195,7 +200,7 @@ export const Activite = ({visibleActivite, closeModalActivite}) => {
         }}>
         Intérêts populaires :
       </Text>
-      <View style={{Flex: 1, alignItems: 'center'}}>
+      <View style={{flex: 1, alignItems: 'center'}}>
         <View
           style={{
             justifyContent: 'space-around',
@@ -203,22 +208,22 @@ export const Activite = ({visibleActivite, closeModalActivite}) => {
             alignItems: 'center',
             top: 100,
           }}>
-          <TouchableOpacity onPress={toggleMarvelImage}>
+          <TouchableOpacity onPress={() => { handleButtonPress('Marvel'); }}>
             <ImageBackground
               source={require('../../../assets/images/Marvel.png')}
               style={{
                 width: 160,
                 height: 160,
                 right: 10,
-                borderWidth: isBorderMarvelVisible ? 2 : 0, // Ajout du border conditionnel
+                borderWidth: userActivity.includes('Marvel') ? 2 : 0, // Ajout du border conditionnel
                 borderColor: '#9424FA', // Couleur du border (modifiable)
-                borderRadius: isBorderMarvelVisible ? 33 : 0, // Ajout du border radius conditionnel
+                borderRadius: userActivity.includes('Marvel') ? 33 : 0, // Ajout du border radius conditionnel
               }}>
               <Image
                 source={
-                  isMarvelImagePlus
-                    ? require('../../../assets/images/PlusActivite.png')
-                    : require('../../../assets/images/MoinActivite.png')
+                  userActivity.includes('Marvel')
+                    ? require('../../../assets/images/MoinActivite.png')
+                    : require('../../../assets/images/PlusActiviteCA.png')
                 }
                 style={{
                   width: 35,
@@ -240,21 +245,21 @@ export const Activite = ({visibleActivite, closeModalActivite}) => {
               Marvel
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={toggleBasketImage}>
+                <TouchableOpacity onPress={() => { handleButtonPress('Basket'); }}>
             <ImageBackground
               source={require('../../../assets/images/Basket.png')}
               style={{
                 width: 160,
                 height: 160,
                 Left: 10,
-                borderWidth: isBorderBasketVisible ? 2 : 0, // Ajout du border conditionnel
+                borderWidth: userActivity.includes('Basket') ? 2 : 0, // Ajout du border conditionnel
                 borderColor: '#9424FA', // Couleur du border (modifiable)
-                borderRadius: isBorderBasketVisible ? 33 : 0, // Ajout du border radius conditionnel
+                borderRadius: userActivity.includes('Basket') ? 33 : 0, // Ajout du border radius conditionnel
               }}>
               <Image
                 source={
-                  isBasketImagePlus
-                    ? require('../../../assets/images/PlusActivite.png')
+                  userActivity.includes('Basket')
+                    ? require('../../../assets/images/PlusActiviteCA.png')
                     : require('../../../assets/images/MoinActivite.png')
                 }
                 style={{
@@ -285,22 +290,22 @@ export const Activite = ({visibleActivite, closeModalActivite}) => {
             alignItems: 'center',
             top: 120,
           }}>
-          <TouchableOpacity onPress={toggleHarryPImage}>
+                <TouchableOpacity onPress={() => { handleButtonPress('Harry Potter'); }}>
             <ImageBackground
               source={require('../../../assets/images/HarryP.png')}
               style={{
                 width: 160,
                 height: 160,
                 right: 10,
-                borderWidth: isBorderHarryPVisible ? 2 : 0, // Ajout du border conditionnel
+                borderWidth: userActivity.includes('Harry Potter') ? 2 : 0, // Ajout du border conditionnel
                 borderColor: '#9424FA', // Couleur du border (modifiable)
-                borderRadius: isBorderHarryPVisible ? 33 : 0, // Ajout du border radius conditionnel
+                borderRadius: userActivity.includes('Harry Potter') ? 33 : 0, // Ajout du border radius conditionnel
               }}>
               <Image
                 source={
-                  isHarryPImagePlus
-                    ? require('../../../assets/images/PlusActivite.png')
-                    : require('../../../assets/images/MoinActivite.png')
+                  userActivity.includes('Harry Potter')
+                    ? require('../../../assets/images/MoinActivite.png')
+                    : require('../../../assets/images/PlusActiviteCA.png')
                 }
                 style={{
                   width: 35,
@@ -322,22 +327,22 @@ export const Activite = ({visibleActivite, closeModalActivite}) => {
               Harry Potter
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={toggleShopImage}>
+                <TouchableOpacity onPress={() => { handleButtonPress('Shopping'); }}>
             <ImageBackground
               source={require('../../../assets/images/Shop.png')}
               style={{
                 width: 160,
                 height: 160,
                 Left: 10,
-                borderWidth: isBorderShopVisible ? 2 : 0, // Ajout du border conditionnel
+                borderWidth: userActivity.includes('Shopping') ? 2 : 0, // Ajout du border conditionnel
                 borderColor: '#9424FA', // Couleur du border (modifiable)
-                borderRadius: isBorderShopVisible ? 33 : 0, // Ajout du border radius conditionnel
+                borderRadius: userActivity.includes('Shopping') ? 33 : 0, // Ajout du border radius conditionnel
               }}>
               <Image
                 source={
-                  isShopImagePlus
-                    ? require('../../../assets/images/PlusActivite.png')
-                    : require('../../../assets/images/MoinActivite.png')
+                  userActivity.includes('Shopping')
+                    ? require('../../../assets/images/MoinActivite.png')
+                    : require('../../../assets/images/PlusActiviteCA.png')
                 }
                 style={{
                   width: 35,
@@ -365,7 +370,6 @@ export const Activite = ({visibleActivite, closeModalActivite}) => {
       </View>
     </Modal>
     </>
-    
   );
 };
 

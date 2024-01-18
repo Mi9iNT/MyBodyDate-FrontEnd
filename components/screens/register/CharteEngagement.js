@@ -11,55 +11,11 @@ import {
   PermissionsAndroid,
 } from 'react-native';
 import {PERMISSIONS, check, RESULTS} from 'react-native-permissions';
+import {storeData, getData} from '../../../service/storage';
 import {launchCamera} from 'react-native-image-picker';
-import Styles from '../../../assets/style/Styles';
 import StylesCharteEngagement from '../../../assets/style/styleScreens/styleRegister/StyleCharteEngagement';
 
-export const CharteEngagement = ({route, navigation}) => {
-  const {
-    routeName = '',
-    userConsent = '',
-    loveCoach = '',
-    userEmail = '',
-    userPhone = '',
-    userCity = '',
-    accesPosition = '',
-    genre = '',
-    userBirth = '',
-    userSize = '',
-    userLang = '',
-    userSituation = '',
-    userOrientation = '',
-    userRecherche1 = '',
-    userRecherche2 = '',
-    userAffinites = '',
-    rythmeDeVie1 = '',
-    rythmeDeVie2 = '',
-    userPrenom = '',
-    userVoice = '',
-  } = route.params ?? {};
-
-  console.log('Choix de route : ', routeName);
-  console.log('Consentement : ', userConsent);
-  console.log('Love Coach : ', loveCoach);
-  console.log('Email : ', userEmail);
-  console.log('Téléphone : ', userPhone);
-  console.log('Ville : ', userCity);
-  console.log('Accès position : ', accesPosition);
-  console.log('Genre : ', genre);
-  console.log('Date de naissance : ', userBirth);
-  console.log('Taille : ', userSize);
-  console.log('Langues : ', userLang);
-  console.log('Situation : ', userSituation);
-  console.log('Orientation : ', userOrientation);
-  console.log('Recherche 1 : ', userRecherche1);
-  console.log('Recherche 2 : ', userRecherche2);
-  console.log('Affinité(s) : ', userAffinites);
-  console.log('Rythme de vie 1 : ', rythmeDeVie1);
-  console.log('Rythme de vie 2 : ', rythmeDeVie2);
-  console.log('Prénom : ', userPrenom);
-  console.log('Voix : ', userVoice);
-
+export const CharteEngagement = ({navigation}) => {
   const [buttonPressed, setButtonPressed] = useState('');
 
   const [modalCharteVisible, setModalCharteVisible] = useState(true);
@@ -127,11 +83,7 @@ export const CharteEngagement = ({route, navigation}) => {
     }
   };
 
-  useEffect(() => {
-    checkPermissions();
-  }, []);
-
-  openCamera = () => {
+  const openCamera = () => {
     if (cameraStatus) {
       const options = {
         mediaType: 'photo',
@@ -146,15 +98,53 @@ export const CharteEngagement = ({route, navigation}) => {
         } else if (response.errorCode) {
           console.log('Erreur : ', response.errorMessage);
         } else {
-          const source = response.assets[0].uri;
+          const source = response.assets[0].uri
+            ? response.assets[0].uri
+            : response.assets[1].uri;
           setImagePath(source);
-          setModalCharteVisible(false);
+          handleStoreData('image_verif', source);
+          setTimeout(() => {
+            setModalCharteVisible(false);
+          }, 2000);
         }
       });
     } else {
       requestCameraPermission();
     }
   };
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetData = async () => {
+    try {
+      const imageVerif = await getData('image_verif');
+      setImagePath(imageVerif);
+      // console.log(imageVerif);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  useEffect(() => {
+    checkPermissions();
+    handleGetData();
+  }, []);
+
+  let imageVerified;
+  if (!imagePath) {
+    imageVerified = require('../../../assets/images/Kolia-Verif.png');
+  } else {
+    imageVerified = {
+      uri: imagePath,
+    };
+    // console.log(imageVerified);
+  }
 
   return (
     <ImageBackground
@@ -200,6 +190,18 @@ export const CharteEngagement = ({route, navigation}) => {
         onRequestClose={() => {
           setModalCharteVisible(!modalCharteVisible);
         }}>
+        <TouchableOpacity
+          style={{
+            position: 'absolute',
+            backgroundColor: 'transparent',
+            width: '100%',
+            height: '100%',
+          }}
+          onPress={() => {
+            setModalCharteVisible(false);
+          }}
+          accessibilityLabel="Ferme la fenêtre"
+        />
         <View style={[StylesCharteEngagement.ViewModal]}>
           <ScrollView
             style={[StylesCharteEngagement.ScrollViewModal]}
@@ -211,7 +213,7 @@ export const CharteEngagement = ({route, navigation}) => {
               <View style={[StylesCharteEngagement.ViewModal3]}>
                 <Image
                   style={[StylesCharteEngagement.ImgVerif]}
-                  source={require('../../../assets/images/Kolia-Verif.png')}
+                  source={imageVerified}
                 />
                 <Image
                   style={[StylesCharteEngagement.IcoVerif]}
@@ -294,28 +296,8 @@ export const CharteEngagement = ({route, navigation}) => {
         <TouchableOpacity
           onPress={() => {
             setButtonPressed('Aceepter');
-            navigation.navigate('Felicitations', {
-              userConsent,
-              routeName,
-              loveCoach,
-              userEmail,
-              userPhone,
-              userCity,
-              accesPosition,
-              genre,
-              userBirth,
-              userSize,
-              userLang,
-              userSituation,
-              userOrientation,
-              userRecherche1,
-              userRecherche2,
-              userAffinites,
-              rythmeDeVie1,
-              rythmeDeVie2,
-              userPrenom,
-              userVoice,
-            });
+            handleStoreData('engagement_consent', 'accepter');
+            navigation.navigate('Felicitations');
           }}
           accessibilityLabel="J'accepte">
           <Text style={[StylesCharteEngagement.textBtn]}>J&apos;accepte</Text>

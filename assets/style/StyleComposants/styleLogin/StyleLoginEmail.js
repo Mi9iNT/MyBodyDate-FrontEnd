@@ -23,7 +23,6 @@ const StylesLoginEmail = {
     textDecorationColor: '#880808',
   },
   textError2: {
-    top: 40,
     right: 20,
     width: '60%',
     fontSize: 12,

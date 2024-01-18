@@ -157,7 +157,7 @@ export const ConfirmationCompte = ({route, navigation}) => {
         />
         {testReached()}
         <TouchableOpacity
-          style={[StylesConfirmationCompte.ViewBtn]}
+          style={[StylesConfirmationCompte.ViewBtn, {top: code ? 50 : 0}]}
           accessibilityLabel="Continuer"
           onPress={() => {
             code == null

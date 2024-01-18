@@ -5,6 +5,7 @@ import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image, ImageBackground, TextInput, TouchableOpacity, Modal} from 'react-native';
 import StylesLinkedin from '../../../assets/style/StyleComposants/styleEdit/StyleLinkedin';
+import {storeData, getData, getDatas} from '../../../service/storage';
 
 export const LinkedIn = ({}) => {
   const [modalLinkedInlVisible, setModalLinkedInlVisible] = useState(false);
@@ -26,13 +27,43 @@ export const LinkedIn = ({}) => {
 
     if (urlRegex.test(url)) {
       setUrlLinkedin(url);
+      handleStoreData('user_linkedin', url);
       setUrlError(false);
     } else {
       setUrlError(true);
     }
   };
 
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const keysToRetrieve = ['user_linkedin'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const getMultipleValues = async () => {
+    try {
+      const retrievedValues = await getDatas(keysToRetrieve);
+      // console.log('Valeurs récupérées :', retrievedValues);
+
+      const result = {};
+      retrievedValues.forEach(item => {
+        retrievedValues[item.key] = item.value;
+      });
+
+      setUrlLinkedin(retrievedValues.user_linkedin);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+  getMultipleValues();
+
   useEffect(() => {
+    getMultipleValues
     StatusBar.setHidden(true);
     return () => {
       StatusBar.setHidden(false);
@@ -57,7 +88,7 @@ export const LinkedIn = ({}) => {
         <Image
           style={[StylesLinkedin.plusBtnModal]}
           source={
-            modalLinkedInlVisible === true
+            urlLinkedin
               ? require('../../../assets/images/add_pro_plein.png')
               : require('../../../assets/images/add_pro_vide.png')
           }
@@ -114,7 +145,7 @@ export const LinkedIn = ({}) => {
                     setUrlShow(false); verifyUrl(event.nativeEvent.text);
                     }
                   }
-                  defaultValue={urlLinkedin.lengh < 0 ? '' : urlShow ? '' : urlLinkedin}
+                  defaultValue={urlLinkedin && urlLinkedin.length < 0 ? '' : urlShow ? '' : urlLinkedin}
                 />
               </View>
               {urlError
