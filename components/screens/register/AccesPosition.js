@@ -266,14 +266,7 @@ export const AccesPosition = ({navigation}) => {
                 <TouchableOpacity
                   onPress={() => {
                     setModalVisible(false);
-                    navigation.navigate('Genre', {
-                      userConsent: consentement,
-                      routeName: routeChoice,
-                      loveCoach: loveCoach,
-                      userEmail: userEmail,
-                      userCity: userCity,
-                      accesPosition: 'denied',
-                    });
+                    navigation.navigate('Genre');
                   }}>
                   <Text
                     style={[StylesAccesPosition.textBlackBold, {bottom: 60}]}>

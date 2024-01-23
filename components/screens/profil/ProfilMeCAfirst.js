@@ -136,62 +136,35 @@ export const ProfilMeCAfirst = ({navigation, imagePath}) => {
             alignItems: 'center',
             alignSelf: 'center',
           }}>
-          <ImageBackground
-          source={buttonPressed === 'Insta' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Noir.png')}
-            style={{
-              width: '100%',
-              height: 56,
-              flexDirection: 'row',
-              justifyContent:'space-around',
-              alignItems: 'center',
-              resizeMode: 'contain',
-            }}
-          >
-            <Image source={require('../../../assets/images/icoInsta.png')} style={{ width: 41, height: 41, resizeMode: 'contain', }} />
-            <Text style={{
-              color: '#FFF',
-              fontFamily: 'Comfortaa-Bold',
-              fontSize: 16,
-              textAlign: 'center',
-              right:10,
-            }}>
+            <Image
+              style={[StylesProfileMeCafirst.imgBtn]}
+              source={
+                buttonPressed === 'Go'
+                  ? require('../../../assets/boutons/import-insta-rouge.png')
+                  : require('../../../assets/boutons/import-insta.png')
+              }
+            />
+            <Text style={[StylesProfileMeCafirst.TxtBtn, {zIndex: 1, bottom: 24, left: 20}]}>
               Importer votre feed Instagram
             </Text>
-        </ImageBackground>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            setButtonPressed('Meta')
-          }}
-          style={{
-            width: 336,
-            height: 56,
-            alignItems: 'center',
-            alignSelf: 'center',
-          }}>
-            <ImageBackground
-            source={buttonPressed === 'Meta' ? require('../../../assets/boutons/Bouton-Rouge.png') : require('../../../assets/boutons/Bouton-Noir.png')}
-              style={{
-                width: '100%',
-                height: 56,
-                flexDirection: 'row',
-                justifyContent:'space-around',
-                alignItems: 'center',
-                resizeMode: 'contain',
-              }}
-            >
-              <Image source={ require('../../../assets/images/icoMeta.png')} style={{ width: 41, height: 41, resizeMode: 'contain', right:30, }} />
-              <Text style={{
-                color: '#FFF',
-                fontFamily: 'Comfortaa-Bold',
-                fontSize: 16,
-                textAlign: 'center',
-                right:50,
-              }}>
-                Meta(Facebook)
-              </Text>
-          </ImageBackground>
-        </TouchableOpacity>
+            <TouchableOpacity
+            style={{}}
+            onPress={() => {
+              setButtonPressed('Meta');
+            }}>
+            <Text style={[StylesProfileMeCafirst.TxtBtn, {zIndex: 1, top: 57}]}>
+             Meta (Facebook)
+            </Text>
+            <Image
+              style={[StylesProfileMeCafirst.imgBtn]}
+              source={
+                buttonPressed === 'Meta'
+                  ? require('../../../assets/boutons/Bouton-Rouge-Meta.png')
+                  : require('../../../assets/boutons/Bouton-Noir-Meta.png')
+              }
+            />
+          </TouchableOpacity>
         </View>
         <View
           style={{

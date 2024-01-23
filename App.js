@@ -144,7 +144,7 @@ const HomeStack = createNativeStackNavigator();
 const SettingsStack = createNativeStackNavigator();
 
 enableLatestRenderer();
-// Composant pour les écrans des onglets
+
 function TabNavigator({route}) {
   const {tabPath} = route.params;
 

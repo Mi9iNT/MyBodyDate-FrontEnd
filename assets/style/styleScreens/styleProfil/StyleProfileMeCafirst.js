@@ -74,6 +74,26 @@ const StylesProfileMeCafirst = {
     fontSize: 36,
     color: '#9424FA',
   },
+  ViewBtn: {
+    top: 0,
+    height: 56,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imgBtn: {
+    height: 56,
+    flexShrink: 0,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    top: 18,
+  },
+  TxtBtn: {
+    color: '#FFF',
+    fontFamily: 'Comfortaa',
+    textAlign: 'center',
+    fontSize: 16,
+    zIndex: 1,
+  },
   intitulateInput: {
     fontFamily: 'Comfortaa-Bold',
     fontWeight: '500',
