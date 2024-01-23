@@ -5,7 +5,9 @@ import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image, ImageBackground, TouchableOpacity,ScrollView} from 'react-native';
 import PropTypes from 'prop-types';
-import {MenuSlide} from '../../composants/MenuSlide';
+import { MenuSlide } from '../../composants/MenuSlide';
+import StylesProfileMeRp from '../../../assets/style/styleScreens/styleProfil/StyleProfileMeRp';
+import BtnReadRecord from '../../composants/BtnReadRecord';
 
 export const ProfilMeRP = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';
@@ -29,7 +31,7 @@ export const ProfilMeRP = ({route, navigation}) => {
   const userPrenom = route.params?.userPrenom ?? '';
   const userVoice = route.params?.userVoice ?? '';
   const imagePath = route.params?.imagePath ?? '';
-  const tabPath = route.params?.tabPath ?? '';
+  const tabPath = route.params?.tabPath ?? 'Professionnel';
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -40,113 +42,51 @@ export const ProfilMeRP = ({route, navigation}) => {
     };
   }, []);
 
+  const skills = [
+    'Relations publiques', 'Arts visuels', 'Arts de la scène', 'Prise de parole', 'Coaching', 'Actrice',
+  ];
+
   return (
-    <View style={{flex: 1, backgroundColor: 'black'}}>
-      <MenuSlide imagePath={'Professionnel-Clair'} tabPath={'Professionnel'} />
-      <ScrollView style={{backgroundColor: 'black'}}>
-        <View style={{justifyContent: 'center'}}>
+    <View style={StylesProfileMeRp.container}>
+      <MenuSlide imagePath={'Professionnel-Clair'} tabPath={tabPath} />
+      <ScrollView>
           <ImageBackground
             source={require('../../../assets/images/Capture-d-ecran-Raluca.png')}
-            style={{
-              width: 346,
-              height: 313,
-              borderRadius: 30,
-              borderWidth: 1,
-              borderColor: '#E5E5E5',
-              alignSelf: 'center',
-              top: 10,
-            }}>
-            <View
-              style={{
-                position: 'absolute',
-                top: 10,
-                right: 40,
-              }}>
-              <View
-                style={{
-                  justifyContent: 'space-around',
-                  flexDirection: 'row',
-                  left: 10,
-                }}>
+            style={StylesProfileMeRp.background}>
+            <TouchableOpacity
+              style={StylesProfileMeRp.boxPreference}>
                 <Image
                   source={require('../../../assets/images/image-177.png')}
-                  style={{
-                    top: 5,
-                    width: 30,
-                    height: 30,
-                  }}
-                />
-              </View>
-            </View>
+                  style={StylesProfileMeRp.icoPreference}
+              />
+            </TouchableOpacity>
             <View
-              style={{
-                position: 'absolute',
-                top: 240,
-                left: 10,
-              }}>
+              style={StylesProfileMeRp.viewCol}>
               <View
-                style={{
-                  justifyContent: 'space-around',
-                  flexDirection: 'row',
-                  left: 10,
-                }}>
+                style={StylesProfileMeRp.viewRow}>
                 <Text
-                  style={{
-                    fontSize: 24,
-                    fontFamily: 'Comfortaa',
-                    fontWeight: '700',
-                    color: '#fff',
-                    letterSpacing: 1,
-                  }}>
-                  Raluca
+                  style={StylesProfileMeRp.userName}>
+                  {userPrenom ? userPrenom : 'Raluca'}
                 </Text>
                 <Image
                   source={require('../../../assets/images/quality-2-2.png')}
-                  style={{
-                    top: 5,
-                    width: 30,
-                    height: 30,
-                    left: 35,
-                  }}
+                  style={StylesProfileMeRp.icoQuality}
                 />
                 <Image
                   source={require('../../../assets/images/Médaille.png')}
-                  style={{
-                    top: 5,
-                    left: 45,
-                    width: 30,
-                    height: 44,
-                  }}
+                  style={StylesProfileMeRp.icoMedaille}
                 />
               </View>
               <Text
-                style={{
-                  fontSize: 16,
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  color: '#fff',
-                  letterSpacing: 1,
-                  left: 10,
-                }}>
-                43, Paris
+                style={StylesProfileMeRp.userCity}>
+                {userBirth ? userBirth : '43'}, { userCity ? userCity : 'Paris' }
               </Text>
             </View>
           </ImageBackground>
           <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingHorizontal: 20,
-              marginTop: 25,
-            }}>
+            style={StylesProfileMeRp.viewRow2}>
             <Text
-              style={{
-                width: 257,
-                height: 35,
-                color: '#fff',
-                fontSize: 15,
-                left: 30,
-              }}>
+              style={StylesProfileMeRp.userId}>
               ID.20230510.88
             </Text>
             <TouchableOpacity
@@ -155,291 +95,123 @@ export const ProfilMeRP = ({route, navigation}) => {
               }}>
               <ImageBackground
                 source={require('../../../assets/images/bouton_continuer.png')}
-                style={{width: 120, height: 30, borderRadius: 30, right: 35}}>
+                style={StylesProfileMeRp.boxEdit}>
                 <Text
-                  style={{
-                    fontSize: 15,
-                    fontFamily: 'Comfortaa',
-                    fontWeight: '700',
-                    color: '#000',
-                    alignSelf: 'center',
-                    textAlign: 'center',
-                    top: 5,
-                  }}>
+                  style={StylesProfileMeRp.txtEdit}>
                   Éditer
                 </Text>
               </ImageBackground>
-            </TouchableOpacity>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'flex-start',
-              paddingHorizontal: 20,
-            }}>
-            <Text style={{color: '#fff', fontSize: 18, left: 30}}>
-              Écouter :
-            </Text>
-            <Image
-              source={require('../../../assets/images/voix_ondes_profil.png')}
-              style={{width: 100, height: 30, left: 30}}
-            />
-          </View>
+          </TouchableOpacity>
+        </View>
+        <>
+          <BtnReadRecord tabPath={tabPath} top={0} left={20} />
+        </>
           <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '700',
-              color: '#fff',
-              fontSize: 20,
-              left: 20,
-            }}>
+            style={StylesProfileMeRp.txtTitleAbout}>
             À propos de moi
           </Text>
           <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'flex-start',
-              paddingHorizontal: 20,
-              marginTop: 20,
-            }}>
+            style={StylesProfileMeRp.viewRow4}>
             <Text
-              style={{
-                fontFamily: 'Comfortaa',
-                fontWeight: '700',
-                color: '#fff',
-                fontSize: 15,
-              }}>
+              style={StylesProfileMeRp.txtAbout}>
               Lorem ipsum dolor sit amet, consectetur
             </Text>
           </View>
           <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'flex-start',
-              marginTop: 20,
-              marginHorizontal: 20,
-            }}>
+            style={StylesProfileMeRp.viewRow4}>
             <Image
               source={require('../../../assets/images/validation-du-ticket1.png')}
-              style={{width: 55, height: 55, bottom: 10}}
+              style={StylesProfileMeRp.icoPass}
             />
-            <View style={{top: 5}}>
+            <TouchableOpacity onPress={() => navigation.navigate('Prend pass', { prendPass: true })} style={{top: 5}}>
               <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  color: '#fff',
-                  fontSize: 15,
-                }}>
+                style={StylesProfileMeRp.txtPass}>
                 Je prends mon pass
               </Text>
               <View
-                style={{
-                  borderBottomWidth: 1, // Ajustez cette valeur pour l'épaisseur du soulignement
-                  borderBottomColor: '#fff',
-                  bottom: 1, // Ajustez la distance entre le texte et le soulignement
-                }}
+                style={StylesProfileMeRp.line}
               />
-            </View>
-            <Image
-              source={require('../../../assets/images/Group36.png')}
-              style={{width: 40, height: 30, marginLeft: 60, right: 15}}
-            />
-            <Image
-              source={require('../../../assets/images/heart1.png')}
-              style={{
-                width: 40,
-                height: 40,
-                marginLeft: 30,
-                right: 15,
-                bottom: 5,
-              }}
-            />
+            </TouchableOpacity>
+           <TouchableOpacity style={StylesProfileMeRp.boxCommunity}>
+              <Image
+                source={require('../../../assets/images/icoCommunity.png')}
+                style={StylesProfileMeRp.icoCommunity}
+              />
+              <Text style={StylesProfileMeRp.txtCommunity}>7</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={StylesProfileMeRp.boxHeart}>
+              <Image
+                source={require('../../../assets/images/heart1.png')}
+                style={StylesProfileMeRp.icoHeart}
+              />
+            </TouchableOpacity>
           </View>
           <View
-            style={{
-              height: 1.5,
-              backgroundColor: '#fff',
-              marginVertical: 2,
-              marginHorizontal: 20,
-            }}
+            style={StylesProfileMeRp.line2}
           />
           <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '700',
-              color: '#fff',
-              fontSize: 20,
-              left: 20,
-            }}>
+            style={StylesProfileMeRp.skillTitle}>
             Mes Compétences
           </Text>
-          <View style={{marginTop: 10}}>
-            <View
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <View style={{flexDirection: 'column', left: 10}}>
-                <View style={{flexDirection: 'row'}}>
-                  <ImageBackground
-                    source={require('../../../assets/images/Rp-RP.png')}
-                    style={{
-                      width: 191,
-                      height: 40,
-                      marginRight: 20,
-                    }}>
-                    <Text
-                      style={{
-                        fontFamily: 'Comfortaa',
-                        fontWeight: '700',
-                        color: '#000',
-                        fontSize: 15,
-                        alignSelf: 'center',
-                        textAlign: 'center',
-                        top: 8,
-                      }}>
-                      Relations publiques
-                    </Text>
-                  </ImageBackground>
-                  <Image
-                    source={require('../../../assets/images/Av-RP.png')}
-                    style={{
-                      width: 152,
-                      height: 40,
-                    }}
-                  />
-                </View>
-                <View style={{flexDirection: 'row', top: 10}}>
-                  <Image
-                    source={require('../../../assets/images/As-RP.png')}
-                    style={{
-                      width: 167,
-                      height: 40,
-                      marginRight: 20,
-                    }}
-                  />
-                  <Image
-                    source={require('../../../assets/images/Pr-RP.png')}
-                    style={{
-                      width: 151,
-                      height: 40,
-                    }}
-                  />
-                </View>
-                <View style={{flexDirection: 'row', top: 20}}>
-                  <Image
-                    source={require('../../../assets/images/C-RP.png')}
-                    style={{
-                      width: 110,
-                      height: 40,
-                      marginRight: 20,
-                    }}
-                  />
-                  <Image
-                    source={require('../../../assets/images/A-RP.png')}
-                    style={{
-                      width: 82,
-                      height: 40,
-                    }}
-                  />
-                </View>
-              </View>
-            </View>
+          <View style={StylesProfileMeRp.viewGap}>
+          {skills.map((skill, index) => (
+              <Text
+                key={index}
+                style={StylesProfileMeRp.txtSkill}
+                >
+                {skill}
+              </Text>
+          ))}
           </View>
-        </View>
         <View
-          style={{
-            width: 390,
-            height: 720,
-            marginTop: 50,
-            backgroundColor: '#fff',
-            borderTopLeftRadius: 30,
-            borderTopRightRadius: 30,
-          }}>
+          style={StylesProfileMeRp.viewDetails}>
           <View
-            style={{flexDirection: 'row', marginTop: 45, alignItems: 'center'}}>
+            style={StylesProfileMeRp.viewDetails2}>
             <Image
               source={require('../../../assets/images/statut.png')}
-              style={{width: 32, height: 36, marginRight: 20, marginLeft: 20}}
+              style={StylesProfileMeRp.icoDetails}
             />
             <Text
-              style={{
-                fontFamily: 'Comfortaa',
-                fontWeight: '700',
-                fontSize: 15,
-                color: 'black',
-              }}>
+              style={StylesProfileMeRp.titleDetails}>
               Statut
             </Text>
           </View>
           <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '500',
-              fontSize: 14,
-              color: 'black',
-              marginLeft: 20,
-            }}>
+            style={StylesProfileMeRp.txtDetails}>
             Libéral
           </Text>
           <View
-            style={{flexDirection: 'row', marginTop: 45, alignItems: 'center'}}>
+            style={StylesProfileMeRp.viewDetails2}>
             <Image
               source={require('../../../assets/images/recherche_emploi.png')}
-              style={{width: 34, height: 36, marginRight: 20, marginLeft: 20}}
+              style={StylesProfileMeRp.icoDetails}
             />
             <Text
-              style={{
-                fontFamily: 'Comfortaa',
-                fontWeight: '700',
-                fontSize: 15,
-                color: 'black',
-              }}>
+              style={StylesProfileMeRp.titleDetails}>
               Recherche
             </Text>
           </View>
           <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '500',
-              fontSize: 14,
-              color: 'black',
-              marginLeft: 20,
-            }}>
+            style={StylesProfileMeRp.txtDetails}>
             Recherche d'un.e salarié.e
           </Text>
           <View
-            style={{flexDirection: 'row', marginTop: 45, alignItems: 'center'}}>
+            style={StylesProfileMeRp.viewDetails2}>
             <Image
               source={require('../../../assets/images/publier__offre.png')}
-              style={{width: 36, height: 36, marginRight: 20, marginLeft: 20}}
+              style={StylesProfileMeRp.icoDetails}
             />
             <Text
-              style={{
-                fontFamily: 'Comfortaa',
-                fontWeight: '700',
-                fontSize: 15,
-                color: 'black',
-              }}>
+              style={StylesProfileMeRp.titleDetails}>
               Mon offre
             </Text>
           </View>
           <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '700',
-              fontSize: 14,
-              color: 'black',
-              marginLeft: 20,
-            }}>
+            style={StylesProfileMeRp.txtDetails}>
             RH H/F
           </Text>
           <Text
-            style={{
-              fontFamily: 'Gilory',
-              fontWeight: '500',
-              fontSize: 12,
-              color: 'black',
-              marginLeft: 20,
-            }}>
+            style={StylesProfileMeRp.txtDetails2}>
             Le responsable des ressources humaines est chargé(e){'\n'}de gérer
             l'ensemble des activités liées aux ressources humaines{'\n'}au sein
             de l'entreprise. Il/elle joue un rôle clé dans le{'\n'}développement
@@ -448,81 +220,48 @@ export const ProfilMeRP = ({route, navigation}) => {
             employés...
           </Text>
           <View
-            style={{flexDirection: 'row', marginTop: 45, alignItems: 'center'}}>
+            style={StylesProfileMeRp.viewDetails2}>
             <Image
               source={require('../../../assets/images/langue_pro.png')}
-              style={{width: 32, height: 36, marginRight: 20, marginLeft: 20}}
+              style={StylesProfileMeRp.icoDetails}
             />
             <Text
-              style={{
-                fontFamily: 'Comfortaa',
-                fontWeight: '700',
-                fontSize: 15,
-                color: 'black',
-              }}>
+              style={StylesProfileMeRp.titleDetails}>
               Je parle couramment
             </Text>
           </View>
           <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '500',
-              fontSize: 14,
-              color: 'black',
-              marginLeft: 20,
-            }}>
+            style={StylesProfileMeRp.txtDetails}>
             Français, Anglais
           </Text>
           <View
-            style={{flexDirection: 'row', marginTop: 45, alignItems: 'center'}}>
+            style={StylesProfileMeRp.viewDetails2}>
             <Image
               source={require('../../../assets/images/distinctions.png')}
-              style={{width: 32, height: 36, marginRight: 20, marginLeft: 20}}
+              style={StylesProfileMeRp.icoDetails}
             />
             <Text
-              style={{
-                fontFamily: 'Comfortaa',
-                fontWeight: '700',
-                fontSize: 15,
-                color: 'black',
-              }}>
+              style={StylesProfileMeRp.titleDetails}>
               Mes distinctions
             </Text>
           </View>
           <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '500',
-              fontSize: 14,
-              color: 'black',
-              marginLeft: 20,
-            }}>
+            style={StylesProfileMeRp.txtDetails}>
             Lorem ipsum
           </Text>
           <View
-            style={{flexDirection: 'row', marginTop: 45, alignItems: 'center'}}>
+            style={StylesProfileMeRp.viewDetails2}>
             <Image
               source={require('../../../assets/images/distinctions.png')}
-              style={{width: 32, height: 36, marginRight: 20, marginLeft: 20}}
+              style={StylesProfileMeRp.icoDetails}
             />
             <Text
-              style={{
-                fontFamily: 'Comfortaa',
-                fontWeight: '700',
-                fontSize: 15,
-                color: 'black',
-              }}>
+              style={StylesProfileMeRp.titleDetails}>
               Mes offres d'emploi
             </Text>
           </View>
           <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '500',
-              fontSize: 14,
-              color: 'black',
-              marginLeft: 20,
-            }}>
+            style={StylesProfileMeRp.txtDetails}>
             Lorem ipsum
           </Text>
         </View>

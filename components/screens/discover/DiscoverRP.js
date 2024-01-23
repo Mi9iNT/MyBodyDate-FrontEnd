@@ -562,7 +562,7 @@ export const DiscoverRP = ({ route, navigation }) => {
 
     </View>
   </Animated.View>
-  <MenuBottom navigation={navigation} route={route} tabPath={'Professionnel'} active={'Discover'} />
+  {/* <MenuBottom navigation={navigation} route={route} tabPath={'Professionnel'} active={'Discover'} /> */}
   </View>
  </ImageBackground>
   );

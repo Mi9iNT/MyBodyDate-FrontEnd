@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -9,21 +9,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
-import {BtnNext} from '../../composants/BtnNext';
+import {getMethod, postMethod} from '../../../service/axiosInstance';
+import {storeData, getData, getDatas} from '../../../service/storage';
 import StylesSinscrirePhone from '../../../assets/style/styleScreens/styleRegister/StyleSinscrirePhone';
 
-export const SignInPhone = ({route, navigation}) => {
-  // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  console.log('Choix de route : ', routeChoice);
-  console.log('Consentement : ', consentement);
-  console.log('Love Coach : ', loveCoach);
-
-  const [userPhone, setPhone] = React.useState();
-  const [errorNumero, setErrorNumero] = React.useState(validateMessage);
-  const [buttonPressed, setButtonPressed] = React.useState();
+export const SignInPhone = ({navigation}) => {
+  const [userPhone, setPhone] = useState();
+  const [errorNumero, setErrorNumero] = useState(validateMessage);
+  const [buttonPressed, setButtonPressed] = useState();
 
   const errorMessage =
     'Numéro de téléphone est invalide. Veuillez respecter le format "+33 000000000"';
@@ -34,20 +27,69 @@ export const SignInPhone = ({route, navigation}) => {
   const validatePhone = index => {
     const reg = /^\+33\d{9}$/;
     const phoneNumber = index;
-    // const phoneNumber = userPhone;
+
     if (reg.test(phoneNumber)) {
-      setPhone(index);
+      setPhone(phoneNumber);
       setErrorNumero(true);
-    } else if (!reg.test(phoneNumber)) {
-      setPhone(index);
-      setErrorNumero(false);
     } else {
-      setErrorNumero(null);
+      setPhone(phoneNumber);
+      setErrorNumero(false);
     }
   };
   console.log(errorNumero);
 
   console.log('Téléphone: ' + userPhone);
+
+  useEffect(() => {
+    handleGetData();
+    handleGetRoute();
+  }, []);
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetData = async () => {
+    try {
+      const phone = await getData('phone');
+      setPhone(phone || '');
+      // console.log(phone);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  const handleGetRoute = async () => {
+    try {
+      const route = await getData('route_choice');
+      // console.log(route);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  const postInfo = async () => {
+    const url = '/verificationNumero';
+    const data = {
+      phoneNumber: userPhone,
+    };
+    // console.log(data);
+    try {
+      const response = await postMethod(url, data);
+      console.log('Réponse du serveur après la requête POST :', response);
+      if (response) {
+        handleStoreData('route_choice', 'inscription numero');
+        navigation.navigate('Confirmation numero', {user: response});
+      }
+    } catch (error) {
+      console.error('Erreur lors de la requête POST :', error);
+    }
+  };
+
   return (
     <View style={StylesSinscrirePhone.container}>
       <ImageBackground
@@ -59,7 +101,7 @@ export const SignInPhone = ({route, navigation}) => {
         <SafeAreaView style={[StylesSinscrirePhone.ViewInput]}>
           <TextInput
             style={StylesSinscrirePhone.TextInput}
-            keyboardType="default"
+            keyboardType="phone-pad"
             placeholder="Entrez votre n° de téléphone"
             placeholderTextColor="#FFF"
             onChangeText={phone => {
@@ -75,14 +117,31 @@ export const SignInPhone = ({route, navigation}) => {
             </Text>
           )}
         </SafeAreaView>
-        <BtnNext
-          route={route}
-          navigation={navigation}
-          navigateTo={'Confirmation numero'}
-          txt={'Continuer'}
-          background={'white'}
-          top={300}
-        />
+        <TouchableOpacity
+          style={{bottom: 50}}
+          onPress={() => {
+            errorNumero
+              ? [handleStoreData('phone', userPhone ?? ''), postInfo()]
+              : navigation.navigate("S'inscrire par numero");
+            setButtonPressed(true);
+          }}
+          accessibilityLabel="Continuer">
+          <Text
+            style={[
+              StylesSinscrirePhone.TxtBtn,
+              {color: buttonPressed ? '#fff' : '#0019A7'},
+            ]}>
+            Continuer
+          </Text>
+          <Image
+            style={[StylesSinscrirePhone.imgBtn]}
+            source={
+              buttonPressed
+                ? require('../../../assets/boutons/Bouton-Rouge.png')
+                : require('../../../assets/boutons/Bouton-Blanc.png')
+            }
+          />
+        </TouchableOpacity>
       </ImageBackground>
     </View>
   );

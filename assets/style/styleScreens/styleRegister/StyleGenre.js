@@ -8,6 +8,9 @@ const StylesGenre = {
     width: '100%',
     height: '100%',
   },
+  viewContent: {
+    flex: 8,
+  },
   ViewText: {
     flex: 1,
   },
@@ -39,15 +42,6 @@ const StylesGenre = {
     fontSize: 18,
     fontStyle: 'normal',
   },
-  TxtBtn: {
-    color: '#FFF',
-    textAlign: 'center',
-    fontFamily: 'Comfortaa',
-    fontSize: 16,
-    fontStyle: 'normal',
-    fontWeight: 700,
-    textDecorationLine: 'underline',
-  },
   textWhite: {
     top: 420,
     left: 40,
@@ -56,6 +50,27 @@ const StylesGenre = {
     width: '90%',
     height: 200,
     fontFamily: 'Comfortaa',
+  },
+  ViewBtn: {
+    flex: 2,
+    height: 56,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imgBtn: {
+    height: 56,
+    flexShrink: 0,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    bottom: 17,
+  },
+  TxtBtn: {
+    color: '#0F0BAE',
+    fontSize: 22,
+    textAlign: 'center',
+    fontFamily: 'Comfortaa',
+    top: 24,
+    zIndex: 1,
   },
 };
 

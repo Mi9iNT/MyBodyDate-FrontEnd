@@ -139,7 +139,7 @@ export const Messages = ({ navigation, route, userLike }) => {
           </>
         </View>
       </ImageBackground>
-      <MenuBottom navigation={navigation} />
+      {/* <MenuBottom navigation={navigation} /> */}
     </View>
   );
 };

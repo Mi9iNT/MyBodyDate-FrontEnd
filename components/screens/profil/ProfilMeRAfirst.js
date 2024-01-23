@@ -5,7 +5,8 @@ import React, {useEffect, useState} from 'react';
 import {StatusBar, TextInput} from 'react-native';
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import PropTypes from 'prop-types';
-import {MenuSlide} from '../../composants/MenuSlide';
+import { MenuSlide } from '../../composants/MenuSlide';
+import {launchImageLibrary} from 'react-native-image-picker';
 import {Religion} from '../../composants/edit/Religion';
 import {Enfant} from '../../composants/edit/Enfant';
 import {Morphologie} from '../../composants/edit/Morphologie';
@@ -15,679 +16,332 @@ import {Politique} from '../../composants/edit/Politique';
 import {Fumer} from '../../composants/edit/Fumer';
 import {Alcool} from '../../composants/edit/Alcool';
 import {Sport} from '../../composants/edit/Sport';
+import StylesProfileMeRa from '../../../assets/style/styleScreens/styleProfil/StyleProfileMeRa';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import {storeData, getData, getDatas} from '../../../service/storage';
 
-export const ProfilMeRAfirst = ({route, navigation, imagePath}) => {
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  const userSituation = route.params?.userSituation ?? '';
-  const userOrientation = route.params?.userOrientation ?? '';
-  const userRecherche1 = route.params?.userRecherche1 ?? '';
-  const userRecherche2 = route.params?.userRecherche2 ?? '';
-  const userAffinites = route.params?.userAffinites ?? '';
-  const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-  const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
-  const userPrenom = route.params?.userPrenom ?? '';
-  const userVoice = route.params?.userVoice ?? '';
-  const tabPath = route.params?.tabPath ?? '';
+export const ProfilMeRAfirst = ({ navigation, imagePath }) => {
 
-
-  const [modalVisible, setModalVisible] = useState(false);
-
-  const [openModalReligion, setOpenModalReligion] = useState(false);
-  const [openModalEnfant, setOpenModalEnfant] = useState(false);
-  const [openModalMorphologie, setOpenModalMorphologie] = useState(false);
-  const [openModalOrigine, setOpenModalOrigine] = useState(false);
-  const [openModalAstrologie, setOpenModalAstrologie] = useState(false);
-  const [openModalPolitique, setOpenModalPolitique] = useState(false);
-  const [openModalFumer, setOpenModalFumer] = useState(false);
-  const [openModalAlcool, setOpenModalAlcool] = useState(false);
-  const [openModalSport, setOpenModalSport] = useState(false);
-
-  const [addProVisible, setAddProVisible] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
-
-  const handleAddProToggle = index => {
-    const newArray = [...addProVisible];
-    newArray[index] = !newArray[index];
-    setAddProVisible(newArray);
+  const contentDeleteImage = (index, info) => {
+    if (info === 'img') {
+      setImgPath(prevImg => {
+        let newImgPath = [...prevImg];
+        newImgPath[index] = null;
+        return newImgPath;
+      });
+    } else {
+      setExplicitPath(prevImg => {
+        let newImgPath = [...prevImg];
+        newImgPath[index] = null;
+        return newImgPath;
+      });
+    };
   };
 
+  let img = 'img';
+  let explicit = 'explicit';
+  const [imgPath, setImgPath] = useState([null, null, null, null, null, null]);
+
+  const [explicitPath, setExplicitPath] = useState([null, null, null]);
+
+  const [userDescription, setUserDescrition] = useState('');
+
+  console.log(imgPath);
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const keysToRetrieve = ['user_description', 'image_amour', 'image_explicit'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const getMultipleValues = async () => {
+    try {
+      const retrievedValues = await getDatas(keysToRetrieve);
+
+      if (retrievedValues) {
+        const updatedValues = {};
+        retrievedValues.forEach(item => {
+          updatedValues[item.key] = item.value;
+        });
+
+        // Utilisez les valeurs mises à jour
+        // setUserDescrition(updatedValues.user_description ?? 'Description');
+        // setImgPath(updatedValues.image_amour ?? imgPath);
+        // setExplicitPath(updatedValues.image_explicit ?? explicitPath);
+      }
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  getMultipleValues();
+
+
+
+    const ImagePicker = (index, info) => {
+      let options = {
+        storageOptions: {
+          path: 'image',
+        },
+      };
+      launchImageLibrary(options, response => {
+        if (response.didCancel) {
+          console.log("L'utilisateur a annulé la sélection de l'image.");
+        } else if (response.errorCode) {
+          console.log('Erreur : ', response.errorMessage);
+        } else {
+          let newImg = response.assets[0].uri;
+          if (info === 'explicit') {
+            let newImgPath = [...explicitPath];
+            newImgPath[index] = newImg;
+            setExplicitPath(newImgPath);
+            // handleStoreData('image_explicit', explicitPath);
+            return newImgPath;
+          } else {
+            let newImgPath = [...imgPath];
+            newImgPath[index] = newImg;
+            setImgPath(newImgPath);
+            // handleStoreData('image_amour', imagePath);
+            return newImgPath;
+          }
+        }
+      });
+    };
+
   useEffect(() => {
+    getMultipleValues();
     StatusBar.setHidden(true);
     return () => {
-      StatusBar.setHidden(false);
-    };
-  }, []);
+        StatusBar.setHidden(false);
+      };
+    }, []);
 
-  return (
-    <View style={{flex: 1, backgroundColor: '#fff'}}>
-      <MenuSlide imagePath={'Amour'} tabPath={'Amour'} />
-      <ScrollView>
-        <View>
-          <Text
-            style={{
-              fontFamily: 'Gilroy',
-              fontWeight: '700',
-              fontSize: 24,
-              color: '#0019A7',
-              alignSelf: 'center',
-              textAlign: 'center',
-            }}>
-            Profil éditer
-          </Text>
-        </View>
-        <View style={{left: 20, top: 20}}>
-          <Text
-            style={{
-              fontFamily: 'Gilroy',
-              fontWeight: '700',
-              fontSize: 20,
-              color: '#0019A7',
-              left: 5,
-            }}>
-            Photos
-          </Text>
-          <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '700',
-              fontSize: 14,
-              color: '#0019A7',
-              top: 15,
-            }}>
-            Affichez votre lifestyle. Ajoutez jusqu'à 6{'\n'}photos de vous pour
-            gagner en visibilité.
-          </Text>
-        </View>
-        <View
-          style={{
-            justifyContent: 'space-around',
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
-          <Image
-            source={require('../../../assets/images/Raluca-Edit.png')}
-            style={{
-              width: 129,
-              height: 129,
-              top: 60,
-            }}
-          />
-          <Image
-            source={require('../../../assets/images/Sup.png')}
-            style={{
-              width: 82,
-              height: 82,
-              top: 60,
-            }}
-          />
-          <Image
-            source={require('../../../assets/images/Plus-Edit-B.png')}
-            style={{
-              width: 82,
-              height: 82,
-              top: 60,
-            }}
-          />
-        </View>
-        <View
-          style={{
-            justifyContent: 'center',
-            flexDirection: 'row',
-            alignItems: 'center',
-            left: 23,
-            top: 20,
-          }}>
-          <Image
-            source={require('../../../assets/images/Plus-Edit-B.png')}
-            style={{
-              width: 82,
-              height: 82,
-              top: 60,
-              right: 33,
-            }}
-          />
-          <Image
-            source={require('../../../assets/images/Plus-Edit-B.png')}
-            style={{
-              width: 82,
-              height: 82,
-              top: 60,
-            }}
-          />
-          <Image
-            source={require('../../../assets/images/Plus-Edit-B.png')}
-            style={{
-              width: 82,
-              height: 82,
-              top: 60,
-              left: 33,
-            }}
-          />
-        </View>
-        <Image
-          source={require('../../../assets/images/Line133.png')}
-          style={{
-            width: 360,
-            height: 2,
-            top: 100,
-            alignItems: 'center',
-            alignSelf: 'center',
-          }}
-        />
-        <Text
-          style={{
-            fontFamily: 'Gilory',
-            fontWeight: '700',
-            fontSize: 20,
-            color: '#0019A7',
-            top: 120,
-            left: 15,
-          }}>
-          Photos explicites
-        </Text>
-        <Text
-          style={{
-            fontFamily: 'Comfortaa',
-            fontWeight: '700',
-            fontSize: 14,
-            color: '#0019A7',
-            top: 130,
-            left: 15,
-          }}>
-          Photos floues sur profil, visibles sur demande{'\n'}individuelle
-          restreinte et révocable.
-        </Text>
-        <View
-          style={{
-            justifyContent: 'space-around',
-            flexDirection: 'row',
-            alignItems: 'center',
-            top: 85,
-          }}>
-          <Image
-            source={require('../../../assets/images/CadenaRouge.png')}
-            style={{
-              width: 112,
-              height: 112,
-              top: 60,
-            }}
-          />
-          <Image
-            source={require('../../../assets/images/PlusRouge.png')}
-            style={{
-              width: 82,
-              height: 82,
-              top: 60,
-            }}
-          />
-          <Image
-            source={require('../../../assets/images/PlusRouge.png')}
-            style={{
-              width: 82,
-              height: 82,
-              top: 60,
-            }}
-          />
-        </View>
-        <View
-          style={{
-            top: 160,
-            left: 20,
-          }}>
+    return (
+      <View style={{ flex: 1, backgroundColor: '#fff' }}>
+        <MenuSlide imagePath={'Amour'} tabPath={'Amour'} />
+        <ScrollView style={{height: 1200,}}>
           <View>
+            <Text
+              style={{
+                fontFamily: 'Gilroy',
+                fontWeight: '700',
+                fontSize: 24,
+                color: '#0019A7',
+                alignSelf: 'center',
+                textAlign: 'center',
+              }}>
+              Profil éditer
+            </Text>
+          </View>
+          <View style={{ left: 20, top: 20 }}>
             <Text
               style={{
                 fontFamily: 'Gilroy',
                 fontWeight: '700',
                 fontSize: 20,
                 color: '#0019A7',
-                left: 20,
+                left: 5,
               }}>
-              Quelques mots sur moi
+              Photos
             </Text>
             <Text
               style={{
                 fontFamily: 'Comfortaa',
-                fontWeight: '500',
+                fontWeight: '700',
                 fontSize: 14,
                 color: '#0019A7',
-                top: 10,
+                top: 15,
+              }}>
+              Affichez votre lifestyle. Ajoutez jusqu'à 6{'\n'}photos de vous pour
+              gagner en visibilité.
+            </Text>
+          </View>
+          <View
+            style={[StylesProfileMeRa.viewPhoto]}>
+            {imgPath.map((item, index) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() => { item === null ? ImagePicker(index, img) : contentDeleteImage(index, img); }}
+                style={[StylesProfileMeRa.btnAddPhoto, {
+                  width: index === 0 && item !== null ? 129 : 82,
+                  height: index === 0 && item !== null ? 129 : 82,
+                }]}>
+                {item ? (
+                  <View style={[StylesProfileMeRa.viewUserPhoto,
+                  {
+                    width: index === 0 && item !== null ? 129 : 82,
+                    height: index === 0 && item !== null ? 129 : 82
+                  }]}>
+                    <Image source={{ uri: imgPath[index] }}
+                      style={[StylesProfileMeRa.userPhoto,
+                      {
+                        width: index === 0 && item !== null ? 129 : 82,
+                        height: index === 0 && item !== null ? 129 : 82,
+                      }]} />
+                    <View style={[StylesProfileMeRa.contentDeleteImage, { bottom: index === 0 ? 80 : 55 }]}>
+                      <Image source={require('../../../assets/boutons/poubelle.png')} style={[StylesProfileMeRa.imageDelete]} />
+                    </View>
+                  </View>
+                ) : (
+                  <Text
+                    style={[StylesProfileMeRa.txtAddImage]}
+                  >
+                    +
+                  </Text>
+                )}
+              </TouchableOpacity>
+            ))}
+          </View>
+          <View style={{ top: 200 }}>
+            <View style={{ top: 10, width: '80%', height: 2, backgroundColor: '#0019A7', alignSelf: 'center' }} />
+
+            <Text
+              style={{
+                fontFamily: 'Gilory',
+                fontWeight: '700',
+                fontSize: 20,
+                color: '#0019A7',
+                top: 40,
+                left: 15,
+              }}>
+              Photos explicites
+            </Text>
+            <Text
+              style={{
+                fontFamily: 'Comfortaa',
+                fontWeight: '700',
+                fontSize: 14,
+                color: '#0019A7',
+                top: 50,
+                left: 15,
+              }}>
+              Photos floues sur profil, visibles sur demande{'\n'}individuelle
+              restreinte et révocable.
+            </Text>
+            <View
+              style={[StylesProfileMeRa.viewPhoto2]}>
+              {explicitPath.map((item, index) => (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => { item === null ? ImagePicker(index, explicit) : contentDeleteImage(index, explicit); }}
+                  style={[StylesProfileMeRa.btnAddPhoto2, {
+                    width: 82,
+                    height: 82,
+                  }]}>
+                  {item ? (
+                    <View style={[StylesProfileMeRa.viewUserPhoto,
+                    {
+                      width: 84,
+                      height: 84
+                    }]}>
+                      <Image blurRadius={8 } source={{ uri: explicitPath[index] }}
+                        style={[StylesProfileMeRa.userPhoto,
+                        {
+                          borderRadius: 30,
+                          borderColor: '#D40000',
+                          borderWidth: 1,
+                          width: 82,
+                          height: 82,
+                        }]} />
+                      <View style={[StylesProfileMeRa.contentDeleteImage, { bottom: 55 }]}>
+                        <Image source={require('../../../assets/boutons/cadenas.png')} style={[StylesProfileMeRa.imageDelete]} />
+                      </View>
+                    </View>
+                  ) : (
+                    <Text
+                      style={[StylesProfileMeRa.txtAddImage2]}
+                    >
+                      +
+                    </Text>
+                  )}
+                </TouchableOpacity>
+              ))}
+            </View>
+          </View>
+
+          <View
+            style={{
+              top: 260,
+              height: 1100,
+            }}>
+            <View>
+              <Text
+                style={{
+                  fontFamily: 'Gilroy',
+                  fontWeight: '700',
+                  fontSize: 20,
+                  color: '#0019A7',
+                  left: 20,
+                }}>
+                Quelques mots sur moi
+              </Text>
+              <Text
+                style={{
+                  fontFamily: 'Comfortaa',
+                  fontWeight: '500',
+                  fontSize: 14,
+                  color: '#0019A7',
+                  top: 10,
+                  left: 20,
+                }}>
+                Lorem ipsum
+              </Text>
+              <SafeAreaView
+                style={{
+                  alignSelf: 'center',
+                  width: '100%',
+                }}>
+                <TextInput
+                  placeholder="Description"
+                  multiline={true}
+                  scrollEnabled={true}
+                  onChangeText={(text) => { setUserDescrition(text); handleStoreData('user_description', text);}}
+                  style={{
+                    borderWidth: 1,
+                    borderColor: '#E0BDFF',
+                    borderRadius: 30,
+                    alignSelf: 'center',
+                    top: 30,
+                    width: '90%',
+                    maxHeight: 111,
+                    padding: 20,
+                    color: '#0019A7',
+                  }}
+                />
+              </SafeAreaView>
+            </View>
+            <Text
+              style={{
+                fontFamily: 'Gilroy',
+                fontWeight: '700',
+                fontSize: 20,
+                color: '#0019A7',
+                top: 50,
                 left: 20,
               }}>
-              Lorem ipsum
+              Mes infos de base
             </Text>
             <View
               style={{
-                borderWidth: 1,
-                borderColor: '#E0BDFF',
-                borderRadius: 30,
-                alignSelf: 'center',
-                top: 30,
-                width: 333,
-                height: 111,
-                right: 20,
+                top: 450,
               }}>
-              <TextInput
-                placeholder="Lorem Ipsum"
-                style={{
-                  left: 20,
-                  color: '#0019A7',
-                }}
-              />
+              <Religion />
+              <Enfant />
+              <Morphologie />
+              <Origine />
+              <Astrologie />
+              <Politique />
+              <Fumer />
+              <Alcool />
+              <Sport />
             </View>
           </View>
-          <Text
-            style={{
-              fontFamily: 'Gilroy',
-              fontWeight: '700',
-              fontSize: 20,
-              color: '#0019A7',
-              top: 50,
-              left: 20,
-            }}>
-            Mes infos de base
-          </Text>
-          <View
-            style={{
-              marginTop: 450,
-              left: 10,
-            }}>
-            <Religion
-              visibleReligion={openModalReligion}
-              closeModalReligion={() => setOpenModalReligion(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(0);
-                setOpenModalReligion(true);
-              }}
-              style={{
-                bottom: 380,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../../assets/images/ReligionB.png')}
-                style={{
-                  width: 40, // '50%' de la largeur du parent
-                  height: 40, // '50%' de la hauteur du parent
-                }}
-              />
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  fontSize: 15,
-                  color: '#0019A7',
-                  left: 20,
-                }}>
-                Religion
-              </Text>
-              <View style={{width: 35, height: 35, left: 194}}>
-                <Image
-                  source={
-                    addProVisible[0]
-                      ? require('../../../assets/images/MoinActivite.png')
-                      : require('../../../assets/images/PlusActivite.png')
-                  }
-                />
-              </View>
-            </TouchableOpacity>
-            <Enfant
-              visibleEnfant={openModalEnfant}
-              closeModalEnfant={() => setOpenModalEnfant(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(1);
-                setOpenModalEnfant(true);
-              }}
-              style={{
-                bottom: 360,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../../assets/images/Biberon.png')}
-                style={{
-                  width: 40, // '50%' de la largeur du parent
-                  height: 40, // '50%' de la hauteur du parent
-                }}
-              />
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  fontSize: 15,
-                  color: '#0019A7',
-                  left: 20,
-                }}>
-                Enfant
-              </Text>
-              <View style={{width: 35, height: 35, left: 207}}>
-                <Image
-                  source={
-                    addProVisible[1]
-                      ? require('../../../assets/images/MoinActivite.png')
-                      : require('../../../assets/images/PlusActivite.png')
-                  }
-                />
-              </View>
-            </TouchableOpacity>
-            <Morphologie
-              visibleMorphologie={openModalMorphologie}
-              closeModalMorphologie={() => setOpenModalMorphologie(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(2);
-                setOpenModalMorphologie(true);
-              }}
-              style={{
-                bottom: 340,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../../assets/images/Body.png')}
-                style={{
-                  width: 50, // '50%' de la largeur du parent
-                  height: 50, // '50%' de la hauteur du parent
-                  right: 5,
-                }}
-              />
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  fontSize: 15,
-                  color: '#0019A7',
-                  left: 10,
-                }}>
-                Morphologie
-              </Text>
-              <View style={{width: 35, height: 35, left: 152}}>
-                <Image
-                  source={
-                    addProVisible[2]
-                      ? require('../../../assets/images/MoinActivite.png')
-                      : require('../../../assets/images/PlusActivite.png')
-                  }
-                />
-              </View>
-            </TouchableOpacity>
-            <Origine
-              visibleOrigine={openModalOrigine}
-              closeModalOrigine={() => setOpenModalOrigine(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(3);
-                setOpenModalOrigine(true);
-              }}
-              style={{
-                bottom: 320,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../../assets/images/Origine.png')}
-                style={{
-                  width: 40, // '50%' de la largeur du parent
-                  height: 40, // '50%' de la hauteur du parent
-                }}
-              />
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  fontSize: 15,
-                  color: '#0019A7',
-                  left: 20,
-                }}>
-                Origine ethnique
-              </Text>
-              <View style={{width: 35, height: 35, left: 138}}>
-                <Image
-                  source={
-                    addProVisible[3]
-                      ? require('../../../assets/images/MoinActivite.png')
-                      : require('../../../assets/images/PlusActivite.png')
-                  }
-                />
-              </View>
-            </TouchableOpacity>
-            <Astrologie
-              visibleAstrologie={openModalAstrologie}
-              closeModalAstrologie={() => setOpenModalAstrologie(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(4);
-                setOpenModalAstrologie(true);
-              }}
-              style={{
-                bottom: 300,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../../assets/images/Astrologie.png')}
-                style={{
-                  width: 40, // '50%' de la largeur du parent
-                  height: 40, // '50%' de la hauteur du parent
-                }}
-              />
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  fontSize: 15,
-                  color: '#0019A7',
-                  left: 20,
-                }}>
-                Signe astrologie
-              </Text>
-              <View style={{width: 35, height: 35, left: 140}}>
-                <Image
-                  source={
-                    addProVisible[4]
-                      ? require('../../../assets/images/MoinActivite.png')
-                      : require('../../../assets/images/PlusActivite.png')
-                  }
-                />
-              </View>
-            </TouchableOpacity>
-            <Politique
-              visiblePolitique={openModalPolitique}
-              closeModalPolitique={() => setOpenModalPolitique(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(5);
-                setOpenModalPolitique(true);
-              }}
-              style={{
-                bottom: 280,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../../assets/images/Politique.png')}
-                style={{
-                  width: 40, // '50%' de la largeur du parent
-                  height: 40, // '50%' de la hauteur du parent
-                }}
-              />
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  fontSize: 15,
-                  color: '#0019A7',
-                  left: 20,
-                }}>
-                Orientation politique
-              </Text>
-              <View style={{width: 35, height: 35, left: 112}}>
-                <Image
-                  source={
-                    addProVisible[5]
-                      ? require('../../../assets/images/MoinActivite.png')
-                      : require('../../../assets/images/PlusActivite.png')
-                  }
-                />
-              </View>
-            </TouchableOpacity>
-            <Fumer
-              visibleFumer={openModalFumer}
-              closeModalFumer={() => setOpenModalFumer(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(6);
-                setOpenModalFumer(true);
-              }}
-              style={{
-                bottom: 260,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../../assets/images/Fumer.png')}
-                style={{
-                  width: 40, // '50%' de la largeur du parent
-                  height: 40, // '50%' de la hauteur du parent
-                }}
-              />
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  fontSize: 15,
-                  color: '#0019A7',
-                  left: 20,
-                }}>
-                Fumer
-              </Text>
-              <View style={{width: 35, height: 35, left: 211}}>
-                <Image
-                  source={
-                    addProVisible[6]
-                      ? require('../../../assets/images/MoinActivite.png')
-                      : require('../../../assets/images/PlusActivite.png')
-                  }
-                />
-              </View>
-            </TouchableOpacity>
-            <Alcool
-              visibleAlcool={openModalAlcool}
-              closeModalAlcool={() => setOpenModalAlcool(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(7);
-                setOpenModalAlcool(true);
-              }}
-              style={{
-                bottom: 240,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../../assets/images/AlcoolEdit.png')}
-                style={{
-                  width: 40, // '50%' de la largeur du parent
-                  height: 40, // '50%' de la hauteur du parent
-                }}
-              />
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  fontSize: 15,
-                  color: '#0019A7',
-                  left: 20,
-                }}>
-                Alcool
-              </Text>
-              <View style={{width: 35, height: 35, left: 212}}>
-                <Image
-                  source={
-                    addProVisible[7]
-                      ? require('../../../assets/images/MoinActivite.png')
-                      : require('../../../assets/images/PlusActivite.png')
-                  }
-                />
-              </View>
-            </TouchableOpacity>
-            <Sport
-              visibleSport={openModalSport}
-              closeModalSport={() => setOpenModalSport(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(8);
-                setOpenModalSport(true);
-              }}
-              style={{
-                bottom: 220,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../../assets/images/Sport.png')}
-                style={{
-                  width: 40, // '50%' de la largeur du parent
-                  height: 40, // '50%' de la hauteur du parent
-                }}
-              />
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  fontSize: 15,
-                  color: '#0019A7',
-                  left: 20,
-                }}>
-                Activité sportive
-              </Text>
-              <View style={{width: 35, height: 35, left: 142}}>
-                <Image
-                  source={
-                    addProVisible[8]
-                      ? require('../../../assets/images/MoinActivite.png')
-                      : require('../../../assets/images/PlusActivite.png')
-                  }
-                />
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </ScrollView>
-    </View>
-  );
-};
-
-ProfilMeRAfirst.propTypes = {
-  route: PropTypes.object.isRequired,
-  navigation: PropTypes.object.isRequired,
-};
+        </ScrollView>
+      </View>
+    );
+  };

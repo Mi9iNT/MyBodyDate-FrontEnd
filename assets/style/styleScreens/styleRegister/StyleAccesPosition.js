@@ -18,7 +18,7 @@ const StylesAccesPosition = {
     fontWeight: 700,
   },
   Description2: {
-    top: 200,
+    top: 150,
     width: '90%',
     alignSelf: 'center',
     color: '#FFF',

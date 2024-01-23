@@ -2,27 +2,36 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
-import {StatusBar} from 'react-native';
+import {ScrollView, StatusBar} from 'react-native';
 import {View, Text, Image, ImageBackground, TextInput, TouchableOpacity, Modal} from 'react-native';
-import {MyComponentCompetence} from './MyComponentCompetence';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import StylesCompetence from '../../../assets/style/StyleComposants/styleEdit/StyleCompetence';
 
-export const Competence = ({visibleCompetence, closeModalCompetence}) => {
+export const Competence = ({}) => {
   const [modalCompetencelVisible, setModalCompetencelVisible] = useState(false);
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [addProVisible, setAddProVisible] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const [userCompetence, setUserCompetence] = useState(['Leadership', 'Écoute active']);
+  console.log(userCompetence);
 
-  const handleAddProToggle = index => {
-    const newArray = [...addProVisible];
-    newArray[index] = !newArray[index];
-    setAddProVisible(newArray);
+  const addCompetence = (text) => {
+    let newUserCompetence = [...userCompetence];
+    if (newUserCompetence.includes(text)) {
+      setUserCompetence(newUserCompetence);
+    } else {
+      newUserCompetence.push(text);
+      setUserCompetence(newUserCompetence);
+    }
+  };
+
+  const removeCompetence = (text) => {
+    let newUserCompetence = [...userCompetence];
+
+    if (newUserCompetence.includes(text)) {
+      newUserCompetence = newUserCompetence.filter(item => item !== text);
+      setUserCompetence(newUserCompetence);
+    } else {
+      setUserCompetence(newUserCompetence);
+    }
   };
 
   useEffect(() => {
@@ -33,166 +42,103 @@ export const Competence = ({visibleCompetence, closeModalCompetence}) => {
   }, []);
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={visibleCompetence}
-      onRequestClose={closeModalCompetence}>
-      {/* Arrière-plan semi-transparent */}
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Couleur semi-transparente
-          justifyContent: 'center', // Centrer verticalement
-          alignItems: 'center', // Centrer horizontalement
-        }}>
-        <TouchableOpacity
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-          }}
-          onPress={() => closeModalCompetence()}
-          accessibilityLabel="Ferme la fenêtre"
-        />
-        {/* Contenu de la modal */}
-        <View
-          style={{
-            top: 40,
-            width: 394,
-            height: 700,
-            backgroundColor: 'white',
-            borderTopLeftRadius: 50,
-            borderTopRightRadius: 50,
-          }}>
-      <View
-        style={{
-          alignSelf: 'center',
-        }}>
+    <>
+      <TouchableOpacity
+        onPress={() => {
+          setModalCompetencelVisible(true);
+        }}
+        style={[StylesCompetence.btnModal]}>
         <Image
-          source={require('../../../assets/images/Distinct.png')}
-          style={{
-            width: 70,
-            height: 70,
-            top: 30,
-            alignSelf: 'center',
-          }}
+          style={[StylesCompetence.icoBtnModal]}
+          source={require('../../../assets/images/distinctions.png')}
         />
         <Text
-          style={{
-            fontFamily: 'Gilroy',
-            fontWeight: '700',
-            fontSize: 20,
-            color: '#000',
-            top: 50,
-            textAlign: 'center',
-            alignSelf: 'center',
-          }}>
+          style={[StylesCompetence.txtBtnModal]}>
           Mes compétences
         </Text>
-      </View>
-      <View>
-        <Text
-          style={{
-            fontFamily: 'Gilroy',
-            fontWeight: '700',
-            fontSize: 14,
-            color: '#000',
-            top: 80,
-            left: 30,
-          }}>
-          Entrez vos compétences.
-        </Text>
-      </View>
-      <View style={{alignSelf: 'center'}}>
-        <ImageBackground
-          source={require('../../../assets/images/RectangleRP.png')}
-          style={{
-            width: 354,
-            height: 40,
-            top: 150,
-          }}>
+        <Image
+          style={[StylesCompetence.plusBtnModal]}
+          source={
+            userCompetence === true
+              ? require('../../../assets/images/add_pro_plein.png')
+              : require('../../../assets/images/add_pro_vide.png')
+          }
+        />
+      </TouchableOpacity>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalCompetencelVisible}
+        statusBarTranslucent={true}
+      >
+        {/* Arrière-plan semi-transparent */}
+        <View
+          style={[StylesCompetence.containerModal]}>
+          <TouchableOpacity
+            style={[StylesCompetence.btnClose]}
+            onPress={() => setModalCompetencelVisible(false)}
+            accessibilityLabel="Ferme la fenêtre"
+          />
+          {/* Contenu de la modal */}
           <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              left: 10,
-            }}>
-            <Image
-              source={require('../../../assets/images/Loupe-B-RP.png')}
+            style={[StylesCompetence.viewModal]}>
+            <View
               style={{
-                width: 20,
-                height: 20,
-              }}
-            />
-            <TextInput
-              style={{
-                fontSize: 14,
-                fontFamily: 'Comfortaa',
-                fontWeight: '700',
-                color: '#6D6966',
-                padding: 5,
-                left: 10,
-              }}
-              defaultValue="Recherchez une compétences"
-              // Vous pouvez ajouter des gestionnaires d'événements ici pour gérer les changements de texte, etc.
-            />
-          </View>
-        </ImageBackground>
-      </View>
-      <View
-        style={{
-          justifyContent: 'space-around',
-          flexDirection: 'row',
-          top: 190,
-        }}>
-        <ImageBackground
-          source={require('../../../assets/images/LeaderRP.png')}
-          style={{
-            width: 152,
-            height: 44,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              left: 10,
-            }}>
-            <Text
-              style={{
-                fontSize: 15,
-                fontFamily: 'Comfortaa',
-                fontWeight: '700',
-                color: '#000',
-                left: 25,
-                top: 10,
+                alignSelf: 'center',
               }}>
-              Leadership
+              <Image
+                source={require('../../../assets/images/Distinct.png')}
+                style={[StylesCompetence.icoModal]}
+              />
+              <Text
+                style={[StylesCompetence.txtTitleModal]}>
+                Mes compétences
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={StylesCompetence.subTxtModal}>
+                Entrez vos compétences.
+              </Text>
+            </View>
+            <View style={{alignSelf: 'center'}}>
+              <SafeAreaView
+                style={[StylesCompetence.viewRow]}>
+                <Image
+                  source={require('../../../assets/images/Loupe-B-RP.png')}
+                  style={[StylesCompetence.icoInput]}
+                />
+                <TextInput
+                  style={[StylesCompetence.txtInput]}
+                  placeholder="Recherchez une compétences"
+                  onSubmitEditing={(event) => addCompetence(event.nativeEvent.text)}
+                />
+              </SafeAreaView>
+            </View>
+            {userCompetence
+              ? <View style={[StylesCompetence.viewOption]}>
+                  <ScrollView style={{ alignSelf: 'center', }} contentContainerStyle={[StylesCompetence.viewScroll]} >
+                    {userCompetence.map((item, index) => (
+                      <TouchableOpacity key={index} onPress={() => { removeCompetence(item) }} style={[StylesCompetence.btnOption]}>
+                        <Text style={[StylesCompetence.txtOption]}>
+                          {item}
+                        </Text>
+                    </TouchableOpacity>
+                  ))}
+                  </ScrollView>
+                </View>
+              : null
+            }
+            <Text
+              style={[StylesCompetence.txtChoice,{
+                top: 230,
+              }]}>
+              Choix multiples.
             </Text>
           </View>
-        </ImageBackground>
-        <ImageBackground
-          source={require('../../../assets/images/EcouteRP.png')}
-          style={{
-            width: 150,
-            height: 36,
-            right:20,
-          }}
-        />
-      </View>
-      <Text
-        style={{
-          fontFamily: 'Comfortaa',
-          fontWeight: '700',
-          fontSize: 12,
-          color: '#000',
-          left: 30,
-          top: 450,
-        }}>
-        Choix multiples.
-      </Text>
-    </View>
         </View>
-    </Modal>
+      </Modal>
+    </>
   );
 };
 

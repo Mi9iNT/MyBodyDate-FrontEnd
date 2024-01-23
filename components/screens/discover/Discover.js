@@ -11,27 +11,6 @@ import Spotlight from '../../composants/Spotlight';
 import PopUpMessage from '../../composants/popup/PopUpMessage';
 
 export const Discover = ({ route, navigation }) => {
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  const userSituation = route.params?.userSituation ?? '';
-  const userOrientation = route.params?.userOrientation ?? '';
-  const userRecherche1 = route.params?.userRecherche1 ?? '';
-  const userRecherche2 = route.params?.userRecherche2 ?? '';
-  const userAffinites = route.params?.userAffinites ?? '';
-  const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-  const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
-  const userPrenom = route.params?.userPrenom ?? '';
-  const userVoice = route.params?.userVoice ?? '';
-  const tabPath = route.params?.tabPath ?? '';
 
   const imagePath = 'Amour';
   const txtPartenaire = 'Inscrite auprès d’un partenaire';
@@ -148,7 +127,7 @@ export const Discover = ({ route, navigation }) => {
 
   //Changement d'utilisateur
 
-  const userTab = userFiltered.map(user => ({
+  const userTab = userFiltered.map((user, index) => ({
     id: user.id,
     medaille: user.medaille,
     partenaire: user.partenaire,
@@ -234,7 +213,7 @@ export const Discover = ({ route, navigation }) => {
     }}>
     <View style={{ width: '100%', height: '100%' }} {...panResponder.panHandlers}>
       {userFiltered.map((user, index) => {
-        console.log(currentIndex);
+        // console.log(currentIndex);
       if (index === currentIndex) {
         return (
           <View key={index} style={{ width: '100%', height: '100%' }}>
@@ -512,42 +491,6 @@ export const Discover = ({ route, navigation }) => {
                       }}
                     />
                 </TouchableOpacity> : null}
-            {/* <View style={{ flexDirection: 'column', position: 'absolute', width: 78, alignItems: 'center', alignSelf: 'flex-end', justifyContent: 'space-between', backgroundColor: 'red', right: user.partenaire ? 0 : 2, top: user.partenaire ? 240 : !user.medaille ? 607 : 180, height: user.partenaire ? 78 : !user.medaille ? 0 : 173.4, }}> */}
-              {/* <TouchableOpacity
-                onPress={() => { animNext(); }}
-                  style={{
-                      backgroundColor: 'red',
-                      alignSelf: 'flex-end',
-                      width: 78,
-                      height: 78,
-                      borderRadius: 100,
-                    }}>
-                    <Image
-                      source={require('../../../assets/images/profil_croix.png')}
-                      style={{
-                        width: 78,
-                        height: 78,
-                      }}
-                    />
-                </TouchableOpacity> */}
-              {/* {user.medaille ?
-              <TouchableOpacity
-                  onPress={() => { animLast(); }}
-                  style={{
-                    backgroundColor: 'red',
-                    width: 78,
-                    height: 78,
-                    borderRadius: 100,
-                  }}>
-                  <Image
-                    source={require('../../../assets/boutons/back.png')}
-                    style={{
-                      width: 78,
-                      height: 78,
-                    }}
-                  />
-              </TouchableOpacity> : null} */}
-            {/* </View> */}
           </View>
         </ImageBackground>
           </View>
@@ -558,13 +501,8 @@ export const Discover = ({ route, navigation }) => {
 
     </View>
   </Animated.View>
-  <MenuBottom navigation={navigation} route={route} tabPath={'Amour'} active={'Discover'} />
+  {/* <MenuBottom navigation={navigation} route={route} tabPath={'Amour'} active={'Discover'} /> */}
   </View>
  </ImageBackground>
   );
-};
-
-Discover.propTypes = {
-  route: PropTypes.object.isRequired,
-  navigation: PropTypes.object.isRequired,
 };

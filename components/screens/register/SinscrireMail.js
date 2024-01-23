@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -9,20 +9,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
+import {storeData, getData, getDatas} from '../../../service/storage';
 import StylesSinscrireMail from '../../../assets/style/styleScreens/styleRegister/StyleSinscrireMail';
 
-export const SignInMail = ({route, navigation}) => {
-  // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  console.log('Choix de route : ', routeChoice);
-  console.log('Consentement : ', consentement);
-  console.log('Love Coach : ', loveCoach);
+export const SignInMail = ({navigation}) => {
 
-  const [userEmail, setEmail] = React.useState();
-  const [errorEmail, setErrorEmail] = React.useState(null);
-  const [buttonPressed, setButtonPressed] = React.useState();
+  const [userEmail, setEmail] = useState(userEmail ?? '');
+  const [errorEmail, setErrorEmail] = useState(null);
+  const [buttonPressed, setButtonPressed] = useState();
 
   const errorMessage =
     'L\'email saisi est invalide. Veuillez respecter le format "exemple@email.fr"';
@@ -46,6 +40,27 @@ export const SignInMail = ({route, navigation}) => {
   };
   console.log(errorEmail);
 
+  useEffect(() => {
+    handleGetData();
+  }, []);
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetData = async () => {
+    try {
+      const email = await getData('email');
+      setEmail(email || '');
+      // console.log(consent);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
 
   console.log('Email: ' + userEmail);
   return (
@@ -79,12 +94,8 @@ export const SignInMail = ({route, navigation}) => {
           <TouchableOpacity
             style={Styles.btn}
             onPress={() => {
-              navigation.navigate('Confirmation email', {
-                userConsent: consentement,
-                routeName: routeChoice,
-                loveCoach: loveCoach,
-                userEmail: userEmail,
-              });
+              navigation.navigate('Confirmation email');
+              handleStoreData('email', userEmail ?? '');
               setButtonPressed(true);
             }}
             accessibilityLabel="Continuer">

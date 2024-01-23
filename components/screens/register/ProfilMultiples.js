@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -6,57 +6,73 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import PropTypes from 'prop-types';
-import Styles from '../../../assets/style/Styles';
-import {BtnNext} from '../../composants/BtnNext';
+import {storeData, getData} from '../../../service/storage';
+import StylesProfilMultiples from '../../../assets/style/styleScreens/styleRegister/StyleProfilMultiples';
 
 /* Screen 2 */
 
-export const ProfilMultiples = ({route, navigation}) => {
+export const ProfilMultiples = ({navigation}) => {
+  useEffect(() => {
+    handleGetFirstname();
+    handleGetUsername();
+    handleGetShowFirstname();
+    handleGetProfilMultiple();
+  }, []);
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetFirstname = async () => {
+    try {
+      const firstname = await getData('firstname');
+      setPrenom(firstname || '');
+      // console.log('firstname : ' + firstname);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  const handleGetUsername = async () => {
+    try {
+      const username = await getData('username');
+      setUsername(username || '');
+      // console.log('username : ' + username);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  const handleGetProfilMultiple = async () => {
+    try {
+      const profilMultiple = await getData('profil_multiple');
+      setRadioValue(profilMultiple || '');
+      // console.log('profil_multiple : ' + profilMultiple);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
+  const handleGetShowFirstname = async () => {
+    try {
+      const showFistrname = await getData('show_firstname');
+      setShowFirstname(showFistrname || '');
+      // console.log('username : ' + username);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
   // Constantes concernant la Modal d'accès aux Permissions
   const [modalVisible, setModalVisible] = useState(true);
 
-  // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  const userSituation = route.params?.userSituation ?? '';
-  const userOrientation = route.params?.userOrientation ?? '';
-  const userRecherche1 = route.params?.userRecherche1 ?? '';
-  const userRecherche2 = route.params?.userRecherche2 ?? '';
-  const userAffinites = route.params?.userAffinites ?? '';
-  const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-  const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
-  const userPrenom = route.params?.userPrenom ?? '';
-  const pseudo = route.params?.pseudo ?? '';
-  console.log('Choix de route : ', routeChoice);
-  console.log('Consentement : ', consentement);
-  console.log('Love Coach : ', loveCoach);
-  console.log('Email : ', userEmail);
-  console.log('Téléphone : ', userPhone);
-  console.log('Ville : ', userCity);
-  console.log('Accès position : ', accesPosition);
-  console.log('Genre : ', genre);
-  console.log('Date de naissance : ', userBirth);
-  console.log('Taille : ', userSize);
-  console.log('Langues : ', userLang);
-  console.log('Situation : ', userSituation);
-  console.log('Orientation : ', userOrientation);
-  console.log('Recherche 1 : ', userRecherche1);
-  console.log('Recherche 2 : ', userRecherche2);
-  console.log('Affinité(s) : ', userAffinites);
-  console.log('Rythme de vie 1 : ', rythmeDeVie1);
-  console.log('Rythme de vie 2 : ', rythmeDeVie2);
-  console.log('Prénom : ', userPrenom);
-  console.log('Pseudo : ', pseudo);
+  const [prenom, setPrenom] = useState();
+  const [username, setUsername] = useState();
+  const [showFirstname, setShowFirstname] = useState();
 
   const [buttonPressed, setButtonPressed] = useState();
 
@@ -72,228 +88,124 @@ export const ProfilMultiples = ({route, navigation}) => {
 
   const [radioValue, setRadioValue] = useState(false);
 
-  const handleRadioChange = value => {
-    setRadioValue(value);
-  };
-  if (radioValue === false) {
-    prenium = 'Non';
-  } else {
-    prenium = 'Oui';
-  }
-
-  console.log('Prenium: ' + prenium);
+  console.log('Profil multiples: ' + radioValue);
 
   return (
-    <View style={Styles.container}>
+    <View style={StylesProfilMultiples.container}>
       <ImageBackground
-        style={Styles.bgGradient}
+        style={StylesProfilMultiples.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText, {top: 100}]}>
-          <Text style={[Styles.textWhiteCenter]}>PROFIL MULTIPLIÉS</Text>
-          <Text style={[Styles.textWhiteRound, {top: 40, padding: 10}]}>
-            {userPrenom}
-          </Text>
-          {/* Parenthèse (id) à changer par n° id_user de la bdd */}
-          <Text
-            style={[
-              Styles.textBlueCenter,
-              {top: 80, fontFamily: 'Comfortaa-Bold'},
-            ]}>
-            ID.{formattedDate}.(id)
-          </Text>
-          <Text style={[Styles.textWhite4, {top: 100}]}>
-            Grâce au profil multipliés,{'\n'}vous bénéficiez gratuitement d’une
-            {'\n'}visibilité de votre profil auprès de{'\n'}votre communauté
-            d’affinité ;{'\n'}Parent célibataire, sénior,{'\n'}Gay/lesbienne et
-            libertin.
-          </Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              gap: 20,
-              alignSelf: 'center',
-              marginBottom: 20,
-            }}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Apps Affinitaires2', {
-                  routeAffinite: 'CheerFlakes',
-                  menu: false,
-                });
-              }}>
-              <Image
-                style={[
-                  {top: 120, width: 113, height: 57, resizeMode: 'cover'},
-                ]}
-                source={require('../../../assets/images/cheerflakes-thumb.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Apps Affinitaires2', {
-                  routeAffinite: 'WineGap',
-                  menu: false,
-                });
-              }}>
-              <Image
-                style={[
-                  {top: 120, width: 113, height: 57, resizeMode: 'cover'},
-                ]}
-                source={require('../../../assets/images/winegap-thmb.png')}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{flexDirection: 'row', gap: 20, alignSelf: 'center'}}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Apps Affinitaires2', {
-                  routeAffinite: 'GoPride',
-                  menu: false,
-                });
-              }}>
-              <Image
-                style={[
-                  {top: 120, width: 113, height: 57, resizeMode: 'cover'},
-                ]}
-                source={require('../../../assets/images/gopride-thumb.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Apps Affinitaires2', {
-                  routeAffinite: 'OpenBetween',
-                  menu: false,
-                });
-              }}>
-              <Image
-                style={[
-                  {top: 120, width: 113, height: 57, resizeMode: 'cover'},
-                ]}
-                source={require('../../../assets/images/openbetween-thumb.png')}
-              />
-            </TouchableOpacity>
-          </View>
+        <Text style={[StylesProfilMultiples.TxtTitle]}>PROFIL MULTIPLIÉS</Text>
+        <Text style={[StylesProfilMultiples.textWhiteRound]}>
+          {showFirstname ? prenom : username}
+        </Text>
+        {/* Parenthèse (id) à changer par n° id_user de la bdd */}
+        <Text style={[StylesProfilMultiples.textBlueCenter]}>
+          ID.{formattedDate}.(id)
+        </Text>
+        <Text style={[StylesProfilMultiples.textWhite]}>
+          Grâce au profil multipliés,{'\n'}vous bénéficiez gratuitement d’une
+          {'\n'}visibilité de votre profil auprès de{'\n'}votre communauté
+          d’affinité ;{'\n'}Parent célibataire, sénior,{'\n'}Gay/lesbienne et
+          libertin.
+        </Text>
+        <View style={[StylesProfilMultiples.ViewRow]}>
           <TouchableOpacity
-            style={[Styles.radioInputContainerTwo, {top: 120}]}
-            onPress={() => handleRadioChange(!radioValue)}>
+            onPress={() => {
+              navigation.navigate('Apps Affinitaires2', {
+                routeAffinite: 'CheerFlakes',
+                menu: false,
+              });
+            }}>
             <Image
-              source={
-                radioValue
-                  ? require('../../../assets/images/radio_selected.png')
-                  : require('../../../assets/images/radio_unselected.png')
-              }
-              style={{width: 20, height: 20}}
+              style={[StylesProfilMultiples.btnImgApp]}
+              source={require('../../../assets/images/cheerflakes-thumb.png')}
             />
-            <Text style={[Styles.TextInputTwo]}>
-              J’accepte le multi-profil GRATUIT.
-            </Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Apps Affinitaires2', {
+                routeAffinite: 'WineGap',
+                menu: false,
+              });
+            }}>
+            <Image
+              style={[StylesProfilMultiples.btnImgApp]}
+              source={require('../../../assets/images/winegap-thmb.png')}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={[StylesProfilMultiples.ViewRow]}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Apps Affinitaires2', {
+                routeAffinite: 'GoPride',
+                menu: false,
+              });
+            }}>
+            <Image
+              style={[StylesProfilMultiples.btnImgApp]}
+              source={require('../../../assets/images/gopride-thumb.png')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Apps Affinitaires2', {
+                routeAffinite: 'OpenBetween',
+                menu: false,
+              });
+            }}>
+            <Image
+              style={[StylesProfilMultiples.btnImgApp]}
+              source={require('../../../assets/images/openbetween-thumb.png')}
+            />
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity
+          style={[StylesProfilMultiples.radioInputContainerTwo]}
+          onPress={() => {
+            radioValue ? setRadioValue(false) : setRadioValue(true);
+          }}>
+          <Image
+            source={
+              radioValue
+                ? require('../../../assets/images/radio_selected.png')
+                : require('../../../assets/images/radio_unselected.png')
+            }
+            style={{width: 20, height: 20}}
+          />
+          <Text style={[StylesProfilMultiples.TextInput]}>
+            J’accepte le multi-profil GRATUIT.
+          </Text>
+        </TouchableOpacity>
+        <Text style={[StylesProfilMultiples.textWhite2]}>
+          Voir les profils dans les paramètres plus tard
+        </Text>
+        <TouchableOpacity
+          style={[StylesProfilMultiples.ViewBtn]}
+          onPress={() => {
+            navigation.navigate('Prenium');
+            handleStoreData('profil_multiple', radioValue ?? '');
+            setButtonPressed(true);
+          }}
+          accessibilityLabel="Continuer">
           <Text
             style={[
-              {
-                top: 120,
-                color: '#FFF',
-                textAlign: 'center',
-                fontFamily: 'Comfortaa',
-                fontSize: 12,
-                fontStyle: 'normal',
-                fontWeight: 700,
-              },
+              StylesProfilMultiples.TxtBtn,
+              {color: buttonPressed ? '#fff' : '#0019A7'},
             ]}>
-            Voir les profils dans les paramètres plus tard
+            Continuer
           </Text>
-          <BtnNext
-            route={route}
-            navigation={navigation}
-            navigateTo={'Prenium'}
-            txt={'Continuer'}
-            background={'white'}
-            top={150}
+          <Image
+            style={[StylesProfilMultiples.imgBtn]}
+            source={
+              buttonPressed
+                ? require('../../../assets/boutons/Bouton-Rouge.png')
+                : require('../../../assets/boutons/Bouton-Blanc.png')
+            }
           />
-          {/* <View style={[{top: 120}]}>
-            <TouchableOpacity
-              style={Styles.btn}
-              onPress={() => {
-                setButtonPressed('Continuer');
-                navigation.navigate('Prenium', {
-                  userConsent: consentement,
-                  routeName: routeChoice,
-                  loveCoach: loveCoach,
-                  userEmail: userEmail,
-                  userPhone: userPhone,
-                  userCity: userCity,
-                  accesPosition: accesPosition,
-                  genre: genre,
-                  userBirth: userBirth,
-                  userSize: userSize,
-                  userLang: userLang,
-                  userSituation: userSituation,
-                  userOrientation: userOrientation,
-                  userRecherche1: userRecherche1,
-                  userRecherche2: userRecherche2,
-                  userAffinites: userAffinites,
-                  rythmeDeVie1: rythmeDeVie1,
-                  rythmeDeVie2: rythmeDeVie2,
-                  userPrenom: userPrenom,
-                });
-              }}
-              accessibilityLabel="Continuer">
-              <Text
-                style={[
-                  Styles.textBtn9,
-                  {
-                    zIndex: 1,
-                    top: 40,
-                    color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
-                  },
-                ]}>
-                Continuer
-              </Text>
-              <Image
-                style={[
-                  {
-                    height: 56,
-                    resizeMode: 'contain',
-                    alignSelf: 'center',
-                  },
-                ]}
-                source={
-                  buttonPressed === 'Continuer'
-                    ? require('../../../assets/boutons/Bouton-Rouge.png')
-                    : require('../../../assets/boutons/Bouton-Blanc.png')
-                }
-              />
-            </TouchableOpacity>
-          </View> */}
-        </View>
+        </TouchableOpacity>
       </ImageBackground>
     </View>
   );
-};
-ProfilMultiples.propTypes = {
-  route: PropTypes.shape({
-    params: PropTypes.shape({
-      routeName: PropTypes.string,
-      userConsent: PropTypes.string,
-      loveCoach: PropTypes.string,
-      userEmail: PropTypes.string,
-      userPhone: PropTypes.string,
-      userCity: PropTypes.string,
-      accesPosition: PropTypes.string,
-      genre: PropTypes.string,
-      userBirth: PropTypes.string,
-      userSize: PropTypes.string,
-      userLang: PropTypes.string,
-      userSituation: PropTypes.string,
-      userOrientation: PropTypes.string,
-      userRecherche1: PropTypes.string,
-      userRecherche2: PropTypes.array,
-      userAffinites: PropTypes.array,
-      rythmeDeVie1: PropTypes.string,
-      rythmeDeVie2: PropTypes.array,
-      userPrenom: PropTypes.string,
-      pseudo: PropTypes.string,
-    }),
-  }).isRequired,
-  navigation: PropTypes.object.isRequired,
 };

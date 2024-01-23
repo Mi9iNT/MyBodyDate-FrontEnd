@@ -3,26 +3,55 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
-import {View, Text, Image, TouchableOpacity, Modal} from 'react-native';
-import {MyComponentFumer} from './MyComponentFumer';
+import { View, Text, Image, TouchableOpacity, Modal } from 'react-native';
+import {storeData, getData, getDatas} from '../../../service/storage';
+import StylesFumer from '../../../assets/style/StyleComposants/styleEdit/StyleFumer';
 
-export const Fumer = ({visibleFumer, closeModalFumer}) => {
-  const [modalFumerlVisible, setModalFumerlVisible] = useState(false);
+export const Fumer = ({}) => {
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [addProVisible, setAddProVisible] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
-  const handleAddProToggle = index => {
-    const newArray = [...addProVisible];
-    newArray[index] = !newArray[index];
-    setAddProVisible(newArray);
+  const [modalSmokingVisible, setModalSmokingVisible] = useState(false);
+
+  const [viewSmoking, setViewSmoking] = useState(false);
+
+  const [userSmoking, setUserSmoking] = useState(false);
+
+  // console.log(userSmoking);
+
+  const fumette = [
+    'À l’occasion',
+    'Régulièrement',
+    'Rarement',
+    'Jamais',
+    'J’ai arrêté',
+  ];
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
   };
+
+  const keysToRetrieve = ['user_smoking'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const getMultipleValues = async () => {
+    try {
+      const retrievedValues = await getDatas(keysToRetrieve);
+      // console.log('Valeurs récupérées :', retrievedValues);
+
+      const result = {};
+      retrievedValues.forEach(item => {
+        retrievedValues[item.key] = item.value;
+      });
+
+      setUserSmoking(retrievedValues.user_smoking);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+  getMultipleValues();
 
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -32,81 +61,106 @@ export const Fumer = ({visibleFumer, closeModalFumer}) => {
   }, []);
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={visibleFumer}
-      onRequestClose={closeModalFumer}>
-      {/* Arrière-plan semi-transparent */}
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Couleur semi-transparente
-          justifyContent: 'center', // Centrer verticalement
-          alignItems: 'center', // Centrer horizontalement
-        }}>
-        <TouchableOpacity
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-          }}
-          onPress={() => closeModalFumer()}
-          accessibilityLabel="Ferme la fenêtre"
+    <>
+      <TouchableOpacity
+        onPress={() => {
+          setModalSmokingVisible(true);
+        }}
+        style={[StylesFumer.btnModal]}>
+        <Image source={require('../../../assets/images/Fumer.png')} style={[StylesFumer.icoBtnModal]} />
+        <Text
+          style={[StylesFumer.txtBtnModal]}>
+          Tabac
+        </Text>
+        <Image style={[StylesFumer.plusBtnModal]}
+          source={
+            !userSmoking
+              ? require('../../../assets/images/add_ra_vide.png')
+              : require('../../../assets/images/PlusActivite.png')
+          }
         />
-        {/* Contenu de la modal */}
+      </TouchableOpacity>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalSmokingVisible}
+        onRequestClose={() => { setModalSmokingVisible(false); }}>
+        {/* Arrière-plan semi-transparent */}
         <View
-          style={{
-            top: 40,
-            width: 394,
-            height: 700,
-            backgroundColor: 'white',
-            borderTopLeftRadius: 50,
-            borderTopRightRadius: 50,
-          }}>
+          style={StylesFumer.containerModal}>
+          <TouchableOpacity
+            style={StylesFumer.btnClose}
+            onPress={() => setModalSmokingVisible(false)}
+            accessibilityLabel="Fermer la fenêtre"
+          />
+          {/* Contenu de la modal */}
           <View
-            style={{
-              alignSelf: 'center',
-            }}>
-            <Image
-              source={require('../../../assets/images/Fumer.png')}
+            style={StylesFumer.viewModal}>
+            <View
               style={{
-                width: 84,
-                height: 84,
-                top: 30,
+                alignSelf: 'center',
+              }}>
+              <Image
+                source={require('../../../assets/images/Fumer.png')}
+                style={StylesFumer.icoModal}
+              />
+              <Text
+                style={StylesFumer.txtTitleModal}>
+                Tabac
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={StylesFumer.subTxtModal}>
+                Sélectionnez votre consommation de tabac
+              </Text>
+            </View>
+            <View
+              style={{
+                top: 140,
                 alignItems: 'center',
-                alignSelf: 'center',
-              }}
-            />
-            <Text
-              style={{
-                fontFamily: 'Gilroy',
-                fontWeight: '700',
-                fontSize: 20,
-                color: '#0019A7',
-                top: 50,
-                alignSelf: 'center',
               }}>
-              Tabac
-            </Text>
+            <View style={{flexDirection: 'row'}}>
+              <View style={{flexDirection: 'column'}}>
+              <TouchableOpacity
+                onPress={() => { viewSmoking ? setViewSmoking(false) : setViewSmoking(true); }}
+                style={{ width: 276, alignSelf: 'center', }}
+              >
+              <Text
+                style={[StylesFumer.txtOptionSelected]}>
+                {userSmoking ? userSmoking : 'Consommation tabac'}
+              </Text>
+            </TouchableOpacity>
+            {viewSmoking ?
+              <View
+                style={[StylesFumer.viewOption]} >
+                {fumette.map((item, index) => (
+                  <TouchableOpacity key={index} style={{}} onPress={() => { setUserSmoking(item);  handleStoreData('user_smoking', item); setViewSmoking(false); }}>
+                    <Text
+                      key={index}
+                      style={[StylesFumer.txtOption, {fontWeight: userSmoking === item ? 700 : 500}]}>
+                      {item}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+              : null}
+              </View>
+              <TouchableOpacity
+                onPress={() => { viewSmoking ? setViewSmoking(false) : setViewSmoking(true); }}>
+                <Image
+                  source={require('../../../assets/images/FlecheEditRA.png')}
+                  style={[StylesFumer.icoViewOption, {
+                    transform: [{rotate: viewSmoking ? '180deg' : '0deg'}],
+                  }]}/>
+              </TouchableOpacity>
+            </View>
+            </View>
+            <Text style={{top: 360, left: 40, color: '#0019A7', fontFamily: 'Comfortaa', fontSize: 12}}>Choix unique</Text>
           </View>
-          <View>
-            <Text
-              style={{
-                fontFamily: 'Gilroy',
-                fontWeight: '700',
-                fontSize: 14,
-                color: '#0019A7',
-                top: 80,
-                left: 30,
-              }}>
-              Sélectionnez votre consommation de tabac.
-            </Text>
-          </View>
-          <MyComponentFumer />
         </View>
-      </View>
-    </Modal>
+      </Modal>
+    </>
   );
 };
 

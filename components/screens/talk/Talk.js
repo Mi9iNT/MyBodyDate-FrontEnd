@@ -39,7 +39,7 @@ export const Talk = ({ navigation, route, imagePath }) => {
       style={{top: '10%', resizeMode: 'contain'}}>
         <OdlMessage navigation={ navigation } />
       </ImageBackground>
-      <MenuBottom navigation={navigation} />
+      {/* <MenuBottom navigation={navigation} /> */}
     </View>
   );
 };

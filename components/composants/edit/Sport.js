@@ -4,28 +4,56 @@
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {View, Text, Image, TouchableOpacity, Modal} from 'react-native';
-import {MyComponentSport} from './MyComponentSport';
+import {storeData, getData, getDatas} from '../../../service/storage';
+import StylesSport from '../../../assets/style/StyleComposants/styleEdit/StyleSport';
 
-export const Sport = ({visibleSport, closeModalSport}) => {
-  const [modalSportlVisible, setModalSportlVisible] = useState(false);
+export const Sport = ({}) => {
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [addProVisible, setAddProVisible] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const [modalSprotVisible, setModalSportVisible] = useState(false);
 
-  const handleAddProToggle = index => {
-    const newArray = [...addProVisible];
-    newArray[index] = !newArray[index];
-    setAddProVisible(newArray);
+  const [viewSprot, setViewASport] = useState(false);
+
+  const [userSport, setUserSport] = useState(false);
+
+  // console.log(userSport);
+
+  const sport = [
+    'Souvent',
+    'Parfois',
+    'Très peu',
+    'Jamais',
+  ];
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
   };
 
+  const keysToRetrieve = ['user_sport'];
+
+  // Appel de la fonction pour récupérer plusieurs valeurs
+  const getMultipleValues = async () => {
+    try {
+      const retrievedValues = await getDatas(keysToRetrieve);
+      // console.log('Valeurs récupérées :', retrievedValues);
+
+      const result = {};
+      retrievedValues.forEach(item => {
+        retrievedValues[item.key] = item.value;
+      });
+
+      setUserSport(retrievedValues.user_sport);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+  getMultipleValues();
+
   useEffect(() => {
+    getMultipleValues();
     StatusBar.setHidden(true);
     return () => {
       StatusBar.setHidden(false);
@@ -33,79 +61,106 @@ export const Sport = ({visibleSport, closeModalSport}) => {
   }, []);
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={visibleSport}
-      onRequestClose={closeModalSport}>
-      {/* Arrière-plan semi-transparent */}
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Couleur semi-transparente
-          justifyContent: 'center', // Centrer verticalement
-          alignItems: 'center', // Centrer horizontalement
-        }}>
-        <TouchableOpacity
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-          }}
-          onPress={() => closeModalSport()}
-          accessibilityLabel="Ferme la fenêtre"
-        />
-        {/* Contenu de la modal */}
-        <View
-          style={{
-            top: 40,
-            width: 394,
-            height: 700,
-            backgroundColor: 'white',
-            borderTopLeftRadius: 50,
-            borderTopRightRadius: 50,
-          }}>
-          <View
-            style={{
-              alignSelf: 'center',
-            }}>
-        <Image
-          source={require('../../../assets/images/Sport.png')}
-          style={{
-            width: 84,
-            height: 84,
-            top: 30,
-            alignSelf: 'center',
-          }}
-        />
+    <>
+      <TouchableOpacity
+        onPress={() => {
+          setModalSportVisible(true);
+        }}
+        style={[StylesSport.btnModal]}>
+        <Image source={require('../../../assets/images/Sport.png')} style={[StylesSport.icoBtnModal]} />
         <Text
-          style={{
-            fontFamily: 'Gilroy',
-            fontWeight: '700',
-            fontSize: 20,
-            color: '#0019A7',
-            top: 50,
-          }}>
+          style={[StylesSport.txtBtnModal]}>
           Activité sportive
         </Text>
-      </View>
-      <View>
-        <Text
-          style={{
-            fontFamily: 'Gilroy',
-            fontWeight: '700',
-            fontSize: 14,
-            color: '#0019A7',
-            top: 80,
-            left: 30,
-          }}>
-          Sélectionnez la fréquence de votre activité{'\n'}sportive.
-        </Text>
-      </View>
-      <MyComponentSport />
+        <Image style={[StylesSport.plusBtnModal]}
+          source={
+            !userSport
+              ? require('../../../assets/images/add_ra_vide.png')
+              : require('../../../assets/images/PlusActivite.png')
+          }
+        />
+      </TouchableOpacity>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalSprotVisible}
+        onRequestClose={() => { setModalSportVisible(false); }}>
+        {/* Arrière-plan semi-transparent */}
+        <View
+          style={StylesSport.containerModal}>
+          <TouchableOpacity
+            style={StylesSport.btnClose}
+            onPress={() => setModalSportVisible(false)}
+            accessibilityLabel="Fermer la fenêtre"
+          />
+          {/* Contenu de la modal */}
+          <View
+            style={StylesSport.viewModal}>
+            <View
+              style={{
+                alignSelf: 'center',
+              }}>
+              <Image
+                source={require('../../../assets/images/Sport.png')}
+                style={StylesSport.icoModal}
+              />
+              <Text
+                style={StylesSport.txtTitleModal}>
+                Activité sportive
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={StylesSport.subTxtModal}>
+                Sélectionnez la fréquence de votre activité sportive.
+              </Text>
+            </View>
+            <View
+              style={{
+                top: 140,
+                alignItems: 'center',
+              }}>
+            <View style={{flexDirection: 'row'}}>
+              <View style={{flexDirection: 'column'}}>
+              <TouchableOpacity
+                onPress={() => { viewSprot ? setViewASport(false) : setViewASport(true); }}
+                style={{ width: 276, alignSelf: 'center', }}
+              >
+              <Text
+                style={[StylesSport.txtOptionSelected]}>
+                {userSport ? userSport : 'Activité sportive'}
+              </Text>
+            </TouchableOpacity>
+            {viewSprot ?
+              <View
+                style={[StylesSport.viewOption]} >
+                {sport.map((item, index) => (
+                  <TouchableOpacity key={index} style={{}} onPress={() => { setUserSport(item);  handleStoreData('user_sport', item); setViewASport(false); }}>
+                    <Text
+                      key={index}
+                      style={[StylesSport.txtOption, {fontWeight: userSport === item ? 700 : 500}]}>
+                      {item}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+              : null}
+              </View>
+              <TouchableOpacity
+                onPress={() => { viewSprot ? setViewASport(false) : setViewASport(true); }}>
+                <Image
+                  source={require('../../../assets/images/FlecheEditRA.png')}
+                  style={[StylesSport.icoViewOption, {
+                    transform: [{rotate: viewSprot ? '180deg' : '0deg'}],
+                  }]}/>
+              </TouchableOpacity>
+            </View>
+            </View>
+            <Text style={{top: 360, left: 40, color: '#0019A7', fontFamily: 'Comfortaa', fontSize: 12}}>Choix unique</Text>
+          </View>
         </View>
-      </View>
-    </Modal>
+      </Modal>
+    </>
   );
 };
 

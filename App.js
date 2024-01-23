@@ -3,6 +3,10 @@ import * as React from 'react';
 
 import {enableLatestRenderer} from 'react-native-maps';
 
+import {WebSocketProvider} from './context/WebSocketContext';
+
+import { PushNotificationManager } from './service/PushNotificationManager';
+
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -22,7 +26,6 @@ import {Genre} from './components/screens/register/Genre';
 import {DateDeNaissance} from './components/screens/register/DateDeNaissance';
 import {Taille} from './components/screens/register/Taille';
 import {LangueParler} from './components/screens/register/LangueParler';
-import {Screen8} from './components/screens/Screen8';
 import {ScreenTest} from './components/screens/ScreenTest';
 import {Situation} from './components/screens/register/Situation';
 import {Orientation} from './components/screens/register/Orientation';
@@ -141,48 +144,54 @@ const HomeStack = createNativeStackNavigator();
 const SettingsStack = createNativeStackNavigator();
 
 enableLatestRenderer();
-// Composant pour les écrans des onglets
+
 function TabNavigator({route}) {
   const {tabPath} = route.params;
 
   return (
     <Tab.Navigator
-      screenOptions={{
-        tabBarShowLabel: false,
-        tabBarStyle: [
-          {
-            display: 'flex',
-          },
-          null,
-        ],
-      }}
-      tabBar={props => <MenuBottom {...props} />}>
-      <Tab.Screen
-        name="TabDiscover"
-        component={Discover}
-        options={{headerShown: false}}
-      />
-      <Tab.Screen
-        name="TabTalk"
-        component={Talk}
-        options={{headerShown: false}}
-      />
-      <Tab.Screen
-        name="TabMessages"
-        component={Messages}
-        options={{headerShown: false}}
-      />
-      <Tab.Screen
-        name="TabMap"
-        component={Map}
-        options={{headerShown: false}}
-      />
-      <Tab.Screen
-        name="TabMoi"
-        component={ProfilMeRA}
-        options={{headerShown: false}}
-      />
-    </Tab.Navigator>
+    screenOptions={{
+      tabBarShowLabel: false,
+      tabBarStyle: [
+        {
+          display: 'flex',
+        },
+        null,
+      ],
+    }}
+    tabBar={props => <MenuBottom {...props} />}
+  >
+    <Tab.Screen
+      name="TabDiscover"
+      component={Discover}
+      options={{ headerShown: false }}
+      key="discover"
+    />
+    <Tab.Screen
+      name="TabTalk"
+      component={Talk}
+      options={{ headerShown: false }}
+      key="talk"
+    />
+    <Tab.Screen
+      name="TabMessages"
+      component={Messages}
+      options={{ headerShown: false }}
+      key="messages"
+    />
+    <Tab.Screen
+      name="TabMap"
+      component={Map}
+      options={{ headerShown: false }}
+      key="map"
+    />
+    <Tab.Screen
+      name="TabMoi"
+      component={ProfilMeRA}
+      options={{ headerShown: false }}
+      key="moi"
+    />
+  </Tab.Navigator>
   );
 }
 
@@ -578,10 +587,6 @@ function MainNavigator() {
       <Stack.Screen name="Bienvenue" component={Bienvenue} options={{ headerShown: false }} />
       <Stack.Screen name="Tabs" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Home" component={HomeNavigator} options={{headerShown: false}} />
-      {/* <Stack.Screen name="Discover" component={HomeTabs} options={{headerShown: false}} /> */}
-      {/* <Stack.Screen name="ProfilMe" component={HomeTabs} options={{headerShown: false}} /> */}
-      {/* <Stack.Screen name="Messages" component={HomeTabs} options={{headerShown: false}} /> */}
-      {/* <Stack.Screen name="Map" component={HomeTabs} options={{headerShown: false}} /> */}
     </Stack.Navigator>
   );
 }
@@ -589,8 +594,11 @@ function MainNavigator() {
 function App() {
   return (
     <NavigationContainer>
-      <StatusBar translucent backgroundColor="transparent" />
-      <HomeNavigator />
+       <WebSocketProvider>
+        <StatusBar translucent backgroundColor="transparent" />
+        {/* <PushNotificationManager /> */}
+        <HomeNavigator />
+      </WebSocketProvider>
     </NavigationContainer>
   );
 }

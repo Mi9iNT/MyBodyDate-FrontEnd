@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -7,11 +7,35 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
+import {storeData, getData} from '../../service/storage';
 import Styles from '../../assets/style/Styles';
 
 //Home Screen
 export const HomeStackNext = ({navigation}) => {
   const [buttonPressed, setButtonPressed] = useState();
+  const [routeChoice, setRouteChoice] = useState();
+
+  useEffect(() => {
+    handleGetData();
+  }, []);
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetData = async () => {
+    try {
+      const key = await getData('route_choice');
+      setRouteChoice(key || '');
+      // console.log(consent);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
 
   return (
     <View style={Styles.container}>
@@ -35,10 +59,9 @@ export const HomeStackNext = ({navigation}) => {
             style={[{top: 0, height: 60, width: '90%', alignSelf: 'center'}]}
             accessibilityLabel="S'inscrire"
             onPress={() => {
-              setButtonPressed("S'inscrire");
-              navigation.navigate('Bienvenue', {
-                routeName: "S'inscrire",
-              });
+              setButtonPressed('inscription');
+              handleStoreData('route_choice', 'inscription');
+              navigation.navigate('Bienvenue');
             }}>
             <Text style={[Styles.textBtn6, {zIndex: 1, top: 10}]}>
               S'inscrire
@@ -54,7 +77,7 @@ export const HomeStackNext = ({navigation}) => {
                 },
               ]}
               source={
-                buttonPressed === "S'inscrire"
+                buttonPressed === 'inscription'
                   ? require('../../assets/boutons/Bouton-Rouge.png')
                   : require('../../assets/boutons/Bouton-Bleu.png')
               }
@@ -64,10 +87,9 @@ export const HomeStackNext = ({navigation}) => {
             style={[{top: 20, height: 60, width: '90%', alignSelf: 'center'}]}
             accessibilityLabel="Se connecter"
             onPress={() => {
-              setButtonPressed('Se connecter');
-              navigation.navigate('Liens de connexion', {
-                routeName: 'Se connecter',
-              });
+              setButtonPressed('connexion');
+              handleStoreData('route_choice', 'connexion');
+              navigation.navigate('Liens de connexion');
             }}>
             <Text style={[Styles.textBtn6, {zIndex: 2, top: 10}]}>
               Se connecter
@@ -83,7 +105,7 @@ export const HomeStackNext = ({navigation}) => {
                 },
               ]}
               source={
-                buttonPressed === 'Se connecter'
+                buttonPressed === 'connexion'
                   ? require('../../assets/boutons/Bouton-Rouge.png')
                   : require('../../assets/boutons/Bouton-Bleu.png')
               }

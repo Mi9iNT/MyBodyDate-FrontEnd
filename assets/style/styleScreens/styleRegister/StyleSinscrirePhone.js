@@ -23,7 +23,7 @@ const StylesSinscrirePhone = {
   },
   ViewInput: {
     flex: 2,
-    top: 180,
+    top: 80,
   },
   TextInput: {
     color: '#FFF',

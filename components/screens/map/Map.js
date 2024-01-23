@@ -173,64 +173,62 @@ export const Map = ({ navigation, route, imagePath }) => {
   return (
     <ImageBackground source={require('../../../assets/images/bg-menuslide-map.png')} style={{ height: '100%', width: '100%', resizeMode:'contain' }}>
       <MenuSlide imagePath={imagePath}/>
-      <View>
-        <View style={styles.container}>
-          <MapView
-            ref={mapViewRef}
-            provider={PROVIDER_GOOGLE}
-            customMapStyle={[
-              {
-                featureType: "administrative",
-                elementType: "geometry",
-                stylers: [
-                  {
-                    visibility: "off"
-                  }
-                ]
-              },
-              {
-                featureType: "poi",
-                stylers: [
-                  {
-                    visibility: "off"
-                  }
-                ]
-              },
-              {
-                featureType: "road",
-                elementType: "labels.icon",
-                stylers: [
-                  {
-                    visibility: "off"
-                  }
-                ]
-              },
-              {
-                featureType: "transit",
-                stylers: [
-                  {
-                    visibility: "off"
-                  }
-                ]
-              }
-            ]}
-            style={styles.map}
-            region={{
-              latitude: 48.8966739567463,
-              longitude: 2.3809600920672116,
-              latitudeDelta: 0.015,
-              longitudeDelta: 0.0121,
-            }}
-            showsPointsOfInterest={false}
-          >
-            <Marker coordinate={userLocation}>
-              <CustomMarker />
-            </Marker>
-          </MapView>
-          <RecenterButton onPress={centerMapOnUser} />
-        </View>
+      <View style={[styles.container, { backgroundColor:'red'}]}>
+        <MapView
+          ref={mapViewRef}
+          provider={PROVIDER_GOOGLE}
+          customMapStyle={[
+            {
+              featureType: "administrative",
+              elementType: "geometry",
+              stylers: [
+                {
+                  visibility: "off"
+                }
+              ]
+            },
+            {
+              featureType: "poi",
+              stylers: [
+                {
+                  visibility: "off"
+                }
+              ]
+            },
+            {
+              featureType: "road",
+              elementType: "labels.icon",
+              stylers: [
+                {
+                  visibility: "off"
+                }
+              ]
+            },
+            {
+              featureType: "transit",
+              stylers: [
+                {
+                  visibility: "off"
+                }
+              ]
+            }
+          ]}
+          style={styles.map}
+          region={{
+            latitude: 48.8966739567463,
+            longitude: 2.3809600920672116,
+            latitudeDelta: 0.015,
+            longitudeDelta: 0.0121,
+          }}
+          showsPointsOfInterest={false}
+        >
+          <Marker coordinate={userLocation}>
+            <CustomMarker />
+          </Marker>
+        </MapView>
+        <RecenterButton onPress={centerMapOnUser} />
       </View>
-      <MenuBottom navigation={navigation} route={route} tabPath={tabPath} active={'Map'} />
+      {/* <MenuBottom navigation={navigation} route={route} tabPath={tabPath} active={'Map'} /> */}
     </ImageBackground>
   );
 };

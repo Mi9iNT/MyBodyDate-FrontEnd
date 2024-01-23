@@ -8,6 +8,9 @@ const StylesDateDeNaissance = {
     width: '100%',
     height: '100%',
   },
+  viewContent: {
+    flex: 6,
+  },
   ViewText: {
     flex: 1,
   },
@@ -92,7 +95,7 @@ const StylesDateDeNaissance = {
     justifyContent: 'space-between',
   },
   ViewTextError: {
-    top: 210,
+    top: 260,
     width: '85%',
     alignSelf: 'center',
     alignItems: 'center',
@@ -105,6 +108,27 @@ const StylesDateDeNaissance = {
     textAlign: 'center',
     fontStyle: 'normal',
     fontWeight: 700,
+  },
+  ViewBtn: {
+    flex: 1,
+    height: 56,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imgBtn: {
+    height: 56,
+    flexShrink: 0,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    bottom: 17,
+  },
+  TxtBtn: {
+    color: '#0F0BAE',
+    fontSize: 22,
+    textAlign: 'center',
+    fontFamily: 'Comfortaa',
+    top: 24,
+    zIndex: 1,
   },
 };
 

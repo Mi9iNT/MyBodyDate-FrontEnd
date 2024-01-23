@@ -10,10 +10,8 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
 import MenuSlide from '../../composants/MenuSlide';
-import {MenuBottom} from '../../composants/MenuBottom';
 
 export const AppsAffinitaires = ({route, navigation}) => {
   const routeChoice = route.params?.routeName ?? '';

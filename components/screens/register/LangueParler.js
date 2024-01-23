@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -11,34 +11,32 @@ import {
 import {BlurView} from '@react-native-community/blur';
 import Styles from '../../../assets/style/Styles';
 import {NativeModules} from 'react-native';
-import {BtnNext} from '../../composants/BtnNext';
 import StylesLangParler from '../../../assets/style/styleScreens/styleRegister/StyleLangParler';
+import {storeData, getData, getDatas} from '../../../service/storage';
 
 //Home Screen
-export const LangueParler = ({route, navigation}) => {
-  // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  console.log('Choix de route : ', routeChoice);
-  console.log('Consentement : ', consentement);
-  console.log('Love Coach : ', loveCoach);
-  console.log('Email : ', userEmail);
-  console.log('Téléphone : ', userPhone);
-  console.log('Ville : ', userCity);
-  console.log('Accès position : ', accesPosition);
-  console.log('Genre : ', genre);
-  console.log('Date de naissance : ', userBirth);
-  console.log('Taille : ', userSize);
-  console.log('Langues : ', userLang);
+export const LangueParler = ({navigation}) => {
+  useEffect(() => {
+    handleGetData();
+  }, []);
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetData = async () => {
+    try {
+      const langue = await getData('langues');
+      setSelectedValues(langue || '');
+      // console.log('langue : ' + langue);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
 
   const [buttonPressed, setButtonPressed] = useState();
 
@@ -85,9 +83,29 @@ export const LangueParler = ({route, navigation}) => {
   const handleSelection = value => {
     if (selectedValues.includes(value)) {
       setSelectedValues(selectedValues.filter(val => val !== value));
+      handleStoreData('user_langues', selectedValue);
     } else {
       setSelectedValues([...selectedValues, value]);
+      handleStoreData('user_langues', selectedValue);
     }
+
+    const keysToRetrieve = ['user_langues'];
+
+    // Appel de la fonction pour récupérer plusieurs valeurs
+    const getMultipleValues = async () => {
+      try {
+        const retrievedValues = await getDatas(keysToRetrieve);
+        // console.log('Valeurs récupérées :', retrievedValues);
+
+        retrievedValues.forEach(item => {
+          retrievedValues[item.key] = item.value;
+        });
+        setSelectedValues(retrievedValues.user_langues);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données :', error);
+      }
+    };
+    getMultipleValues();
 
     if (value == [1]) {
       inputValue = 'Français';
@@ -163,7 +181,9 @@ export const LangueParler = ({route, navigation}) => {
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
-              <Text style={StylesLangParler.textBtnInputLang}>Espagnol Castillan</Text>
+              <Text style={StylesLangParler.textBtnInputLang}>
+                Espagnol Castillan
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={StylesLangParler.btnInputLang}
@@ -219,7 +239,9 @@ export const LangueParler = ({route, navigation}) => {
                     : require('../../../assets/images/radio_unselected.png')
                 }
               />
-              <Text style={StylesLangParler.textBtnInputLang}>Chinois mandarin</Text>
+              <Text style={StylesLangParler.textBtnInputLang}>
+                Chinois mandarin
+              </Text>
             </TouchableOpacity>
           </View>
           <View style={{flex: 2}}>
@@ -309,12 +331,12 @@ export const LangueParler = ({route, navigation}) => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{top: 120}}>
+        <View style={{top: 40}}>
           <Text style={[StylesLangParler.textWhite]}>Choix multiples.</Text>
           <View style={[StylesLangParler.line]} />
         </View>
 
-        <View style={[{top: 280}]}>
+        <View style={[{top: 200}]}>
           <TouchableOpacity
             style={[Styles.row, StylesLangParler.btnModal]}
             onPress={() => setModalVisible(false)}
@@ -360,14 +382,30 @@ export const LangueParler = ({route, navigation}) => {
             </View>
           </TouchableOpacity>
         </Modal>
-        <BtnNext
-          route={route}
-          navigation={navigation}
-          navigateTo={'Situation'}
-          txt={'Continuer'}
-          background={'white'}
-          top={260}
-        />
+        <TouchableOpacity
+          style={StylesLangParler.ViewBtn}
+          onPress={() => {
+            navigation.navigate('Situation');
+            handleStoreData('langues', selectedValues ?? '');
+            setButtonPressed(true);
+          }}
+          accessibilityLabel="Continuer">
+          <Text
+            style={[
+              StylesLangParler.TxtBtn,
+              {color: buttonPressed ? '#fff' : '#0019A7'},
+            ]}>
+            Continuer
+          </Text>
+          <Image
+            style={[StylesLangParler.imgBtn]}
+            source={
+              buttonPressed
+                ? require('../../../assets/boutons/Bouton-Rouge.png')
+                : require('../../../assets/boutons/Bouton-Blanc.png')
+            }
+          />
+        </TouchableOpacity>
       </ImageBackground>
     </View>
   );

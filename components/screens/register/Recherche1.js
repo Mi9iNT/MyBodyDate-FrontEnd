@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -6,44 +6,38 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import PropTypes from 'prop-types';
 import Styles from '../../../assets/style/Styles';
-import {BtnNext} from '../../composants/BtnNext';
+import {storeData, getData} from '../../../service/storage';
 import StylesRecherche1 from '../../../assets/style/styleScreens/styleRegister/StyleRecherche1';
 
-export const Recherche1 = ({route, navigation}) => {
+export const Recherche1 = ({navigation}) => {
+
+  useEffect(() => {
+    handleGetData();
+  }, []);
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetData = async () => {
+    try {
+      const userRecherche1 = await getData('recherche1');
+      setState(userRecherche1 || '');
+      // console.log('Recherche 1 : ' + userRecherche1);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
+
   const [recherche1, setState] = useState('');
 
   const [buttonPressed, setButtonPressed] = useState();
 
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  const userSituation = route.params?.userSituation ?? '';
-  const userOrientation = route.params?.userOrientation ?? '';
-
-  console.log('Choix de route : ', routeChoice);
-  console.log('Consentement : ', consentement);
-  console.log('Love Coach : ', loveCoach);
-  console.log('Email : ', userEmail);
-  console.log('Téléphone : ', userPhone);
-  console.log('Ville : ', userCity);
-  console.log('Accès position : ', accesPosition);
-  console.log('Genre : ', genre);
-  console.log('Date de naissance : ', userBirth);
-  console.log('Taille : ', userSize);
-  console.log('Langues : ', userLang);
-  console.log('Situation : ', userSituation);
-  console.log('Orientation : ', userOrientation);
-  console.log('Recherche1 : ', recherche1);
   const handleRecherche1 = value => {
     setState(value);
   };
@@ -109,37 +103,31 @@ export const Recherche1 = ({route, navigation}) => {
         </View>
 
         <Text style={[StylesRecherche1.textWhite]}>Choix unique.</Text>
-        <BtnNext
-          route={route}
-          navigation={navigation}
-          navigateTo={'Recherche2'}
-          txt={'Continuer'}
-          background={'white'}
-          top={260}
-        />
+        <TouchableOpacity
+          style={StylesRecherche1.ViewBtn}
+          onPress={() => {
+            navigation.navigate('Recherche2');
+            handleStoreData('recherche1', recherche1 ?? '');
+            setButtonPressed(true);
+          }}
+          accessibilityLabel="Continuer">
+          <Text
+            style={[
+              StylesRecherche1.TxtBtn,
+              {color: buttonPressed ? '#fff' : '#0019A7'},
+            ]}>
+            Continuer
+          </Text>
+          <Image
+            style={[StylesRecherche1.imgBtn]}
+            source={
+              buttonPressed
+                ? require('../../../assets/boutons/Bouton-Rouge.png')
+                : require('../../../assets/boutons/Bouton-Blanc.png')
+            }
+          />
+        </TouchableOpacity>
       </ImageBackground>
     </View>
   );
-};
-
-Recherche1.propTypes = {
-  route: PropTypes.shape({
-    params: PropTypes.shape({
-      routeName: PropTypes.string,
-      userConsent: PropTypes.string,
-      loveCoach: PropTypes.string,
-      userEmail: PropTypes.string,
-      userPhone: PropTypes.string,
-      userCity: PropTypes.string,
-      accesPosition: PropTypes.string,
-      genre: PropTypes.string,
-      userBirth: PropTypes.string,
-      userSize: PropTypes.string,
-      userLang: PropTypes.string,
-      userSituation: PropTypes.string,
-      userOrientation: PropTypes.string,
-      userRecherche1: PropTypes.string,
-    }),
-  }),
-  navigation: PropTypes.object,
 };

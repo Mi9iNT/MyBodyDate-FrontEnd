@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {storeData, getData} from '../../../service/storage';
 import {
   View,
   Text,
@@ -6,39 +7,34 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-import Styles from '../../../assets/style/Styles';
-import {BtnNext} from '../../composants/BtnNext';
 import StylesOrientation from '../../../assets/style/styleScreens/styleRegister/StyleOrientation';
 
-export const Orientation = ({route, navigation}) => {
-  // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  const userSituation = route.params?.userSituation ?? '';
-  console.log('Choix de route : ', routeChoice);
-  console.log('Consentement : ', consentement);
-  console.log('Love Coach : ', loveCoach);
-  console.log('Email : ', userEmail);
-  console.log('Téléphone : ', userPhone);
-  console.log('Ville : ', userCity);
-  console.log('Accès position : ', accesPosition);
-  console.log('Genre : ', genre);
-  console.log('Date de naissance : ', userBirth);
-  console.log('Taille : ', userSize);
-  console.log('Langues : ', userLang);
-  console.log('Situation : ', userSituation);
+export const Orientation = ({navigation}) => {
+  
+  useEffect(() => {
+    handleGetData();
+  }, []);
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetData = async () => {
+    try {
+      const userOrientation = await getData('orientation');
+      setOrientation(userOrientation || '');
+      // console.log('Orienatation : ' + userOrientation);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
 
   // Constante permettant de récupérer la valeur du bouton sélectionner par l'utilisateur
-  const [orientation, setState] = useState('');
+  const [orientation, setOrientation] = useState('');
 
   const [buttonPressed, setButtonPressed] = useState();
 
@@ -58,7 +54,7 @@ export const Orientation = ({route, navigation}) => {
         <View style={[StylesOrientation.ViewBTNSelect]}>
           <TouchableOpacity
             style={[StylesOrientation.btnSelect]}
-            onPress={() => setState({state: 'HétérosexeLle'})}
+            onPress={() => setOrientation({state: 'HétérosexeLle'})}
             accessibilityLabel="HétérosexeLle">
             <Text
               style={[
@@ -78,7 +74,7 @@ export const Orientation = ({route, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={[StylesOrientation.btnSelect]}
-            onPress={() => setState({state: 'HomosexueLle'})}
+            onPress={() => setOrientation({state: 'HomosexueLle'})}
             accessibilityLabel="HomosexueLle">
             <Text
               style={[
@@ -98,7 +94,7 @@ export const Orientation = ({route, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={[StylesOrientation.btnSelect]}
-            onPress={() => setState({state: 'BisexueLle'})}
+            onPress={() => setOrientation({state: 'BisexueLle'})}
             accessibilityLabel="BisexueLle">
             <Text
               style={[
@@ -119,65 +115,30 @@ export const Orientation = ({route, navigation}) => {
         </View>
 
         <Text style={[StylesOrientation.textWhite]}>Choix unique.</Text>
-        <BtnNext
-          route={route}
-          navigation={navigation}
-          navigateTo={'Recherche1'}
-          txt={'Continuer'}
-          background={'white'}
-          top={270}
-        />
-        {/* <View style={[Styles.ViewBtn2, {top: 130}]}>
-          <TouchableOpacity
-            style={Styles.btn}
-            onPress={() => {
-              setButtonPressed('Continuer');
-              navigation.navigate('Recherche1', {
-                userConsent: consentement,
-                routeName: routeChoice,
-                loveCoach: loveCoach,
-                userEmail: userEmail,
-                userPhone: userPhone,
-                userCity: userCity,
-                accesPosition: accesPosition,
-                genre: genre,
-                userBirth: userBirth,
-                userSize: userSize,
-                userLang: userLang,
-                userSituation: userSituation,
-                userOrientation: orientation.state,
-              });
-            }}
-            accessibilityLabel="Continuer">
-            <Text
-              style={[
-                Styles.textBtn9,
-                {
-                  zIndex: 1,
-                  top: 40,
-                  color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
-                },
-              ]}>
-              Continuer
-            </Text>
-            <Image
-              style={[
-                {
-                  top: 0,
-                  width: '90%',
-                  height: 60,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={
-                buttonPressed === 'Continuer'
-                  ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Blanc.png')
-              }
-            />
-          </TouchableOpacity>
-        </View> */}
+        <TouchableOpacity
+          style={StylesOrientation.ViewBtn}
+          onPress={() => {
+            navigation.navigate('Recherche1');
+            handleStoreData('orientation', orientation ?? '');
+            setButtonPressed(true);
+          }}
+          accessibilityLabel="Continuer">
+          <Text
+            style={[
+              StylesOrientation.TxtBtn,
+              {color: buttonPressed ? '#fff' : '#0019A7'},
+            ]}>
+            Continuer
+          </Text>
+          <Image
+            style={[StylesOrientation.imgBtn]}
+            source={
+              buttonPressed
+                ? require('../../../assets/boutons/Bouton-Rouge.png')
+                : require('../../../assets/boutons/Bouton-Blanc.png')
+            }
+          />
+        </TouchableOpacity>
       </ImageBackground>
     </View>
   );

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -6,46 +6,32 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-import Styles from '../../../assets/style/Styles';
-import {BtnNext} from '../../composants/BtnNext';
+import {storeData, getData} from '../../../service/storage';
 import StylesRythmeDeVie2 from '../../../assets/style/styleScreens/styleRegister/StyleRythmeDeVie2';
 
-export const RythmeDeVie2 = ({route, navigation}) => {
-  // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  const userSituation = route.params?.userSituation ?? '';
-  const userOrientation = route.params?.userOrientation ?? '';
-  const userRecherche1 = route.params?.userRecherche1 ?? '';
-  const userRecherche2 = route.params?.userRecherche2 ?? '';
-  const userAffinites = route.params?.userAffinites ?? '';
-  const rythmeDeVie1 = route.params?.rythmeDeVie1.state ?? '';
-  console.log('Choix de route : ', routeChoice);
-  console.log('Consentement : ', consentement);
-  console.log('Love Coach : ', loveCoach);
-  console.log('Email : ', userEmail);
-  console.log('Téléphone : ', userPhone);
-  console.log('Ville : ', userCity);
-  console.log('Accès position : ', accesPosition);
-  console.log('Genre : ', genre);
-  console.log('Date de naissance : ', userBirth);
-  console.log('Taille : ', userSize);
-  console.log('Langues : ', userLang);
-  console.log('Situation : ', userSituation);
-  console.log('Orientation : ', userOrientation);
-  console.log('Recherche 1 : ', userRecherche1);
-  console.log('Recherche 2 : ', userRecherche2);
-  console.log('Affinité(s) : ', userAffinites);
-  console.log('Rythme de vie 1 : ', rythmeDeVie1);
+export const RythmeDeVie2 = ({navigation}) => {
+
+  useEffect(() => {
+    handleGetData();
+  }, []);
+
+  const handleStoreData = async (key, value) => {
+    try {
+      await storeData(key, value);
+    } catch (error) {
+      console.error('Erreur lors du stockage des données :', error);
+    }
+  };
+
+  const handleGetData = async () => {
+    try {
+      const userRythme1 = await getData('rythme2');
+      setSelectedRythme2(userRythme1 || '');
+      // console.log('rythme de vie 2 : ' + userRythme2);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  };
 
   const [buttonPressed, setButtonPressed] = useState();
 
@@ -173,14 +159,30 @@ export const RythmeDeVie2 = ({route, navigation}) => {
         </View>
 
         <Text style={[StylesRythmeDeVie2.textWhite]}>Choix multiple.</Text>
-        <BtnNext
-          route={route}
-          navigation={navigation}
-          navigateTo={'Prenom'}
-          txt={'Continuer'}
-          background={'white'}
-          top={150}
-        />
+        <TouchableOpacity
+          style={StylesRythmeDeVie2.ViewBtn}
+          onPress={() => {
+            navigation.navigate('Prenom');
+            handleStoreData('rythme2', selectedRythme2 ?? '');
+            setButtonPressed(true);
+          }}
+          accessibilityLabel="Continuer">
+          <Text
+            style={[
+              StylesRythmeDeVie2.TxtBtn,
+              {color: buttonPressed ? '#fff' : '#0019A7'},
+            ]}>
+            Continuer
+          </Text>
+          <Image
+            style={[StylesRythmeDeVie2.imgBtn]}
+            source={
+              buttonPressed
+                ? require('../../../assets/boutons/Bouton-Rouge.png')
+                : require('../../../assets/boutons/Bouton-Blanc.png')
+            }
+          />
+        </TouchableOpacity>
       </ImageBackground>
     </View>
   );

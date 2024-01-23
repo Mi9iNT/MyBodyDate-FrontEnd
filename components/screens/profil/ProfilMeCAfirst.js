@@ -2,10 +2,11 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
-import {StatusBar, TextInput} from 'react-native';
+import {ImageBackground, StatusBar, TextInput} from 'react-native';
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import PropTypes from 'prop-types';
 import {MenuSlide} from '../../composants/MenuSlide';
+import {launchImageLibrary} from 'react-native-image-picker';
 import {NiveauDEtudes} from '../../composants/edit/NiveauDEtudes';
 import {JeParle} from '../../composants/edit/JeParle';
 import {Activite} from '../../composants/edit/Activite';
@@ -13,54 +14,48 @@ import {MaCuisine} from '../../composants/edit/MaCuisine';
 import {Ami} from '../../composants/edit/Ami';
 import {Film} from '../../composants/edit/Film';
 import {Spotify} from '../../composants/edit/Spotify';
+import StylesProfileMeCafirst from '../../../assets/style/styleScreens/styleProfil/StyleProfileMeCafirst';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-export const ProfilMeCAfirst = ({route, navigation, imagePath}) => {
-  const routeChoice = route.params?.routeName ?? '';
-  const consentement = route.params?.userConsent ?? '';
-  const loveCoach = route.params?.loveCoach ?? '';
-  const userEmail = route.params?.userEmail ?? '';
-  const userPhone = route.params?.userPhone ?? '';
-  const userCity = route.params?.userCity ?? '';
-  const accesPosition = route.params?.accesPosition ?? '';
-  const genre = route.params?.genre ?? '';
-  const userBirth = route.params?.userBirth ?? '';
-  const userSize = route.params?.userSize ?? '';
-  const userLang = route.params?.userLang ?? '';
-  const userSituation = route.params?.userSituation ?? '';
-  const userOrientation = route.params?.userOrientation ?? '';
-  const userRecherche1 = route.params?.userRecherche1 ?? '';
-  const userRecherche2 = route.params?.userRecherche2 ?? '';
-  const userAffinites = route.params?.userAffinites ?? '';
-  const rythmeDeVie1 = route.params?.rythmeDeVie1 ?? '';
-  const rythmeDeVie2 = route.params?.rythmeDeVie2 ?? '';
-  const userPrenom = route.params?.userPrenom ?? '';
-  const userVoice = route.params?.userVoice ?? '';
+export const ProfilMeCAfirst = ({navigation, imagePath}) => {
 
-  const [modalVisible, setModalVisible] = useState(false);
+  const [buttonPressed, setButtonPressed] = useState(false);
 
-  const [openModal, setOpenModal] = useState(false);
-  const [openModalJeParle, setOpenModalJeParle] = useState(false);
-  const [openModalActivite, setOpenModalActivite] = useState(false);
-  const [openModalMaCuisine, setOpenModalMaCuisine] = useState(false);
-  const [openModalAmi, setOpenModalAmi] = useState(false);
-  const [openModalFilm, setOpenModalFilm] = useState(false);
-  const [openModalSpotify, setOpenModalSpotify] = useState(false);
-  const tabPath = route.params?.tabPath ?? '';
-
-  const [addProVisible, setAddProVisible] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
-
-  const handleAddProToggle = index => {
-    const newArray = [...addProVisible];
-    newArray[index] = !newArray[index];
-    setAddProVisible(newArray);
+  const deleteAvatar = (index) => {
+    setAvatarPath(prevAvatar => {
+      let newAvatarPath = [...prevAvatar];
+      newAvatarPath[index] = null;
+      return newAvatarPath;
+    });
   };
+
+  const [avatarPath, setAvatarPath] = useState([null, null, null]);
+
+  console.log(avatarPath);
+
+  const ImagePicker = (index) => {
+    let options = {
+      storageOptions: {
+        path: 'image',
+      },
+    };
+    launchImageLibrary(options, response => {
+      if (response.didCancel) {
+        console.log("L'utilisateur a annulé la sélection de l'image.");
+      } else if (response.errorCode) {
+        console.log('Erreur : ', response.errorMessage);
+      } else {
+        let newAvatar = response.assets[0].uri;
+        let newAvatarPath = [...avatarPath];
+        newAvatarPath[index] = newAvatar;
+        setAvatarPath(newAvatarPath);
+      }
+    });
+  };
+
+  const [userIntitulate, SetUserIntitulate] = useState();
+
+  const [userDescription, SetUserDescription] = useState();
 
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -70,428 +65,148 @@ export const ProfilMeCAfirst = ({route, navigation, imagePath}) => {
   }, []);
 
   return (
-    <View style={{flex: 1, backgroundColor: '#fff'}}>
+    <View style={[StylesProfileMeCafirst.container]}>
       <MenuSlide imagePath={'Ami'} tabPath={'Ami'} />
-      <ScrollView>
-        <View>
+      <ScrollView style={{height: 1200,}}>
           <Text
-            style={{
-              fontFamily: 'Gilroy',
-              fontWeight: '700',
-              fontSize: 24,
-              color: '#9424FA',
-              alignSelf: 'center',
-              textAlign: 'center',
-            }}>
+            style={[StylesProfileMeCafirst.txtTitle]}>
             Profil éditer
           </Text>
-        </View>
         <View style={{left: 20, top: 20}}>
           <Text
-            style={{
-              fontFamily: 'Gilroy',
-              fontWeight: '700',
-              fontSize: 20,
-              color: '#9424FA',
-              left: 5,
-            }}>
+            style={StylesProfileMeCafirst.txtSubTitle}>
             Photos
           </Text>
           <Text
-            style={{
-              fontFamily: 'Comfortaa',
-              fontWeight: '700',
-              fontSize: 14,
-              color: '#9424FA',
-              top: 15,
-            }}>
+            style={[StylesProfileMeCafirst.txtDescription]}>
             Ajoutez jusqua 3 photos de vous, pour{'\n'}agrandir votre cercle
             social.
           </Text>
         </View>
         <View
-          style={{
-            justifyContent: 'space-around',
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
-          <Image
-            source={require('../../../assets/images/Raluca-Edit.png')}
-            style={{
-              width: 129,
-              height: 129,
-              top: 60,
-            }}
-          />
-          <Image
-            source={require('../../../assets/images/Sup.png')}
-            style={{
-              width: 82,
-              height: 82,
-              top: 60,
-            }}
-          />
-          <Image
-            source={require('../../../assets/images/Plus-Edit.png')}
-            style={{
-              width: 82,
-              height: 82,
-              top: 60,
-            }}
-          />
-        </View>
-        <Image
-          source={require('../../../assets/images/Line133.png')}
-          style={{
-            width: 310,
-            height: 2,
-            top: 80,
-            alignItems: 'center',
-            alignSelf: 'center',
-          }}
-        />
+          style={[StylesProfileMeCafirst.viewPhoto]}>
+          {avatarPath.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() => {item === null ? ImagePicker(index) : deleteAvatar(index)}}
+              style={[StylesProfileMeCafirst.btnAddPhoto, {
+                width: index === 0 && item !== null ? 129 : 82,
+                height: index === 0 && item !== null ? 129 : 82,
+              }]}>
+          {item ? (
+            <View style={[StylesProfileMeCafirst.viewUserPhoto, 
+              {
+              width: index === 0 && item !== null ? 129 : 82,
+              height: index === 0 && item !== null ? 129 : 82,}]}>
+              <Image source={{ uri: avatarPath[index] }}
+                style={[StylesProfileMeCafirst.userPhoto,
+                  {
+                    width: index === 0 && item !== null ? 129 : 82,
+                    height: index === 0 && item !== null ? 129 : 82,
+            }]} />
+              <View style={[StylesProfileMeCafirst.contentDeleteImage, {bottom: index === 0 ? 80 : 55,}]}>
+                <Image source={require('../../../assets/boutons/poubelle.png')} style={[StylesProfileMeCafirst.imageDelete]}/>
+              </View>
+            </View>
+          ) : (
+            <Text
+              style={[StylesProfileMeCafirst.txtAddImage]}
+              >
+              +
+            </Text>
+          )}
+        </TouchableOpacity>
+            ))}
+            </View>
+
+        <View style={[StylesProfileMeCafirst.line,{top: avatarPath[0] !== null ? 90 : 70,}]} />
         <Text
-          style={{
-            fontFamily: 'Comfortaa',
-            fontWeight: '700',
-            fontSize: 14,
-            color: '#9424FA',
-            top: 90,
-            left: 45,
-          }}>
-          Pour plus de photos sur votre profil,{'\n'}ajoutez votre flux
-          Instagram ou Facebook.
+          style={[StylesProfileMeCafirst.txtInfo]}>
+          Pour plus de photos sur votre profil,
         </Text>
-        <Image
-          source={require('../../../assets/images/Instagrame.png')}
+        <Text
+          style={[StylesProfileMeCafirst.txtInfo]}>ajoutez votre flux Instagram ou Facebook.
+        </Text>
+        <View style={[StylesProfileMeCafirst.viewCol]}>
+          <TouchableOpacity
+          onPress={()=>{setButtonPressed('Insta')}}
           style={{
-            width: 331,
+            width: 336,
             height: 56,
-            top: 110,
             alignItems: 'center',
             alignSelf: 'center',
-          }}
-        />
-        <Image
-          source={require('../../../assets/images/Facebook.png')}
-          style={{
-            width: 331,
-            height: 56,
-            top: 130,
-            alignItems: 'center',
-            alignSelf: 'center',
-          }}
-        />
+          }}>
+            <Image
+              style={[StylesProfileMeCafirst.imgBtn]}
+              source={
+                buttonPressed === 'Go'
+                  ? require('../../../assets/boutons/import-insta-rouge.png')
+                  : require('../../../assets/boutons/import-insta.png')
+              }
+            />
+            <Text style={[StylesProfileMeCafirst.TxtBtn, {zIndex: 1, bottom: 24, left: 20}]}>
+              Importer votre feed Instagram
+            </Text>
+        </TouchableOpacity>
+            <TouchableOpacity
+            style={{}}
+            onPress={() => {
+              setButtonPressed('Meta');
+            }}>
+            <Text style={[StylesProfileMeCafirst.TxtBtn, {zIndex: 1, top: 57}]}>
+             Meta (Facebook)
+            </Text>
+            <Image
+              style={[StylesProfileMeCafirst.imgBtn]}
+              source={
+                buttonPressed === 'Meta'
+                  ? require('../../../assets/boutons/Bouton-Rouge-Meta.png')
+                  : require('../../../assets/boutons/Bouton-Noir-Meta.png')
+              }
+            />
+          </TouchableOpacity>
+        </View>
         <View
           style={{
-            top: 160,
-            left: 20,
+            top: 100,
+            height: 850,
           }}>
-          <View>
+          <SafeAreaView style={[StylesProfileMeCafirst.viewContent]}>
             <Text
-              style={{
-                fontFamily: 'Gilroy',
-                fontWeight: '700',
-                fontSize: 20,
-                color: '#9424FA',
-                left: 20,
-              }}>
-              Quelques mots sur moi
+              style={[StylesProfileMeCafirst.txtSubTitle,]}>
+                Quelques mots sur moi
             </Text>
             <Text
-              style={{
-                fontFamily: 'Comfortaa',
-                fontWeight: '500',
-                fontSize: 14,
-                color: '#9424FA',
-                top: 10,
-                left: 20,
-              }}>
-              Lorem ipsum
+              style={[StylesProfileMeCafirst.intitulateInput]}
+            >
+              Description
             </Text>
-            <View
-              style={{
-                borderWidth: 1,
-                borderColor: '#E0BDFF',
-                borderRadius: 30,
-                alignSelf: 'center',
-                top: 30,
-                width: 333,
-                height: 111,
-                right: 20,
-              }}>
-              <TextInput
-                placeholder="Lorem Ipsum"
-                style={{
-                  left: 20,
-                  color: '#9424FA',
-                }}
-              />
-            </View>
-          </View>
+            <TextInput
+              placeholder="Description"
+              placeholderTextColor={'#9424FA'}
+              allowFontScaling={true}
+              editable={true}
+              multiline={true}
+              scrollEnabled={true}
+              onSubmitEditing={(event) => SetUserDescription(event.nativeEvent.text)}
+              style={[StylesProfileMeCafirst.descriptionInput]}
+            />
+          </SafeAreaView>
           <Text
-            style={{
-              fontFamily: 'Gilroy',
-              fontWeight: '700',
-              fontSize: 20,
-              color: '#9424FA',
-              top: 50,
-              left: 20,
-            }}>
+            style={[StylesProfileMeCafirst.txtSubTitle, {top:45}]}>
             Mes infos de base
           </Text>
           <View
             style={{
-              marginTop: 450,
-              left: 10,
+              top: 450,
             }}>
-            <NiveauDEtudes
-              visible={openModal}
-              closeModal={() => setOpenModal(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(0);
-                setOpenModal(true);
-              }}
-              style={{
-                bottom: 380,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../../assets/images/btn_diplome.png')}
-              />
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  fontSize: 15,
-                  color: '#9424FA',
-                  left: 20,
-                }}>
-                Niveau d'étude
-              </Text>
-              <View style={{width: 35, height: 35, left: 169}}>
-                <Image
-                  source={
-                    addProVisible[0]
-                      ? require('../../../assets/images/add_plein.png')
-                      : require('../../../assets/images/add_vide.png')
-                  }
-                />
-              </View>
-            </TouchableOpacity>
-            <JeParle
-              visibleJeParle={openModalJeParle}
-              closeModalJeParle={() => setOpenModalJeParle(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(1);
-                setOpenModalJeParle(true);
-              }}
-              style={{
-                bottom: 360,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image source={require('../../../assets/images/language.png')} />
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  fontSize: 15,
-                  color: '#9424FA',
-                  left: 20,
-                }}>
-                Je parle couramment...
-              </Text>
-              <View style={{width: 35, height: 35, left: 113}}>
-                <Image
-                  source={
-                    addProVisible[1]
-                      ? require('../../../assets/images/add_plein.png')
-                      : require('../../../assets/images/add_vide.png')
-                  }
-                />
-              </View>
-            </TouchableOpacity>
-            <Activite
-              visibleActivite={openModalActivite}
-              closeModalActivite={() => setOpenModalActivite(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(2);
-                setOpenModalActivite(true);
-              }}
-              style={{
-                bottom: 340,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image source={require('../../../assets/images/activité.png')} />
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  fontSize: 15,
-                  color: '#9424FA',
-                  left: 25,
-                }}>
-                Mon activité favorite...
-              </Text>
-              <View style={{width: 35, height: 35, left: 121}}>
-                <Image
-                  source={
-                    addProVisible[2]
-                      ? require('../../../assets/images/add_plein.png')
-                      : require('../../../assets/images/add_vide.png')
-                  }
-                />
-              </View>
-            </TouchableOpacity>
-            <MaCuisine
-              visibleMaCuisine={openModalMaCuisine}
-              closeModalMaCuisine={() => setOpenModalMaCuisine(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(3);
-                setOpenModalMaCuisine(true);
-              }}
-              style={{
-                bottom: 320,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image source={require('../../../assets/images/cuisine.png')} />
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  fontSize: 15,
-                  color: '#9424FA',
-                  left: 25,
-                }}>
-                Ma cuisine favorite...
-              </Text>
-              <View style={{width: 35, height: 35, left: 131}}>
-                <Image
-                  source={
-                    addProVisible[3]
-                      ? require('../../../assets/images/add_plein.png')
-                      : require('../../../assets/images/add_vide.png')
-                  }
-                />
-              </View>
-            </TouchableOpacity>
-            <Ami
-              visibleAmi={openModalAmi}
-              closeModalAmi={() => setOpenModalAmi(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(4);
-                setOpenModalAmi(true);
-              }}
-              style={{
-                bottom: 300,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image source={require('../../../assets/images/amitié.png')} />
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  fontSize: 15,
-                  color: '#9424FA',
-                  left: 20,
-                }}>
-                Pour moi le plus important en {'\n'}amitié...
-              </Text>
-              <View style={{width: 35, height: 35, left: 63}}>
-                <Image
-                  source={
-                    addProVisible[4]
-                      ? require('../../../assets/images/add_plein.png')
-                      : require('../../../assets/images/add_vide.png')
-                  }
-                />
-              </View>
-            </TouchableOpacity>
-            <Film
-              visibleFilm={openModalFilm}
-              closeModalFilm={() => setOpenModalFilm(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(5);
-                setOpenModalFilm(true);
-              }}
-              style={{
-                bottom: 280,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image source={require('../../../assets/images/popcorn.png')} />
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  fontSize: 15,
-                  color: '#9424FA',
-                  left: 20,
-                }}>
-                Les films que je ne me lasse {'\n'}pas de revoir...
-              </Text>
-              <View style={{width: 35, height: 35, left: 72}}>
-                <Image
-                  source={
-                    addProVisible[5]
-                      ? require('../../../assets/images/add_plein.png')
-                      : require('../../../assets/images/add_vide.png')
-                  }
-                />
-              </View>
-            </TouchableOpacity>
-            <Spotify
-              visibleSpotify={openModalSpotify}
-              closeModalSpotify={() => setOpenModalSpotify(false)} // Assurez-vous de définir correctement cette fonction
-            />
-            <TouchableOpacity
-              onPress={() => {
-                handleAddProToggle(6);
-                setOpenModalSpotify(true);
-              }}
-              style={{
-                bottom: 260,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image source={require('../../../assets/images/Spotify.png')} />
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  fontSize: 15,
-                  color: '#9424FA',
-                  left: 20,
-                }}>
-                Ma playlist Spotify
-              </Text>
-              <View style={{width: 35, height: 35, left: 142}}>
-                <Image
-                  source={
-                    addProVisible[6]
-                      ? require('../../../assets/images/add_plein.png')
-                      : require('../../../assets/images/add_vide.png')
-                  }
-                />
-              </View>
-            </TouchableOpacity>
+            <NiveauDEtudes />
+            <JeParle />
+            <Activite />
+            <MaCuisine />
+            <Ami />
+            <Film />
+            <Spotify />
           </View>
         </View>
       </ScrollView>

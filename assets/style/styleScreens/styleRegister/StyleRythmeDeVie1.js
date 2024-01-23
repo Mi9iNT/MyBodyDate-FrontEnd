@@ -58,15 +58,27 @@ const StylesRythmeDeVie1 = {
     fontSize: 18,
     fontStyle: 'normal',
   },
+  ViewBtn: {
+    flex: 1,
+    top: 140,
+    height: 56,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imgBtn: {
+    height: 56,
+    flexShrink: 0,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    bottom: 17,
+  },
   TxtBtn: {
-    top: 120,
-    color: '#FFF',
+    color: '#0F0BAE',
+    fontSize: 22,
     textAlign: 'center',
     fontFamily: 'Comfortaa',
-    fontSize: 16,
-    fontStyle: 'normal',
-    fontWeight: 700,
-    textDecorationLine: 'underline',
+    top: 24,
+    zIndex: 1,
   },
 };
 

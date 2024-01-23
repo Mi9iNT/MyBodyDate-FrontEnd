@@ -44,7 +44,7 @@ const StylesLangParler = {
   ViewInputRadioLang: {
     flexDirection: 'row',
     marginLeft: 50,
-    top: 80,
+    bottom: 20,
   },
   btnInputLang: {
     flexDirection: 'row',
@@ -118,14 +118,27 @@ const StylesLangParler = {
     color: '#cacaca',
     fontSize: 16,
   },
+  ViewBtn: {
+    flex: 1,
+    top: 50,
+    height: 56,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imgBtn: {
+    height: 56,
+    flexShrink: 0,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    bottom: 17,
+  },
   TxtBtn: {
-    color: '#FFF',
+    color: '#0F0BAE',
+    fontSize: 22,
     textAlign: 'center',
     fontFamily: 'Comfortaa',
-    fontSize: 16,
-    fontStyle: 'normal',
-    fontWeight: 700,
-    textDecorationLine: 'underline',
+    top: 24,
+    zIndex: 1,
   },
 };
 
