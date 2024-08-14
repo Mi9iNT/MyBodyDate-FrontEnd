@@ -27,7 +27,7 @@ export const AutorisationsNecessaires = ({navigation}) => {
     <ImageBackground
       style={StyleAutorisationsNecessaires.bgGradient}
       source={require('../../../assets/images/bg-parametres.png')}>
-      <MenuSlide settingsNavigation={'Parametre de confidentialites'} backButton={'Retour'} />
+      <MenuSlide settingsNavigation={'Parametre_de_confidentialites'} backButton={'Retour'} />
       <Text
         style={StyleAutorisationsNecessaires.title}>
         Autorisations nécessaires

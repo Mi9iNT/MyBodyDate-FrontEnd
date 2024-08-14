@@ -1,6 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable no-unused-vars */
 import React, {useState, useEffect, useRef} from 'react';
 import {
   View,
@@ -10,7 +7,6 @@ import {
   Platform,
   StyleSheet,
 } from 'react-native';
-import PropTypes from 'prop-types';
 import { check, checkMultiple, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import MenuSlide from '../../composants/MenuSlide';
